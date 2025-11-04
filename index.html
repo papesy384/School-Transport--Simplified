@@ -184,27 +184,27 @@
         <div id="view-guest-admin" class="view-section">
             <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">Guest Admin Dashboard</h2>
-                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+                    <h2 id="dashboard-admin-title" class="text-3xl font-bold text-gray-800">Guest Admin Dashboard</h2>
+                    <span id="guest-mode-badge" class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
                 </div>
-                <p class="text-gray-600">Welcome to the Admin Dashboard. You are logged in as a guest administrator.</p>
+                <p id="dashboard-admin-desc" class="text-gray-600">Welcome to the Admin Dashboard. You are logged in as a guest administrator.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Fleet Management</h3>
-                    <p class="text-gray-600 mb-4">View and manage vehicle fleet</p>
-                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Fleet</button>
+                    <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800">Fleet Management</h3>
+                    <p id="admin-fleet-desc" class="text-gray-600 mb-4">View and manage vehicle fleet</p>
+                    <button id="admin-fleet-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Fleet</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Booking Approvals</h3>
-                    <p class="text-gray-600 mb-4">Review and approve booking requests</p>
-                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Requests</button>
+                    <h3 id="admin-approvals-title" class="text-xl font-bold mb-3 text-gray-800">Booking Approvals</h3>
+                    <p id="admin-approvals-desc" class="text-gray-600 mb-4">Review and approve booking requests</p>
+                    <button id="admin-approvals-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Requests</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">User Management</h3>
-                    <p class="text-gray-600 mb-4">Manage employees and drivers</p>
-                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Users</button>
+                    <h3 id="admin-users-title" class="text-xl font-bold mb-3 text-gray-800">User Management</h3>
+                    <p id="admin-users-desc" class="text-gray-600 mb-4">Manage employees and drivers</p>
+                    <button id="admin-users-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Users</button>
                 </div>
             </div>
         </div>
@@ -213,22 +213,22 @@
         <div id="view-guest-employee" class="view-section">
             <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">Guest Employee Dashboard</h2>
-                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+                    <h2 id="dashboard-employee-title" class="text-3xl font-bold text-gray-800">Guest Employee Dashboard</h2>
+                    <span id="guest-mode-badge-employee" class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
                 </div>
-                <p class="text-gray-600">Welcome to the Employee Dashboard. You are logged in as a guest employee.</p>
+                <p id="dashboard-employee-desc" class="text-gray-600">Welcome to the Employee Dashboard. You are logged in as a guest employee.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">New Booking Request</h3>
-                    <p class="text-gray-600 mb-4">Submit a new vehicle booking request</p>
-                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Create Booking</button>
+                    <h3 id="employee-booking-title" class="text-xl font-bold mb-3 text-gray-800">New Booking Request</h3>
+                    <p id="employee-booking-desc" class="text-gray-600 mb-4">Submit a new vehicle booking request</p>
+                    <button id="employee-booking-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Create Booking</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">My Bookings</h3>
-                    <p class="text-gray-600 mb-4">View and track your booking requests</p>
-                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Bookings</button>
+                    <h3 id="employee-mybookings-title" class="text-xl font-bold mb-3 text-gray-800">My Bookings</h3>
+                    <p id="employee-mybookings-desc" class="text-gray-600 mb-4">View and track your booking requests</p>
+                    <button id="employee-mybookings-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Bookings</button>
                 </div>
             </div>
         </div>
@@ -237,22 +237,22 @@
         <div id="view-guest-driver" class="view-section">
             <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">Guest Driver Interface</h2>
-                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+                    <h2 id="dashboard-driver-title" class="text-3xl font-bold text-gray-800">Guest Driver Interface</h2>
+                    <span id="guest-mode-badge-driver" class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
                 </div>
-                <p class="text-gray-600">Welcome to the Driver Interface. You are logged in as a guest driver.</p>
+                <p id="dashboard-driver-desc" class="text-gray-600">Welcome to the Driver Interface. You are logged in as a guest driver.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Assigned Trips</h3>
-                    <p class="text-gray-600 mb-4">View your assigned trips and routes</p>
-                    <button class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">View Trips</button>
+                    <h3 id="driver-trips-title" class="text-xl font-bold mb-3 text-gray-800">Assigned Trips</h3>
+                    <p id="driver-trips-desc" class="text-gray-600 mb-4">View your assigned trips and routes</p>
+                    <button id="driver-trips-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">View Trips</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Update Status</h3>
-                    <p class="text-gray-600 mb-4">Update trip status and location</p>
-                    <button class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
+                    <h3 id="driver-status-title" class="text-xl font-bold mb-3 text-gray-800">Update Status</h3>
+                    <p id="driver-status-desc" class="text-gray-600 mb-4">Update trip status and location</p>
+                    <button id="driver-status-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
                 </div>
             </div>
         </div>
@@ -304,7 +304,7 @@
             content: {
                 en: {
                     title: 'Your Centralized Transportation Platform',
-                    text: 'Easily book vehicles for field trips, sports events, and staff travel. A centralized platform for all your school’s transportation needs at the International School of Dakar.',
+                    text: 'Easily book vehicles for field trips, sports events, and staff travel. A centralized platform for all your school\'s transportation needs at the International School of Dakar.',
                     admin: 'Admin Access',
                     employee: 'Employee Login',
                     driver: 'Driver Login',
@@ -314,7 +314,36 @@
                     btnAdmin: 'Guest Admin Dashboard',
                     btnEmployee: 'Guest Employee Dashboard',
                     btnDriver: 'Guest Driver Interface',
-                    btnCancel: 'Cancel'
+                    btnCancel: 'Cancel',
+                    home: 'Home',
+                    guestMode: 'GUEST MODE',
+                    adminDashboardTitle: 'Guest Admin Dashboard',
+                    adminDashboardDesc: 'Welcome to the Admin Dashboard. You are logged in as a guest administrator.',
+                    adminFleetTitle: 'Fleet Management',
+                    adminFleetDesc: 'View and manage vehicle fleet',
+                    adminFleetBtn: 'Manage Fleet',
+                    adminApprovalsTitle: 'Booking Approvals',
+                    adminApprovalsDesc: 'Review and approve booking requests',
+                    adminApprovalsBtn: 'View Requests',
+                    adminUsersTitle: 'User Management',
+                    adminUsersDesc: 'Manage employees and drivers',
+                    adminUsersBtn: 'Manage Users',
+                    employeeDashboardTitle: 'Guest Employee Dashboard',
+                    employeeDashboardDesc: 'Welcome to the Employee Dashboard. You are logged in as a guest employee.',
+                    employeeBookingTitle: 'New Booking Request',
+                    employeeBookingDesc: 'Submit a new vehicle booking request',
+                    employeeBookingBtn: 'Create Booking',
+                    employeeMyBookingsTitle: 'My Bookings',
+                    employeeMyBookingsDesc: 'View and track your booking requests',
+                    employeeMyBookingsBtn: 'View Bookings',
+                    driverDashboardTitle: 'Guest Driver Interface',
+                    driverDashboardDesc: 'Welcome to the Driver Interface. You are logged in as a guest driver.',
+                    driverTripsTitle: 'Assigned Trips',
+                    driverTripsDesc: 'View your assigned trips and routes',
+                    driverTripsBtn: 'View Trips',
+                    driverStatusTitle: 'Update Status',
+                    driverStatusDesc: 'Update trip status and location',
+                    driverStatusBtn: 'Update Status'
                 },
                 fr: {
                     title: 'Votre Plateforme de Transport Centralisée',
@@ -328,13 +357,43 @@
                     btnAdmin: 'Tableau de bord Admin Invité',
                     btnEmployee: 'Tableau de bord Employé Invité',
                     btnDriver: 'Interface Chauffeur Invité',
-                    btnCancel: 'Annuler'
+                    btnCancel: 'Annuler',
+                    home: 'Accueil',
+                    guestMode: 'MODE INVITÉ',
+                    adminDashboardTitle: 'Tableau de bord Admin Invité',
+                    adminDashboardDesc: 'Bienvenue sur le tableau de bord Administrateur. Vous êtes connecté en tant qu\'administrateur invité.',
+                    adminFleetTitle: 'Gestion de la Flotte',
+                    adminFleetDesc: 'Voir et gérer la flotte de véhicules',
+                    adminFleetBtn: 'Gérer la Flotte',
+                    adminApprovalsTitle: 'Approbations de Réservation',
+                    adminApprovalsDesc: 'Examiner et approuver les demandes de réservation',
+                    adminApprovalsBtn: 'Voir les Demandes',
+                    adminUsersTitle: 'Gestion des Utilisateurs',
+                    adminUsersDesc: 'Gérer les employés et les chauffeurs',
+                    adminUsersBtn: 'Gérer les Utilisateurs',
+                    employeeDashboardTitle: 'Tableau de bord Employé Invité',
+                    employeeDashboardDesc: 'Bienvenue sur le tableau de bord Employé. Vous êtes connecté en tant qu\'employé invité.',
+                    employeeBookingTitle: 'Nouvelle Demande de Réservation',
+                    employeeBookingDesc: 'Soumettre une nouvelle demande de réservation de véhicule',
+                    employeeBookingBtn: 'Créer une Réservation',
+                    employeeMyBookingsTitle: 'Mes Réservations',
+                    employeeMyBookingsDesc: 'Voir et suivre vos demandes de réservation',
+                    employeeMyBookingsBtn: 'Voir les Réservations',
+                    driverDashboardTitle: 'Interface Chauffeur Invité',
+                    driverDashboardDesc: 'Bienvenue sur l\'interface Chauffeur. Vous êtes connecté en tant que chauffeur invité.',
+                    driverTripsTitle: 'Trajets Assignés',
+                    driverTripsDesc: 'Voir vos trajets et itinéraires assignés',
+                    driverTripsBtn: 'Voir les Trajets',
+                    driverStatusTitle: 'Mettre à jour le Statut',
+                    driverStatusDesc: 'Mettre à jour le statut et la localisation du trajet',
+                    driverStatusBtn: 'Mettre à jour le Statut'
                 }
             },
 
             // Function to update text based on language
             setLanguage(lang) {
                 const data = this.content[lang];
+                // Home page content
                 document.getElementById('msg-title').textContent = data.title;
                 document.getElementById('msg-text').textContent = data.text;
                 document.getElementById('btn-admin').querySelector('span:nth-child(2)').textContent = data.admin;
@@ -350,6 +409,92 @@
                 modal.querySelector('[data-role="driver"]').textContent = data.btnDriver;
                 document.getElementById('close-modal').textContent = data.btnCancel;
 
+                // Update header
+                const homeLink = document.getElementById('home-link');
+                if (homeLink) {
+                    homeLink.textContent = data.home;
+                }
+
+                // Update dashboard content if visible
+                const guestModeBadge = document.getElementById('guest-mode-badge');
+                const guestModeBadgeEmployee = document.getElementById('guest-mode-badge-employee');
+                const guestModeBadgeDriver = document.getElementById('guest-mode-badge-driver');
+                if (guestModeBadge) {
+                    guestModeBadge.textContent = data.guestMode;
+                }
+                if (guestModeBadgeEmployee) {
+                    guestModeBadgeEmployee.textContent = data.guestMode;
+                }
+                if (guestModeBadgeDriver) {
+                    guestModeBadgeDriver.textContent = data.guestMode;
+                }
+
+                // Admin Dashboard
+                const adminDashboardTitle = document.getElementById('dashboard-admin-title');
+                const adminDashboardDesc = document.getElementById('dashboard-admin-desc');
+                if (adminDashboardTitle) adminDashboardTitle.textContent = data.adminDashboardTitle;
+                if (adminDashboardDesc) adminDashboardDesc.textContent = data.adminDashboardDesc;
+                
+                const adminFleetTitle = document.getElementById('admin-fleet-title');
+                const adminFleetDesc = document.getElementById('admin-fleet-desc');
+                const adminFleetBtn = document.getElementById('admin-fleet-btn');
+                if (adminFleetTitle) adminFleetTitle.textContent = data.adminFleetTitle;
+                if (adminFleetDesc) adminFleetDesc.textContent = data.adminFleetDesc;
+                if (adminFleetBtn) adminFleetBtn.textContent = data.adminFleetBtn;
+                
+                const adminApprovalsTitle = document.getElementById('admin-approvals-title');
+                const adminApprovalsDesc = document.getElementById('admin-approvals-desc');
+                const adminApprovalsBtn = document.getElementById('admin-approvals-btn');
+                if (adminApprovalsTitle) adminApprovalsTitle.textContent = data.adminApprovalsTitle;
+                if (adminApprovalsDesc) adminApprovalsDesc.textContent = data.adminApprovalsDesc;
+                if (adminApprovalsBtn) adminApprovalsBtn.textContent = data.adminApprovalsBtn;
+                
+                const adminUsersTitle = document.getElementById('admin-users-title');
+                const adminUsersDesc = document.getElementById('admin-users-desc');
+                const adminUsersBtn = document.getElementById('admin-users-btn');
+                if (adminUsersTitle) adminUsersTitle.textContent = data.adminUsersTitle;
+                if (adminUsersDesc) adminUsersDesc.textContent = data.adminUsersDesc;
+                if (adminUsersBtn) adminUsersBtn.textContent = data.adminUsersBtn;
+
+                // Employee Dashboard
+                const employeeDashboardTitle = document.getElementById('dashboard-employee-title');
+                const employeeDashboardDesc = document.getElementById('dashboard-employee-desc');
+                if (employeeDashboardTitle) employeeDashboardTitle.textContent = data.employeeDashboardTitle;
+                if (employeeDashboardDesc) employeeDashboardDesc.textContent = data.employeeDashboardDesc;
+                
+                const employeeBookingTitle = document.getElementById('employee-booking-title');
+                const employeeBookingDesc = document.getElementById('employee-booking-desc');
+                const employeeBookingBtn = document.getElementById('employee-booking-btn');
+                if (employeeBookingTitle) employeeBookingTitle.textContent = data.employeeBookingTitle;
+                if (employeeBookingDesc) employeeBookingDesc.textContent = data.employeeBookingDesc;
+                if (employeeBookingBtn) employeeBookingBtn.textContent = data.employeeBookingBtn;
+                
+                const employeeMyBookingsTitle = document.getElementById('employee-mybookings-title');
+                const employeeMyBookingsDesc = document.getElementById('employee-mybookings-desc');
+                const employeeMyBookingsBtn = document.getElementById('employee-mybookings-btn');
+                if (employeeMyBookingsTitle) employeeMyBookingsTitle.textContent = data.employeeMyBookingsTitle;
+                if (employeeMyBookingsDesc) employeeMyBookingsDesc.textContent = data.employeeMyBookingsDesc;
+                if (employeeMyBookingsBtn) employeeMyBookingsBtn.textContent = data.employeeMyBookingsBtn;
+
+                // Driver Dashboard
+                const driverDashboardTitle = document.getElementById('dashboard-driver-title');
+                const driverDashboardDesc = document.getElementById('dashboard-driver-desc');
+                if (driverDashboardTitle) driverDashboardTitle.textContent = data.driverDashboardTitle;
+                if (driverDashboardDesc) driverDashboardDesc.textContent = data.driverDashboardDesc;
+                
+                const driverTripsTitle = document.getElementById('driver-trips-title');
+                const driverTripsDesc = document.getElementById('driver-trips-desc');
+                const driverTripsBtn = document.getElementById('driver-trips-btn');
+                if (driverTripsTitle) driverTripsTitle.textContent = data.driverTripsTitle;
+                if (driverTripsDesc) driverTripsDesc.textContent = data.driverTripsDesc;
+                if (driverTripsBtn) driverTripsBtn.textContent = data.driverTripsBtn;
+                
+                const driverStatusTitle = document.getElementById('driver-status-title');
+                const driverStatusDesc = document.getElementById('driver-status-desc');
+                const driverStatusBtn = document.getElementById('driver-status-btn');
+                if (driverStatusTitle) driverStatusTitle.textContent = data.driverStatusTitle;
+                if (driverStatusDesc) driverStatusDesc.textContent = data.driverStatusDesc;
+                if (driverStatusBtn) driverStatusBtn.textContent = data.driverStatusBtn;
 
                 // Update active/inactive styles for language links
                 document.getElementById('lang-en').classList.toggle('text-white', lang === 'fr');
@@ -385,16 +530,32 @@
             handleRoute() {
                 const hash = window.location.hash.slice(1) || 'home';
                 const homeLink = document.getElementById('home-link');
+                const guestLink = document.getElementById('guest-access-link');
                 
                 // Hide all views
                 document.querySelectorAll('.view-section').forEach(view => {
                     view.classList.remove('active');
                 });
                 
+                // Handle #guest - open modal
+                if (hash === 'guest') {
+                    document.getElementById('view-home').classList.add('active');
+                    homeLink.classList.add('hidden');
+                    guestLink.classList.remove('hidden');
+                    modal.classList.add('open');
+                    // Ensure correct language is applied to modal when opened
+                    const currentLang = document.getElementById('lang-en').classList.contains('text-isd-gold') ? 'en' : 'fr';
+                    app.setLanguage(currentLang);
+                    return;
+                }
+                
                 // Show appropriate view based on hash
                 if (hash === 'home' || hash === '') {
                     document.getElementById('view-home').classList.add('active');
                     homeLink.classList.add('hidden');
+                    guestLink.classList.remove('hidden');
+                    // Close modal if open
+                    modal.classList.remove('open');
                 } else if (hash.startsWith('guest/')) {
                     const role = hash.split('/')[1];
                     const viewId = `view-guest-${role}`;
@@ -402,15 +563,20 @@
                     if (viewElement) {
                         viewElement.classList.add('active');
                         homeLink.classList.remove('hidden');
+                        guestLink.classList.add('hidden');
+                        // Close modal if open
+                        modal.classList.remove('open');
                     } else {
                         // Invalid role, show home
                         document.getElementById('view-home').classList.add('active');
                         homeLink.classList.add('hidden');
+                        guestLink.classList.remove('hidden');
                     }
                 } else {
                     // For other routes (like #login/admin), show home for now
                     document.getElementById('view-home').classList.add('active');
                     homeLink.classList.add('hidden');
+                    guestLink.classList.remove('hidden');
                 }
             },
 
@@ -426,6 +592,10 @@
             // Function to close the modal
             closeModal() {
                 modal.classList.remove('open');
+                // If we're on #guest, navigate to home
+                if (window.location.hash === '#guest') {
+                    window.location.hash = 'home';
+                }
             }
         };
 
@@ -443,6 +613,41 @@
         // Event Listener for Guest Access Link
         document.getElementById('guest-access-link').addEventListener('click', app.handleGuestLogin);
 
+        // Handle admin/employee/driver card clicks (prevent default, could show message)
+        document.getElementById('btn-admin').addEventListener('click', (e) => {
+            e.preventDefault();
+            // In a real app, this would show a login form. For now, just show feedback
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.textContent = 'Admin login form would appear here';
+            feedbackDiv.className = 'feedback-message opacity-0';
+            document.body.appendChild(feedbackDiv);
+            setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+            setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+            setTimeout(() => feedbackDiv.remove(), 3000);
+        });
+
+        document.getElementById('btn-employee').addEventListener('click', (e) => {
+            e.preventDefault();
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.textContent = 'Employee login form would appear here';
+            feedbackDiv.className = 'feedback-message opacity-0';
+            document.body.appendChild(feedbackDiv);
+            setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+            setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+            setTimeout(() => feedbackDiv.remove(), 3000);
+        });
+
+        document.getElementById('btn-driver').addEventListener('click', (e) => {
+            e.preventDefault();
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.textContent = 'Driver login form would appear here';
+            feedbackDiv.className = 'feedback-message opacity-0';
+            document.body.appendChild(feedbackDiv);
+            setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+            setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+            setTimeout(() => feedbackDiv.remove(), 3000);
+        });
+
         // Modal Specific Listeners
         document.getElementById('close-modal').addEventListener('click', app.closeModal);
         // Close modal when clicking outside the content area
@@ -455,8 +660,14 @@
         // Role button listeners inside the modal
         roleButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                const role = e.target.getAttribute('data-role');
-                app.handleGuestRoleSelection(role);
+                e.preventDefault();
+                e.stopPropagation();
+                // Get role from button or closest parent with data-role
+                const buttonElement = e.target.closest('[data-role]') || e.target;
+                const role = buttonElement.getAttribute('data-role');
+                if (role) {
+                    app.handleGuestRoleSelection(role);
+                }
             });
         });
 

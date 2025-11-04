@@ -19,6 +19,12 @@
         .bg-isd-black { background-color: var(--color-isd-black); }
         .text-isd-black { color: var(--color-isd-black); }
         .border-isd-gold { border-color: var(--color-isd-gold); }
+        
+        /* Form validation styles */
+        .border-red-500 {
+            border-color: #ef4444 !important;
+            border-width: 2px !important;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -400,36 +406,42 @@
             </div>
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
-                <form class="space-y-4">
+                <form id="new-booking-form" class="space-y-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Trip Purpose</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Field trip to museum">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Trip Purpose <span class="text-red-600">*</span></label>
+                        <input type="text" id="trip-purpose" name="trip-purpose" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Field trip to museum">
+                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-purpose-error">Trip purpose is required</p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Date</label>
-                            <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Date <span class="text-red-600">*</span></label>
+                            <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error">Date is required</p>
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Time</label>
-                            <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Time <span class="text-red-600">*</span></label>
+                            <input type="time" id="trip-time" name="trip-time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <p class="text-red-600 text-sm mt-1 hidden" id="trip-time-error">Time is required</p>
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Passengers</label>
-                        <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 45">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Passengers <span class="text-red-600">*</span></label>
+                        <input type="number" id="passengers" name="passengers" required min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 45">
+                        <p class="text-red-600 text-sm mt-1 hidden" id="passengers-error">Please enter a valid number of passengers</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option>Bus (50 seats)</option>
-                            <option>Van (15 seats)</option>
-                            <option>Car (5 seats)</option>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type <span class="text-red-600">*</span></label>
+                        <select id="vehicle-type" name="vehicle-type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Select a vehicle type</option>
+                            <option value="bus">Bus (50 seats)</option>
+                            <option value="van">Van (15 seats)</option>
+                            <option value="car">Car (5 seats)</option>
                         </select>
+                        <p class="text-red-600 text-sm mt-1 hidden" id="vehicle-type-error">Please select a vehicle type</p>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
-                        <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any special requirements..."></textarea>
+                        <textarea rows="3" id="notes" name="notes" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any special requirements..."></textarea>
                     </div>
                     <div class="flex space-x-3">
                         <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Submit Request</button>
@@ -566,8 +578,8 @@
     <footer class="bg-isd-black text-gray-400 p-4 mt-auto">
         <div class="max-w-6xl mx-auto flex justify-between items-center text-sm">
             <span>&copy; 2025 SmartCarBooking for ISD</span>
-            <!-- Guest Link -->
-            <a href="#guest" id="guest-access-link" class="text-isd-gold hover:underline font-semibold">Sign in as Guest</a>
+            <!-- Guest Link (only shown on home page) -->
+            <a href="#guest" id="guest-access-link-footer" class="text-isd-gold hover:underline font-semibold">Sign in as Guest</a>
         </div>
     </footer>
 
@@ -695,14 +707,24 @@
 
             // Function to update text based on language
             setLanguage(lang) {
-                const data = this.content[lang];
-                // Home page content
-                document.getElementById('msg-title').textContent = data.title;
-                document.getElementById('msg-text').textContent = data.text;
-                document.getElementById('btn-admin').querySelector('span:nth-child(2)').textContent = data.admin;
-                document.getElementById('btn-employee').querySelector('span:nth-child(2)').textContent = data.employee;
-                document.getElementById('btn-driver').querySelector('span:nth-child(2)').textContent = data.driver;
-                document.getElementById('guest-access-link').textContent = data.guest;
+                try {
+                    const data = this.content[lang];
+                    // Home page content
+                    const msgTitle = document.getElementById('msg-title');
+                    const msgText = document.getElementById('msg-text');
+                    const btnAdmin = document.getElementById('btn-admin');
+                    const btnEmployee = document.getElementById('btn-employee');
+                    const btnDriver = document.getElementById('btn-driver');
+                    const guestLink = document.getElementById('guest-access-link');
+                    const guestLinkFooter = document.getElementById('guest-access-link-footer');
+                    
+                    if (msgTitle) msgTitle.textContent = data.title;
+                    if (msgText) msgText.textContent = data.text;
+                    if (btnAdmin) btnAdmin.textContent = data.admin;
+                    if (btnEmployee) btnEmployee.textContent = data.employee;
+                    if (btnDriver) btnDriver.textContent = data.driver;
+                    if (guestLink) guestLink.textContent = data.guest;
+                    if (guestLinkFooter) guestLinkFooter.textContent = data.guest;
 
                 // Update Modal Content
                 const modalTitle = document.getElementById('modal-title');
@@ -820,6 +842,9 @@
                     langFr.classList.toggle('text-isd-gold', lang === 'fr');
                     langFr.classList.toggle('border-b', lang === 'fr');
                 }
+                } catch (error) {
+                    console.error('Error in setLanguage:', error);
+                }
             },
 
             // Function to handle role selection and redirection
@@ -831,84 +856,99 @@
 
             // Function to handle routing based on hash
             handleRoute() {
-                const hash = window.location.hash.slice(1) || 'home';
-                const homeLink = document.getElementById('home-link');
-                const guestLink = document.getElementById('guest-access-link');
-                // Ensure modal is initialized
-                if (!modal) {
-                    modal = document.getElementById('guest-role-selector-modal');
-                }
-                
-                // Hide all views
-                document.querySelectorAll('.view-section').forEach(view => {
-                    view.classList.remove('active');
-                });
-                
-                // Handle #guest - open modal
-                if (hash === 'guest') {
-                    const viewHome = document.getElementById('view-home');
-                    if (viewHome) viewHome.classList.add('active');
-                    if (homeLink) homeLink.classList.add('hidden');
-                    if (guestLink) guestLink.classList.remove('hidden');
-                    if (modal) {
-                        modal.classList.add('open');
-                        // Ensure correct language is applied to modal when opened
-                        const langEn = document.getElementById('lang-en');
-                        const currentLang = langEn && langEn.classList.contains('text-isd-gold') ? 'en' : 'fr';
-                        app.setLanguage(currentLang);
+                try {
+                    const hash = window.location.hash.slice(1) || 'home';
+                    const homeLink = document.getElementById('home-link');
+                    const guestLink = document.getElementById('guest-access-link');
+                    const guestLinkFooter = document.getElementById('guest-access-link-footer');
+                    // Ensure modal is initialized
+                    if (!modal) {
+                        modal = document.getElementById('guest-role-selector-modal');
                     }
-                    return;
-                }
-                
-                // Show appropriate view based on hash
-                if (hash === 'home' || hash === '') {
-                    const viewHome = document.getElementById('view-home');
-                    if (viewHome) viewHome.classList.add('active');
-                    if (homeLink) homeLink.classList.add('hidden');
-                    if (guestLink) guestLink.classList.remove('hidden');
-                    // Close modal if open
-                    if (modal) modal.classList.remove('open');
-                } else if (hash.startsWith('guest/')) {
-                    const role = hash.split('/')[1];
-                    const viewId = `view-guest-${role}`;
-                    const viewElement = document.getElementById(viewId);
-                    if (viewElement) {
-                        viewElement.classList.add('active');
-                        if (homeLink) homeLink.classList.remove('hidden');
-                        if (guestLink) guestLink.classList.add('hidden');
-                        // Close modal if open
-                        if (modal) modal.classList.remove('open');
-                    } else {
-                        // Invalid role, show home
+                    
+                    // Hide all views
+                    document.querySelectorAll('.view-section').forEach(view => {
+                        view.classList.remove('active');
+                    });
+                    
+                    // Handle #guest - open modal
+                    if (hash === 'guest') {
                         const viewHome = document.getElementById('view-home');
                         if (viewHome) viewHome.classList.add('active');
                         if (homeLink) homeLink.classList.add('hidden');
                         if (guestLink) guestLink.classList.remove('hidden');
+                        if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
+                        if (modal) {
+                            modal.classList.add('open');
+                            // Ensure correct language is applied to modal when opened
+                            const langEn = document.getElementById('lang-en');
+                            const currentLang = langEn && langEn.classList.contains('text-isd-gold') ? 'en' : 'fr';
+                            app.setLanguage(currentLang);
+                        }
+                        return;
                     }
-                } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
-                           hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status') {
-                    // Handle feature views
-                    const viewId = `view-${hash}`;
-                    const viewElement = document.getElementById(viewId);
-                    if (viewElement) {
-                        viewElement.classList.add('active');
-                        if (homeLink) homeLink.classList.remove('hidden');
-                        if (guestLink) guestLink.classList.add('hidden');
-                        // Close modal if open
-                        if (modal) modal.classList.remove('open');
-                    } else {
-                        // Invalid view, show home
+                    
+                    // Show appropriate view based on hash
+                    if (hash === 'home' || hash === '') {
                         const viewHome = document.getElementById('view-home');
                         if (viewHome) viewHome.classList.add('active');
                         if (homeLink) homeLink.classList.add('hidden');
                         if (guestLink) guestLink.classList.remove('hidden');
+                        if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
+                        // Close modal if open
+                        if (modal) modal.classList.remove('open');
+                    } else if (hash.startsWith('guest/')) {
+                        const role = hash.split('/')[1];
+                        const viewId = `view-guest-${role}`;
+                        const viewElement = document.getElementById(viewId);
+                        if (viewElement) {
+                            viewElement.classList.add('active');
+                            if (homeLink) homeLink.classList.remove('hidden');
+                            if (guestLink) guestLink.classList.add('hidden');
+                            if (guestLinkFooter) guestLinkFooter.classList.add('hidden');
+                            // Close modal if open
+                            if (modal) modal.classList.remove('open');
+                        } else {
+                            // Invalid role, show home
+                            const viewHome = document.getElementById('view-home');
+                            if (viewHome) viewHome.classList.add('active');
+                            if (homeLink) homeLink.classList.add('hidden');
+                            if (guestLink) guestLink.classList.remove('hidden');
+                            if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
+                        }
+                    } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
+                               hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status') {
+                        // Handle feature views
+                        const viewId = `view-${hash}`;
+                        const viewElement = document.getElementById(viewId);
+                        if (viewElement) {
+                            viewElement.classList.add('active');
+                            if (homeLink) homeLink.classList.remove('hidden');
+                            if (guestLink) guestLink.classList.add('hidden');
+                            if (guestLinkFooter) guestLinkFooter.classList.add('hidden');
+                            // Close modal if open
+                            if (modal) modal.classList.remove('open');
+                        } else {
+                            // Invalid view, show home
+                            const viewHome = document.getElementById('view-home');
+                            if (viewHome) viewHome.classList.add('active');
+                            if (homeLink) homeLink.classList.add('hidden');
+                            if (guestLink) guestLink.classList.remove('hidden');
+                            if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
+                        }
+                    } else {
+                        // For other routes (like #login/admin), show home for now
+                        const viewHome = document.getElementById('view-home');
+                        if (viewHome) viewHome.classList.add('active');
+                        if (homeLink) homeLink.classList.add('hidden');
+                        if (guestLink) guestLink.classList.remove('hidden');
+                        if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
                     }
-                } else {
-                    // For other routes (like #login/admin), show home for now
+                } catch (error) {
+                    console.error('Error in handleRoute:', error);
+                    // Fallback to home view on error
                     const viewHome = document.getElementById('view-home');
                     if (viewHome) viewHome.classList.add('active');
-                    if (homeLink) homeLink.classList.add('hidden');
-                    if (guestLink) guestLink.classList.remove('hidden');
                 }
             },
 
@@ -982,13 +1022,84 @@
                 });
             }
             
-            // Event Listener for Guest Access Link
+            // Event Listeners for Guest Access Links
             const guestLink = document.getElementById('guest-access-link');
+            const guestLinkFooter = document.getElementById('guest-access-link-footer');
             if (guestLink) {
                 guestLink.addEventListener('click', app.handleGuestLogin);
             }
+            if (guestLinkFooter) {
+                guestLinkFooter.addEventListener('click', app.handleGuestLogin);
+            }
             
-            // Handle admin/employee/driver card clicks
+            // Form validation for New Booking
+            const newBookingForm = document.getElementById('new-booking-form');
+            if (newBookingForm) {
+                newBookingForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Clear previous errors
+                    document.querySelectorAll('[id$="-error"]').forEach(el => {
+                        el.classList.add('hidden');
+                    });
+                    // Clear red borders from all form inputs
+                    document.querySelectorAll('#new-booking-form input, #new-booking-form select').forEach(input => {
+                        input.classList.remove('border-red-500');
+                    });
+                    
+                    let isValid = true;
+                    
+                    // Validate Trip Purpose
+                    const tripPurpose = document.getElementById('trip-purpose');
+                    if (!tripPurpose.value.trim()) {
+                        document.getElementById('trip-purpose-error').classList.remove('hidden');
+                        tripPurpose.classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    // Validate Date
+                    const tripDate = document.getElementById('trip-date');
+                    if (!tripDate.value) {
+                        document.getElementById('trip-date-error').classList.remove('hidden');
+                        tripDate.classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    // Validate Time
+                    const tripTime = document.getElementById('trip-time');
+                    if (!tripTime.value) {
+                        document.getElementById('trip-time-error').classList.remove('hidden');
+                        tripTime.classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    // Validate Passengers
+                    const passengers = document.getElementById('passengers');
+                    if (!passengers.value || parseInt(passengers.value) < 1) {
+                        document.getElementById('passengers-error').classList.remove('hidden');
+                        passengers.classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    // Validate Vehicle Type
+                    const vehicleType = document.getElementById('vehicle-type');
+                    if (!vehicleType.value) {
+                        document.getElementById('vehicle-type-error').classList.remove('hidden');
+                        vehicleType.classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    if (isValid) {
+                        // Form is valid - show success message
+                        alert('Booking request submitted successfully!');
+                        // In a real app, this would submit to a backend
+                        // For now, just navigate back to employee dashboard
+                        window.location.hash = 'guest/employee';
+                    }
+                });
+            }
+            
+            // Handle admin/employee/driver header link clicks
             const btnAdmin = document.getElementById('btn-admin');
             const btnEmployee = document.getElementById('btn-employee');
             const btnDriver = document.getElementById('btn-driver');
@@ -996,21 +1107,24 @@
             if (btnAdmin) {
                 btnAdmin.addEventListener('click', (e) => {
                     e.preventDefault();
-                    // Admin login would appear here - for now just prevent default
+                    // Show admin login form - for now, navigate to guest admin for demo
+                    window.location.hash = 'guest/admin';
                 });
             }
             
             if (btnEmployee) {
                 btnEmployee.addEventListener('click', (e) => {
                     e.preventDefault();
-                    // Employee login would appear here - for now just prevent default
+                    // Show employee login form - for now, navigate to guest employee for demo
+                    window.location.hash = 'guest/employee';
                 });
             }
             
             if (btnDriver) {
                 btnDriver.addEventListener('click', (e) => {
                     e.preventDefault();
-                    // Driver login would appear here - for now just prevent default
+                    // Show driver login form - for now, navigate to guest driver for demo
+                    window.location.hash = 'guest/driver';
                 });
             }
             
@@ -1105,8 +1219,15 @@
             }
             
             // Initialize with English and handle routing
-            app.setLanguage('en');
-            app.handleRoute();
+            try {
+                app.setLanguage('en');
+                app.handleRoute();
+            } catch (error) {
+                console.error('Error initializing app:', error);
+                // Fallback: ensure home view is shown
+                const viewHome = document.getElementById('view-home');
+                if (viewHome) viewHome.classList.add('active');
+            }
         }
         
         // Initialize when DOM is ready

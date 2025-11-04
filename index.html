@@ -32,6 +32,15 @@
             display: flex;
             flex-direction: column;
             background-color: #000000; /* Black background */
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        html {
+            width: 100%;
+            overflow-x: hidden;
         }
         
         .role-button {
@@ -86,10 +95,19 @@
         /* View sections */
         .view-section {
             display: none;
+            width: 100%;
         }
         
         .view-section.active {
             display: block;
+            width: 100%;
+        }
+        
+        /* Ensure tables are responsive */
+        @media (max-width: 768px) {
+            .overflow-x-auto {
+                -webkit-overflow-scrolling: touch;
+            }
         }
     </style>
 </head>
@@ -131,17 +149,17 @@
     </header>
 
     <!-- Main Content Section -->
-    <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
+    <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl w-full">
         
         <!-- Home View -->
-        <div id="view-home" class="view-section active">
+        <div id="view-home" class="view-section active w-full">
             <!-- Hero Section with Vehicle Image -->
-            <div class="relative overflow-hidden">
+            <div class="relative overflow-hidden rounded-xl mb-8">
                 <div class="absolute inset-0 z-0">
                     <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1920&h=1080&fit=crop" alt="School Bus Fleet" class="w-full h-full object-cover opacity-40">
                     <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black"></div>
                 </div>
-                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+                <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
                     <div class="text-center">
                         <h1 id="msg-title" class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 text-white tracking-tight drop-shadow-2xl">
                             SmartCarBooking
@@ -154,13 +172,13 @@
             </div>
 
             <!-- Vehicle Gallery Section -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Fleet</h2>
-                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">A diverse range of vehicles to meet all your transportation needs</p>
+            <div class="w-full px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Our Fleet</h2>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">A diverse range of vehicles to meet all your transportation needs</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-20">
                     <!-- School Bus Card -->
                     <div class="group relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105">
                         <div class="absolute inset-0 z-0">
@@ -240,16 +258,18 @@
         </div>
 
         <!-- Guest Admin Dashboard View -->
-        <div id="view-guest-admin" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 id="dashboard-admin-title" class="text-3xl font-bold text-gray-800">Guest Admin Dashboard</h2>
-                    <span id="guest-mode-badge" class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+        <div id="view-guest-admin" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                    <div>
+                        <h2 id="dashboard-admin-title" class="text-2xl sm:text-3xl font-bold text-gray-800">Guest Admin Dashboard</h2>
+                        <p id="dashboard-admin-desc" class="text-gray-600 mt-2 text-sm sm:text-base">Welcome to the Admin Dashboard. You are logged in as a guest administrator.</p>
+                    </div>
+                    <span id="guest-mode-badge" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap">GUEST MODE</span>
                 </div>
-                <p id="dashboard-admin-desc" class="text-gray-600">Welcome to the Admin Dashboard. You are logged in as a guest administrator.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800">Fleet Management</h3>
                     <p id="admin-fleet-desc" class="text-gray-600 mb-4">View and manage vehicle fleet</p>
@@ -269,16 +289,18 @@
         </div>
 
         <!-- Guest Employee Dashboard View -->
-        <div id="view-guest-employee" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 id="dashboard-employee-title" class="text-3xl font-bold text-gray-800">Guest Employee Dashboard</h2>
-                    <span id="guest-mode-badge-employee" class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+        <div id="view-guest-employee" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                    <div>
+                        <h2 id="dashboard-employee-title" class="text-2xl sm:text-3xl font-bold text-gray-800">Guest Employee Dashboard</h2>
+                        <p id="dashboard-employee-desc" class="text-gray-600 mt-2 text-sm sm:text-base">Welcome to the Employee Dashboard. You are logged in as a guest employee.</p>
+                    </div>
+                    <span id="guest-mode-badge-employee" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap">GUEST MODE</span>
                 </div>
-                <p id="dashboard-employee-desc" class="text-gray-600">Welcome to the Employee Dashboard. You are logged in as a guest employee.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="employee-booking-title" class="text-xl font-bold mb-3 text-gray-800">New Booking Request</h3>
                     <p id="employee-booking-desc" class="text-gray-600 mb-4">Submit a new vehicle booking request</p>
@@ -293,16 +315,18 @@
         </div>
 
         <!-- Guest Driver Dashboard View -->
-        <div id="view-guest-driver" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 id="dashboard-driver-title" class="text-3xl font-bold text-gray-800">Guest Driver Interface</h2>
-                    <span id="guest-mode-badge-driver" class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+        <div id="view-guest-driver" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                    <div>
+                        <h2 id="dashboard-driver-title" class="text-2xl sm:text-3xl font-bold text-gray-800">Guest Driver Interface</h2>
+                        <p id="dashboard-driver-desc" class="text-gray-600 mt-2 text-sm sm:text-base">Welcome to the Driver Interface. You are logged in as a guest driver.</p>
+                    </div>
+                    <span id="guest-mode-badge-driver" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap">GUEST MODE</span>
                 </div>
-                <p id="dashboard-driver-desc" class="text-gray-600">Welcome to the Driver Interface. You are logged in as a guest driver.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="driver-trips-title" class="text-xl font-bold mb-3 text-gray-800">Assigned Trips</h3>
                     <p id="driver-trips-desc" class="text-gray-600 mb-4">View your assigned trips and routes</p>
@@ -317,19 +341,21 @@
         </div>
 
         <!-- Fleet Management View -->
-        <div id="view-fleet-management" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">Fleet Management</h2>
-                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+        <div id="view-fleet-management" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Fleet Management</h2>
+                        <p class="text-gray-600 mt-2 text-sm sm:text-base">View and manage your vehicle fleet</p>
+                    </div>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold whitespace-nowrap">← Back to Dashboard</button>
                 </div>
-                <p class="text-gray-600">View and manage your vehicle fleet</p>
             </div>
             
-            <div class="bg-white p-6 rounded-xl shadow-lg mb-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-bold text-gray-800">Vehicle Fleet</h3>
-                    <button id="add-vehicle-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">+ Add Vehicle</button>
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-6 w-full">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800">Vehicle Fleet</h3>
+                    <button id="add-vehicle-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 whitespace-nowrap">+ Add Vehicle</button>
                 </div>
                 
                 <!-- Fleet Summary -->
@@ -864,9 +890,9 @@
         </div>
 
         <!-- Booking Approvals View -->
-        <div id="view-booking-approvals" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
+        <div id="view-booking-approvals" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                     <h2 class="text-3xl font-bold text-gray-800">Booking Approvals</h2>
                     <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
@@ -911,9 +937,9 @@
         </div>
 
         <!-- User Management View -->
-        <div id="view-user-management" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
+        <div id="view-user-management" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                     <h2 class="text-3xl font-bold text-gray-800">User Management</h2>
                     <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
@@ -966,10 +992,10 @@
         </div>
 
         <!-- New Booking Request View -->
-        <div id="view-new-booking" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">New Booking Request</h2>
+        <div id="view-new-booking" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">New Booking Request</h2>
                     <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
                 <p class="text-gray-600">Submit a new vehicle booking request</p>
@@ -1036,8 +1062,8 @@
         </div>
 
         <!-- My Bookings View -->
-        <div id="view-my-bookings" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+        <div id="view-my-bookings" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-3xl font-bold text-gray-800">My Bookings</h2>
                     <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
@@ -1073,10 +1099,10 @@
         </div>
 
         <!-- Assigned Trips View -->
-        <div id="view-assigned-trips" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">Assigned Trips</h2>
+        <div id="view-assigned-trips" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Assigned Trips</h2>
                     <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
                 <p class="text-gray-600">View your assigned trips and routes</p>
@@ -1112,10 +1138,10 @@
         </div>
 
         <!-- Update Status View -->
-        <div id="view-update-status" class="view-section">
-            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">Update Trip Status</h2>
+        <div id="view-update-status" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Update Trip Status</h2>
                     <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
                 <p class="text-gray-600">Update trip status and location</p>

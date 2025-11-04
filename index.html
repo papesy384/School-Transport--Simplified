@@ -21,115 +21,11 @@
         .border-isd-gold { border-color: var(--color-isd-gold); }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background-color: #fafafa; /* Material Design background */
-            margin: 0;
-            padding: 0;
-        }
-        
-        /* Sidebar Navigation (Firebase Studio style) */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 64px;
-            width: 256px;
-            height: calc(100vh - 64px);
-            background-color: #ffffff;
-            border-right: 1px solid #e0e0e0;
-            overflow-y: auto;
-            transition: transform 0.3s ease;
-            z-index: 100;
-        }
-        
-        .sidebar.hidden {
-            transform: translateX(-100%);
-        }
-        
-        .sidebar-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 24px;
-            color: #5f6368;
-            text-decoration: none;
-            transition: background-color 0.2s;
-            cursor: pointer;
-            border-left: 3px solid transparent;
-        }
-        
-        .sidebar-item:hover {
-            background-color: #f1f3f4;
-        }
-        
-        .sidebar-item.active {
-            background-color: #e8f0fe;
-            color: #1a73e8;
-            border-left-color: #1a73e8;
-            font-weight: 600;
-        }
-        
-        .sidebar-item-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 16px;
-            opacity: 0.7;
-        }
-        
-        .sidebar-item.active .sidebar-item-icon {
-            opacity: 1;
-        }
-        
-        /* Top App Bar (Firebase Studio style) */
-        .app-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 64px;
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            padding: 0 24px;
-            z-index: 200;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        
-        .app-bar-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 100%;
-        }
-        
-        /* Main Content Area */
-        .main-content {
-            margin-left: 256px;
-            margin-top: 64px;
-            padding: 24px;
-            min-height: calc(100vh - 64px);
-            transition: margin-left 0.3s ease;
-        }
-        
-        .main-content.full-width {
-            margin-left: 0;
-        }
-        
-        /* Material Design Cards */
-        .md-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            transition: box-shadow 0.3s ease;
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-        
-        .md-card:hover {
-            box-shadow: 0 4px 6px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.24);
+            background-color: #f5f5f5; /* Light grey background */
         }
         
         .role-button {
@@ -188,213 +84,60 @@
         
         .view-section.active {
             display: block;
-            animation: fadeIn 0.3s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Breadcrumb navigation */
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 16px;
-        }
-        
-        .breadcrumb a {
-            color: var(--color-isd-gold);
-            text-decoration: none;
-        }
-        
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        
-        .breadcrumb-separator {
-            color: #999;
-        }
-        
-        /* Loading state */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Form validation */
-        .form-error {
-            color: #dc2626;
-            font-size: 14px;
-            margin-top: 4px;
-        }
-        
-        .form-input:invalid {
-            border-color: #dc2626;
-        }
-        
-        .form-input:valid {
-            border-color: #10b981;
-        }
-        
-        /* Empty state */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-        
-        .empty-state svg {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 16px;
-            opacity: 0.5;
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Top App Bar (Firebase Studio style) -->
-    <header class="app-bar">
-        <div class="app-bar-content">
-            <div class="flex items-center space-x-4">
-                <!-- Menu Toggle (for mobile) -->
-                <button id="sidebar-toggle" class="p-2 rounded-lg hover:bg-gray-100 hidden md:block" onclick="toggleSidebar()">
-                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-                
-                <!-- Logo and Title -->
-                <div class="flex items-center space-x-3">
-                    <svg class="w-8 h-8 text-isd-gold" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                        <path fill="var(--color-isd-gold)" d="M15.5 12c.79 0 1.48-.3 2.03-.83l-1.42-1.42c-.22.18-.51.25-.81.25s-.59-.07-.81-.25L13 8.58V12h2.5z"/>
-                    </svg>
-                    <a href="#home" id="header-title-link" class="text-xl font-semibold text-gray-900 hover:text-isd-gold">
-                        SmartCarBooking
-                    </a>
-                </div>
+    <!-- Header & Language Switcher -->
+    <header class="bg-isd-black text-white p-4 shadow-xl relative">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Simple "ISD Jaguar" inspired icon using inline SVG -->
+                <svg class="w-8 h-8 text-isd-gold" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    <path fill="var(--color-isd-gold)" d="M15.5 12c.79 0 1.48-.3 2.03-.83l-1.42-1.42c-.22.18-.51.25-.81.25s-.59-.07-.81-.25L13 8.58V12h2.5z"/>
+                </svg>
+                <a href="#home" id="header-title-link" class="text-3xl font-extrabold tracking-tight text-isd-gold hover:text-yellow-400">
+                    SmartCarBooking
+                </a>
             </div>
             
             <div class="flex items-center space-x-4">
+                <!-- Home/Logout Button (shown in dashboard views) -->
+                <a href="#home" id="home-link" class="text-sm text-isd-gold hover:text-white font-semibold hidden">Home</a>
+                
                 <!-- Language Switcher -->
-                <div id="language-switcher" class="text-sm font-medium flex items-center space-x-2">
-                    <a href="#" id="lang-en" class="px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100">EN</a>
-                    <span class="text-gray-400">/</span>
-                    <a href="#" id="lang-fr" class="px-3 py-1 rounded-md text-gray-700 hover:bg-gray-100">FR</a>
+                <div id="language-switcher" class="text-sm font-semibold">
+                    <a href="#" id="lang-en" class="text-isd-gold hover:text-white border-b border-isd-gold pb-0.5">EN</a>
+                    <span class="text-gray-400"> / </span>
+                    <a href="#" id="lang-fr" class="text-white hover:text-isd-gold">FR</a>
                 </div>
             </div>
         </div>
     </header>
-    
-    <!-- Sidebar Navigation (Firebase Studio style) -->
-    <nav id="sidebar" class="sidebar">
-        <div class="py-4">
-            <a href="#home" class="sidebar-item" data-view="home">
-                <svg class="sidebar-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-                <span>Home</span>
-            </a>
-            
-            <div id="admin-sidebar" class="hidden">
-                <div class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Admin</div>
-                <a href="#fleet-management" class="sidebar-item" data-view="fleet-management">
-                    <svg class="sidebar-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                    </svg>
-                    <span>Fleet Management</span>
-                </a>
-                <a href="#booking-approvals" class="sidebar-item" data-view="booking-approvals">
-                    <svg class="sidebar-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <span>Booking Approvals</span>
-                </a>
-                <a href="#user-management" class="sidebar-item" data-view="user-management">
-                    <svg class="sidebar-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                    </svg>
-                    <span>User Management</span>
-                </a>
-            </div>
-            
-            <div id="employee-sidebar" class="hidden">
-                <div class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Employee</div>
-                <a href="#new-booking" class="sidebar-item" data-view="new-booking">
-                    <svg class="sidebar-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                    </svg>
-                    <span>New Booking</span>
-                </a>
-                <a href="#my-bookings" class="sidebar-item" data-view="my-bookings">
-                    <svg class="sidebar-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                    </svg>
-                    <span>My Bookings</span>
-                </a>
-            </div>
-            
-            <div id="driver-sidebar" class="hidden">
-                <div class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Driver</div>
-                <a href="#assigned-trips" class="sidebar-item" data-view="assigned-trips">
-                    <svg class="sidebar-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                    </svg>
-                    <span>Assigned Trips</span>
-                </a>
-                <a href="#update-status" class="sidebar-item" data-view="update-status">
-                    <svg class="sidebar-item-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                    </svg>
-                    <span>Update Status</span>
-                </a>
-            </div>
-        </div>
-    </nav>
 
     <!-- Main Content Section -->
-    <main class="main-content">
+    <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
         
         <!-- Home View -->
         <div id="view-home" class="view-section active">
             <!-- Welcome Message Card -->
-            <div class="md-card mb-6">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 id="msg-title" class="text-4xl font-bold mb-4 text-gray-900">
-                        Your Centralized Transportation Platform
-                    </h2>
-                    <p id="msg-text" class="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Easily book vehicles for field trips, sports events, and staff travel. 
-                        A centralized platform for all your school's transportation needs at the International School of Dakar.
-                    </p>
-                </div>
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-10 border-t-8 border-isd-gold">
+                <h2 id="msg-title" class="text-4xl font-bold mb-4 text-gray-800">
+                    Your Centralized Transportation Platform
+                </h2>
+                <p id="msg-text" class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Easily book vehicles for field trips, sports events, and staff travel. 
+                    A centralized platform for all your school's transportation needs at the International School of Dakar.
+                </p>
             </div>
 
             <!-- Role Access Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-6">
+            <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
                 
                 <!-- Admin Access Card -->
-                <a href="#login/admin" class="md-card role-button flex flex-col items-center p-8 hover:shadow-lg transition-shadow cursor-pointer" id="btn-admin">
+                <a href="#login/admin" class="role-button flex flex-col items-center p-8 bg-isd-black text-isd-gold rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-800 border-2 border-isd-gold max-w-xs w-full" id="btn-admin">
                     <!-- Icon: Lock -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                     <span class="text-xl font-extrabold uppercase">Admin Access</span>
@@ -402,7 +145,7 @@
                 </a>
 
                 <!-- Employee Login Card -->
-                <a href="#login/employee" class="md-card role-button flex flex-col items-center p-8 hover:shadow-lg transition-shadow cursor-pointer" id="btn-employee">
+                <a href="#login/employee" class="role-button flex flex-col items-center p-8 bg-isd-gold text-isd-black rounded-xl shadow-lg hover:shadow-xl hover:bg-yellow-400 border-2 border-isd-gold max-w-xs w-full" id="btn-employee">
                     <!-- Icon: User -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                     <span class="text-xl font-extrabold uppercase">Employee Login</span>
@@ -410,7 +153,7 @@
                 </a>
                 
                 <!-- Driver Login Card -->
-                <a href="#login/driver" class="md-card role-button flex flex-col items-center p-8 hover:shadow-lg transition-shadow cursor-pointer" id="btn-driver">
+                <a href="#login/driver" class="role-button flex flex-col items-center p-8 bg-gray-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-600 border-2 border-gray-700 max-w-xs w-full" id="btn-driver">
                     <!-- Icon: Car/Truck -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2" ry="2"></rect><path d="M7 21l0-4"></path><path d="M17 21l0-4"></path><path d="M2 7l20 0"></path><path d="M14 7l-4 0"></path></svg>
                     <span class="text-xl font-extrabold uppercase">Driver Login</span>
@@ -425,31 +168,29 @@
 
         <!-- Guest Admin Dashboard View -->
         <div id="view-guest-admin" class="view-section">
-            <div class="md-card mb-6">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
                 <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 id="dashboard-admin-title" class="text-2xl font-semibold text-gray-900 mb-2">Guest Admin Dashboard</h2>
-                        <p id="dashboard-admin-desc" class="text-gray-600">Welcome to the Admin Dashboard. You are logged in as a guest administrator.</p>
-                    </div>
-                    <span id="guest-mode-badge" class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">GUEST MODE</span>
+                    <h2 id="dashboard-admin-title" class="text-3xl font-bold text-gray-800">Guest Admin Dashboard</h2>
+                    <span id="guest-mode-badge" class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
                 </div>
+                <p id="dashboard-admin-desc" class="text-gray-600">Welcome to the Admin Dashboard. You are logged in as a guest administrator.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="md-card">
-                    <h3 id="admin-fleet-title" class="text-lg font-semibold mb-2 text-gray-900">Fleet Management</h3>
-                    <p id="admin-fleet-desc" class="text-gray-600 mb-4 text-sm">View and manage vehicle fleet</p>
-                    <button id="admin-fleet-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-md font-medium hover:bg-yellow-400 transition-colors">Manage Fleet</button>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800">Fleet Management</h3>
+                    <p id="admin-fleet-desc" class="text-gray-600 mb-4">View and manage vehicle fleet</p>
+                    <button id="admin-fleet-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Fleet</button>
                 </div>
-                <div class="md-card">
-                    <h3 id="admin-approvals-title" class="text-lg font-semibold mb-2 text-gray-900">Booking Approvals</h3>
-                    <p id="admin-approvals-desc" class="text-gray-600 mb-4 text-sm">Review and approve booking requests</p>
-                    <button id="admin-approvals-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-md font-medium hover:bg-yellow-400 transition-colors">View Requests</button>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 id="admin-approvals-title" class="text-xl font-bold mb-3 text-gray-800">Booking Approvals</h3>
+                    <p id="admin-approvals-desc" class="text-gray-600 mb-4">Review and approve booking requests</p>
+                    <button id="admin-approvals-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Requests</button>
                 </div>
-                <div class="md-card">
-                    <h3 id="admin-users-title" class="text-lg font-semibold mb-2 text-gray-900">User Management</h3>
-                    <p id="admin-users-desc" class="text-gray-600 mb-4 text-sm">Manage employees and drivers</p>
-                    <button id="admin-users-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-md font-medium hover:bg-yellow-400 transition-colors">Manage Users</button>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 id="admin-users-title" class="text-xl font-bold mb-3 text-gray-800">User Management</h3>
+                    <p id="admin-users-desc" class="text-gray-600 mb-4">Manage employees and drivers</p>
+                    <button id="admin-users-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Users</button>
                 </div>
             </div>
         </div>
@@ -504,16 +245,15 @@
 
         <!-- Fleet Management View -->
         <div id="view-fleet-management" class="view-section">
-            <div class="md-card mb-6">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
                 <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Fleet Management</h2>
-                        <p class="text-gray-600">View and manage your vehicle fleet</p>
-                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Fleet Management</h2>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
+                <p class="text-gray-600">View and manage your vehicle fleet</p>
             </div>
             
-            <div class="md-card mb-6">
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-bold text-gray-800">Vehicle Fleet</h3>
                     <button class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">+ Add Vehicle</button>
@@ -568,17 +308,16 @@
 
         <!-- Booking Approvals View -->
         <div id="view-booking-approvals" class="view-section">
-            <div class="md-card mb-6">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
                 <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Booking Approvals</h2>
-                        <p class="text-gray-600">Review and approve booking requests</p>
-                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">Booking Approvals</h2>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
+                <p class="text-gray-600">Review and approve booking requests</p>
             </div>
             
             <div class="space-y-4">
-                <div class="md-card">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="text-lg font-bold text-gray-800">Trip to Museum - Field Trip</h3>
@@ -595,20 +334,20 @@
                     </div>
                 </div>
                 
-                <div class="md-card">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
                     <div class="flex justify-between items-start mb-4">
                         <div>
-                            <h3 class="text-lg font-semibold text-gray-900">Sports Event - Basketball Game</h3>
+                            <h3 class="text-lg font-bold text-gray-800">Sports Event - Basketball Game</h3>
                             <p class="text-gray-600 text-sm">Requested by: Jane Smith</p>
                             <p class="text-gray-600 text-sm">Date: March 18, 2025 | Time: 2:00 PM</p>
                             <p class="text-gray-600 text-sm">Passengers: 20 students</p>
                         </div>
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
                     </div>
                     <div class="flex space-x-3">
-                        <button class="px-4 py-2 bg-green-600 text-white rounded-md font-medium hover:bg-green-700 transition-colors">Approve</button>
-                        <button class="px-4 py-2 bg-red-600 text-white rounded-md font-medium hover:bg-red-700 transition-colors">Reject</button>
-                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md font-medium hover:bg-gray-300 transition-colors">View Details</button>
+                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
+                        <button class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
                     </div>
                 </div>
             </div>
@@ -617,20 +356,11 @@
         <!-- User Management View -->
         <div id="view-user-management" class="view-section">
             <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="breadcrumb">
-                    <a href="#home">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="#guest/admin">Admin Dashboard</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>User Management</span>
-                </div>
                 <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800">User Management</h2>
-                        <p class="text-gray-600 mt-2">Manage employees and drivers</p>
-                    </div>
-                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold transition-colors">← Back to Dashboard</button>
+                    <h2 class="text-3xl font-bold text-gray-800">User Management</h2>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
+                <p class="text-gray-600">Manage employees and drivers</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -681,20 +411,11 @@
         <!-- New Booking Request View -->
         <div id="view-new-booking" class="view-section">
             <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="breadcrumb">
-                    <a href="#home">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="#guest/employee">Employee Dashboard</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>New Booking</span>
-                </div>
                 <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800">New Booking Request</h2>
-                        <p class="text-gray-600 mt-2">Submit a new vehicle booking request</p>
-                    </div>
-                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold transition-colors">← Back to Dashboard</button>
+                    <h2 class="text-3xl font-bold text-gray-800">New Booking Request</h2>
+                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
+                <p class="text-gray-600">Submit a new vehicle booking request</p>
             </div>
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
@@ -740,20 +461,11 @@
         <!-- My Bookings View -->
         <div id="view-my-bookings" class="view-section">
             <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="breadcrumb">
-                    <a href="#home">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="#guest/employee">Employee Dashboard</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>My Bookings</span>
-                </div>
                 <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800">My Bookings</h2>
-                        <p class="text-gray-600 mt-2">View and track your booking requests</p>
-                    </div>
-                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold transition-colors">← Back to Dashboard</button>
+                    <h2 class="text-3xl font-bold text-gray-800">My Bookings</h2>
+                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
+                <p class="text-gray-600">View and track your booking requests</p>
             </div>
             
             <div class="space-y-4">
@@ -786,20 +498,11 @@
         <!-- Assigned Trips View -->
         <div id="view-assigned-trips" class="view-section">
             <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="breadcrumb">
-                    <a href="#home">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="#guest/driver">Driver Dashboard</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>Assigned Trips</span>
-                </div>
                 <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800">Assigned Trips</h2>
-                        <p class="text-gray-600 mt-2">View your assigned trips and routes</p>
-                    </div>
-                    <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold transition-colors">← Back to Dashboard</button>
+                    <h2 class="text-3xl font-bold text-gray-800">Assigned Trips</h2>
+                    <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
+                <p class="text-gray-600">View your assigned trips and routes</p>
             </div>
             
             <div class="space-y-4">
@@ -834,20 +537,11 @@
         <!-- Update Status View -->
         <div id="view-update-status" class="view-section">
             <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
-                <div class="breadcrumb">
-                    <a href="#home">Home</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <a href="#guest/driver">Driver Dashboard</a>
-                    <span class="breadcrumb-separator">/</span>
-                    <span>Update Status</span>
-                </div>
                 <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800">Update Trip Status</h2>
-                        <p class="text-gray-600 mt-2">Update trip status and location</p>
-                    </div>
-                    <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold transition-colors">← Back to Dashboard</button>
+                    <h2 class="text-3xl font-bold text-gray-800">Update Trip Status</h2>
+                    <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
+                <p class="text-gray-600">Update trip status and location</p>
             </div>
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
@@ -1136,22 +830,14 @@
                 const langEn = document.getElementById('lang-en');
                 const langFr = document.getElementById('lang-fr');
                 if (langEn) {
-                    if (lang === 'en') {
-                        langEn.classList.add('bg-gray-100', 'text-gray-900');
-                        langEn.classList.remove('text-gray-700');
-                    } else {
-                        langEn.classList.remove('bg-gray-100', 'text-gray-900');
-                        langEn.classList.add('text-gray-700');
-                    }
+                    langEn.classList.toggle('text-white', lang === 'fr');
+                    langEn.classList.toggle('text-isd-gold', lang === 'en');
+                    langEn.classList.toggle('border-b', lang === 'en');
                 }
                 if (langFr) {
-                    if (lang === 'fr') {
-                        langFr.classList.add('bg-gray-100', 'text-gray-900');
-                        langFr.classList.remove('text-gray-700');
-                    } else {
-                        langFr.classList.remove('bg-gray-100', 'text-gray-900');
-                        langFr.classList.add('text-gray-700');
-                    }
+                    langFr.classList.toggle('text-white', lang === 'en');
+                    langFr.classList.toggle('text-isd-gold', lang === 'fr');
+                    langFr.classList.toggle('border-b', lang === 'fr');
                 }
             },
 
@@ -1165,35 +851,27 @@
             // Function to handle routing based on hash
             handleRoute() {
                 const hash = window.location.hash.slice(1) || 'home';
-                const sidebar = document.getElementById('sidebar');
-                const mainContent = document.querySelector('.main-content');
+                const homeLink = document.getElementById('home-link');
                 const guestLink = document.getElementById('guest-access-link');
-                
                 // Ensure modal is initialized
                 if (!modal) {
                     modal = document.getElementById('guest-role-selector-modal');
                 }
                 
-                // Hide all views and sidebar sections
+                // Hide all views
                 document.querySelectorAll('.view-section').forEach(view => {
                     view.classList.remove('active');
                 });
-                document.querySelectorAll('.sidebar-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                document.getElementById('admin-sidebar')?.classList.add('hidden');
-                document.getElementById('employee-sidebar')?.classList.add('hidden');
-                document.getElementById('driver-sidebar')?.classList.add('hidden');
                 
-                // Handle #guest - open modal on home
+                // Handle #guest - open modal
                 if (hash === 'guest') {
                     const viewHome = document.getElementById('view-home');
                     if (viewHome) viewHome.classList.add('active');
-                    if (sidebar) sidebar.classList.add('hidden');
-                    if (mainContent) mainContent.classList.add('full-width');
+                    if (homeLink) homeLink.classList.add('hidden');
                     if (guestLink) guestLink.classList.remove('hidden');
                     if (modal) {
                         modal.classList.add('open');
+                        // Ensure correct language is applied to modal when opened
                         const langEn = document.getElementById('lang-en');
                         const currentLang = langEn && langEn.classList.contains('text-isd-gold') ? 'en' : 'fr';
                         app.setLanguage(currentLang);
@@ -1205,9 +883,9 @@
                 if (hash === 'home' || hash === '') {
                     const viewHome = document.getElementById('view-home');
                     if (viewHome) viewHome.classList.add('active');
-                    if (sidebar) sidebar.classList.add('hidden');
-                    if (mainContent) mainContent.classList.add('full-width');
+                    if (homeLink) homeLink.classList.add('hidden');
                     if (guestLink) guestLink.classList.remove('hidden');
+                    // Close modal if open
                     if (modal) modal.classList.remove('open');
                 } else if (hash.startsWith('guest/')) {
                     const role = hash.split('/')[1];
@@ -1215,25 +893,15 @@
                     const viewElement = document.getElementById(viewId);
                     if (viewElement) {
                         viewElement.classList.add('active');
-                        if (sidebar) sidebar.classList.remove('hidden');
-                        if (mainContent) mainContent.classList.remove('full-width');
+                        if (homeLink) homeLink.classList.remove('hidden');
                         if (guestLink) guestLink.classList.add('hidden');
-                        
-                        // Show appropriate sidebar section
-                        const roleSidebar = document.getElementById(`${role}-sidebar`);
-                        if (roleSidebar) roleSidebar.classList.remove('hidden');
-                        
-                        // Set active sidebar item (Home)
-                        const homeSidebarItem = document.querySelector('.sidebar-item[data-view="home"]');
-                        if (homeSidebarItem) homeSidebarItem.classList.add('active');
-                        
+                        // Close modal if open
                         if (modal) modal.classList.remove('open');
                     } else {
                         // Invalid role, show home
                         const viewHome = document.getElementById('view-home');
                         if (viewHome) viewHome.classList.add('active');
-                        if (sidebar) sidebar.classList.add('hidden');
-                        if (mainContent) mainContent.classList.add('full-width');
+                        if (homeLink) homeLink.classList.add('hidden');
                         if (guestLink) guestLink.classList.remove('hidden');
                     }
                 } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
@@ -1243,37 +911,22 @@
                     const viewElement = document.getElementById(viewId);
                     if (viewElement) {
                         viewElement.classList.add('active');
-                        if (sidebar) sidebar.classList.remove('hidden');
-                        if (mainContent) mainContent.classList.remove('full-width');
+                        if (homeLink) homeLink.classList.remove('hidden');
                         if (guestLink) guestLink.classList.add('hidden');
-                        
-                        // Determine which sidebar to show based on view
-                        let role = 'admin';
-                        if (hash === 'new-booking' || hash === 'my-bookings') role = 'employee';
-                        else if (hash === 'assigned-trips' || hash === 'update-status') role = 'driver';
-                        
-                        const roleSidebar = document.getElementById(`${role}-sidebar`);
-                        if (roleSidebar) roleSidebar.classList.remove('hidden');
-                        
-                        // Set active sidebar item
-                        const activeSidebarItem = document.querySelector(`.sidebar-item[data-view="${hash}"]`);
-                        if (activeSidebarItem) activeSidebarItem.classList.add('active');
-                        
+                        // Close modal if open
                         if (modal) modal.classList.remove('open');
                     } else {
                         // Invalid view, show home
                         const viewHome = document.getElementById('view-home');
                         if (viewHome) viewHome.classList.add('active');
-                        if (sidebar) sidebar.classList.add('hidden');
-                        if (mainContent) mainContent.classList.add('full-width');
+                        if (homeLink) homeLink.classList.add('hidden');
                         if (guestLink) guestLink.classList.remove('hidden');
                     }
                 } else {
                     // For other routes (like #login/admin), show home for now
                     const viewHome = document.getElementById('view-home');
                     if (viewHome) viewHome.classList.add('active');
-                    if (sidebar) sidebar.classList.add('hidden');
-                    if (mainContent) mainContent.classList.add('full-width');
+                    if (homeLink) homeLink.classList.add('hidden');
                     if (guestLink) guestLink.classList.remove('hidden');
                 }
             },
@@ -1310,18 +963,6 @@
             }
         };
 
-        // Sidebar toggle function
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            if (sidebar) {
-                sidebar.classList.toggle('hidden');
-                const mainContent = document.querySelector('.main-content');
-                if (mainContent) {
-                    mainContent.classList.toggle('full-width');
-                }
-            }
-        }
-        
         // Initialize when DOM is ready
         function initializeApp() {
             // Get modal and buttons after DOM is ready
@@ -1409,19 +1050,9 @@
                 app.handleRoute();
             });
             
-            // Sidebar item click handlers
-            document.querySelectorAll('.sidebar-item').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const view = item.getAttribute('data-view');
-                    if (view) {
-                        window.location.hash = view;
-                    }
-                });
-            });
-            
             // Prevent default navigation on header links
             const headerTitleLink = document.getElementById('header-title-link');
+            const homeLink = document.getElementById('home-link');
             
             if (headerTitleLink) {
                 headerTitleLink.addEventListener('click', (e) => {

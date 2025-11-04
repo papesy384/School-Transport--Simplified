@@ -145,12 +145,6 @@
                 </p>
             </div>
 
-            <!-- Guest Access Button -->
-            <div class="text-center mt-12">
-                <a href="#guest" id="guest-access-link" class="inline-block px-8 py-3 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 transition-colors text-lg">
-                    Sign in as Guest
-                </a>
-            </div>
         </div>
 
         <!-- Guest Admin Dashboard View -->
@@ -245,10 +239,53 @@
                     <h3 class="text-xl font-bold text-gray-800">Vehicle Fleet</h3>
                     <button class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">+ Add Vehicle</button>
                 </div>
+                
+                <!-- Fleet Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">School Bus</p>
+                                <p class="text-2xl font-bold text-gray-900">8</p>
+                            </div>
+                            <!-- School Bus Icon -->
+                            <svg class="w-12 h-12 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">SUV</p>
+                                <p class="text-2xl font-bold text-gray-900">10</p>
+                            </div>
+                            <!-- SUV Icon -->
+                            <svg class="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Sedan</p>
+                                <p class="text-2xl font-bold text-gray-900">14</p>
+                            </div>
+                            <!-- Sedan Icon -->
+                            <svg class="w-12 h-12 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vehicle Details Table -->
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <thead class="bg-gray-100">
                             <tr>
+                                <th class="p-3 text-sm font-semibold text-gray-700">Image</th>
                                 <th class="p-3 text-sm font-semibold text-gray-700">Vehicle ID</th>
                                 <th class="p-3 text-sm font-semibold text-gray-700">Type</th>
                                 <th class="p-3 text-sm font-semibold text-gray-700">Capacity</th>
@@ -256,10 +293,16 @@
                                 <th class="p-3 text-sm font-semibold text-gray-700">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="vehicle-table-body">
+                            <!-- School Buses (8) -->
                             <tr class="border-b">
-                                <td class="p-3">VH-001</td>
-                                <td class="p-3">Bus</td>
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SB-001</td>
+                                <td class="p-3">School Bus</td>
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
@@ -268,9 +311,29 @@
                                 </td>
                             </tr>
                             <tr class="border-b">
-                                <td class="p-3">VH-002</td>
-                                <td class="p-3">Van</td>
-                                <td class="p-3">15 seats</td>
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SB-002</td>
+                                <td class="p-3">School Bus</td>
+                                <td class="p-3">50 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SB-003</td>
+                                <td class="p-3">School Bus</td>
+                                <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
                                     <button class="text-isd-gold hover:underline mr-2">Edit</button>
@@ -278,8 +341,435 @@
                                 </td>
                             </tr>
                             <tr class="border-b">
-                                <td class="p-3">VH-003</td>
-                                <td class="p-3">Car</td>
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SB-004</td>
+                                <td class="p-3">School Bus</td>
+                                <td class="p-3">50 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SB-005</td>
+                                <td class="p-3">School Bus</td>
+                                <td class="p-3">50 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SB-006</td>
+                                <td class="p-3">School Bus</td>
+                                <td class="p-3">50 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SB-007</td>
+                                <td class="p-3">School Bus</td>
+                                <td class="p-3">50 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SB-008</td>
+                                <td class="p-3">School Bus</td>
+                                <td class="p-3">50 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <!-- SUVs (10) -->
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-001</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-002</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-003</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-004</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-005</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-006</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-007</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-008</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-009</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SUV-010</td>
+                                <td class="p-3">SUV</td>
+                                <td class="p-3">7 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <!-- Sedans (14) -->
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-001</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-002</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-003</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-004</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-005</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-006</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-007</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-008</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-009</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-010</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-011</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-012</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-013</td>
+                                <td class="p-3">Sedan</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">
+                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                    </svg>
+                                </td>
+                                <td class="p-3">SD-014</td>
+                                <td class="p-3">Sedan</td>
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
@@ -578,41 +1068,13 @@
     <footer class="bg-isd-black text-gray-400 p-4 mt-auto">
         <div class="max-w-6xl mx-auto flex justify-between items-center text-sm">
             <span>&copy; 2025 SmartCarBooking for ISD</span>
-            <!-- Guest Link (only shown on home page) -->
-            <a href="#guest" id="guest-access-link-footer" class="text-isd-gold hover:underline font-semibold">Sign in as Guest</a>
         </div>
     </footer>
 
-    <!-- GUEST ROLE SELECTION MODAL (New Element) -->
-    <div id="guest-role-selector-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3 id="modal-title" class="text-2xl font-bold mb-5 text-isd-black">
-                Select Guest Access Role
-            </h3>
-            <p id="modal-description" class="text-gray-600 mb-6">
-                (Development Mode) Choose a role to test the application workflow:
-            </p>
-            <div class="flex flex-col space-y-3">
-                <button data-role="admin" class="modal-button bg-isd-black text-isd-gold hover:bg-gray-800 border border-isd-gold">
-                    Guest Admin Dashboard
-                </button>
-                <button data-role="employee" class="modal-button bg-isd-gold text-isd-black hover:bg-yellow-400 border border-isd-gold">
-                    Guest Employee Dashboard
-                </button>
-                <button data-role="driver" class="modal-button bg-gray-700 text-white hover:bg-gray-600">
-                    Guest Driver Interface
-                </button>
-                <button id="close-modal" class="modal-button bg-gray-200 text-gray-700 hover:bg-gray-300 mt-4">
-                    Cancel
-                </button>
-            </div>
-        </div>
-    </div>
 
-    <!-- JavaScript for Basic Interactions (Language Toggle & Guest Login) -->
+    <!-- JavaScript for Basic Interactions (Language Toggle) -->
     <script>
         // Wait for DOM to be ready
-        let modal, roleButtons;
         
         // Define app scope
         const app = {
@@ -623,13 +1085,6 @@
                     admin: 'Admin Access',
                     employee: 'Employee Login',
                     driver: 'Driver Login',
-                    guest: 'Sign in as Guest',
-                    modalTitle: 'Select Guest Access Role',
-                    modalDesc: '(Development Mode) Choose a role to test the application workflow:',
-                    btnAdmin: 'Guest Admin Dashboard',
-                    btnEmployee: 'Guest Employee Dashboard',
-                    btnDriver: 'Guest Driver Interface',
-                    btnCancel: 'Cancel',
                     home: 'Home',
                     guestMode: 'GUEST MODE',
                     adminDashboardTitle: 'Guest Admin Dashboard',
@@ -666,13 +1121,6 @@
                     admin: 'Accès Administrateur',
                     employee: 'Connexion Employé',
                     driver: 'Connexion Chauffeur',
-                    guest: 'Se connecter en tant qu\'invité',
-                    modalTitle: 'Sélectionner le rôle d\'accès Invité',
-                    modalDesc: '(Mode Développement) Choisissez un rôle pour tester le flux de travail :',
-                    btnAdmin: 'Tableau de bord Admin Invité',
-                    btnEmployee: 'Tableau de bord Employé Invité',
-                    btnDriver: 'Interface Chauffeur Invité',
-                    btnCancel: 'Annuler',
                     home: 'Accueil',
                     guestMode: 'MODE INVITÉ',
                     adminDashboardTitle: 'Tableau de bord Admin Invité',
@@ -715,32 +1163,12 @@
                     const btnAdmin = document.getElementById('btn-admin');
                     const btnEmployee = document.getElementById('btn-employee');
                     const btnDriver = document.getElementById('btn-driver');
-                    const guestLink = document.getElementById('guest-access-link');
-                    const guestLinkFooter = document.getElementById('guest-access-link-footer');
                     
                     if (msgTitle) msgTitle.textContent = data.title;
                     if (msgText) msgText.textContent = data.text;
                     if (btnAdmin) btnAdmin.textContent = data.admin;
                     if (btnEmployee) btnEmployee.textContent = data.employee;
                     if (btnDriver) btnDriver.textContent = data.driver;
-                    if (guestLink) guestLink.textContent = data.guest;
-                    if (guestLinkFooter) guestLinkFooter.textContent = data.guest;
-
-                // Update Modal Content
-                const modalTitle = document.getElementById('modal-title');
-                const modalDesc = document.getElementById('modal-description');
-                const closeModalBtn = document.getElementById('close-modal');
-                if (modalTitle) modalTitle.textContent = data.modalTitle;
-                if (modalDesc) modalDesc.textContent = data.modalDesc;
-                if (modal) {
-                    const adminBtn = modal.querySelector('[data-role="admin"]');
-                    const employeeBtn = modal.querySelector('[data-role="employee"]');
-                    const driverBtn = modal.querySelector('[data-role="driver"]');
-                    if (adminBtn) adminBtn.textContent = data.btnAdmin;
-                    if (employeeBtn) employeeBtn.textContent = data.btnEmployee;
-                    if (driverBtn) driverBtn.textContent = data.btnDriver;
-                }
-                if (closeModalBtn) closeModalBtn.textContent = data.btnCancel;
 
                 // Update header
                 const homeLink = document.getElementById('home-link');
@@ -847,56 +1275,22 @@
                 }
             },
 
-            // Function to handle role selection and redirection
-            handleGuestRoleSelection(role) {
-                app.closeModal();
-                // Navigate to the guest dashboard for the selected role
-                window.location.hash = `guest/${role}`;
-            },
-
             // Function to handle routing based on hash
             handleRoute() {
                 try {
                     const hash = window.location.hash.slice(1) || 'home';
                     const homeLink = document.getElementById('home-link');
-                    const guestLink = document.getElementById('guest-access-link');
-                    const guestLinkFooter = document.getElementById('guest-access-link-footer');
-                    // Ensure modal is initialized
-                    if (!modal) {
-                        modal = document.getElementById('guest-role-selector-modal');
-                    }
                     
                     // Hide all views
                     document.querySelectorAll('.view-section').forEach(view => {
                         view.classList.remove('active');
                     });
                     
-                    // Handle #guest - open modal
-                    if (hash === 'guest') {
-                        const viewHome = document.getElementById('view-home');
-                        if (viewHome) viewHome.classList.add('active');
-                        if (homeLink) homeLink.classList.add('hidden');
-                        if (guestLink) guestLink.classList.remove('hidden');
-                        if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
-                        if (modal) {
-                            modal.classList.add('open');
-                            // Ensure correct language is applied to modal when opened
-                            const langEn = document.getElementById('lang-en');
-                            const currentLang = langEn && langEn.classList.contains('text-isd-gold') ? 'en' : 'fr';
-                            app.setLanguage(currentLang);
-                        }
-                        return;
-                    }
-                    
                     // Show appropriate view based on hash
                     if (hash === 'home' || hash === '') {
                         const viewHome = document.getElementById('view-home');
                         if (viewHome) viewHome.classList.add('active');
                         if (homeLink) homeLink.classList.add('hidden');
-                        if (guestLink) guestLink.classList.remove('hidden');
-                        if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
-                        // Close modal if open
-                        if (modal) modal.classList.remove('open');
                     } else if (hash.startsWith('guest/')) {
                         const role = hash.split('/')[1];
                         const viewId = `view-guest-${role}`;
@@ -904,17 +1298,11 @@
                         if (viewElement) {
                             viewElement.classList.add('active');
                             if (homeLink) homeLink.classList.remove('hidden');
-                            if (guestLink) guestLink.classList.add('hidden');
-                            if (guestLinkFooter) guestLinkFooter.classList.add('hidden');
-                            // Close modal if open
-                            if (modal) modal.classList.remove('open');
                         } else {
                             // Invalid role, show home
                             const viewHome = document.getElementById('view-home');
                             if (viewHome) viewHome.classList.add('active');
                             if (homeLink) homeLink.classList.add('hidden');
-                            if (guestLink) guestLink.classList.remove('hidden');
-                            if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
                         }
                     } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
                                hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status') {
@@ -924,25 +1312,17 @@
                         if (viewElement) {
                             viewElement.classList.add('active');
                             if (homeLink) homeLink.classList.remove('hidden');
-                            if (guestLink) guestLink.classList.add('hidden');
-                            if (guestLinkFooter) guestLinkFooter.classList.add('hidden');
-                            // Close modal if open
-                            if (modal) modal.classList.remove('open');
                         } else {
                             // Invalid view, show home
                             const viewHome = document.getElementById('view-home');
                             if (viewHome) viewHome.classList.add('active');
                             if (homeLink) homeLink.classList.add('hidden');
-                            if (guestLink) guestLink.classList.remove('hidden');
-                            if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
                         }
                     } else {
                         // For other routes (like #login/admin), show home for now
                         const viewHome = document.getElementById('view-home');
                         if (viewHome) viewHome.classList.add('active');
                         if (homeLink) homeLink.classList.add('hidden');
-                        if (guestLink) guestLink.classList.remove('hidden');
-                        if (guestLinkFooter) guestLinkFooter.classList.remove('hidden');
                     }
                 } catch (error) {
                     console.error('Error in handleRoute:', error);
@@ -952,59 +1332,10 @@
                 }
             },
 
-            // Function to show the modal
-            handleGuestLogin(e) {
-                e.preventDefault();
-                // Ensure modal is initialized
-                if (!modal) {
-                    modal = document.getElementById('guest-role-selector-modal');
-                }
-                if (modal) {
-                    modal.classList.add('open');
-                    // Ensure correct language is applied to modal when opened
-                    const langEn = document.getElementById('lang-en');
-                    const currentLang = langEn && langEn.classList.contains('text-isd-gold') ? 'en' : 'fr';
-                    app.setLanguage(currentLang);
-                }
-            },
-            
-            // Function to close the modal
-            closeModal() {
-                // Ensure modal is initialized
-                if (!modal) {
-                    modal = document.getElementById('guest-role-selector-modal');
-                }
-                if (modal) {
-                    modal.classList.remove('open');
-                }
-                // If we're on #guest, navigate to home
-                if (window.location.hash === '#guest') {
-                    window.location.hash = 'home';
-                }
-            }
         };
 
         // Initialize when DOM is ready
         function initializeApp() {
-            // Get modal and buttons after DOM is ready
-            modal = document.getElementById('guest-role-selector-modal');
-            if (modal) {
-                roleButtons = modal.querySelectorAll('.modal-button[data-role]');
-                
-                // Role button listeners inside the modal
-                roleButtons.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        // Get role from button or closest parent with data-role
-                        const buttonElement = e.target.closest('[data-role]') || e.target;
-                        const role = buttonElement.getAttribute('data-role');
-                        if (role) {
-                            app.handleGuestRoleSelection(role);
-                        }
-                    });
-                });
-            }
             
             // Event Listeners for Language
             const langEn = document.getElementById('lang-en');
@@ -1020,16 +1351,6 @@
                     e.preventDefault();
                     app.setLanguage('fr');
                 });
-            }
-            
-            // Event Listeners for Guest Access Links
-            const guestLink = document.getElementById('guest-access-link');
-            const guestLinkFooter = document.getElementById('guest-access-link-footer');
-            if (guestLink) {
-                guestLink.addEventListener('click', app.handleGuestLogin);
-            }
-            if (guestLinkFooter) {
-                guestLinkFooter.addEventListener('click', app.handleGuestLogin);
             }
             
             // Form validation for New Booking
@@ -1125,18 +1446,6 @@
                     e.preventDefault();
                     // Show driver login form - for now, navigate to guest driver for demo
                     window.location.hash = 'guest/driver';
-                });
-            }
-            
-            // Modal Specific Listeners
-            const closeModalBtn = document.getElementById('close-modal');
-            if (closeModalBtn && modal) {
-                closeModalBtn.addEventListener('click', app.closeModal);
-                // Close modal when clicking outside the content area
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        app.closeModal();
-                    }
                 });
             }
             

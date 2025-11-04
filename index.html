@@ -329,7 +329,7 @@
             <div class="bg-white p-6 rounded-xl shadow-lg mb-6">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-bold text-gray-800">Vehicle Fleet</h3>
-                    <button class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">+ Add Vehicle</button>
+                    <button id="add-vehicle-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">+ Add Vehicle</button>
                 </div>
                 
                 <!-- Fleet Summary -->
@@ -885,9 +885,9 @@
                         <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
                     </div>
                     <div class="flex space-x-3">
-                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
-                        <button class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
-                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
+                        <button onclick="approveBooking('museum-trip')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
+                        <button onclick="rejectBooking('museum-trip')" class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
+                        <button onclick="viewBookingDetails('museum-trip')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
                     </div>
                 </div>
                 
@@ -902,9 +902,9 @@
                         <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
                     </div>
                     <div class="flex space-x-3">
-                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
-                        <button class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
-                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
+                        <button onclick="approveBooking('sports-event')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
+                        <button onclick="rejectBooking('sports-event')" class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
+                        <button onclick="viewBookingDetails('sports-event')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
                     </div>
                 </div>
             </div>
@@ -1055,7 +1055,7 @@
                         </div>
                         <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">Approved</span>
                     </div>
-                    <button class="text-isd-gold hover:underline">View Details</button>
+                    <button onclick="viewBookingDetails('museum-field-trip')" class="text-isd-gold hover:underline">View Details</button>
                 </div>
                 
                 <div class="bg-white p-6 rounded-xl shadow-lg">
@@ -1067,7 +1067,7 @@
                         </div>
                         <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
                     </div>
-                    <button class="text-isd-gold hover:underline">View Details</button>
+                    <button onclick="viewBookingDetails('sports-event-booking')" class="text-isd-gold hover:underline">View Details</button>
                 </div>
             </div>
         </div>
@@ -1122,31 +1122,35 @@
             </div>
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
-                <form class="space-y-4">
+                <form id="update-status-form" class="space-y-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Trip</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option>Museum Field Trip - March 10, 2025</option>
-                            <option>Sports Event - March 18, 2025</option>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Trip <span class="text-red-600">*</span></label>
+                        <select id="trip-select" name="trip-select" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Select a trip</option>
+                            <option value="museum">Museum Field Trip - March 10, 2025</option>
+                            <option value="sports">Sports Event - March 18, 2025</option>
                         </select>
+                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-select-error">Please select a trip</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option>Scheduled</option>
-                            <option>In Transit</option>
-                            <option>At Destination</option>
-                            <option>Returning</option>
-                            <option>Completed</option>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Status <span class="text-red-600">*</span></label>
+                        <select id="status-select" name="status-select" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Select status</option>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="In Transit">In Transit</option>
+                            <option value="At Destination">At Destination</option>
+                            <option value="Returning">Returning</option>
+                            <option value="Completed">Completed</option>
                         </select>
+                        <p class="text-red-600 text-sm mt-1 hidden" id="status-select-error">Please select a status</p>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Current Location</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Enter current location">
+                        <input type="text" id="current-location" name="current-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Enter current location">
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Notes</label>
-                        <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any updates or issues..."></textarea>
+                        <textarea rows="3" id="status-notes" name="status-notes" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any updates or issues..."></textarea>
                     </div>
                     <div class="flex space-x-3">
                         <button type="submit" class="px-6 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
@@ -1576,6 +1580,31 @@
             }
         }
 
+        // Booking approval functions
+        function approveBooking(bookingId) {
+            if (confirm('Are you sure you want to approve this booking request?')) {
+                // In a real app, this would make an API call
+                alert('Booking request has been approved successfully!');
+                // Reload the page or update the UI
+                location.reload();
+            }
+        }
+
+        function rejectBooking(bookingId) {
+            const reason = prompt('Please provide a reason for rejection:');
+            if (reason !== null && reason.trim() !== '') {
+                // In a real app, this would make an API call
+                alert(`Booking request has been rejected. Reason: ${reason}`);
+                // Reload the page or update the UI
+                location.reload();
+            }
+        }
+
+        function viewBookingDetails(bookingId) {
+            // In a real app, this would fetch and display booking details
+            alert(`Viewing details for booking: ${bookingId}\n\nIn a production app, this would open a detailed view or modal with full booking information.`);
+        }
+
         // Edit User Functions
         function openEditUserModal(name, email, role) {
             document.getElementById('edit-user-id').value = email;
@@ -1918,6 +1947,62 @@
             if (driverStatusBtn) {
                 driverStatusBtn.addEventListener('click', () => {
                     window.location.hash = 'update-status';
+                });
+            }
+            
+            // Add Vehicle Button Handler
+            const addVehicleBtn = document.getElementById('add-vehicle-btn');
+            if (addVehicleBtn) {
+                addVehicleBtn.addEventListener('click', () => {
+                    // In a real app, this would open a form/modal to add a new vehicle
+                    alert('Add Vehicle functionality:\n\nIn a production app, this would open a form or modal to add a new vehicle with details like ID, type, capacity, and status.');
+                });
+            }
+            
+            // Update Status Form Handler
+            const updateStatusForm = document.getElementById('update-status-form');
+            if (updateStatusForm) {
+                updateStatusForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Clear previous errors
+                    document.querySelectorAll('[id$="-error"]').forEach(el => {
+                        el.classList.add('hidden');
+                    });
+                    // Clear red borders from all form inputs
+                    document.querySelectorAll('#update-status-form input, #update-status-form select').forEach(input => {
+                        input.classList.remove('border-red-500');
+                    });
+                    
+                    let isValid = true;
+                    
+                    // Validate Trip Select
+                    const tripSelect = document.getElementById('trip-select');
+                    if (!tripSelect.value) {
+                        document.getElementById('trip-select-error').classList.remove('hidden');
+                        tripSelect.classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    // Validate Status Select
+                    const statusSelect = document.getElementById('status-select');
+                    if (!statusSelect.value) {
+                        document.getElementById('status-select-error').classList.remove('hidden');
+                        statusSelect.classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    if (isValid) {
+                        // Form is valid - show success message
+                        const trip = tripSelect.options[tripSelect.selectedIndex].text;
+                        const status = statusSelect.value;
+                        const location = document.getElementById('current-location').value;
+                        
+                        alert(`Trip status updated successfully!\n\nTrip: ${trip}\nStatus: ${status}${location ? '\nLocation: ' + location : ''}`);
+                        // In a real app, this would submit to a backend
+                        // For now, just navigate back to driver dashboard
+                        window.location.hash = 'guest/driver';
+                    }
                 });
             }
             

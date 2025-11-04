@@ -90,6 +90,15 @@
             z-index: 2000;
             transition: opacity 0.5s ease-out;
         }
+
+        /* View sections */
+        .view-section {
+            display: none;
+        }
+        
+        .view-section.active {
+            display: block;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -103,16 +112,21 @@
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                     <path fill="var(--color-isd-gold)" d="M15.5 12c.79 0 1.48-.3 2.03-.83l-1.42-1.42c-.22.18-.51.25-.81.25s-.59-.07-.81-.25L13 8.58V12h2.5z"/>
                 </svg>
-                <h1 class="text-3xl font-extrabold tracking-tight text-isd-gold">
+                <a href="#home" id="header-title-link" class="text-3xl font-extrabold tracking-tight text-isd-gold hover:text-yellow-400">
                     SmartCarBooking
-                </h1>
+                </a>
             </div>
             
-            <!-- Language Switcher -->
-            <div id="language-switcher" class="text-sm font-semibold">
-                <a href="#" id="lang-en" class="text-isd-gold hover:text-white border-b border-isd-gold pb-0.5">EN</a>
-                <span class="text-gray-400"> / </span>
-                <a href="#" id="lang-fr" class="text-white hover:text-isd-gold">FR</a>
+            <div class="flex items-center space-x-4">
+                <!-- Home/Logout Button (shown in dashboard views) -->
+                <a href="#home" id="home-link" class="text-sm text-isd-gold hover:text-white font-semibold hidden">Home</a>
+                
+                <!-- Language Switcher -->
+                <div id="language-switcher" class="text-sm font-semibold">
+                    <a href="#" id="lang-en" class="text-isd-gold hover:text-white border-b border-isd-gold pb-0.5">EN</a>
+                    <span class="text-gray-400"> / </span>
+                    <a href="#" id="lang-fr" class="text-white hover:text-isd-gold">FR</a>
+                </div>
             </div>
         </div>
     </header>
@@ -120,48 +134,128 @@
     <!-- Main Content Section -->
     <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
         
-        <!-- Welcome Message Card -->
-        <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-10 border-t-8 border-isd-gold">
-            <h2 id="msg-title" class="text-4xl font-bold mb-4 text-gray-800">
-                Your Centralized Transportation Platform
-            </h2>
-            <p id="msg-text" class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Easily book vehicles for field trips, sports events, and staff travel. 
-                A centralized platform for all your school’s transportation needs at the International School of Dakar.
+        <!-- Home View -->
+        <div id="view-home" class="view-section active">
+            <!-- Welcome Message Card -->
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-10 border-t-8 border-isd-gold">
+                <h2 id="msg-title" class="text-4xl font-bold mb-4 text-gray-800">
+                    Your Centralized Transportation Platform
+                </h2>
+                <p id="msg-text" class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Easily book vehicles for field trips, sports events, and staff travel. 
+                    A centralized platform for all your school's transportation needs at the International School of Dakar.
+                </p>
+            </div>
+
+            <!-- Role Access Grid -->
+            <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
+                
+                <!-- Admin Access Card -->
+                <a href="#login/admin" class="role-button flex flex-col items-center p-8 bg-isd-black text-isd-gold rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-800 border-2 border-isd-gold max-w-xs w-full" id="btn-admin">
+                    <!-- Icon: Lock -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span class="text-xl font-extrabold uppercase">Admin Access</span>
+                    <span class="text-sm mt-1 text-gray-400">Manage fleet, users, and approvals</span>
+                </a>
+
+                <!-- Employee Login Card -->
+                <a href="#login/employee" class="role-button flex flex-col items-center p-8 bg-isd-gold text-isd-black rounded-xl shadow-lg hover:shadow-xl hover:bg-yellow-400 border-2 border-isd-gold max-w-xs w-full" id="btn-employee">
+                    <!-- Icon: User -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <span class="text-xl font-extrabold uppercase">Employee Login</span>
+                    <span class="text-sm mt-1 text-gray-700">Submit and track booking requests</span>
+                </a>
+                
+                <!-- Driver Login Card -->
+                <a href="#login/driver" class="role-button flex flex-col items-center p-8 bg-gray-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-600 border-2 border-gray-700 max-w-xs w-full" id="btn-driver">
+                    <!-- Icon: Car/Truck -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2" ry="2"></rect><path d="M7 21l0-4"></path><path d="M17 21l0-4"></path><path d="M2 7l20 0"></path><path d="M14 7l-4 0"></path></svg>
+                    <span class="text-xl font-extrabold uppercase">Driver Login</span>
+                    <span class="text-sm mt-1 text-gray-300">View and update trip status</span>
+                </a>
+            </div>
+
+            <p class="mt-8 text-center text-sm text-gray-500">
+                New employee? Contact your administrator for credential setup.
             </p>
         </div>
 
-        <!-- Role Access Grid -->
-        <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
+        <!-- Guest Admin Dashboard View -->
+        <div id="view-guest-admin" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Guest Admin Dashboard</h2>
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+                </div>
+                <p class="text-gray-600">Welcome to the Admin Dashboard. You are logged in as a guest administrator.</p>
+            </div>
             
-            <!-- Admin Access Card -->
-            <a href="#login/admin" class="role-button flex flex-col items-center p-8 bg-isd-black text-isd-gold rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-800 border-2 border-isd-gold max-w-xs w-full" id="btn-admin">
-                <!-- Icon: Lock -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                <span class="text-xl font-extrabold uppercase">Admin Access</span>
-                <span class="text-sm mt-1 text-gray-400">Manage fleet, users, and approvals</span>
-            </a>
-
-            <!-- Employee Login Card -->
-            <a href="#login/employee" class="role-button flex flex-col items-center p-8 bg-isd-gold text-isd-black rounded-xl shadow-lg hover:shadow-xl hover:bg-yellow-400 border-2 border-isd-gold max-w-xs w-full" id="btn-employee">
-                <!-- Icon: User -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <span class="text-xl font-extrabold uppercase">Employee Login</span>
-                <span class="text-sm mt-1 text-gray-700">Submit and track booking requests</span>
-            </a>
-            
-            <!-- Driver Login Card -->
-            <a href="#login/driver" class="role-button flex flex-col items-center p-8 bg-gray-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-600 border-2 border-gray-700 max-w-xs w-full" id="btn-driver">
-                <!-- Icon: Car/Truck -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2" ry="2"></rect><path d="M7 21l0-4"></path><path d="M17 21l0-4"></path><path d="M2 7l20 0"></path><path d="M14 7l-4 0"></path></svg>
-                <span class="text-xl font-extrabold uppercase">Driver Login</span>
-                <span class="text-sm mt-1 text-gray-300">View and update trip status</span>
-            </a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Fleet Management</h3>
+                    <p class="text-gray-600 mb-4">View and manage vehicle fleet</p>
+                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Fleet</button>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Booking Approvals</h3>
+                    <p class="text-gray-600 mb-4">Review and approve booking requests</p>
+                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Requests</button>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">User Management</h3>
+                    <p class="text-gray-600 mb-4">Manage employees and drivers</p>
+                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Users</button>
+                </div>
+            </div>
         </div>
 
-        <p class="mt-8 text-center text-sm text-gray-500">
-            New employee? Contact your administrator for credential setup.
-        </p>
+        <!-- Guest Employee Dashboard View -->
+        <div id="view-guest-employee" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Guest Employee Dashboard</h2>
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+                </div>
+                <p class="text-gray-600">Welcome to the Employee Dashboard. You are logged in as a guest employee.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">New Booking Request</h3>
+                    <p class="text-gray-600 mb-4">Submit a new vehicle booking request</p>
+                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Create Booking</button>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">My Bookings</h3>
+                    <p class="text-gray-600 mb-4">View and track your booking requests</p>
+                    <button class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Bookings</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guest Driver Dashboard View -->
+        <div id="view-guest-driver" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Guest Driver Interface</h2>
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">GUEST MODE</span>
+                </div>
+                <p class="text-gray-600">Welcome to the Driver Interface. You are logged in as a guest driver.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Assigned Trips</h3>
+                    <p class="text-gray-600 mb-4">View your assigned trips and routes</p>
+                    <button class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">View Trips</button>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Update Status</h3>
+                    <p class="text-gray-600 mb-4">Update trip status and location</p>
+                    <button class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
+                </div>
+            </div>
+        </div>
 
     </main>
 
@@ -270,9 +364,12 @@
             handleGuestRoleSelection(role) {
                 app.closeModal();
                 
-                // Using a non-alert message box for feedback
+                // Navigate to the guest dashboard for the selected role
+                window.location.hash = `guest/${role}`;
+                
+                // Show success message
                 const feedbackDiv = document.createElement('div');
-                feedbackDiv.textContent = `REDIRECT SIMULATED: Logging in as Guest ${role.toUpperCase()}.`;
+                feedbackDiv.textContent = `Logged in as Guest ${role.toUpperCase()}`;
                 feedbackDiv.className = 'feedback-message opacity-0';
                 document.body.appendChild(feedbackDiv);
                 
@@ -282,6 +379,39 @@
                 // Fade out and remove
                 setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
                 setTimeout(() => feedbackDiv.remove(), 3000);
+            },
+
+            // Function to handle routing based on hash
+            handleRoute() {
+                const hash = window.location.hash.slice(1) || 'home';
+                const homeLink = document.getElementById('home-link');
+                
+                // Hide all views
+                document.querySelectorAll('.view-section').forEach(view => {
+                    view.classList.remove('active');
+                });
+                
+                // Show appropriate view based on hash
+                if (hash === 'home' || hash === '') {
+                    document.getElementById('view-home').classList.add('active');
+                    homeLink.classList.add('hidden');
+                } else if (hash.startsWith('guest/')) {
+                    const role = hash.split('/')[1];
+                    const viewId = `view-guest-${role}`;
+                    const viewElement = document.getElementById(viewId);
+                    if (viewElement) {
+                        viewElement.classList.add('active');
+                        homeLink.classList.remove('hidden');
+                    } else {
+                        // Invalid role, show home
+                        document.getElementById('view-home').classList.add('active');
+                        homeLink.classList.add('hidden');
+                    }
+                } else {
+                    // For other routes (like #login/admin), show home for now
+                    document.getElementById('view-home').classList.add('active');
+                    homeLink.classList.add('hidden');
+                }
             },
 
             // Function to show the modal
@@ -330,9 +460,26 @@
             });
         });
 
-        // Initialize with English
+        // Hash change listener for routing
+        window.addEventListener('hashchange', () => {
+            app.handleRoute();
+        });
+
+        // Prevent default navigation on header links
+        document.getElementById('header-title-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.hash = 'home';
+        });
+
+        document.getElementById('home-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.hash = 'home';
+        });
+
+        // Initialize with English and handle routing
         window.onload = () => {
             app.setLanguage('en');
+            app.handleRoute();
         };
     </script>
 </body>

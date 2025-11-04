@@ -505,12 +505,18 @@
                 if (driverStatusBtn) driverStatusBtn.textContent = data.driverStatusBtn;
 
                 // Update active/inactive styles for language links
-                document.getElementById('lang-en').classList.toggle('text-white', lang === 'fr');
-                document.getElementById('lang-en').classList.toggle('text-isd-gold', lang === 'en');
-                document.getElementById('lang-en').classList.toggle('border-b', lang === 'en');
-                document.getElementById('lang-fr').classList.toggle('text-white', lang === 'en');
-                document.getElementById('lang-fr').classList.toggle('text-isd-gold', lang === 'fr');
-                document.getElementById('lang-fr').classList.toggle('border-b', lang === 'fr');
+                const langEn = document.getElementById('lang-en');
+                const langFr = document.getElementById('lang-fr');
+                if (langEn) {
+                    langEn.classList.toggle('text-white', lang === 'fr');
+                    langEn.classList.toggle('text-isd-gold', lang === 'en');
+                    langEn.classList.toggle('border-b', lang === 'en');
+                }
+                if (langFr) {
+                    langFr.classList.toggle('text-white', lang === 'en');
+                    langFr.classList.toggle('text-isd-gold', lang === 'fr');
+                    langFr.classList.toggle('border-b', lang === 'fr');
+                }
             },
 
             // Function to handle role selection and redirection
@@ -563,32 +569,35 @@
                 
                 // Show appropriate view based on hash
                 if (hash === 'home' || hash === '') {
-                    document.getElementById('view-home').classList.add('active');
-                    homeLink.classList.add('hidden');
-                    guestLink.classList.remove('hidden');
+                    const viewHome = document.getElementById('view-home');
+                    if (viewHome) viewHome.classList.add('active');
+                    if (homeLink) homeLink.classList.add('hidden');
+                    if (guestLink) guestLink.classList.remove('hidden');
                     // Close modal if open
-                    modal.classList.remove('open');
+                    if (modal) modal.classList.remove('open');
                 } else if (hash.startsWith('guest/')) {
                     const role = hash.split('/')[1];
                     const viewId = `view-guest-${role}`;
                     const viewElement = document.getElementById(viewId);
                     if (viewElement) {
                         viewElement.classList.add('active');
-                        homeLink.classList.remove('hidden');
-                        guestLink.classList.add('hidden');
+                        if (homeLink) homeLink.classList.remove('hidden');
+                        if (guestLink) guestLink.classList.add('hidden');
                         // Close modal if open
-                        modal.classList.remove('open');
+                        if (modal) modal.classList.remove('open');
                     } else {
                         // Invalid role, show home
-                        document.getElementById('view-home').classList.add('active');
-                        homeLink.classList.add('hidden');
-                        guestLink.classList.remove('hidden');
+                        const viewHome = document.getElementById('view-home');
+                        if (viewHome) viewHome.classList.add('active');
+                        if (homeLink) homeLink.classList.add('hidden');
+                        if (guestLink) guestLink.classList.remove('hidden');
                     }
                 } else {
                     // For other routes (like #login/admin), show home for now
-                    document.getElementById('view-home').classList.add('active');
-                    homeLink.classList.add('hidden');
-                    guestLink.classList.remove('hidden');
+                    const viewHome = document.getElementById('view-home');
+                    if (viewHome) viewHome.classList.add('active');
+                    if (homeLink) homeLink.classList.add('hidden');
+                    if (guestLink) guestLink.classList.remove('hidden');
                 }
             },
 
@@ -736,6 +745,103 @@
                 homeLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     window.location.hash = 'home';
+                });
+            }
+            
+            // Admin Dashboard Button Listeners
+            const adminFleetBtn = document.getElementById('admin-fleet-btn');
+            const adminApprovalsBtn = document.getElementById('admin-approvals-btn');
+            const adminUsersBtn = document.getElementById('admin-users-btn');
+            
+            if (adminFleetBtn) {
+                adminFleetBtn.addEventListener('click', () => {
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.textContent = 'Fleet Management feature would open here';
+                    feedbackDiv.className = 'feedback-message opacity-0';
+                    document.body.appendChild(feedbackDiv);
+                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+                    setTimeout(() => feedbackDiv.remove(), 3000);
+                });
+            }
+            
+            if (adminApprovalsBtn) {
+                adminApprovalsBtn.addEventListener('click', () => {
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.textContent = 'Booking Approvals feature would open here';
+                    feedbackDiv.className = 'feedback-message opacity-0';
+                    document.body.appendChild(feedbackDiv);
+                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+                    setTimeout(() => feedbackDiv.remove(), 3000);
+                });
+            }
+            
+            if (adminUsersBtn) {
+                adminUsersBtn.addEventListener('click', () => {
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.textContent = 'User Management feature would open here';
+                    feedbackDiv.className = 'feedback-message opacity-0';
+                    document.body.appendChild(feedbackDiv);
+                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+                    setTimeout(() => feedbackDiv.remove(), 3000);
+                });
+            }
+            
+            // Employee Dashboard Button Listeners
+            const employeeBookingBtn = document.getElementById('employee-booking-btn');
+            const employeeMyBookingsBtn = document.getElementById('employee-mybookings-btn');
+            
+            if (employeeBookingBtn) {
+                employeeBookingBtn.addEventListener('click', () => {
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.textContent = 'New Booking Request form would open here';
+                    feedbackDiv.className = 'feedback-message opacity-0';
+                    document.body.appendChild(feedbackDiv);
+                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+                    setTimeout(() => feedbackDiv.remove(), 3000);
+                });
+            }
+            
+            if (employeeMyBookingsBtn) {
+                employeeMyBookingsBtn.addEventListener('click', () => {
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.textContent = 'My Bookings list would open here';
+                    feedbackDiv.className = 'feedback-message opacity-0';
+                    document.body.appendChild(feedbackDiv);
+                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+                    setTimeout(() => feedbackDiv.remove(), 3000);
+                });
+            }
+            
+            // Driver Dashboard Button Listeners
+            const driverTripsBtn = document.getElementById('driver-trips-btn');
+            const driverStatusBtn = document.getElementById('driver-status-btn');
+            
+            if (driverTripsBtn) {
+                driverTripsBtn.addEventListener('click', () => {
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.textContent = 'Assigned Trips list would open here';
+                    feedbackDiv.className = 'feedback-message opacity-0';
+                    document.body.appendChild(feedbackDiv);
+                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+                    setTimeout(() => feedbackDiv.remove(), 3000);
+                });
+            }
+            
+            if (driverStatusBtn) {
+                driverStatusBtn.addEventListener('click', () => {
+                    const feedbackDiv = document.createElement('div');
+                    feedbackDiv.textContent = 'Update Status form would open here';
+                    feedbackDiv.className = 'feedback-message opacity-0';
+                    document.body.appendChild(feedbackDiv);
+                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+                    setTimeout(() => feedbackDiv.remove(), 3000);
                 });
             }
             

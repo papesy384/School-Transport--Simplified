@@ -135,16 +135,108 @@
         
         <!-- Home View -->
         <div id="view-home" class="view-section active">
-            <!-- Simple Welcome Message -->
-            <div class="max-w-3xl mx-auto text-center mt-20 mb-12">
-                <h1 id="msg-title" class="text-5xl font-bold mb-6 text-white">
-                    SmartCarBooking
-                </h1>
-                <p id="msg-text" class="text-xl text-gray-300">
-                    Your centralized transportation platform for the International School of Dakar
-                </p>
+            <!-- Hero Section with Vehicle Image -->
+            <div class="relative overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1920&h=1080&fit=crop" alt="School Bus Fleet" class="w-full h-full object-cover opacity-40">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black"></div>
+                </div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+                    <div class="text-center">
+                        <h1 id="msg-title" class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 text-white tracking-tight drop-shadow-2xl">
+                            SmartCarBooking
+                        </h1>
+                        <p id="msg-text" class="text-xl md:text-2xl lg:text-3xl text-gray-200 mb-8 max-w-4xl mx-auto drop-shadow-lg">
+                            Your centralized transportation platform for the International School of Dakar
+                        </p>
+                    </div>
+                </div>
             </div>
 
+            <!-- Vehicle Gallery Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Fleet</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">A diverse range of vehicles to meet all your transportation needs</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                    <!-- School Bus Card -->
+                    <div class="group relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105">
+                        <div class="absolute inset-0 z-0">
+                            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=600&fit=crop" alt="School Bus" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                        </div>
+                        <div class="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
+                            <h3 class="text-3xl font-bold text-white mb-3">School Bus</h3>
+                            <p class="text-gray-200 mb-4 text-lg">50 seats • Perfect for field trips and large groups</p>
+                            <div class="flex items-center text-isd-gold">
+                                <span class="text-2xl font-bold">8</span>
+                                <span class="ml-2 text-lg">Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUV Card -->
+                    <div class="group relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105">
+                        <div class="absolute inset-0 z-0">
+                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop" alt="SUV" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                        </div>
+                        <div class="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
+                            <h3 class="text-3xl font-bold text-white mb-3">SUV</h3>
+                            <p class="text-gray-200 mb-4 text-lg">7 seats • Comfortable for small groups</p>
+                            <div class="flex items-center text-isd-gold">
+                                <span class="text-2xl font-bold">10</span>
+                                <span class="ml-2 text-lg">Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sedan Card -->
+                    <div class="group relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105">
+                        <div class="absolute inset-0 z-0">
+                            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop" alt="Sedan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                        </div>
+                        <div class="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
+                            <h3 class="text-3xl font-bold text-white mb-3">Sedan</h3>
+                            <p class="text-gray-200 mb-4 text-lg">5 seats • Ideal for staff travel</p>
+                            <div class="flex items-center text-isd-gold">
+                                <span class="text-2xl font-bold">14</span>
+                                <span class="ml-2 text-lg">Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Platform Features</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-isd-gold transition-all hover:shadow-2xl hover:shadow-isd-gold/20">
+                            <div class="text-isd-gold text-4xl mb-4">🚌</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Fleet Management</h3>
+                            <p class="text-gray-400">Track and manage all vehicles efficiently</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-isd-gold transition-all hover:shadow-2xl hover:shadow-isd-gold/20">
+                            <div class="text-isd-gold text-4xl mb-4">📅</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Easy Booking</h3>
+                            <p class="text-gray-400">Book vehicles with just a few clicks</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-isd-gold transition-all hover:shadow-2xl hover:shadow-isd-gold/20">
+                            <div class="text-isd-gold text-4xl mb-4">✅</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Quick Approvals</h3>
+                            <p class="text-gray-400">Streamlined approval workflow</p>
+                        </div>
+                        <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-isd-gold transition-all hover:shadow-2xl hover:shadow-isd-gold/20">
+                            <div class="text-isd-gold text-4xl mb-4">📊</div>
+                            <h3 class="text-xl font-bold text-white mb-2">Real-time Tracking</h3>
+                            <p class="text-gray-400">Monitor trip status in real-time</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Guest Admin Dashboard View -->
@@ -248,10 +340,8 @@
                                 <p class="text-sm text-gray-600 mb-1">School Bus</p>
                                 <p class="text-2xl font-bold text-gray-900">8</p>
                             </div>
-                            <!-- School Bus Icon -->
-                            <svg class="w-12 h-12 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
-                            </svg>
+                            <!-- School Bus Image -->
+                            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=80&h=80&fit=crop" alt="School Bus" class="w-16 h-16 object-cover rounded-lg">
                         </div>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
@@ -260,10 +350,8 @@
                                 <p class="text-sm text-gray-600 mb-1">SUV</p>
                                 <p class="text-2xl font-bold text-gray-900">10</p>
                             </div>
-                            <!-- SUV Icon -->
-                            <svg class="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                            </svg>
+                            <!-- SUV Image -->
+                            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=80&h=80&fit=crop" alt="SUV" class="w-16 h-16 object-cover rounded-lg">
                         </div>
                     </div>
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
@@ -272,10 +360,8 @@
                                 <p class="text-sm text-gray-600 mb-1">Sedan</p>
                                 <p class="text-2xl font-bold text-gray-900">14</p>
                             </div>
-                            <!-- Sedan Icon -->
-                            <svg class="w-12 h-12 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                            </svg>
+                            <!-- Sedan Image -->
+                            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=80&h=80&fit=crop" alt="Sedan" class="w-16 h-16 object-cover rounded-lg">
                         </div>
                     </div>
                 </div>
@@ -297,17 +383,15 @@
                             <!-- School Buses (8) -->
                             <tr class="border-b">
                                 <td class="p-3">
-                                    <svg class="w-10 h-10 text-yellow-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 001 1h1a1 1 0 001-1v-1h8v1a1 1 0 001 1h1a1 1 0 001-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
-                                    </svg>
+                                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=100&h=100&fit=crop" alt="School Bus" class="w-16 h-16 object-cover rounded-lg">
                                 </td>
                                 <td class="p-3">SB-001</td>
                                 <td class="p-3">School Bus</td>
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -321,8 +405,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -336,8 +420,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -351,8 +435,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -366,8 +450,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -381,8 +465,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -396,8 +480,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -411,24 +495,22 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <!-- SUVs (10) -->
                             <tr class="border-b">
                                 <td class="p-3">
-                                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                                    </svg>
+                                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=100&h=100&fit=crop" alt="SUV" class="w-16 h-16 object-cover rounded-lg">
                                 </td>
                                 <td class="p-3">SUV-001</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -442,8 +524,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -457,8 +539,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -472,8 +554,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -487,8 +569,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -502,8 +584,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -517,8 +599,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -532,8 +614,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -547,8 +629,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -562,24 +644,22 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <!-- Sedans (14) -->
                             <tr class="border-b">
                                 <td class="p-3">
-                                    <svg class="w-10 h-10 text-gray-600" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-                                    </svg>
+                                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=100&h=100&fit=crop" alt="Sedan" class="w-16 h-16 object-cover rounded-lg">
                                 </td>
                                 <td class="p-3">SD-001</td>
                                 <td class="p-3">Sedan</td>
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -593,8 +673,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -608,8 +688,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -623,8 +703,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -638,8 +718,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -653,8 +733,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -668,8 +748,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -683,8 +763,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -698,8 +778,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -713,8 +793,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -728,8 +808,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -743,8 +823,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -758,8 +838,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -773,8 +853,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -850,14 +930,14 @@
                                 <p class="font-semibold">John Doe</p>
                                 <p class="text-sm text-gray-600">john.doe@isd.edu</p>
                             </div>
-                            <button class="text-isd-gold hover:underline">Edit</button>
+                            <button onclick="openEditUserModal('John Doe', 'john.doe@isd.edu', 'Employee')" class="text-isd-gold hover:underline">Edit</button>
                         </div>
                         <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center">
                             <div>
                                 <p class="font-semibold">Jane Smith</p>
                                 <p class="text-sm text-gray-600">jane.smith@isd.edu</p>
                             </div>
-                            <button class="text-isd-gold hover:underline">Edit</button>
+                            <button onclick="openEditUserModal('John Doe', 'john.doe@isd.edu', 'Employee')" class="text-isd-gold hover:underline">Edit</button>
                         </div>
                     </div>
                 </div>
@@ -871,14 +951,14 @@
                                 <p class="font-semibold">Mike Johnson</p>
                                 <p class="text-sm text-gray-600">License: DL-12345</p>
                             </div>
-                            <button class="text-isd-gold hover:underline">Edit</button>
+                            <button onclick="openEditUserModal('John Doe', 'john.doe@isd.edu', 'Employee')" class="text-isd-gold hover:underline">Edit</button>
                         </div>
                         <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center">
                             <div>
                                 <p class="font-semibold">Sarah Williams</p>
                                 <p class="text-sm text-gray-600">License: DL-67890</p>
                             </div>
-                            <button class="text-isd-gold hover:underline">Edit</button>
+                            <button onclick="openEditUserModal('John Doe', 'john.doe@isd.edu', 'Employee')" class="text-isd-gold hover:underline">Edit</button>
                         </div>
                     </div>
                 </div>
@@ -905,7 +985,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Date <span class="text-red-600">*</span></label>
-                            <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
                             <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error">Date is required</p>
                         </div>
                         <div>
@@ -913,6 +993,20 @@
                             <input type="time" id="trip-time" name="trip-time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
                             <p class="text-red-600 text-sm mt-1 hidden" id="trip-time-error">Time is required</p>
                         </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Duration <span class="text-red-600">*</span></label>
+                        <select id="trip-duration" name="trip-duration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Select duration</option>
+                            <option value="1">1 hour</option>
+                            <option value="2">2 hours</option>
+                            <option value="3">3 hours</option>
+                            <option value="4">4 hours</option>
+                            <option value="5">5 hours</option>
+                            <option value="6">6 hours</option>
+                            <option value="8">8 hours (Full day)</option>
+                        </select>
+                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-duration-error">Duration is required</p>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Passengers <span class="text-red-600">*</span></label>
@@ -1071,6 +1165,82 @@
         </div>
     </footer>
 
+    <!-- Edit Vehicle Modal -->
+    <div id="edit-vehicle-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="text-2xl font-bold mb-5 text-isd-black">Edit Vehicle</h3>
+            <form id="edit-vehicle-form" class="space-y-4" enctype="multipart/form-data">
+                <input type="hidden" id="edit-vehicle-id">
+                <input type="hidden" id="edit-vehicle-current-image">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle ID</label>
+                    <input type="text" id="edit-vehicle-id-display" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" readonly>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Image</label>
+                    <div class="mb-3">
+                        <img id="edit-vehicle-image-preview" src="" alt="Vehicle Preview" class="w-32 h-32 object-cover rounded-lg border-2 border-gray-300 mb-2 hidden">
+                        <p id="edit-vehicle-image-current" class="text-sm text-gray-600 mb-2"></p>
+                    </div>
+                    <input type="file" id="edit-vehicle-image" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-isd-gold file:text-isd-black hover:file:bg-yellow-400">
+                    <p class="text-xs text-gray-500 mt-1">Upload a new image to replace the current one (JPG, PNG, or GIF)</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Type</label>
+                    <select id="edit-vehicle-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                        <option value="School Bus">School Bus</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Sedan">Sedan</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Capacity</label>
+                    <input type="text" id="edit-vehicle-capacity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 50 seats">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
+                    <select id="edit-vehicle-status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                        <option value="Available">Available</option>
+                        <option value="In Use">In Use</option>
+                        <option value="Maintenance">Maintenance</option>
+                    </select>
+                </div>
+                <div class="flex space-x-3">
+                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Save Changes</button>
+                    <button type="button" onclick="closeEditVehicleModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="edit-user-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="text-2xl font-bold mb-5 text-isd-black">Edit User</h3>
+            <form id="edit-user-form" class="space-y-4">
+                <input type="hidden" id="edit-user-id">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Name</label>
+                    <input type="text" id="edit-user-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                    <input type="email" id="edit-user-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Role</label>
+                    <select id="edit-user-role" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                        <option value="Employee">Employee</option>
+                        <option value="Driver">Driver</option>
+                    </select>
+                </div>
+                <div class="flex space-x-3">
+                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Save Changes</button>
+                    <button type="button" onclick="closeEditUserModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- JavaScript for Basic Interactions (Language Toggle) -->
     <script>
@@ -1334,8 +1504,191 @@
 
         };
 
+        // Helper function to open edit modal from table row
+        function openEditVehicleModalFromRow(button) {
+            const row = button.closest('tr');
+            const vehicleId = row.querySelector('td:nth-child(2)').textContent.trim();
+            const type = row.querySelector('td:nth-child(3)').textContent.trim();
+            const capacity = row.querySelector('td:nth-child(4)').textContent.trim();
+            const statusElement = row.querySelector('td:nth-child(5) span');
+            const status = statusElement ? statusElement.textContent.trim() : 'Available';
+            const imageElement = row.querySelector('td:first-child img');
+            const currentImageUrl = imageElement ? imageElement.src : '';
+            
+            openEditVehicleModal(vehicleId, type, capacity, status, currentImageUrl);
+        }
+
+        // Edit Vehicle Functions
+        function openEditVehicleModal(vehicleId, type, capacity, status, currentImageUrl = '') {
+            document.getElementById('edit-vehicle-id').value = vehicleId;
+            document.getElementById('edit-vehicle-id-display').value = vehicleId;
+            document.getElementById('edit-vehicle-type').value = type;
+            document.getElementById('edit-vehicle-capacity').value = capacity;
+            document.getElementById('edit-vehicle-status').value = status;
+            
+            // Handle image preview
+            const imagePreview = document.getElementById('edit-vehicle-image-preview');
+            const imageCurrent = document.getElementById('edit-vehicle-image-current');
+            const imageInput = document.getElementById('edit-vehicle-image');
+            const currentImageInput = document.getElementById('edit-vehicle-current-image');
+            
+            if (currentImageUrl) {
+                currentImageInput.value = currentImageUrl;
+                imagePreview.src = currentImageUrl;
+                imagePreview.classList.remove('hidden');
+                imageCurrent.textContent = 'Current image:';
+            } else {
+                // Default images based on type
+                let defaultImage = '';
+                if (type === 'School Bus') {
+                    defaultImage = 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=100&h=100&fit=crop';
+                } else if (type === 'SUV') {
+                    defaultImage = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=100&h=100&fit=crop';
+                } else if (type === 'Sedan') {
+                    defaultImage = 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=100&h=100&fit=crop';
+                }
+                if (defaultImage) {
+                    imagePreview.src = defaultImage;
+                    imagePreview.classList.remove('hidden');
+                    imageCurrent.textContent = 'Current image:';
+                } else {
+                    imagePreview.classList.add('hidden');
+                    imageCurrent.textContent = 'No image currently';
+                }
+            }
+            
+            // Reset file input
+            imageInput.value = '';
+            
+            document.getElementById('edit-vehicle-modal').classList.add('open');
+        }
+
+        function closeEditVehicleModal() {
+            document.getElementById('edit-vehicle-modal').classList.remove('open');
+        }
+
+        function deleteVehicle(vehicleId) {
+            if (confirm(`Are you sure you want to delete vehicle ${vehicleId}?`)) {
+                // In a real app, this would make an API call
+                alert(`Vehicle ${vehicleId} has been deleted.`);
+                // Reload the page or update the table
+                location.reload();
+            }
+        }
+
+        // Edit User Functions
+        function openEditUserModal(name, email, role) {
+            document.getElementById('edit-user-id').value = email;
+            document.getElementById('edit-user-name').value = name;
+            document.getElementById('edit-user-email').value = email;
+            document.getElementById('edit-user-role').value = role;
+            document.getElementById('edit-user-modal').classList.add('open');
+        }
+
+        function closeEditUserModal() {
+            document.getElementById('edit-user-modal').classList.remove('open');
+        }
+
+        // Handle edit form submissions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add image preview handler for vehicle image upload
+            const imageInput = document.getElementById('edit-vehicle-image');
+            const imagePreview = document.getElementById('edit-vehicle-image-preview');
+            const imageCurrent = document.getElementById('edit-vehicle-image-current');
+            
+            if (imageInput && imagePreview && imageCurrent) {
+                imageInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            imagePreview.src = e.target.result;
+                            imagePreview.classList.remove('hidden');
+                            imageCurrent.textContent = 'New image preview:';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+            
+            const editVehicleForm = document.getElementById('edit-vehicle-form');
+            if (editVehicleForm) {
+                editVehicleForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const vehicleId = document.getElementById('edit-vehicle-id').value;
+                    const type = document.getElementById('edit-vehicle-type').value;
+                    const capacity = document.getElementById('edit-vehicle-capacity').value;
+                    const status = document.getElementById('edit-vehicle-status').value;
+                    const imageFile = document.getElementById('edit-vehicle-image').files[0];
+                    
+                    // In a real app, this would make an API call with FormData
+                    if (imageFile) {
+                        // Create FormData for file upload
+                        const formData = new FormData();
+                        formData.append('vehicleId', vehicleId);
+                        formData.append('type', type);
+                        formData.append('capacity', capacity);
+                        formData.append('status', status);
+                        formData.append('image', imageFile);
+                        
+                        // In production, you would send this to your backend:
+                        // fetch('/api/vehicles/update', { method: 'POST', body: formData })
+                        
+                        alert(`Vehicle ${vehicleId} has been updated with new image!`);
+                    } else {
+                        alert(`Vehicle ${vehicleId} has been updated!`);
+                    }
+                    
+                    closeEditVehicleModal();
+                    // Reload or update the table
+                    location.reload();
+                });
+            }
+
+            const editUserForm = document.getElementById('edit-user-form');
+            if (editUserForm) {
+                editUserForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('edit-user-name').value;
+                    const email = document.getElementById('edit-user-email').value;
+                    const role = document.getElementById('edit-user-role').value;
+                    
+                    // In a real app, this would make an API call
+                    alert(`User ${name} has been updated!`);
+                    closeEditUserModal();
+                    // Reload or update the table
+                    location.reload();
+                });
+            }
+
+            // Close modals when clicking outside
+            const editVehicleModal = document.getElementById('edit-vehicle-modal');
+            if (editVehicleModal) {
+                editVehicleModal.addEventListener('click', function(e) {
+                    if (e.target === editVehicleModal) {
+                        closeEditVehicleModal();
+                    }
+                });
+            }
+
+            const editUserModal = document.getElementById('edit-user-modal');
+            if (editUserModal) {
+                editUserModal.addEventListener('click', function(e) {
+                    if (e.target === editUserModal) {
+                        closeEditUserModal();
+                    }
+                });
+            }
+        });
+
         // Initialize when DOM is ready
         function initializeApp() {
+            // Set minimum date to today for booking form
+            const tripDateInput = document.getElementById('trip-date');
+            if (tripDateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                tripDateInput.setAttribute('min', today);
+            }
             
             // Event Listeners for Language
             const langEn = document.getElementById('lang-en');
@@ -1364,7 +1717,7 @@
                         el.classList.add('hidden');
                     });
                     // Clear red borders from all form inputs
-                    document.querySelectorAll('#new-booking-form input, #new-booking-form select').forEach(input => {
+                    document.querySelectorAll('#new-booking-form input, #new-booking-form select, #new-booking-form textarea').forEach(input => {
                         input.classList.remove('border-red-500');
                     });
                     
@@ -1382,16 +1735,49 @@
                     const tripDate = document.getElementById('trip-date');
                     if (!tripDate.value) {
                         document.getElementById('trip-date-error').classList.remove('hidden');
+                        document.getElementById('trip-date-error').textContent = 'Date is required';
                         tripDate.classList.add('border-red-500');
                         isValid = false;
+                    } else {
+                        // Check if date is in the past
+                        const selectedDate = new Date(tripDate.value);
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        if (selectedDate < today) {
+                            document.getElementById('trip-date-error').classList.remove('hidden');
+                            document.getElementById('trip-date-error').textContent = 'Cannot book for a past date';
+                            tripDate.classList.add('border-red-500');
+                            isValid = false;
+                        }
                     }
                     
                     // Validate Time
                     const tripTime = document.getElementById('trip-time');
                     if (!tripTime.value) {
                         document.getElementById('trip-time-error').classList.remove('hidden');
+                        document.getElementById('trip-time-error').textContent = 'Time is required';
                         tripTime.classList.add('border-red-500');
                         isValid = false;
+                    } else if (tripDate.value) {
+                        // Check if date and time combination is in the past
+                        const selectedDate = new Date(tripDate.value);
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        
+                        if (selectedDate.getTime() === today.getTime()) {
+                            // Same day, check time
+                            const [hours, minutes] = tripTime.value.split(':');
+                            const selectedDateTime = new Date();
+                            selectedDateTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+                            const now = new Date();
+                            
+                            if (selectedDateTime < now) {
+                                document.getElementById('trip-time-error').classList.remove('hidden');
+                                document.getElementById('trip-time-error').textContent = 'Cannot book for a past time';
+                                tripTime.classList.add('border-red-500');
+                                isValid = false;
+                            }
+                        }
                     }
                     
                     // Validate Passengers
@@ -1399,6 +1785,14 @@
                     if (!passengers.value || parseInt(passengers.value) < 1) {
                         document.getElementById('passengers-error').classList.remove('hidden');
                         passengers.classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    // Validate Duration
+                    const tripDuration = document.getElementById('trip-duration');
+                    if (!tripDuration.value) {
+                        document.getElementById('trip-duration-error').classList.remove('hidden');
+                        tripDuration.classList.add('border-red-500');
                         isValid = false;
                     }
                     

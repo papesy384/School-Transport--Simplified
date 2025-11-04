@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCarBooking - ISD Transportation</title>
+    <!-- Load Tailwind CSS for modern, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font, suitable for professional and modern web apps -->
+    <style>
+        /* Define ISD Brand Colors using Tailwind utility classes */
+        :root {
+            --color-isd-gold: #FDC12B;
+            --color-isd-black: #000000;
+        }
+
+        .bg-isd-gold { background-color: var(--color-isd-gold); }
+        .text-isd-gold { color: var(--color-isd-gold); }
+        .bg-isd-black { background-color: var(--color-isd-black); }
+        .text-isd-black { color: var(--color-isd-black); }
+        .border-isd-gold { border-color: var(--color-isd-gold); }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5; /* Light grey background */
+        }
+        
+        .role-button {
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Custom Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            width: 450px;
+            text-align: center;
+        }
+        .modal-button {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            text-transform: uppercase;
+        }
+        .modal-button:active {
+            transform: translateY(1px);
+        }
+        
+        /* Message box for feedback (replacing alert) */
+        .feedback-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #10B981; /* Tailwind green-500 */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            transition: opacity 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Language Switcher -->
+    <header class="bg-isd-black text-white p-4 shadow-xl relative">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Simple "ISD Jaguar" inspired icon using inline SVG -->
+                <svg class="w-8 h-8 text-isd-gold" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    <path fill="var(--color-isd-gold)" d="M15.5 12c.79 0 1.48-.3 2.03-.83l-1.42-1.42c-.22.18-.51.25-.81.25s-.59-.07-.81-.25L13 8.58V12h2.5z"/>
+                </svg>
+                <h1 class="text-3xl font-extrabold tracking-tight text-isd-gold">
+                    SmartCarBooking
+                </h1>
+            </div>
+            
+            <!-- Language Switcher -->
+            <div id="language-switcher" class="text-sm font-semibold">
+                <a href="#" id="lang-en" class="text-isd-gold hover:text-white border-b border-isd-gold pb-0.5">EN</a>
+                <span class="text-gray-400"> / </span>
+                <a href="#" id="lang-fr" class="text-white hover:text-isd-gold">FR</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- Welcome Message Card -->
+        <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-10 border-t-8 border-isd-gold">
+            <h2 id="msg-title" class="text-4xl font-bold mb-4 text-gray-800">
+                Your Centralized Transportation Platform
+            </h2>
+            <p id="msg-text" class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Easily book vehicles for field trips, sports events, and staff travel. 
+                A centralized platform for all your school’s transportation needs at the International School of Dakar.
+            </p>
+        </div>
+
+        <!-- Role Access Grid -->
+        <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
+            
+            <!-- Admin Access Card -->
+            <a href="#login/admin" class="role-button flex flex-col items-center p-8 bg-isd-black text-isd-gold rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-800 border-2 border-isd-gold max-w-xs w-full" id="btn-admin">
+                <!-- Icon: Lock -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span class="text-xl font-extrabold uppercase">Admin Access</span>
+                <span class="text-sm mt-1 text-gray-400">Manage fleet, users, and approvals</span>
+            </a>
+
+            <!-- Employee Login Card -->
+            <a href="#login/employee" class="role-button flex flex-col items-center p-8 bg-isd-gold text-isd-black rounded-xl shadow-lg hover:shadow-xl hover:bg-yellow-400 border-2 border-isd-gold max-w-xs w-full" id="btn-employee">
+                <!-- Icon: User -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span class="text-xl font-extrabold uppercase">Employee Login</span>
+                <span class="text-sm mt-1 text-gray-700">Submit and track booking requests</span>
+            </a>
+            
+            <!-- Driver Login Card -->
+            <a href="#login/driver" class="role-button flex flex-col items-center p-8 bg-gray-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:bg-gray-600 border-2 border-gray-700 max-w-xs w-full" id="btn-driver">
+                <!-- Icon: Car/Truck -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2" ry="2"></rect><path d="M7 21l0-4"></path><path d="M17 21l0-4"></path><path d="M2 7l20 0"></path><path d="M14 7l-4 0"></path></svg>
+                <span class="text-xl font-extrabold uppercase">Driver Login</span>
+                <span class="text-sm mt-1 text-gray-300">View and update trip status</span>
+            </a>
+        </div>
+
+        <p class="mt-8 text-center text-sm text-gray-500">
+            New employee? Contact your administrator for credential setup.
+        </p>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-isd-black text-gray-400 p-4 mt-auto">
+        <div class="max-w-6xl mx-auto flex justify-between items-center text-sm">
+            <span>&copy; 2025 SmartCarBooking for ISD</span>
+            <!-- Guest Link -->
+            <a href="#guest" id="guest-access-link" class="text-isd-gold hover:underline font-semibold">Sign in as Guest</a>
+        </div>
+    </footer>
+
+    <!-- GUEST ROLE SELECTION MODAL (New Element) -->
+    <div id="guest-role-selector-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title" class="text-2xl font-bold mb-5 text-isd-black">
+                Select Guest Access Role
+            </h3>
+            <p id="modal-description" class="text-gray-600 mb-6">
+                (Development Mode) Choose a role to test the application workflow:
+            </p>
+            <div class="flex flex-col space-y-3">
+                <button data-role="admin" class="modal-button bg-isd-black text-isd-gold hover:bg-gray-800 border border-isd-gold">
+                    Guest Admin Dashboard
+                </button>
+                <button data-role="employee" class="modal-button bg-isd-gold text-isd-black hover:bg-yellow-400 border border-isd-gold">
+                    Guest Employee Dashboard
+                </button>
+                <button data-role="driver" class="modal-button bg-gray-700 text-white hover:bg-gray-600">
+                    Guest Driver Interface
+                </button>
+                <button id="close-modal" class="modal-button bg-gray-200 text-gray-700 hover:bg-gray-300 mt-4">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Basic Interactions (Language Toggle & Guest Login) -->
+    <script>
+        const modal = document.getElementById('guest-role-selector-modal');
+        const roleButtons = modal.querySelectorAll('.modal-button[data-role]');
+        
+        // Define app scope
+        const app = {
+            content: {
+                en: {
+                    title: 'Your Centralized Transportation Platform',
+                    text: 'Easily book vehicles for field trips, sports events, and staff travel. A centralized platform for all your school’s transportation needs at the International School of Dakar.',
+                    admin: 'Admin Access',
+                    employee: 'Employee Login',
+                    driver: 'Driver Login',
+                    guest: 'Sign in as Guest',
+                    modalTitle: 'Select Guest Access Role',
+                    modalDesc: '(Development Mode) Choose a role to test the application workflow:',
+                    btnAdmin: 'Guest Admin Dashboard',
+                    btnEmployee: 'Guest Employee Dashboard',
+                    btnDriver: 'Guest Driver Interface',
+                    btnCancel: 'Cancel'
+                },
+                fr: {
+                    title: 'Votre Plateforme de Transport Centralisée',
+                    text: 'Réservez facilement des véhicules pour les excursions, les événements sportifs et les déplacements du personnel. Une plateforme centralisée pour tous vos besoins de transport à l\'École Internationale de Dakar.',
+                    admin: 'Accès Administrateur',
+                    employee: 'Connexion Employé',
+                    driver: 'Connexion Chauffeur',
+                    guest: 'Se connecter en tant qu\'invité',
+                    modalTitle: 'Sélectionner le rôle d\'accès Invité',
+                    modalDesc: '(Mode Développement) Choisissez un rôle pour tester le flux de travail :',
+                    btnAdmin: 'Tableau de bord Admin Invité',
+                    btnEmployee: 'Tableau de bord Employé Invité',
+                    btnDriver: 'Interface Chauffeur Invité',
+                    btnCancel: 'Annuler'
+                }
+            },
+
+            // Function to update text based on language
+            setLanguage(lang) {
+                const data = this.content[lang];
+                document.getElementById('msg-title').textContent = data.title;
+                document.getElementById('msg-text').textContent = data.text;
+                document.getElementById('btn-admin').querySelector('span:nth-child(2)').textContent = data.admin;
+                document.getElementById('btn-employee').querySelector('span:nth-child(2)').textContent = data.employee;
+                document.getElementById('btn-driver').querySelector('span:nth-child(2)').textContent = data.driver;
+                document.getElementById('guest-access-link').textContent = data.guest;
+
+                // Update Modal Content
+                document.getElementById('modal-title').textContent = data.modalTitle;
+                document.getElementById('modal-description').textContent = data.modalDesc;
+                modal.querySelector('[data-role="admin"]').textContent = data.btnAdmin;
+                modal.querySelector('[data-role="employee"]').textContent = data.btnEmployee;
+                modal.querySelector('[data-role="driver"]').textContent = data.btnDriver;
+                document.getElementById('close-modal').textContent = data.btnCancel;
+
+
+                // Update active/inactive styles for language links
+                document.getElementById('lang-en').classList.toggle('text-white', lang === 'fr');
+                document.getElementById('lang-en').classList.toggle('text-isd-gold', lang === 'en');
+                document.getElementById('lang-en').classList.toggle('border-b', lang === 'en');
+                document.getElementById('lang-fr').classList.toggle('text-white', lang === 'en');
+                document.getElementById('lang-fr').classList.toggle('text-isd-gold', lang === 'fr');
+                document.getElementById('lang-fr').classList.toggle('border-b', lang === 'fr');
+            },
+
+            // Function to handle role selection and redirection
+            handleGuestRoleSelection(role) {
+                app.closeModal();
+                
+                // Using a non-alert message box for feedback
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.textContent = `REDIRECT SIMULATED: Logging in as Guest ${role.toUpperCase()}.`;
+                feedbackDiv.className = 'feedback-message opacity-0';
+                document.body.appendChild(feedbackDiv);
+                
+                // Fade in
+                setTimeout(() => feedbackDiv.style.opacity = '1', 10);
+
+                // Fade out and remove
+                setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
+                setTimeout(() => feedbackDiv.remove(), 3000);
+            },
+
+            // Function to show the modal
+            handleGuestLogin(e) {
+                e.preventDefault();
+                modal.classList.add('open');
+                // Ensure correct language is applied to modal when opened
+                const currentLang = document.getElementById('lang-en').classList.contains('text-isd-gold') ? 'en' : 'fr';
+                app.setLanguage(currentLang);
+            },
+            
+            // Function to close the modal
+            closeModal() {
+                modal.classList.remove('open');
+            }
+        };
+
+        // Event Listeners for Language
+        document.getElementById('lang-en').addEventListener('click', (e) => {
+            e.preventDefault();
+            app.setLanguage('en');
+        });
+        
+        document.getElementById('lang-fr').addEventListener('click', (e) => {
+            e.preventDefault();
+            app.setLanguage('fr');
+        });
+        
+        // Event Listener for Guest Access Link
+        document.getElementById('guest-access-link').addEventListener('click', app.handleGuestLogin);
+
+        // Modal Specific Listeners
+        document.getElementById('close-modal').addEventListener('click', app.closeModal);
+        // Close modal when clicking outside the content area
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                app.closeModal();
+            }
+        });
+
+        // Role button listeners inside the modal
+        roleButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const role = e.target.getAttribute('data-role');
+                app.handleGuestRoleSelection(role);
+            });
+        });
+
+        // Initialize with English
+        window.onload = () => {
+            app.setLanguage('en');
+        };
+    </script>
+</body>
+</html>

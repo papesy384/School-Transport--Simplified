@@ -77,20 +77,6 @@
             transform: translateY(1px);
         }
         
-        /* Message box for feedback (replacing alert) */
-        .feedback-message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #10B981; /* Tailwind green-500 */
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 2000;
-            transition: opacity 0.5s ease-out;
-        }
-
         /* View sections */
         .view-section {
             display: none;
@@ -254,6 +240,342 @@
                     <p id="driver-status-desc" class="text-gray-600 mb-4">Update trip status and location</p>
                     <button id="driver-status-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Fleet Management View -->
+        <div id="view-fleet-management" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Fleet Management</h2>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                </div>
+                <p class="text-gray-600">View and manage your vehicle fleet</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">Vehicle Fleet</h3>
+                    <button class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">+ Add Vehicle</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-3 text-sm font-semibold text-gray-700">Vehicle ID</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700">Type</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700">Capacity</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700">Status</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-3">VH-001</td>
+                                <td class="p-3">Bus</td>
+                                <td class="p-3">50 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">VH-002</td>
+                                <td class="p-3">Van</td>
+                                <td class="p-3">15 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-3">VH-003</td>
+                                <td class="p-3">Car</td>
+                                <td class="p-3">5 seats</td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3">
+                                    <button class="text-isd-gold hover:underline mr-2">Edit</button>
+                                    <button class="text-red-600 hover:underline">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Approvals View -->
+        <div id="view-booking-approvals" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Booking Approvals</h2>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                </div>
+                <p class="text-gray-600">Review and approve booking requests</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Trip to Museum - Field Trip</h3>
+                            <p class="text-gray-600 text-sm">Requested by: John Doe</p>
+                            <p class="text-gray-600 text-sm">Date: March 15, 2025 | Time: 9:00 AM</p>
+                            <p class="text-gray-600 text-sm">Passengers: 45 students</p>
+                        </div>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
+                        <button class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Sports Event - Basketball Game</h3>
+                            <p class="text-gray-600 text-sm">Requested by: Jane Smith</p>
+                            <p class="text-gray-600 text-sm">Date: March 18, 2025 | Time: 2:00 PM</p>
+                            <p class="text-gray-600 text-sm">Passengers: 20 students</p>
+                        </div>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
+                        <button class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
+                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Management View -->
+        <div id="view-user-management" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">User Management</h2>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                </div>
+                <p class="text-gray-600">Manage employees and drivers</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Employees</h3>
+                    <button class="w-full mb-4 px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">+ Add Employee</button>
+                    <div class="space-y-2">
+                        <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@isd.edu</p>
+                            </div>
+                            <button class="text-isd-gold hover:underline">Edit</button>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold">Jane Smith</p>
+                                <p class="text-sm text-gray-600">jane.smith@isd.edu</p>
+                            </div>
+                            <button class="text-isd-gold hover:underline">Edit</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Drivers</h3>
+                    <button class="w-full mb-4 px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">+ Add Driver</button>
+                    <div class="space-y-2">
+                        <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold">Mike Johnson</p>
+                                <p class="text-sm text-gray-600">License: DL-12345</p>
+                            </div>
+                            <button class="text-isd-gold hover:underline">Edit</button>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold">Sarah Williams</p>
+                                <p class="text-sm text-gray-600">License: DL-67890</p>
+                            </div>
+                            <button class="text-isd-gold hover:underline">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Booking Request View -->
+        <div id="view-new-booking" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">New Booking Request</h2>
+                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                </div>
+                <p class="text-gray-600">Submit a new vehicle booking request</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Trip Purpose</label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Field trip to museum">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Date</label>
+                            <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Time</label>
+                            <input type="time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Passengers</label>
+                        <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 45">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option>Bus (50 seats)</option>
+                            <option>Van (15 seats)</option>
+                            <option>Car (5 seats)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
+                        <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any special requirements..."></textarea>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Submit Request</button>
+                        <button type="button" onclick="window.location.hash = 'guest/employee'" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- My Bookings View -->
+        <div id="view-my-bookings" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">My Bookings</h2>
+                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                </div>
+                <p class="text-gray-600">View and track your booking requests</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Museum Field Trip</h3>
+                            <p class="text-gray-600 text-sm">Date: March 10, 2025 | Time: 9:00 AM</p>
+                            <p class="text-gray-600 text-sm">Vehicle: Bus (50 seats) | Passengers: 45</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">Approved</span>
+                    </div>
+                    <button class="text-isd-gold hover:underline">View Details</button>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Sports Event</h3>
+                            <p class="text-gray-600 text-sm">Date: March 18, 2025 | Time: 2:00 PM</p>
+                            <p class="text-gray-600 text-sm">Vehicle: Van (15 seats) | Passengers: 20</p>
+                        </div>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
+                    </div>
+                    <button class="text-isd-gold hover:underline">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assigned Trips View -->
+        <div id="view-assigned-trips" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Assigned Trips</h2>
+                    <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                </div>
+                <p class="text-gray-600">View your assigned trips and routes</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Museum Field Trip</h3>
+                            <p class="text-gray-600 text-sm">Date: March 10, 2025 | Time: 9:00 AM</p>
+                            <p class="text-gray-600 text-sm">Vehicle: VH-001 (Bus) | Passengers: 45</p>
+                            <p class="text-gray-600 text-sm">Route: ISD → Museum → ISD</p>
+                        </div>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Scheduled</span>
+                    </div>
+                    <button onclick="window.location.hash = 'update-status'" class="px-4 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Sports Event</h3>
+                            <p class="text-gray-600 text-sm">Date: March 18, 2025 | Time: 2:00 PM</p>
+                            <p class="text-gray-600 text-sm">Vehicle: VH-002 (Van) | Passengers: 20</p>
+                            <p class="text-gray-600 text-sm">Route: ISD → Sports Complex → ISD</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">In Progress</span>
+                    </div>
+                    <button onclick="window.location.hash = 'update-status'" class="px-4 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Status View -->
+        <div id="view-update-status" class="view-section">
+            <div class="bg-white p-8 sm:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold text-gray-800">Update Trip Status</h2>
+                    <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                </div>
+                <p class="text-gray-600">Update trip status and location</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Trip</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option>Museum Field Trip - March 10, 2025</option>
+                            <option>Sports Event - March 18, 2025</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
+                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option>Scheduled</option>
+                            <option>In Transit</option>
+                            <option>At Destination</option>
+                            <option>Returning</option>
+                            <option>Completed</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Current Location</label>
+                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Enter current location">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Notes</label>
+                        <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any updates or issues..."></textarea>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button type="submit" class="px-6 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
+                        <button type="button" onclick="window.location.hash = 'guest/driver'" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -522,22 +844,8 @@
             // Function to handle role selection and redirection
             handleGuestRoleSelection(role) {
                 app.closeModal();
-                
                 // Navigate to the guest dashboard for the selected role
                 window.location.hash = `guest/${role}`;
-                
-                // Show success message
-                const feedbackDiv = document.createElement('div');
-                feedbackDiv.textContent = `Logged in as Guest ${role.toUpperCase()}`;
-                feedbackDiv.className = 'feedback-message opacity-0';
-                document.body.appendChild(feedbackDiv);
-                
-                // Fade in
-                setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-
-                // Fade out and remove
-                setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                setTimeout(() => feedbackDiv.remove(), 3000);
             },
 
             // Function to handle routing based on hash
@@ -545,6 +853,10 @@
                 const hash = window.location.hash.slice(1) || 'home';
                 const homeLink = document.getElementById('home-link');
                 const guestLink = document.getElementById('guest-access-link');
+                // Ensure modal is initialized
+                if (!modal) {
+                    modal = document.getElementById('guest-role-selector-modal');
+                }
                 
                 // Hide all views
                 document.querySelectorAll('.view-section').forEach(view => {
@@ -592,6 +904,24 @@
                         if (homeLink) homeLink.classList.add('hidden');
                         if (guestLink) guestLink.classList.remove('hidden');
                     }
+                } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
+                           hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status') {
+                    // Handle feature views
+                    const viewId = `view-${hash}`;
+                    const viewElement = document.getElementById(viewId);
+                    if (viewElement) {
+                        viewElement.classList.add('active');
+                        if (homeLink) homeLink.classList.remove('hidden');
+                        if (guestLink) guestLink.classList.add('hidden');
+                        // Close modal if open
+                        if (modal) modal.classList.remove('open');
+                    } else {
+                        // Invalid view, show home
+                        const viewHome = document.getElementById('view-home');
+                        if (viewHome) viewHome.classList.add('active');
+                        if (homeLink) homeLink.classList.add('hidden');
+                        if (guestLink) guestLink.classList.remove('hidden');
+                    }
                 } else {
                     // For other routes (like #login/admin), show home for now
                     const viewHome = document.getElementById('view-home');
@@ -604,6 +934,10 @@
             // Function to show the modal
             handleGuestLogin(e) {
                 e.preventDefault();
+                // Ensure modal is initialized
+                if (!modal) {
+                    modal = document.getElementById('guest-role-selector-modal');
+                }
                 if (modal) {
                     modal.classList.add('open');
                     // Ensure correct language is applied to modal when opened
@@ -615,6 +949,10 @@
             
             // Function to close the modal
             closeModal() {
+                // Ensure modal is initialized
+                if (!modal) {
+                    modal = document.getElementById('guest-role-selector-modal');
+                }
                 if (modal) {
                     modal.classList.remove('open');
                 }
@@ -677,39 +1015,21 @@
             if (btnAdmin) {
                 btnAdmin.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'Admin login form would appear here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    // Admin login would appear here - for now just prevent default
                 });
             }
             
             if (btnEmployee) {
                 btnEmployee.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'Employee login form would appear here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    // Employee login would appear here - for now just prevent default
                 });
             }
             
             if (btnDriver) {
                 btnDriver.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'Driver login form would appear here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    // Driver login would appear here - for now just prevent default
                 });
             }
             
@@ -755,37 +1075,19 @@
             
             if (adminFleetBtn) {
                 adminFleetBtn.addEventListener('click', () => {
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'Fleet Management feature would open here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    window.location.hash = 'fleet-management';
                 });
             }
             
             if (adminApprovalsBtn) {
                 adminApprovalsBtn.addEventListener('click', () => {
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'Booking Approvals feature would open here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    window.location.hash = 'booking-approvals';
                 });
             }
             
             if (adminUsersBtn) {
                 adminUsersBtn.addEventListener('click', () => {
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'User Management feature would open here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    window.location.hash = 'user-management';
                 });
             }
             
@@ -795,25 +1097,13 @@
             
             if (employeeBookingBtn) {
                 employeeBookingBtn.addEventListener('click', () => {
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'New Booking Request form would open here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    window.location.hash = 'new-booking';
                 });
             }
             
             if (employeeMyBookingsBtn) {
                 employeeMyBookingsBtn.addEventListener('click', () => {
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'My Bookings list would open here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    window.location.hash = 'my-bookings';
                 });
             }
             
@@ -823,25 +1113,13 @@
             
             if (driverTripsBtn) {
                 driverTripsBtn.addEventListener('click', () => {
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'Assigned Trips list would open here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    window.location.hash = 'assigned-trips';
                 });
             }
             
             if (driverStatusBtn) {
                 driverStatusBtn.addEventListener('click', () => {
-                    const feedbackDiv = document.createElement('div');
-                    feedbackDiv.textContent = 'Update Status form would open here';
-                    feedbackDiv.className = 'feedback-message opacity-0';
-                    document.body.appendChild(feedbackDiv);
-                    setTimeout(() => feedbackDiv.style.opacity = '1', 10);
-                    setTimeout(() => feedbackDiv.style.opacity = '0', 2500);
-                    setTimeout(() => feedbackDiv.remove(), 3000);
+                    window.location.hash = 'update-status';
                 });
             }
             

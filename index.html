@@ -126,10 +126,10 @@
             height: 100%;
             height: -webkit-fill-available; /* iOS Safari fix */
             background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
+            display: none; /* Hidden by default */
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 10000; /* High z-index to ensure it's on top */
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -138,6 +138,7 @@
         }
 
         .modal-overlay.open {
+            display: flex !important; /* Force display when open */
             opacity: 1;
             visibility: visible;
         }
@@ -149,7 +150,11 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             max-width: 90%;
             width: 450px;
+            max-width: 500px;
             text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .modal-button {
             display: inline-block;
@@ -2182,6 +2187,9 @@
         </div>
     </div>
 
+    <!-- Load Testing Script (Development Only) -->
+    <script src="load-test.js"></script>
+    
     <!-- JavaScript for Basic Interactions (Language Toggle) -->
     <script>
         // Wait for DOM to be ready
@@ -2611,12 +2619,28 @@
             
             if (!isFirebaseConfigured()) {
                 // Fallback to mock data
+                // Ensure requesterId is set for guest mode
+                if (!bookingData.requesterId) {
+                    bookingData.requesterId = 'emp_high'; // Default to emp_high in guest mode
+                }
+                
+                // Ensure status is set
+                if (!bookingData.status) {
+                    bookingData.status = 'PENDING';
+                }
+                
                 const bookingId = `B-${String(Object.keys(MOCK_BOOKINGS).length + 1).padStart(3, '0')}`;
                 MOCK_BOOKINGS[bookingId] = {
                     ...bookingData,
                     id: bookingId,
+                    requesterId: bookingData.requesterId, // Ensure requesterId is set
+                    status: bookingData.status || 'PENDING', // Ensure status is set
                     submittedTime: new Date().toISOString()
                 };
+                
+                console.log('✅ Booking added to MOCK_BOOKINGS:', bookingId, MOCK_BOOKINGS[bookingId]);
+                console.log('📊 Total bookings in MOCK_BOOKINGS:', Object.keys(MOCK_BOOKINGS).length);
+                
                 return bookingId;
             }
             
@@ -4792,19 +4816,27 @@ The admin will assign a driver closer to the trip date.
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold mb-4 text-gray-800">Booking Request Submitted Successfully!</h3>
-                <div class="text-left space-y-3 text-sm text-gray-700 max-h-96 overflow-y-auto pr-2" style="-webkit-overflow-scrolling: touch;">
+                <div class="text-left space-y-3 text-sm text-gray-700 max-h-96 overflow-y-auto pr-2" style="-webkit-overflow-scrolling: touch; max-height: 400px;">
                     <p class="font-semibold text-gray-800">Your request has been received and is now pending admin approval.</p>
                     <div>
                         <p class="font-semibold text-gray-800 mb-2">What happens next:</p>
                         <ul class="list-disc list-inside space-y-1 ml-2">
                             <li>You will receive an email notification when the admin reviews your request</li>
                             <li>You can track the status in "My Bookings" dashboard</li>
-                            <li>Status updates will appear in real-time</li>
+                            <li>Status updates will appear in real-time on the dashboard</li>
+                            <li>The dashboard automatically refreshes when your booking status changes</li>
                         </ul>
                     </div>
-                    <p class="text-gray-600 italic">No need to check your email repeatedly - the dashboard will show all updates!</p>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-3 rounded mt-3">
+                        <p class="text-blue-800 font-semibold text-sm flex items-center gap-2">
+                            <span>📊</span>
+                            <span>Real-time Dashboard Updates</span>
+                        </p>
+                        <p class="text-blue-700 text-sm mt-2">No need to check your email repeatedly - the dashboard will show all updates automatically!</p>
+                        <p class="text-blue-600 text-xs mt-2 italic">Your booking will appear in "My Bookings" with live status updates. The dashboard refreshes automatically when your booking is approved, denied, or cancelled.</p>
+                    </div>
                 </div>
-                <button onclick="closeBookingSuccessModal(); window.location.hash = 'guest/employee';" class="mt-6 px-6 py-3 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 w-full">Go to Dashboard</button>
+                <button onclick="closeBookingSuccessModal(); setTimeout(() => { window.location.hash = 'guest/employee'; setTimeout(async () => { console.log('🔄 Refreshing dashboard after modal close...'); await populateEmployeeDashboard('emp_high'); }, 300); }, 100);" class="mt-6 px-6 py-3 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 w-full">Go to Dashboard</button>
             `;
             
             // Create or update modal
@@ -4826,7 +4858,14 @@ The admin will assign a driver closer to the trip date.
                 modal.querySelector('.modal-content').innerHTML = modalContent;
             }
             
+            // Ensure modal is visible
+            modal.style.display = 'flex';
             modal.classList.add('open');
+            
+            // Force a reflow to ensure the modal is rendered
+            void modal.offsetHeight;
+            
+            console.log('✅ Booking success modal displayed');
         }
         
         // Close booking success modal
@@ -4834,6 +4873,10 @@ The admin will assign a driver closer to the trip date.
             const modal = document.getElementById('booking-success-modal');
             if (modal) {
                 modal.classList.remove('open');
+                // Also hide with display none after transition
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
             }
         }
 
@@ -5256,7 +5299,8 @@ The admin will assign a driver closer to the trip date.
                             driverOption: mappedDriverOption,
                             adminNotes: '',
                             passengers: Number(passengers), // Explicitly convert to number type
-                            tripPurpose: tripPurpose
+                            tripPurpose: tripPurpose,
+                            requesterId: 'emp_high' // Set requesterId for guest mode (default to emp_high)
                         };
                         
                         // Add pickup location if school driver
@@ -5280,26 +5324,34 @@ The admin will assign a driver closer to the trip date.
                             // Show scrollable success modal
                             showBookingSuccessModal();
                             
-                            // Navigate to employee dashboard after a short delay
-                            setTimeout(() => {
-                                window.location.hash = 'guest/employee';
-                            }, 100);
+                            // Don't auto-navigate - let user click "Go to Dashboard" button
+                            // The modal will handle navigation when user clicks the button
                             
-                            // Force refresh dashboard multiple times to ensure it updates
+                            // Force refresh dashboard immediately and multiple times to ensure it updates
+                            console.log('🔄 Scheduling dashboard refreshes...');
+                            
+                            // Immediate refresh (before navigation)
                             setTimeout(async () => {
-                                console.log('First refresh - Refreshing dashboard after booking submission');
+                                console.log('🔄 First refresh - Refreshing dashboard after booking submission');
+                                console.log('   Current MOCK_BOOKINGS count:', Object.keys(MOCK_BOOKINGS).length);
                                 await populateEmployeeDashboard('emp_high');
-                            }, 100);
+                            }, 50);
+                            
+                            // Additional refreshes after navigation
+                            setTimeout(async () => {
+                                console.log('🔄 Second refresh - Refreshing dashboard after booking submission');
+                                await populateEmployeeDashboard('emp_high');
+                            }, 300);
                             
                             setTimeout(async () => {
-                                console.log('Second refresh - Refreshing dashboard after booking submission');
+                                console.log('🔄 Third refresh - Refreshing dashboard after booking submission');
                                 await populateEmployeeDashboard('emp_high');
-                            }, 500);
+                            }, 800);
                             
                             setTimeout(async () => {
-                                console.log('Third refresh - Refreshing dashboard after booking submission');
+                                console.log('🔄 Fourth refresh - Final refresh after booking submission');
                                 await populateEmployeeDashboard('emp_high');
-                            }, 1000);
+                            }, 1500);
                         } catch (error) {
                             console.error('Error creating booking:', error);
                             
@@ -5793,23 +5845,45 @@ The admin will assign a driver closer to the trip date.
         
         // Function to populate Employee Dashboard with bookings from Firestore or mock data
         async function populateEmployeeDashboard(userId) {
+            // Use 'emp_high' as default userId in guest mode if not provided
+            const actualUserId = userId || 'emp_high';
+            
+            console.log('📊 populateEmployeeDashboard called with userId:', actualUserId);
+            
             // Try to get bookings from Firestore, fallback to mock data
             let bookings;
             try {
-                bookings = await getBookingsByRequesterFirestore(userId);
+                bookings = await getBookingsByRequesterFirestore(actualUserId);
             } catch (error) {
                 console.warn('Firestore not available, using mock data:', error);
                 // Ensure MOCK_BOOKINGS is defined
                 if (typeof MOCK_BOOKINGS === 'undefined') {
-                    console.error('MOCK_BOOKINGS is not defined');
+                    console.error('❌ MOCK_BOOKINGS is not defined');
                     return;
                 }
-                bookings = getBookingsByRequester(userId);
+                bookings = getBookingsByRequester(actualUserId);
             }
-            console.log('populateEmployeeDashboard called with userId:', userId);
-            console.log('MOCK_BOOKINGS keys:', Object.keys(MOCK_BOOKINGS));
-            console.log('Found bookings for user:', bookings.length);
-            console.log('All bookings for user:', bookings.map(b => ({ id: b.id, status: b.status, purpose: b.tripPurpose, requesterId: b.requesterId })));
+            
+            console.log('📊 MOCK_BOOKINGS total count:', Object.keys(MOCK_BOOKINGS).length);
+            console.log('📊 MOCK_BOOKINGS keys:', Object.keys(MOCK_BOOKINGS));
+            console.log('📊 Found bookings for user:', bookings.length);
+            
+            if (bookings.length > 0) {
+                console.log('📊 Bookings details:', bookings.map(b => ({ 
+                    id: b.id, 
+                    status: b.status, 
+                    purpose: b.tripPurpose, 
+                    requesterId: b.requesterId,
+                    submittedTime: b.submittedTime 
+                })));
+            } else {
+                console.warn('⚠️ No bookings found for userId:', actualUserId);
+                console.log('📊 All MOCK_BOOKINGS:', Object.entries(MOCK_BOOKINGS).map(([id, b]) => ({ 
+                    id, 
+                    requesterId: b.requesterId, 
+                    status: b.status 
+                })));
+            }
             
             const bookingsList = document.getElementById('employee-bookings-list');
             console.log('Bookings list element:', bookingsList);

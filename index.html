@@ -1161,11 +1161,12 @@
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
                 <form id="new-booking-form" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Trip Purpose <span class="text-red-600">*</span></label>
-                        <input type="text" id="trip-purpose" name="trip-purpose" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Field trip to museum">
-                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-purpose-error">Trip purpose is required</p>
+                    <!-- STEP 1: Availability Check (Priority) -->
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+                        <h3 class="text-sm font-semibold text-blue-800 mb-2">Step 1: Check Availability</h3>
+                        <p class="text-xs text-blue-700">Select your date and vehicle type to see real-time availability</p>
                     </div>
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Date <span class="text-red-600">*</span></label>
@@ -1173,53 +1174,111 @@
                             <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error">Date is required</p>
                         </div>
                         <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type <span class="text-red-600">*</span></label>
+                            <select id="vehicle-type" name="vehicle-type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                                <option value="">Select a vehicle type</option>
+                                <option value="bus">Bus (50 seats)</option>
+                                <option value="van">Van (15 seats)</option>
+                                <option value="car">Car (5 seats)</option>
+                            </select>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="vehicle-type-error">Please select a vehicle type</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Dynamic Availability Feedback Area -->
+                    <div id="availability-feedback" class="hidden">
+                        <div id="availability-status" class="p-4 rounded-lg mb-4"></div>
+                        <div id="alternative-vehicles" class="hidden mb-4"></div>
+                        <div id="time-suggestions" class="hidden mb-4"></div>
+                    </div>
+                    
+                    <!-- STEP 2: Trip Details -->
+                    <div class="border-t border-gray-200 pt-4 mt-4">
+                        <h3 class="text-sm font-semibold text-gray-700 mb-4">Step 2: Trip Details</h3>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Trip Purpose <span class="text-red-600">*</span>
+                            <a href="#" onclick="showTripPolicy(); return false;" class="text-isd-gold hover:text-yellow-600 ml-2 text-xs" title="View Trip Policy">
+                                <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </a>
+                        </label>
+                        <input type="text" id="trip-purpose" name="trip-purpose" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Field trip to museum">
+                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-purpose-error">Trip purpose is required</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Time <span class="text-red-600">*</span></label>
                             <input type="time" id="trip-time" name="trip-time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
                             <p class="text-red-600 text-sm mt-1 hidden" id="trip-time-error">Time is required</p>
                         </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Duration <span class="text-red-600">*</span></label>
+                            <select id="trip-duration" name="trip-duration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                                <option value="">Select duration</option>
+                                <optgroup label="Hours">
+                                    <option value="1">1 hour</option>
+                                    <option value="2">2 hours</option>
+                                    <option value="3">3 hours</option>
+                                    <option value="4">4 hours</option>
+                                    <option value="5">5 hours</option>
+                                    <option value="6">6 hours</option>
+                                    <option value="8">8 hours</option>
+                                    <option value="10">10 hours</option>
+                                    <option value="12">12 hours</option>
+                                </optgroup>
+                                <optgroup label="Days">
+                                    <option value="24">1 day</option>
+                                    <option value="48">2 days</option>
+                                    <option value="72">3 days</option>
+                                    <option value="96">4 days</option>
+                                    <option value="120">5 days</option>
+                                    <option value="144">6 days</option>
+                                    <option value="168">7 days (1 week)</option>
+                                </optgroup>
+                            </select>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="trip-duration-error">Duration is required</p>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Duration <span class="text-red-600">*</span></label>
-                        <select id="trip-duration" name="trip-duration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option value="">Select duration</option>
-                            <optgroup label="Hours">
-                                <option value="1">1 hour</option>
-                                <option value="2">2 hours</option>
-                                <option value="3">3 hours</option>
-                                <option value="4">4 hours</option>
-                                <option value="5">5 hours</option>
-                                <option value="6">6 hours</option>
-                                <option value="8">8 hours</option>
-                                <option value="10">10 hours</option>
-                                <option value="12">12 hours</option>
-                            </optgroup>
-                            <optgroup label="Days">
-                                <option value="24">1 day</option>
-                                <option value="48">2 days</option>
-                                <option value="72">3 days</option>
-                                <option value="96">4 days</option>
-                                <option value="120">5 days</option>
-                                <option value="144">6 days</option>
-                                <option value="168">7 days (1 week)</option>
-                            </optgroup>
-                        </select>
-                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-duration-error">Duration is required</p>
-                    </div>
+                    
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Passengers <span class="text-red-600">*</span></label>
                         <input type="number" id="passengers" name="passengers" required min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 45">
                         <p class="text-red-600 text-sm mt-1 hidden" id="passengers-error">Please enter a valid number of passengers</p>
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type <span class="text-red-600">*</span></label>
-                        <select id="vehicle-type" name="vehicle-type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option value="">Select a vehicle type</option>
-                            <option value="bus">Bus (50 seats)</option>
-                            <option value="van">Van (15 seats)</option>
-                            <option value="car">Car (5 seats)</option>
-                        </select>
-                        <p class="text-red-600 text-sm mt-1 hidden" id="vehicle-type-error">Please select a vehicle type</p>
+                    
+                    <!-- STEP 3: Driver Selection with Authorization -->
+                    <div class="border-t border-gray-200 pt-4 mt-4">
+                        <h3 class="text-sm font-semibold text-gray-700 mb-4">Step 3: Driver Selection</h3>
                     </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Driver Option <span class="text-red-600">*</span></label>
+                        <select id="driver-option" name="driver-option" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Select driver option</option>
+                            <option value="school-driver">Request a School Driver</option>
+                            <option value="self-drive">Self-Drive / Own Authorized Driver</option>
+                        </select>
+                        <div id="driver-authorization-status" class="mt-2 hidden">
+                            <div id="authorization-authorized" class="hidden p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2">
+                                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-sm font-semibold text-green-800">You are authorized for self-drive</span>
+                            </div>
+                            <div id="authorization-not-authorized" class="hidden p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
+                                <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-sm font-semibold text-red-800">Not authorized for this vehicle class. Please select 'Request a School Driver'</span>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
                         <textarea rows="3" id="notes" name="notes" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any special requirements..."></textarea>
@@ -1243,28 +1302,70 @@
             </div>
             
             <div class="space-y-4">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500">
                     <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Museum Field Trip</h3>
-                            <p class="text-gray-600 text-sm">Date: March 10, 2025 | Time: 9:00 AM</p>
-                            <p class="text-gray-600 text-sm">Vehicle: Bus (50 seats) | Passengers: 45</p>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-bold text-gray-800">Museum Field Trip</h3>
+                                <span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-semibold shadow-sm">Approved</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-1">Date: March 10, 2025 | Time: 9:00 AM</p>
+                            <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 45</p>
                         </div>
-                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">Approved</span>
                     </div>
-                    <button onclick="viewBookingDetails('museum-field-trip')" class="text-isd-gold hover:underline">View Details</button>
+                    <button onclick="viewBookingDetails('museum-field-trip')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
                     <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Sports Event</h3>
-                            <p class="text-gray-600 text-sm">Date: March 18, 2025 | Time: 2:00 PM</p>
-                            <p class="text-gray-600 text-sm">Vehicle: Van (15 seats) | Passengers: 20</p>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-bold text-gray-800">Sports Event</h3>
+                                <span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-semibold shadow-sm">Pending</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-1">Date: March 18, 2025 | Time: 2:00 PM</p>
+                            <p class="text-gray-600 text-sm mb-1">Vehicle: Van (15 seats) | Passengers: 20</p>
+                            <p class="text-yellow-700 text-xs font-medium mt-2 flex items-center gap-1">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                Submitted 4 hours ago
+                            </p>
                         </div>
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
                     </div>
-                    <button onclick="viewBookingDetails('sports-event-booking')" class="text-isd-gold hover:underline">View Details</button>
+                    <button onclick="viewBookingDetails('sports-event-booking')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-bold text-gray-800">Weekend Workshop</h3>
+                                <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm">Denied</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-1">Date: March 20, 2025 | Time: 8:00 AM</p>
+                            <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 30</p>
+                            <div class="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                                <p class="text-red-800 text-xs font-semibold mb-1">Admin Note:</p>
+                                <p class="text-red-700 text-sm">No buses available for weekend trips. Please consider alternative dates or use a smaller vehicle.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="viewBookingDetails('weekend-workshop')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-bold text-gray-800">Science Museum Trip</h3>
+                                <span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm">Active Trip</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-1">Date: March 15, 2025 | Time: 10:00 AM</p>
+                            <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 42</p>
+                        </div>
+                    </div>
+                    <button onclick="viewBookingDetails('science-museum')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
                 </div>
             </div>
         </div>
@@ -1907,6 +2008,198 @@
             }
         });
 
+        // Availability checking functions
+        function checkAvailability() {
+            const tripDate = document.getElementById('trip-date')?.value;
+            const vehicleType = document.getElementById('vehicle-type')?.value;
+            const tripTime = document.getElementById('trip-time')?.value;
+            const availabilityFeedback = document.getElementById('availability-feedback');
+            const availabilityStatus = document.getElementById('availability-status');
+            const alternativeVehicles = document.getElementById('alternative-vehicles');
+            const timeSuggestions = document.getElementById('time-suggestions');
+            
+            if (!tripDate || !vehicleType) {
+                if (availabilityFeedback) availabilityFeedback.classList.add('hidden');
+                return;
+            }
+            
+            if (!availabilityFeedback || !availabilityStatus) return;
+            
+            availabilityFeedback.classList.remove('hidden');
+            
+            // Simulate availability check (in production, this would be an API call)
+            const isAvailable = Math.random() > 0.3; // 70% chance of availability
+            
+            if (isAvailable) {
+                availabilityStatus.className = 'p-4 bg-green-50 border border-green-200 rounded-lg';
+                availabilityStatus.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-green-800 font-semibold">Vehicle available for selected date!</span>
+                    </div>
+                `;
+                alternativeVehicles.classList.add('hidden');
+            } else {
+                availabilityStatus.className = 'p-4 bg-yellow-50 border border-yellow-200 rounded-lg';
+                availabilityStatus.innerHTML = `
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-yellow-800 font-semibold">Selected vehicle type not available for this date</span>
+                    </div>
+                `;
+                
+                // Show alternative vehicles
+                alternativeVehicles.classList.remove('hidden');
+                alternativeVehicles.className = 'p-4 bg-blue-50 border border-blue-200 rounded-lg';
+                alternativeVehicles.innerHTML = `
+                    <p class="text-blue-800 font-semibold mb-2 text-sm">Alternative vehicles available:</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between p-2 bg-white rounded">
+                            <span class="text-sm">Van (15 seats)</span>
+                            <span class="text-xs text-green-600 font-semibold">Available</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-white rounded">
+                            <span class="text-sm">Car (5 seats)</span>
+                            <span class="text-xs text-green-600 font-semibold">Available</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Check time availability if time is selected
+            if (tripTime && !isAvailable) {
+                showTimeSuggestions(tripTime);
+            } else {
+                timeSuggestions.classList.add('hidden');
+            }
+        }
+        
+        function showTimeSuggestions(requestedTime) {
+            const timeSuggestions = document.getElementById('time-suggestions');
+            if (!timeSuggestions) return;
+            
+            timeSuggestions.classList.remove('hidden');
+            timeSuggestions.className = 'p-4 bg-purple-50 border border-purple-200 rounded-lg';
+            
+            // Generate 3 alternative time suggestions (1 hour, 2 hours, 3 hours later)
+            const [hours, minutes] = requestedTime.split(':');
+            const suggestions = [];
+            for (let i = 1; i <= 3; i++) {
+                const newHour = parseInt(hours) + i;
+                const timeStr = `${newHour.toString().padStart(2, '0')}:${minutes}`;
+                suggestions.push(timeStr);
+            }
+            
+            timeSuggestions.innerHTML = `
+                <p class="text-purple-800 font-semibold mb-2 text-sm">Suggested alternative times:</p>
+                <div class="space-y-2">
+                    ${suggestions.map(time => `
+                        <button type="button" onclick="document.getElementById('trip-time').value='${time}'; checkAvailability();" class="w-full text-left p-2 bg-white rounded hover:bg-purple-50 text-sm">
+                            ${formatTime(time)}
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+        }
+        
+        function formatTime(timeStr) {
+            const [hours, minutes] = timeStr.split(':');
+            const hour = parseInt(hours);
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const displayHour = hour % 12 || 12;
+            return `${displayHour}:${minutes} ${ampm}`;
+        }
+        
+        // Driver authorization check
+        function checkDriverAuthorization() {
+            const driverOption = document.getElementById('driver-option')?.value;
+            const vehicleType = document.getElementById('vehicle-type')?.value;
+            const authStatus = document.getElementById('driver-authorization-status');
+            const authAuthorized = document.getElementById('authorization-authorized');
+            const authNotAuthorized = document.getElementById('authorization-not-authorized');
+            
+            if (!driverOption || !authStatus) return;
+            
+            if (driverOption === 'self-drive') {
+                authStatus.classList.remove('hidden');
+                
+                // Simulate authorization check (in production, this would check user's authorization level)
+                // For demo: users authorized for car/van, not for bus
+                const isAuthorized = vehicleType === 'car' || vehicleType === 'van';
+                
+                if (isAuthorized) {
+                    authAuthorized.classList.remove('hidden');
+                    authNotAuthorized.classList.add('hidden');
+                } else {
+                    authAuthorized.classList.add('hidden');
+                    authNotAuthorized.classList.remove('hidden');
+                }
+            } else {
+                authStatus.classList.add('hidden');
+            }
+        }
+        
+        // Trip policy modal
+        function showTripPolicy() {
+            const policyContent = `
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Trip Policy & Documentation Requirements</h3>
+                <div class="text-left space-y-4 text-sm">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Required Documentation:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>Completed trip request form</li>
+                            <li>Parental consent forms (for student trips)</li>
+                            <li>Emergency contact information</li>
+                            <li>Medical information for participants</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Booking Guidelines:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>Book at least 2 weeks in advance</li>
+                            <li>Maximum capacity must be respected</li>
+                            <li>Cancellation must be made 48 hours before trip</li>
+                            <li>Self-drive authorization required for certain vehicle classes</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Safety Requirements:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>All passengers must wear seatbelts</li>
+                            <li>First aid kit must be present</li>
+                            <li>Emergency contact numbers must be accessible</li>
+                        </ul>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('trip-policy-modal').classList.remove('open')" class="mt-6 px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Close</button>
+            `;
+            
+            // Create or update modal
+            let modal = document.getElementById('trip-policy-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'trip-policy-modal';
+                modal.className = 'modal-overlay';
+                modal.innerHTML = `<div class="modal-content">${policyContent}</div>`;
+                document.body.appendChild(modal);
+                
+                // Close on outside click
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.classList.remove('open');
+                    }
+                });
+            } else {
+                modal.querySelector('.modal-content').innerHTML = policyContent;
+            }
+            
+            modal.classList.add('open');
+        }
+        
         // Initialize when DOM is ready
         function initializeApp() {
             // Set minimum date to today for booking form
@@ -1914,6 +2207,30 @@
             if (tripDateInput) {
                 const today = new Date().toISOString().split('T')[0];
                 tripDateInput.setAttribute('min', today);
+                
+                // Add availability check on date change
+                tripDateInput.addEventListener('change', checkAvailability);
+            }
+            
+            // Add availability check on vehicle type change
+            const vehicleTypeInput = document.getElementById('vehicle-type');
+            if (vehicleTypeInput) {
+                vehicleTypeInput.addEventListener('change', () => {
+                    checkAvailability();
+                    checkDriverAuthorization();
+                });
+            }
+            
+            // Add availability check on time change
+            const tripTimeInput = document.getElementById('trip-time');
+            if (tripTimeInput) {
+                tripTimeInput.addEventListener('change', checkAvailability);
+            }
+            
+            // Driver authorization check
+            const driverOptionInput = document.getElementById('driver-option');
+            if (driverOptionInput) {
+                driverOptionInput.addEventListener('change', checkDriverAuthorization);
             }
             
             // Event Listeners for Language
@@ -2028,6 +2345,30 @@
                         document.getElementById('vehicle-type-error').classList.remove('hidden');
                         vehicleType.classList.add('border-red-500');
                         isValid = false;
+                    }
+                    
+                    // Validate Driver Option
+                    const driverOption = document.getElementById('driver-option');
+                    if (driverOption && !driverOption.value) {
+                        if (!document.getElementById('driver-option-error')) {
+                            const errorMsg = document.createElement('p');
+                            errorMsg.id = 'driver-option-error';
+                            errorMsg.className = 'text-red-600 text-sm mt-1';
+                            errorMsg.textContent = 'Please select a driver option';
+                            driverOption.parentElement.appendChild(errorMsg);
+                        }
+                        document.getElementById('driver-option-error').classList.remove('hidden');
+                        driverOption.classList.add('border-red-500');
+                        isValid = false;
+                    } else if (driverOption && driverOption.value === 'self-drive') {
+                        // Check authorization status if self-drive is selected
+                        const authStatus = document.getElementById('driver-authorization-status');
+                        const authNotAuthorized = document.getElementById('authorization-not-authorized');
+                        if (authStatus && !authStatus.classList.contains('hidden') && 
+                            authNotAuthorized && !authNotAuthorized.classList.contains('hidden')) {
+                            alert('You are not authorized for self-drive with the selected vehicle type. Please select "Request a School Driver" or choose a different vehicle type.');
+                            isValid = false;
+                        }
                     }
                     
                     if (isValid) {

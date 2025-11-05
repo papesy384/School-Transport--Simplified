@@ -309,15 +309,15 @@
             </div>
             
             <div class="flex flex-wrap items-center justify-center sm:justify-end gap-2 sm:gap-4 sm:gap-6 w-full sm:w-auto">
+                <!-- Home/Logout Button (shown in dashboard views) - First item -->
+                <a href="#home" id="home-link" class="text-sm text-isd-gold hover:text-white font-semibold hidden min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-1">Home</a>
+                
                 <!-- User Categories -->
                 <div class="flex items-center space-x-2 sm:space-x-4 flex-wrap justify-center sm:justify-end">
                     <a href="#login/admin" id="btn-admin" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center">Admin</a>
                     <a href="#login/employee" id="btn-employee" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center">Employee</a>
                     <a href="#login/driver" id="btn-driver" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center">Driver</a>
                 </div>
-                
-                <!-- Home/Logout Button (shown in dashboard views) -->
-                <a href="#home" id="home-link" class="text-sm text-isd-gold hover:text-white font-semibold hidden min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-1">Home</a>
                 
                 <!-- Language Switcher -->
                 <div id="language-switcher" class="text-sm font-semibold flex items-center gap-1 min-h-[44px]">
@@ -471,57 +471,6 @@
                         </div>
                     </div>
                     
-                    <!-- Reporting Tab -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-gray-800">Utilization Analytics</h3>
-                            <button onclick="window.location.hash = 'admin/reports'" class="text-isd-gold hover:text-yellow-600 text-sm font-semibold">View Full Report →</button>
-                        </div>
-                        
-                        <!-- Fleet Utilization Heatmap Preview -->
-                        <div class="mb-6">
-                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Fleet Utilization (Last 90 Days)</h4>
-                            <div class="grid grid-cols-3 gap-4">
-                                <div class="text-center">
-                                    <div class="h-20 bg-gradient-to-t from-green-500 to-green-200 rounded-lg mb-2 flex items-end justify-center">
-                                        <span class="text-white font-bold text-lg mb-2">85%</span>
-                                    </div>
-                                    <p class="text-xs text-gray-600">Bus</p>
-                                </div>
-                                <div class="text-center">
-                                    <div class="h-20 bg-gradient-to-t from-yellow-500 to-yellow-200 rounded-lg mb-2 flex items-end justify-center">
-                                        <span class="text-white font-bold text-lg mb-2">65%</span>
-                                    </div>
-                                    <p class="text-xs text-gray-600">Van</p>
-                                </div>
-                                <div class="text-center">
-                                    <div class="h-20 bg-gradient-to-t from-blue-500 to-blue-200 rounded-lg mb-2 flex items-end justify-center">
-                                        <span class="text-white font-bold text-lg mb-2">45%</span>
-                                    </div>
-                                    <p class="text-xs text-gray-600">Car</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Denial Reasons Breakdown Preview -->
-                        <div>
-                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Top Denial Reasons (Last 90 Days)</h4>
-                            <div class="space-y-2">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-32 bg-red-500 h-6 rounded"></div>
-                                    <span class="text-xs text-gray-600">Vehicle Unavailable (24)</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-24 bg-orange-500 h-6 rounded"></div>
-                                    <span class="text-xs text-gray-600">Short Notice (18)</span>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-16 bg-yellow-500 h-6 rounded"></div>
-                                    <span class="text-xs text-gray-600">Missing Docs (12)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 <!-- Resource Health Monitoring Widget (Sidebar) -->
@@ -583,7 +532,7 @@
             </div>
             
                <!-- Quick Stats -->
-               <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
                    <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-yellow-500">
                        <p class="text-sm text-gray-600 mb-1">Pending</p>
                        <p class="text-2xl font-bold text-yellow-600" id="stats-pending">0</p>
@@ -599,6 +548,10 @@
                    <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-red-500">
                        <p class="text-sm text-gray-600 mb-1">Denied</p>
                        <p class="text-2xl font-bold text-red-600" id="stats-denied">0</p>
+                   </div>
+                   <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-gray-500">
+                       <p class="text-sm text-gray-600 mb-1">Completed</p>
+                       <p class="text-2xl font-bold text-gray-600" id="stats-completed">0</p>
                    </div>
                </div>
                
@@ -1285,122 +1238,6 @@
             </div>
         </div>
 
-        <!-- Admin Reports View -->
-        <div id="view-admin-reports" class="view-section w-full">
-            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-800">Utilization Analytics</h2>
-                        <p class="text-gray-600 mt-2">Fleet utilization and denial reasons breakdown</p>
-                    </div>
-                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Fleet Utilization Heatmap -->
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Fleet Utilization Heatmap (Last 90 Days)</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-semibold text-gray-700">Bus / Minibus</span>
-                                <span class="text-sm font-bold text-gray-800">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-6">
-                                <div class="bg-green-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 85%">
-                                    <span class="text-xs text-white font-semibold">85%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-semibold text-gray-700">Van</span>
-                                <span class="text-sm font-bold text-gray-800">65%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-6">
-                                <div class="bg-yellow-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 65%">
-                                    <span class="text-xs text-white font-semibold">65%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-semibold text-gray-700">Car / Sedan</span>
-                                <span class="text-sm font-bold text-gray-800">45%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-6">
-                                <div class="bg-blue-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 45%">
-                                    <span class="text-xs text-white font-semibold">45%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Denial Reasons Breakdown -->
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Denial Reasons Breakdown (Last 90 Days)</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-semibold text-gray-700">Vehicle Unavailable</span>
-                                <span class="text-sm font-bold text-gray-800">24</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-6">
-                                <div class="bg-red-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 100%">
-                                    <span class="text-xs text-white font-semibold">24</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-semibold text-gray-700">Short Notice</span>
-                                <span class="text-sm font-bold text-gray-800">18</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-6">
-                                <div class="bg-orange-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 75%">
-                                    <span class="text-xs text-white font-semibold">18</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-semibold text-gray-700">Missing Documentation</span>
-                                <span class="text-sm font-bold text-gray-800">12</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-6">
-                                <div class="bg-yellow-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 50%">
-                                    <span class="text-xs text-white font-semibold">12</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-semibold text-gray-700">Insufficient Lead Time</span>
-                                <span class="text-sm font-bold text-gray-800">8</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-6">
-                                <div class="bg-blue-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 33%">
-                                    <span class="text-xs text-white font-semibold">8</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-sm font-semibold text-gray-700">Exceeds Max Duration</span>
-                                <span class="text-sm font-bold text-gray-800">5</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-6">
-                                <div class="bg-purple-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 21%">
-                                    <span class="text-xs text-white font-semibold">5</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- User Management View -->
         <div id="view-user-management" class="view-section w-full">
@@ -1469,13 +1306,8 @@
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
                 <form id="new-booking-form" class="space-y-6">
-                    <!-- STEP 1: Trip Details -->
+                    <!-- Trip Purpose -->
                     <div class="border-b border-gray-200 pb-4">
-                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
-                            <h3 class="text-sm font-semibold text-blue-800 mb-1">Step 1: Trip Details</h3>
-                            <p class="text-xs text-blue-700">Enter the purpose of your trip</p>
-                        </div>
-                        
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">
                                 Trip Purpose <span class="text-red-600">*</span>
@@ -1490,13 +1322,8 @@
                         </div>
                     </div>
                     
-                    <!-- STEP 2: Vehicle Selection -->
+                    <!-- Vehicle Type -->
                     <div class="border-b border-gray-200 pb-4">
-                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
-                            <h3 class="text-sm font-semibold text-blue-800 mb-1">Step 2: Vehicle Selection</h3>
-                            <p class="text-xs text-blue-700">Select the type of vehicle needed</p>
-                        </div>
-                        
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type <span class="text-red-600">*</span></label>
                             <select id="vehicle-type" name="vehicle-type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
@@ -1509,25 +1336,102 @@
                         </div>
                     </div>
                     
-                    <!-- STEP 3: Driver Option (Mandatory) -->
+                    <!-- Start Date -->
                     <div class="border-b border-gray-200 pb-4">
-                        <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-4">
-                            <h3 class="text-sm font-semibold text-orange-800 mb-1">Step 3: Driver Option (Mandatory)</h3>
-                            <p class="text-xs text-orange-700">Choose your driver option. This choice must be made explicitly.</p>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Start Date <span class="text-red-600">*</span></label>
+                            <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
+                            <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error">Date is required</p>
                         </div>
-                        
+                    </div>
+                    
+                    <!-- Duration -->
+                    <div class="border-b border-gray-200 pb-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Duration <span class="text-red-600">*</span></label>
+                            <select id="trip-duration" name="trip-duration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                                <option value="">Select duration</option>
+                                <optgroup label="Hours">
+                                    <option value="1">1 hour</option>
+                                    <option value="2">2 hours</option>
+                                    <option value="3">3 hours</option>
+                                    <option value="4">4 hours</option>
+                                    <option value="5">5 hours</option>
+                                    <option value="6">6 hours</option>
+                                    <option value="8">8 hours</option>
+                                    <option value="10">10 hours</option>
+                                    <option value="12">12 hours</option>
+                                </optgroup>
+                                <optgroup label="Days">
+                                    <option value="24">1 day</option>
+                                    <option value="48">2 days</option>
+                                    <option value="72">3 days</option>
+                                    <option value="96">4 days</option>
+                                    <option value="120">5 days</option>
+                                    <option value="144">6 days</option>
+                                    <option value="168">7 days (1 week)</option>
+                                </optgroup>
+                            </select>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="trip-duration-error">Duration is required</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pickup Time (Scroll List with AM/PM) -->
+                    <div class="border-b border-gray-200 pb-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Pickup Time <span class="text-red-600">*</span></label>
+                            <select id="pickup-time" name="pickup-time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" size="8">
+                                <optgroup label="AM">
+                                    <option value="06:00">6:00 AM</option>
+                                    <option value="06:30">6:30 AM</option>
+                                    <option value="07:00">7:00 AM</option>
+                                    <option value="07:30">7:30 AM</option>
+                                    <option value="08:00">8:00 AM</option>
+                                    <option value="08:30">8:30 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="09:30">9:30 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="10:30">10:30 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="11:30">11:30 AM</option>
+                                </optgroup>
+                                <optgroup label="PM">
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="12:30">12:30 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="13:30">1:30 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="14:30">2:30 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="15:30">3:30 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="16:30">4:30 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="17:30">5:30 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="18:30">6:30 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="19:30">7:30 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                </optgroup>
+                            </select>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="pickup-time-error">Pickup time is required</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Driver Option (Default: School Driver) -->
+                    <div class="border-b border-gray-200 pb-4">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Driver Option <span class="text-red-600">*</span></label>
                             <select id="driver-option" name="driver-option" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                                <option value="">Select driver option</option>
-                                <option value="school-driver">Request a School Driver</option>
+                                <option value="school-driver" selected>Request a School Driver</option>
                                 <option value="self-drive">Self-Drive / Own Authorized Driver</option>
                             </select>
                             <p class="text-red-600 text-sm mt-1 hidden" id="driver-option-error">Please select a driver option</p>
                         </div>
                         
-                        <!-- School Driver Details (4a) -->
-                        <div id="school-driver-details" class="hidden mt-4 space-y-4">
+                        <!-- School Driver Details -->
+                        <div id="school-driver-details" class="mt-4 space-y-4">
                             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                                 <h4 class="text-sm font-semibold text-blue-800 mb-3">School Driver Requirements</h4>
                                 <div>
@@ -1535,25 +1439,19 @@
                                     <input type="text" id="pickup-location" name="pickup-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Main School Gate, Building A Entrance">
                                     <p class="text-red-600 text-sm mt-1 hidden" id="pickup-location-error">Pickup location is required</p>
                                 </div>
-                                <div class="mt-4">
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Pickup Time <span class="text-red-600">*</span></label>
-                                    <input type="time" id="pickup-time" name="pickup-time" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                                    <p class="text-red-600 text-sm mt-1 hidden" id="pickup-time-error">Pickup time is required</p>
-                                    <p class="text-xs text-gray-500 mt-1">The time you need the driver to arrive at the pickup location</p>
-                                </div>
                             </div>
                         </div>
                         
-                        <!-- Self-Drive Authorization Status (4b) -->
+                        <!-- Self-Drive Authorization Status (Not Auto-Approved) -->
                         <div id="driver-authorization-status" class="mt-4 hidden">
-                            <div id="authorization-authorized" class="hidden p-3 bg-green-50 border border-green-200 rounded-lg">
+                            <div id="authorization-authorized" class="hidden p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                                 <div class="flex items-center gap-2 mb-1">
-                                    <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                     </svg>
-                                    <span class="text-sm font-bold text-green-800">Self-Drive (You are authorized)</span>
+                                    <span class="text-sm font-bold text-yellow-800">Self-Drive Authorization Pending</span>
                                 </div>
-                                <p class="text-xs text-green-700 ml-7">You have authorization to drive this vehicle type</p>
+                                <p class="text-xs text-yellow-700 ml-7">Your authorization status will be verified by HR. This option is not automatically approved.</p>
                             </div>
                             <div id="authorization-not-authorized" class="hidden p-3 bg-red-50 border border-red-200 rounded-lg">
                                 <div class="flex items-center gap-2 mb-1">
@@ -1567,99 +1465,31 @@
                         </div>
                     </div>
                     
-                    <!-- STEP 4: Duration Input (Mandatory) -->
+                    <!-- Number of Passengers -->
                     <div class="border-b border-gray-200 pb-4">
-                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
-                            <h3 class="text-sm font-semibold text-blue-800 mb-1">Step 4: Duration Input (Mandatory)</h3>
-                            <p class="text-xs text-blue-700">Specify start date, start time, and duration. End time will be calculated automatically.</p>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Start Date <span class="text-red-600">*</span></label>
-                                <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
-                                <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error">Date is required</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Start Time <span class="text-red-600">*</span></label>
-                                <input type="time" id="trip-time" name="trip-time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                                <p class="text-red-600 text-sm mt-1 hidden" id="trip-time-error">Time is required</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Duration <span class="text-red-600">*</span></label>
-                                <select id="trip-duration" name="trip-duration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                                    <option value="">Select duration</option>
-                                    <optgroup label="Hours">
-                                        <option value="1">1 hour</option>
-                                        <option value="2">2 hours</option>
-                                        <option value="3">3 hours</option>
-                                        <option value="4">4 hours</option>
-                                        <option value="5">5 hours</option>
-                                        <option value="6">6 hours</option>
-                                        <option value="8">8 hours</option>
-                                        <option value="10">10 hours</option>
-                                        <option value="12">12 hours</option>
-                                    </optgroup>
-                                    <optgroup label="Days">
-                                        <option value="24">1 day</option>
-                                        <option value="48">2 days</option>
-                                        <option value="72">3 days</option>
-                                        <option value="96">4 days</option>
-                                        <option value="120">5 days</option>
-                                        <option value="144">6 days</option>
-                                        <option value="168">7 days (1 week)</option>
-                                    </optgroup>
-                                </select>
-                                <p class="text-red-600 text-sm mt-1 hidden" id="trip-duration-error">Duration is required</p>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Calculated End Time</label>
-                                <div id="calculated-end-time" class="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-600">
-                                    <span class="text-sm">Select duration to calculate end time</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-4">
+                        <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Passengers <span class="text-red-600">*</span></label>
                             <input type="number" id="passengers" name="passengers" required min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 45">
                             <p class="text-red-600 text-sm mt-1 hidden" id="passengers-error">Please enter a valid number of passengers</p>
+                            <p class="text-xs text-gray-500 mt-1" id="passengers-capacity-info"></p>
                         </div>
-                    </div>
-                    
-                    <!-- STEP 5: System Check (Availability Check) -->
-                    <div class="border-b border-gray-200 pb-4">
-                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-4">
-                            <h3 class="text-sm font-semibold text-yellow-800 mb-1">Step 5: System Check</h3>
-                            <p class="text-xs text-yellow-700">System will check vehicle availability after all details are entered</p>
-                        </div>
-                        
-                        <!-- Dynamic Availability Feedback Area -->
-                        <div id="availability-feedback" class="hidden">
-                            <div id="availability-status" class="p-4 rounded-lg mb-4"></div>
-                            <div id="alternative-vehicles" class="hidden mb-4"></div>
-                            <div id="time-suggestions" class="hidden mb-4"></div>
-                        </div>
-                        
-                        <button type="button" id="check-availability-btn" class="w-full px-6 py-2 bg-yellow-500 text-white rounded-lg font-semibold hover:bg-yellow-600 disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>
-                            Check Availability
-                        </button>
                     </div>
                     
                     <!-- Additional Notes -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
-                        <textarea rows="3" id="notes" name="notes" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any special requirements or additional information..."></textarea>
+                    <div class="border-b border-gray-200 pb-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
+                            <textarea rows="3" id="notes" name="notes" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any special requirements or additional information..."></textarea>
+                        </div>
                     </div>
                     
-                    <!-- STEP 6: Final Review & Submit -->
+                    <!-- Final Review & Submit -->
                     <div class="border-t border-gray-200 pt-4">
-                        <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
-                            <h3 class="text-sm font-semibold text-green-800 mb-1">Step 6: Final Review & Submit</h3>
-                            <p class="text-xs text-green-700">Review all details before submitting your request</p>
+                        <!-- Dynamic Availability Feedback Area -->
+                        <div id="availability-feedback" class="hidden mb-4">
+                            <div id="availability-status" class="p-4 rounded-lg mb-4"></div>
+                            <div id="alternative-vehicles" class="hidden mb-4"></div>
+                            <div id="time-suggestions" class="hidden mb-4"></div>
                         </div>
                         
                         <div id="booking-summary" class="hidden bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
@@ -1668,7 +1498,6 @@
                         </div>
                         
                         <div class="flex space-x-3">
-                            <button type="button" id="review-booking-btn" class="px-6 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 hidden">Review Booking</button>
                             <button type="submit" id="submit-booking-btn" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>Submit Request</button>
                             <button type="button" onclick="window.location.hash = 'guest/employee'" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
                         </div>
@@ -2247,13 +2076,11 @@
                             if (viewHome) viewHome.classList.add('active');
                             if (homeLink) homeLink.classList.add('hidden');
                         }
-                    } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || hash === 'admin/reports' || 
+                    } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' ||
                                hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status' || hash === 'trip-finalization') {
                         // Handle feature views
                         let viewId = `view-${hash}`;
-                        if (hash === 'admin/reports') {
-                            viewId = 'view-admin-reports';
-                        } else if (hash === 'trip-finalization') {
+                        if (hash === 'trip-finalization') {
                             viewId = 'view-trip-finalization';
                         }
                         const viewElement = document.getElementById(viewId);
@@ -3107,55 +2934,56 @@
             }
         });
 
-        // Calculate end time based on start time and duration
-        function calculateEndTime() {
-            const tripDate = document.getElementById('trip-date')?.value;
-            const tripTime = document.getElementById('trip-time')?.value;
-            const duration = document.getElementById('trip-duration')?.value;
-            const endTimeDisplay = document.getElementById('calculated-end-time');
+        // Check date availability and disable unavailable dates
+        function checkDateAvailability() {
+            const tripDateInput = document.getElementById('trip-date');
+            if (!tripDateInput) return;
             
-            if (!tripDate || !tripTime || !duration || !endTimeDisplay) {
-                if (endTimeDisplay) {
-                    endTimeDisplay.innerHTML = '<span class="text-sm">Select duration to calculate end time</span>';
+            // Get all existing bookings from MOCK_BOOKINGS
+            const bookedDates = new Set();
+            Object.values(MOCK_BOOKINGS).forEach(booking => {
+                if (booking.status !== 'DENIED' && booking.status !== 'COMPLETED') {
+                    const bookingDate = new Date(booking.startTime).toISOString().split('T')[0];
+                    bookedDates.add(bookingDate);
                 }
-                return;
-            }
+            });
             
-            try {
-                const startDateTime = new Date(`${tripDate}T${tripTime}`);
-                const durationHours = parseInt(duration);
-                
-                if (isNaN(startDateTime.getTime()) || isNaN(durationHours)) {
-                    endTimeDisplay.innerHTML = '<span class="text-sm text-gray-500">Invalid date/time</span>';
-                    return;
+            // Disable dates that are fully booked
+            // Note: In a real app, this would check capacity per vehicle type
+            // For now, we'll disable dates that have any bookings
+            const today = new Date().toISOString().split('T')[0];
+            const allDates = tripDateInput.querySelectorAll('option');
+            
+            // For date input, we need to use a different approach
+            // We'll check availability when the date is selected
+            tripDateInput.addEventListener('change', function() {
+                const selectedDate = this.value;
+                if (bookedDates.has(selectedDate)) {
+                    // Show warning but allow selection (Admin can override)
+                    const feedback = document.getElementById('availability-feedback');
+                    if (feedback) {
+                        feedback.classList.remove('hidden');
+                        const status = document.getElementById('availability-status');
+                        if (status) {
+                            status.innerHTML = `
+                                <div class="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                    <p class="text-sm text-yellow-800">⚠️ This date has existing bookings. Please check availability.</p>
+                                </div>
+                            `;
+                        }
+                    }
                 }
-                
-                // Add duration hours
-                const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
-                
-                // Format end date and time
-                const endDate = endDateTime.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                const endTime = endDateTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-                
-                endTimeDisplay.innerHTML = `
-                    <div class="flex flex-col">
-                        <span class="text-sm font-semibold text-gray-800">${endDate}</span>
-                        <span class="text-xs text-gray-600">${endTime}</span>
-                    </div>
-                `;
-            } catch (error) {
-                endTimeDisplay.innerHTML = '<span class="text-sm text-red-500">Error calculating end time</span>';
-            }
+            });
         }
         
         // Auto-check availability when date and vehicle type are selected
         function autoCheckAvailability() {
             const vehicleType = document.getElementById('vehicle-type')?.value;
             const tripDate = document.getElementById('trip-date')?.value;
-            const tripTime = document.getElementById('trip-time')?.value;
+            const pickupTime = document.getElementById('pickup-time')?.value;
             
             // Only auto-check if both date and vehicle type are selected
-            if (vehicleType && tripDate && tripTime) {
+            if (vehicleType && tripDate && pickupTime) {
                 // Small delay to ensure UI is updated
                 setTimeout(() => {
                     checkAvailability();
@@ -3169,18 +2997,17 @@
             const vehicleType = document.getElementById('vehicle-type')?.value;
             const driverOption = document.getElementById('driver-option')?.value;
             const tripDate = document.getElementById('trip-date')?.value;
-            const tripTime = document.getElementById('trip-time')?.value;
+            const pickupTime = document.getElementById('pickup-time')?.value;
             const duration = document.getElementById('trip-duration')?.value;
             const passengers = document.getElementById('passengers')?.value;
             
             // Check school driver requirements if selected
             if (driverOption === 'school-driver') {
                 const pickupLocation = document.getElementById('pickup-location')?.value.trim();
-                const pickupTime = document.getElementById('pickup-time')?.value;
                 if (!pickupLocation || !pickupTime) return false;
             }
             
-            return tripPurpose && vehicleType && driverOption && tripDate && tripTime && duration && passengers;
+            return tripPurpose && vehicleType && driverOption && tripDate && pickupTime && duration && passengers;
         }
         
         // Update availability check button state
@@ -3191,11 +3018,11 @@
             }
         }
         
-        // Availability checking functions (Step 5)
+        // Availability checking functions
         function checkAvailability() {
             const tripDate = document.getElementById('trip-date')?.value;
             const vehicleType = document.getElementById('vehicle-type')?.value;
-            const tripTime = document.getElementById('trip-time')?.value;
+            const pickupTime = document.getElementById('pickup-time')?.value;
             const duration = document.getElementById('trip-duration')?.value;
             const availabilityFeedback = document.getElementById('availability-feedback');
             const availabilityStatus = document.getElementById('availability-status');
@@ -3272,8 +3099,8 @@
                     `;
                     
                     // Show time suggestions
-                    if (tripTime) {
-                        showTimeSuggestions(tripTime);
+                    if (pickupTime) {
+                        showTimeSuggestions(pickupTime);
                     }
                     
                     if (submitBtn) submitBtn.disabled = true;
@@ -3301,7 +3128,7 @@
                 <p class="text-purple-800 font-semibold mb-2 text-sm">Suggested alternative times:</p>
                 <div class="space-y-2">
                     ${suggestions.map(time => `
-                        <button type="button" onclick="document.getElementById('trip-time').value='${time}'; checkAvailability();" class="w-full text-left p-2 bg-white rounded hover:bg-purple-50 text-sm">
+                        <button type="button" onclick="document.getElementById('pickup-time').value='${time}'; checkAvailability();" class="w-full text-left p-2 bg-white rounded hover:bg-purple-50 text-sm">
                             ${formatTime(time)}
                         </button>
                     `).join('')}
@@ -3342,7 +3169,7 @@
             updateAvailabilityButtonState();
         }
         
-        // Driver authorization check - uses MOCK_USERS data
+        // Driver authorization check - Self Drive is NOT auto-approved
         function checkDriverAuthorization(vehicleType) {
             const authStatus = document.getElementById('driver-authorization-status');
             const authAuthorized = document.getElementById('authorization-authorized');
@@ -3356,6 +3183,7 @@
             const user = getUserById(currentUserId);
             
             if (!user || user.role !== 'Employee') {
+                // Show "not authorized" if user is not an employee
                 if (authAuthorized) authAuthorized.classList.add('hidden');
                 if (authNotAuthorized) authNotAuthorized.classList.remove('hidden');
                 return;
@@ -3364,10 +3192,13 @@
             // Check authorization based on user's isAuthorizedDriver flag
             const isAuthorized = user.isAuthorizedDriver === true;
             
-            if (isAuthorized) {
-                if (authAuthorized) authAuthorized.classList.remove('hidden');
-                if (authNotAuthorized) authNotAuthorized.classList.add('hidden');
-            } else {
+            // Self-drive is NOT automatically approved - always show "pending" status
+            // The authorization status message already indicates it needs HR verification
+            if (authAuthorized) authAuthorized.classList.remove('hidden');
+            if (authNotAuthorized) authNotAuthorized.classList.add('hidden');
+            
+            // If user is not authorized, show not authorized message
+            if (!isAuthorized) {
                 if (authAuthorized) authAuthorized.classList.add('hidden');
                 if (authNotAuthorized) authNotAuthorized.classList.remove('hidden');
             }
@@ -3385,12 +3216,12 @@
             const vehicleType = document.getElementById('vehicle-type')?.value;
             const driverOption = document.getElementById('driver-option')?.value;
             const tripDate = document.getElementById('trip-date')?.value;
-            const tripTime = document.getElementById('trip-time')?.value;
+            const pickupTime = document.getElementById('pickup-time')?.value;
             const duration = document.getElementById('trip-duration')?.value;
             const passengers = document.getElementById('passengers')?.value;
             const notes = document.getElementById('notes')?.value;
             
-            if (!tripPurpose || !vehicleType || !driverOption || !tripDate || !tripTime || !duration || !passengers) {
+            if (!tripPurpose || !vehicleType || !driverOption || !tripDate || !pickupTime || !duration || !passengers) {
                 summaryDiv.classList.add('hidden');
                 if (reviewBtn) reviewBtn.classList.add('hidden');
                 return;
@@ -3412,36 +3243,24 @@
             let pickupInfo = '';
             if (driverOption === 'school-driver') {
                 const pickupLocation = document.getElementById('pickup-location')?.value;
-                const pickupTime = document.getElementById('pickup-time')?.value;
-                if (pickupLocation && pickupTime) {
-                    pickupInfo = `<p><strong>Pickup Location:</strong> ${pickupLocation}</p><p><strong>Pickup Time:</strong> ${formatTime(pickupTime)}</p>`;
+                if (pickupLocation) {
+                    pickupInfo = `<p><strong>Pickup Location:</strong> ${pickupLocation}</p>`;
                 }
             }
             
-            // Get calculated end time
-            const endTimeDiv = document.getElementById('calculated-end-time');
+            // Calculate end time
             let endTimeDisplay = 'N/A';
-            if (endTimeDiv) {
-                const endTimeText = endTimeDiv.textContent.trim();
-                if (endTimeText && !endTimeText.includes('Select duration')) {
-                    endTimeDisplay = endTimeText;
+            try {
+                const startDateTime = new Date(`${tripDate}T${pickupTime}`);
+                const durationHours = parseInt(duration);
+                if (!isNaN(startDateTime.getTime()) && !isNaN(durationHours)) {
+                    const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
+                    const endDate = endDateTime.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    const endTime = endDateTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+                    endTimeDisplay = `${endDate} at ${endTime}`;
                 }
-            }
-            
-            // Calculate end time if not already displayed
-            if (endTimeDisplay === 'N/A' || endTimeDisplay.includes('Select duration')) {
-                try {
-                    const startDateTime = new Date(`${tripDate}T${tripTime}`);
-                    const durationHours = parseInt(duration);
-                    if (!isNaN(startDateTime.getTime()) && !isNaN(durationHours)) {
-                        const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
-                        const endDate = endDateTime.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-                        const endTime = endDateTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-                        endTimeDisplay = `${endDate} at ${endTime}`;
-                    }
-                } catch (error) {
-                    endTimeDisplay = 'N/A';
-                }
+            } catch (error) {
+                endTimeDisplay = 'N/A';
             }
             
             summaryContent.innerHTML = `
@@ -3451,7 +3270,7 @@
                     <p><strong>Driver Option:</strong> ${driverOptionMap[driverOption] || driverOption}</p>
                     ${pickupInfo}
                     <p><strong>Start Date:</strong> ${new Date(tripDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
-                    <p><strong>Start Time:</strong> ${formatTime(tripTime)}</p>
+                    <p><strong>Pickup Time:</strong> ${formatTime(pickupTime)}</p>
                     <p><strong>Duration:</strong> ${durationText}</p>
                     <p><strong>End Time:</strong> ${endTimeDisplay}</p>
                     <p><strong>Number of Passengers:</strong> ${passengers}</p>
@@ -3654,62 +3473,117 @@ The admin will assign a driver closer to the trip date.
                 const today = new Date().toISOString().split('T')[0];
                 tripDateInput.setAttribute('min', today);
                 
-                // Calculate end time on date change and auto-check availability
+                // Check date availability and auto-check availability on date change
                 tripDateInput.addEventListener('change', () => {
-                    calculateEndTime();
+                    checkDateAvailability();
                     updateAvailabilityButtonState();
-                    // Auto-check availability when date and vehicle type are selected
                     autoCheckAvailability();
                 });
             }
             
-            // Calculate end time on time change and auto-check availability
-            const tripTimeInput = document.getElementById('trip-time');
-            if (tripTimeInput) {
-                tripTimeInput.addEventListener('change', () => {
-                    calculateEndTime();
+            // Auto-check availability on pickup time change
+            const pickupTimeInput = document.getElementById('pickup-time');
+            if (pickupTimeInput) {
+                pickupTimeInput.addEventListener('change', () => {
                     updateAvailabilityButtonState();
-                    // Auto-check availability when date, time, and vehicle type are selected
                     autoCheckAvailability();
                 });
             }
             
-            // Calculate end time on duration change
+            // Update availability button state on duration change
             const durationInput = document.getElementById('trip-duration');
             if (durationInput) {
                 durationInput.addEventListener('change', () => {
-                    calculateEndTime();
                     updateAvailabilityButtonState();
+                    autoCheckAvailability();
                 });
             }
             
-            // Vehicle type change handler
+            // Initialize school driver details to be visible by default
+            const driverOptionInput = document.getElementById('driver-option');
+            if (driverOptionInput && driverOptionInput.value === 'school-driver') {
+                handleDriverOption();
+            }
+            
+            // Add passenger capacity validation based on vehicle type
             const vehicleTypeInput = document.getElementById('vehicle-type');
+            const passengersInput = document.getElementById('passengers');
+            const capacityInfo = document.getElementById('passengers-capacity-info');
+            
+            if (vehicleTypeInput && passengersInput && capacityInfo) {
+                const vehicleCapacities = {
+                    'bus': 50,
+                    'van': 15,
+                    'car': 5
+                };
+                
+                function updatePassengerCapacity() {
+                    const vehicleType = vehicleTypeInput.value;
+                    const capacity = vehicleCapacities[vehicleType];
+                    
+                    if (capacity) {
+                        capacityInfo.textContent = `Vehicle capacity: ${capacity} passengers`;
+                        passengersInput.setAttribute('max', capacity);
+                    } else {
+                        capacityInfo.textContent = '';
+                        passengersInput.removeAttribute('max');
+                    }
+                }
+                
+                vehicleTypeInput.addEventListener('change', updatePassengerCapacity);
+                passengersInput.addEventListener('input', function() {
+                    const vehicleType = vehicleTypeInput.value;
+                    const capacity = vehicleCapacities[vehicleType];
+                    const passengers = parseInt(this.value);
+                    
+                    if (capacity && passengers > capacity) {
+                        this.setCustomValidity(`Cannot exceed vehicle capacity of ${capacity} passengers`);
+                        this.classList.add('border-red-500');
+                        const errorMsg = document.getElementById('passengers-error');
+                        if (errorMsg) {
+                            errorMsg.textContent = `Cannot exceed vehicle capacity of ${capacity} passengers`;
+                            errorMsg.classList.remove('hidden');
+                        }
+                    } else {
+                        this.setCustomValidity('');
+                        this.classList.remove('border-red-500');
+                        const errorMsg = document.getElementById('passengers-error');
+                        if (errorMsg && (!this.value || parseInt(this.value) < 1)) {
+                            errorMsg.textContent = 'Please enter a valid number of passengers';
+                        } else if (errorMsg && this.value && parseInt(this.value) >= 1) {
+                            errorMsg.classList.add('hidden');
+                        }
+                    }
+                });
+                
+                // Initialize capacity info on page load
+                updatePassengerCapacity();
+            }
+            
+            // Vehicle type change handler (additional event listener for authorization check)
             if (vehicleTypeInput) {
                 vehicleTypeInput.addEventListener('change', () => {
                     const driverOption = document.getElementById('driver-option')?.value;
                     if (driverOption === 'self-drive') {
                         checkDriverAuthorization(vehicleTypeInput.value);
                     }
-                    updateAvailabilityButtonState();
                     // Auto-check availability when date and vehicle type are selected
                     autoCheckAvailability();
                 });
             }
             
-            // Driver option change handler
-            const driverOptionInput = document.getElementById('driver-option');
+            // Driver option change handler (additional event listener)
             if (driverOptionInput) {
                 driverOptionInput.addEventListener('change', handleDriverOption);
             }
             
-            // Pickup location and time change handlers
+            // Pickup location change handler
             const pickupLocationInput = document.getElementById('pickup-location');
             if (pickupLocationInput) {
                 pickupLocationInput.addEventListener('input', updateAvailabilityButtonState);
             }
             
-            const pickupTimeInput = document.getElementById('pickup-time');
+            // Pickup time change handler (additional event listener for availability button state)
             if (pickupTimeInput) {
                 pickupTimeInput.addEventListener('change', updateAvailabilityButtonState);
             }
@@ -3720,7 +3594,7 @@ The admin will assign a driver closer to the trip date.
                 tripPurposeInput.addEventListener('input', updateAvailabilityButtonState);
             }
             
-            const passengersInput = document.getElementById('passengers');
+            // Passengers change handler (additional event listener for availability button state)
             if (passengersInput) {
                 passengersInput.addEventListener('input', updateAvailabilityButtonState);
             }
@@ -3801,12 +3675,12 @@ The admin will assign a driver closer to the trip date.
                         }
                     }
                     
-                    // Validate Time
-                    const tripTime = document.getElementById('trip-time');
-                    if (!tripTime.value) {
-                        document.getElementById('trip-time-error').classList.remove('hidden');
-                        document.getElementById('trip-time-error').textContent = 'Time is required';
-                        tripTime.classList.add('border-red-500');
+                    // Validate Pickup Time
+                    const pickupTime = document.getElementById('pickup-time');
+                    if (!pickupTime.value) {
+                        document.getElementById('pickup-time-error').classList.remove('hidden');
+                        document.getElementById('pickup-time-error').textContent = 'Pickup time is required';
+                        pickupTime.classList.add('border-red-500');
                         isValid = false;
                     } else if (tripDate.value) {
                         // Check if date and time combination is in the past
@@ -3816,15 +3690,15 @@ The admin will assign a driver closer to the trip date.
                         
                         if (selectedDate.getTime() === today.getTime()) {
                             // Same day, check time
-                            const [hours, minutes] = tripTime.value.split(':');
+                            const [hours, minutes] = pickupTime.value.split(':');
                             const selectedDateTime = new Date();
                             selectedDateTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
                             const now = new Date();
                             
                             if (selectedDateTime < now) {
-                                document.getElementById('trip-time-error').classList.remove('hidden');
-                                document.getElementById('trip-time-error').textContent = 'Cannot book for a past time';
-                                tripTime.classList.add('border-red-500');
+                                document.getElementById('pickup-time-error').classList.remove('hidden');
+                                document.getElementById('pickup-time-error').textContent = 'Cannot book for a past time';
+                                pickupTime.classList.add('border-red-500');
                                 isValid = false;
                             }
                         }
@@ -4362,11 +4236,13 @@ The admin will assign a driver closer to the trip date.
             const statsApproved = document.getElementById('stats-approved');
             const statsActive = document.getElementById('stats-active');
             const statsDenied = document.getElementById('stats-denied');
+            const statsCompleted = document.getElementById('stats-completed');
             
             if (statsPending) statsPending.textContent = pendingCount;
             if (statsApproved) statsApproved.textContent = approvedCount;
             if (statsActive) statsActive.textContent = activeCount;
             if (statsDenied) statsDenied.textContent = deniedCount;
+            if (statsCompleted) statsCompleted.textContent = completedCount;
             
             // If bookings list doesn't exist, return early
             if (!bookingsList) {

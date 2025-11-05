@@ -3032,17 +3032,23 @@
         
         // Firestore: Get single booking by ID
         async function getBookingByIdFirestore(bookingId) {
-            if (!isFirebaseConfigured()) {
+            try {
+                if (!isFirebaseConfigured()) {
+                    return getBookingById(bookingId);
+                }
+                
+                const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
+                const bookingDoc = await window.firebaseFunctions.getDoc(bookingRef);
+                
+                if (bookingDoc.exists()) {
+                    return { id: bookingDoc.id, ...bookingDoc.data() };
+                }
+                return null;
+            } catch (error) {
+                console.error('❌ Error in getBookingByIdFirestore:', error);
+                // Fallback to mock data on error
                 return getBookingById(bookingId);
             }
-            
-            const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
-            const bookingDoc = await window.firebaseFunctions.getDoc(bookingRef);
-            
-            if (bookingDoc.exists()) {
-                return { id: bookingDoc.id, ...bookingDoc.data() };
-            }
-            return null;
         }
         
         // Set up real-time listener for bookings (optional)
@@ -3483,12 +3489,19 @@
             document.getElementById('edit-vehicle-modal').classList.remove('open');
         }
 
-        function deleteVehicle(vehicleId) {
+        async function deleteVehicle(vehicleId) {
             if (confirm(`Are you sure you want to delete vehicle ${vehicleId}?`)) {
-                // In a real app, this would make an API call
-                alert(`Vehicle ${vehicleId} has been deleted.`);
-                // Reload the page or update the table
-                location.reload();
+                try {
+                    // In a real app, this would make an API call to delete from Firebase
+                    // For now, just show success message
+                    showSuccess(`Vehicle ${vehicleId} has been deleted.`);
+                    
+                    // In production, would refresh the vehicle list
+                    // For now, just show success
+                } catch (error) {
+                    console.error('Error deleting vehicle:', error);
+                    showError('Failed to delete vehicle. Please try again.');
+                }
             }
         }
 
@@ -3559,6 +3572,25 @@
         async function quickApprove(bookingId) {
             if (confirm('Are you sure you want to approve this booking request?')) {
                 try {
+                    // Get booking to check if it needs a driver
+                    const booking = getBookingById(bookingId);
+                    if (!booking) {
+                        showError('Booking not found.');
+                        return;
+                    }
+                    
+                    // Auto-assign driver if booking requires school driver
+                    let assignedDriverId = booking.assignedDriverId;
+                    if (!assignedDriverId && booking.driverOption === 'Request Driver') {
+                        // Auto-assign first available driver (in production, would use smart assignment logic)
+                        const availableDrivers = Object.keys(MOCK_USERS).filter(id => MOCK_USERS[id].role === 'Driver');
+                        if (availableDrivers.length > 0) {
+                            // Assign first driver (could be improved with availability checking)
+                            assignedDriverId = availableDrivers[0];
+                            console.log(`🚗 Auto-assigning driver ${assignedDriverId} to booking ${bookingId}`);
+                        }
+                    }
+                    
                     // Update booking status to APPROVED
                     const updates = {
                         status: 'APPROVED',
@@ -3566,9 +3598,14 @@
                         adminNotes: 'Booking approved by admin'
                     };
                     
+                    // Add driver assignment if applicable
+                    if (assignedDriverId) {
+                        updates.assignedDriverId = assignedDriverId;
+                    }
+                    
                     await updateBookingFirestore(bookingId, updates);
                     
-                    showSuccess('Booking request has been approved successfully!');
+                    showSuccess(`Booking request has been approved successfully!${assignedDriverId ? ` Driver ${MOCK_USERS[assignedDriverId]?.name || assignedDriverId} has been assigned.` : ''}`);
                     
                     // Refresh admin dashboard to remove from pending queue
                     await populateAdminDashboard();
@@ -3577,6 +3614,14 @@
                     const employeeDashboard = document.getElementById('view-employee-dashboard');
                     if (employeeDashboard && employeeDashboard.classList.contains('active')) {
                         await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
+                    }
+                    
+                    // Refresh driver dashboard if it's open and driver was assigned
+                    if (assignedDriverId) {
+                        const driverDashboard = document.getElementById('view-assigned-trips');
+                        if (driverDashboard && driverDashboard.classList.contains('active')) {
+                            await populateDriverDashboard(assignedDriverId);
+                        }
                     }
                     
                     // Close detail view if open
@@ -3597,7 +3642,7 @@
             // Get booking from MOCK_BOOKINGS
             const booking = getBookingById(bookingId);
             if (!booking) {
-                alert('Booking not found');
+                showError('Booking not found.');
                 return;
             }
             
@@ -4071,6 +4116,25 @@
         async function approveBooking(bookingId) {
             if (confirm('Are you sure you want to approve this booking request?')) {
                 try {
+                    // Get booking to check if it needs a driver
+                    const booking = getBookingById(bookingId);
+                    if (!booking) {
+                        showError('Booking not found.');
+                        return;
+                    }
+                    
+                    // Auto-assign driver if booking requires school driver
+                    let assignedDriverId = booking.assignedDriverId;
+                    if (!assignedDriverId && booking.driverOption === 'Request Driver') {
+                        // Auto-assign first available driver (in production, would use smart assignment logic)
+                        const availableDrivers = Object.keys(MOCK_USERS).filter(id => MOCK_USERS[id].role === 'Driver');
+                        if (availableDrivers.length > 0) {
+                            // Assign first driver (could be improved with availability checking)
+                            assignedDriverId = availableDrivers[0];
+                            console.log(`🚗 Auto-assigning driver ${assignedDriverId} to booking ${bookingId}`);
+                        }
+                    }
+                    
                     // Update booking status to APPROVED
                     const updates = {
                         status: 'APPROVED',
@@ -4078,9 +4142,14 @@
                         adminNotes: 'Booking approved by admin'
                     };
                     
+                    // Add driver assignment if applicable
+                    if (assignedDriverId) {
+                        updates.assignedDriverId = assignedDriverId;
+                    }
+                    
                     await updateBookingFirestore(bookingId, updates);
                     
-                    showSuccess('Booking request has been approved successfully!');
+                    showSuccess(`Booking request has been approved successfully!${assignedDriverId ? ` Driver ${MOCK_USERS[assignedDriverId]?.name || assignedDriverId} has been assigned.` : ''}`);
                     
                     // Refresh admin dashboard to remove from pending queue
                     await populateAdminDashboard();
@@ -4089,6 +4158,14 @@
                     const employeeDashboard = document.getElementById('view-employee-dashboard');
                     if (employeeDashboard && employeeDashboard.classList.contains('active')) {
                         await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
+                    }
+                    
+                    // Refresh driver dashboard if it's open and driver was assigned
+                    if (assignedDriverId) {
+                        const driverDashboard = document.getElementById('view-assigned-trips');
+                        if (driverDashboard && driverDashboard.classList.contains('active')) {
+                            await populateDriverDashboard(assignedDriverId);
+                        }
                     }
                     
                     // Close detail view if open
@@ -4166,14 +4243,15 @@
                         // In production, you would send this to your backend:
                         // fetch('/api/vehicles/update', { method: 'POST', body: formData })
                         
-                        alert(`Vehicle ${vehicleId} has been updated with new image!`);
+                        showSuccess(`Vehicle ${vehicleId} has been updated with new image!`);
                     } else {
-                        alert(`Vehicle ${vehicleId} has been updated!`);
+                        showSuccess(`Vehicle ${vehicleId} has been updated!`);
                     }
                     
                     closeEditVehicleModal();
-                    // Reload or update the table
-                    location.reload();
+                    
+                    // In production, would refresh the vehicle list
+                    // For now, just show success
                 });
             }
 
@@ -4186,10 +4264,11 @@
                     const role = document.getElementById('edit-user-role').value;
                     
                     // In a real app, this would make an API call
-                    alert(`User ${name} has been updated!`);
+                    showSuccess(`User ${name} has been updated!`);
                     closeEditUserModal();
-                    // Reload or update the table
-                    location.reload();
+                    
+                    // In production, would refresh the user list
+                    // For now, just show success
                 });
             }
 
@@ -4986,14 +5065,14 @@
             const isPending = bookingElement?.querySelector('span')?.textContent.includes('Pending');
             
             if (!isPending) {
-                alert('Modify Request is only available for bookings with Pending status.\n\nThis booking has already been approved or denied.');
+                showError('Modify Request is only available for bookings with Pending status. This booking has already been approved or denied.');
                 return;
             }
             
             const confirmed = confirm(`Modify Request: ${bookingId}\n\nYou are about to modify this pending booking request. Changes will require re-approval by the Admin.\n\nDo you want to continue?`);
             
             if (confirmed) {
-                alert(`Opening modification form for: ${bookingId}\n\nThe form will be pre-filled with current booking details. After making changes, the request will be resubmitted and require re-approval.`);
+                showSuccess(`Opening modification form for: ${bookingId}. The form will be pre-filled with current booking details.`);
                 window.location.hash = 'new-booking';
             }
         }
@@ -5002,7 +5081,7 @@
         async function cancelBooking(bookingId, currentStatus) {
             // Check if booking is in Pending or Approved status
             if (currentStatus !== 'Pending' && currentStatus !== 'Approved' && currentStatus !== 'PENDING' && currentStatus !== 'APPROVED') {
-                alert(`Cancel Request is only available for bookings with Pending or Approved status.\n\nCurrent Status: ${currentStatus}\n\nThis booking cannot be cancelled.`);
+                showError(`Cancel Request is only available for bookings with Pending or Approved status. Current Status: ${currentStatus}. This booking cannot be cancelled.`);
                 return;
             }
             
@@ -5027,12 +5106,25 @@
                     console.log(`✅ Booking ${bookingId} cancelled successfully. Status updated to CANCELLED.`);
                     console.log(`📡 Real-time listeners should automatically update:\n   - Driver window: Trip will disappear from "Upcoming Trips"\n   - Admin window: Status will change to "Cancelled"`);
                     
-                    alert(`Booking ${bookingId} has been cancelled successfully.\n\nNotifications have been sent to:\n- Admin (to free up the vehicle)\n- Assigned Driver (if applicable)\n\nThe booking status has been updated to "Cancelled".\n\nReal-time updates will appear in:\n- Driver's "Upcoming Trips" (trip will disappear)\n- Admin's dashboard (status will show "Cancelled")`);
+                    showSuccess('Booking cancelled successfully! Notifications have been sent to Admin and assigned Driver (if applicable).');
                     
-                    // Refresh employee dashboard to show updated status
-                    setTimeout(async () => {
-                        await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
-                    }, 100);
+                    // Refresh all dashboards
+                    await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
+                    
+                    // Refresh admin dashboard if open
+                    const adminDashboard = document.getElementById('view-admin-dashboard');
+                    if (adminDashboard && adminDashboard.classList.contains('active')) {
+                        await populateAdminDashboard();
+                    }
+                    
+                    // Refresh driver dashboard if open and driver was assigned
+                    const booking = getBookingById(bookingId);
+                    if (booking && booking.assignedDriverId) {
+                        const driverDashboard = document.getElementById('view-assigned-trips');
+                        if (driverDashboard && driverDashboard.classList.contains('active')) {
+                            await populateDriverDashboard(booking.assignedDriverId);
+                        }
+                    }
                     
                 } catch (error) {
                     console.error('❌ Error cancelling booking:', error);
@@ -5607,7 +5699,7 @@ The admin will assign a driver closer to the trip date.
                         const authNotAuthorized = document.getElementById('authorization-not-authorized');
                         if (authStatus && !authStatus.classList.contains('hidden') && 
                             authNotAuthorized && !authNotAuthorized.classList.contains('hidden')) {
-                            alert('You are not authorized for self-drive with the selected vehicle type. Please select "Request a School Driver" or choose a different vehicle type.');
+                            showError('You are not authorized for self-drive with the selected vehicle type. Please select "Request a School Driver" or choose a different vehicle type.');
                             isValid = false;
                         }
                     }
@@ -5621,9 +5713,9 @@ The admin will assign a driver closer to the trip date.
                         const tripDate = document.getElementById('trip-date')?.value;
                         if (tripDate === '2025-11-06') {
                             // This shouldn't happen as checkDateAvailability clears it, but just in case
-                            alert('November 6th, 2025 is unavailable. Please select the suggested date or another available date.');
+                            showError('November 6th, 2025 is unavailable. Please select the suggested date or another available date.');
                         } else if (availabilityStatus && !availabilityStatus.classList.contains('bg-green-50')) {
-                            alert('Please ensure vehicle availability is confirmed before submitting. The system will check availability automatically when all fields are filled.');
+                            showError('Please ensure vehicle availability is confirmed before submitting. The system will check availability automatically when all fields are filled.');
                         }
                         isValid = false;
                     }
@@ -5797,7 +5889,7 @@ The admin will assign a driver closer to the trip date.
                                 errorMessage += '\n\nError: ' + error.message;
                             }
                             
-                            alert(errorMessage);
+                            showError(errorMessage);
                         }
                     }
                 });
@@ -5912,7 +6004,7 @@ The admin will assign a driver closer to the trip date.
             if (addVehicleBtn) {
                 addVehicleBtn.addEventListener('click', () => {
                     // In a real app, this would open a form/modal to add a new vehicle
-                    alert('Add Vehicle functionality:\n\nIn a production app, this would open a form or modal to add a new vehicle with details like ID, type, capacity, and status.');
+                    showSuccess('Add Vehicle functionality:\n\nIn a production app, this would open a form or modal to add a new vehicle with details like ID, type, capacity, and status.');
                 });
             }
             
@@ -5926,10 +6018,15 @@ The admin will assign a driver closer to the trip date.
         };
         
         // Update Trip Status (Sequential Workflow)
-        function updateTripStatus(statusType) {
-            const tripCard = document.getElementById('active-trip-card');
-            const tripId = tripCard?.dataset.tripId || 'museum-trip';
-            const statusBadge = document.getElementById('trip-status-badge');
+        async function updateTripStatus(statusType) {
+            try {
+                const tripCard = document.getElementById('active-trip-card');
+                const tripId = tripCard?.dataset.tripId;
+                if (!tripId) {
+                    showError('Trip ID not found.');
+                    return;
+                }
+                const statusBadge = document.getElementById('trip-status-badge');
             
             // Update status sequence
             if (!tripStatusSequence[tripId]) {
@@ -6032,8 +6129,57 @@ The admin will assign a driver closer to the trip date.
                 tripCard.dataset.status = statusInfo.status.toLowerCase().replace(/\s+/g, '-');
             }
             
-            // Show confirmation
-            alert(`Status updated: ${statusInfo.status}\n\n${statusInfo.message || ''}`);
+            // Update booking in database with new status
+            const tripStatusMap = {
+                'start-trip': { status: 'ACTIVE', driverStatus: 'En Route' },
+                'arrived-pickup': { status: 'ACTIVE', driverStatus: 'Arrived at Pickup' },
+                'start-driving': { status: 'ACTIVE', driverStatus: 'Driving' },
+                'arrived-destination': { status: 'ACTIVE', driverStatus: 'Arrived at Destination' },
+                'trip-complete': { status: 'COMPLETED', driverStatus: 'Completed' }
+            };
+            
+            const statusUpdate = tripStatusMap[statusType];
+            if (statusUpdate) {
+                const updates = {
+                    driverStatus: statusUpdate.driverStatus,
+                    status: statusUpdate.status,
+                    lastDriverUpdate: new Date().toISOString()
+                };
+                
+                // Only update to COMPLETED if trip is actually complete
+                if (statusType === 'trip-complete') {
+                    updates.status = 'COMPLETED';
+                    updates.completedAt = new Date().toISOString();
+                }
+                
+                try {
+                    await updateBookingFirestore(tripId, updates);
+                    
+                    // Refresh driver dashboard
+                    const driverId = appState.currentUserId || 'driver_kore';
+                    await populateDriverDashboard(driverId);
+                    
+                    // Refresh employee dashboard to show updated status
+                    const booking = getBookingById(tripId);
+                    if (booking && booking.requesterId) {
+                        const employeeDashboard = document.getElementById('view-employee-dashboard');
+                        if (employeeDashboard && employeeDashboard.classList.contains('active')) {
+                            await populateEmployeeDashboard(booking.requesterId);
+                        }
+                    }
+                    
+                    showSuccess(`Status updated: ${statusInfo.status}`);
+                } catch (error) {
+                    console.error('Error updating trip status:', error);
+                    showError('Failed to update trip status. Please try again.');
+                }
+            } else {
+                showSuccess(`Status updated: ${statusInfo.status}`);
+            }
+            } catch (error) {
+                console.error('Error in updateTripStatus:', error);
+                showError('Failed to update trip status. Please try again.');
+            }
         }
         
         // Check if all individual safety checks are completed
@@ -6082,20 +6228,50 @@ The admin will assign a driver closer to the trip date.
         }
         
         // Single-Tap Delay Notification
-        function sendDelayNotification() {
-            const delayBtn = document.getElementById('delay-notification-btn');
-            if (!delayBtn) return;
-            
-            // Disable button temporarily to prevent double-taps
-            delayBtn.disabled = true;
-            delayBtn.textContent = '⏱️ Notification Sent!';
-            delayBtn.classList.add('bg-green-500', 'hover:bg-green-600');
-            delayBtn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
-            
-            // In production, this would send a notification to employee and admin
-            // Simulate API call
-            setTimeout(() => {
-                alert('Delay notification sent!\n\nEmployee and Admin have been notified:\n"Driver is experiencing a short delay (approximately 10 minutes)."');
+        async function sendDelayNotification() {
+            try {
+                const delayBtn = document.getElementById('delay-notification-btn');
+                if (!delayBtn) return;
+                
+                const tripCard = document.getElementById('active-trip-card');
+                const tripId = tripCard?.dataset.tripId;
+                if (!tripId) {
+                    showError('Trip ID not found.');
+                    return;
+                }
+                
+                // Disable button temporarily to prevent double-taps
+                delayBtn.disabled = true;
+                delayBtn.textContent = '⏱️ Sending...';
+                
+                // Update booking with delay notification
+                const updates = {
+                    delayNotification: true,
+                    delayNotificationTime: new Date().toISOString(),
+                    delayMessage: 'Driver is experiencing a short delay (approximately 10 minutes).'
+                };
+                
+                await updateBookingFirestore(tripId, updates);
+                
+                // Update button state
+                delayBtn.textContent = '⏱️ Notification Sent!';
+                delayBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+                delayBtn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+                
+                showSuccess('Delay notification sent! Employee and Admin have been notified.');
+                
+                // Refresh dashboards
+                const driverId = appState.currentUserId || 'driver_kore';
+                await populateDriverDashboard(driverId);
+                
+                // Refresh employee dashboard if open
+                const booking = getBookingById(tripId);
+                if (booking && booking.requesterId) {
+                    const employeeDashboard = document.getElementById('view-employee-dashboard');
+                    if (employeeDashboard && employeeDashboard.classList.contains('active')) {
+                        await populateEmployeeDashboard(booking.requesterId);
+                    }
+                }
                 
                 // Re-enable button after 3 seconds
                 setTimeout(() => {
@@ -6104,7 +6280,16 @@ The admin will assign a driver closer to the trip date.
                     delayBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
                     delayBtn.classList.add('bg-orange-500', 'hover:bg-orange-600');
                 }, 3000);
-            }, 500);
+            } catch (error) {
+                console.error('Error sending delay notification:', error);
+                showError('Failed to send delay notification. Please try again.');
+                // Re-enable button on error
+                const delayBtn = document.getElementById('delay-notification-btn');
+                if (delayBtn) {
+                    delayBtn.disabled = false;
+                    delayBtn.textContent = '⏱️ Running 10 Mins Late';
+                }
+            }
         }
         
         // Open Trip Finalization Screen
@@ -6142,7 +6327,7 @@ The admin will assign a driver closer to the trip date.
 
             const updateStatusForm = document.getElementById('update-status-form');
             if (updateStatusForm) {
-                updateStatusForm.addEventListener('submit', (e) => {
+                updateStatusForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     
                     // Clear previous errors
@@ -6173,15 +6358,43 @@ The admin will assign a driver closer to the trip date.
                     }
                     
                     if (isValid) {
-                        // Form is valid - show success message
-                        const trip = tripSelect.options[tripSelect.selectedIndex].text;
-                        const status = statusSelect.value;
-                        const location = document.getElementById('current-location').value;
-                        
-                        alert(`Trip status updated successfully!\n\nTrip: ${trip}\nStatus: ${status}${location ? '\nLocation: ' + location : ''}`);
-                        // In a real app, this would submit to a backend
-                        // For now, just navigate back to driver dashboard
-                        window.location.hash = 'guest/driver';
+                        try {
+                            const tripId = tripSelect.value;
+                            const status = statusSelect.value;
+                            const location = document.getElementById('current-location').value;
+                            const notes = document.getElementById('status-notes')?.value.trim() || '';
+                            
+                            // Update booking with status
+                            const updates = {
+                                driverStatus: status,
+                                driverLocation: location || undefined,
+                                driverNotes: notes || undefined,
+                                lastDriverUpdate: new Date().toISOString()
+                            };
+                            
+                            await updateBookingFirestore(tripId, updates);
+                            
+                            showSuccess(`Trip status updated successfully! Status: ${status}`);
+                            
+                            // Refresh dashboards
+                            const driverId = appState.currentUserId || 'driver_kore';
+                            await populateDriverDashboard(driverId);
+                            
+                            // Refresh employee dashboard if open
+                            const booking = getBookingById(tripId);
+                            if (booking && booking.requesterId) {
+                                const employeeDashboard = document.getElementById('view-employee-dashboard');
+                                if (employeeDashboard && employeeDashboard.classList.contains('active')) {
+                                    await populateEmployeeDashboard(booking.requesterId);
+                                }
+                            }
+                            
+                            // Navigate back to driver dashboard
+                            window.location.hash = 'guest/driver';
+                        } catch (error) {
+                            console.error('Error updating trip status:', error);
+                            showError('Failed to update trip status. Please try again.');
+                        }
                     }
                 });
             }
@@ -6214,7 +6427,7 @@ The admin will assign a driver closer to the trip date.
                 });
                 
                 // Form submission
-                tripFinalizationForm.addEventListener('submit', (e) => {
+                tripFinalizationForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     
                     const odometer = document.getElementById('final-odometer')?.value;
@@ -6252,9 +6465,67 @@ The admin will assign a driver closer to the trip date.
                     }
                     
                     if (isValid) {
-                        // In a real app, this would submit to backend
-                        alert(`Trip finalized successfully!\n\nOdometer: ${odometer} miles\nFuel Level: ${fuelLevel}\nVehicle Issues: ${vehicleIssues}\n\nTrip log has been submitted and trip is now complete.`);
-                        window.location.hash = 'guest/driver';
+                        try {
+                            const tripCard = document.getElementById('active-trip-card');
+                            const tripId = tripCard?.dataset.tripId;
+                            
+                            if (!tripId) {
+                                showError('Trip ID not found.');
+                                return;
+                            }
+                            
+                            // Sanitize inputs
+                            const safeOdometer = parseFloat(odometer) || 0;
+                            const safeFuelLevel = sanitizeHTML(fuelLevel);
+                            const safeIssues = sanitizeHTML(vehicleIssues);
+                            
+                            // Validate odometer
+                            if (safeOdometer <= 0) {
+                                showError('Please enter a valid odometer reading.');
+                                return;
+                            }
+                            
+                            // Update booking with final log
+                            const updates = {
+                                status: 'COMPLETED',
+                                completedAt: new Date().toISOString(),
+                                finalLog: {
+                                    odometerEnd: safeOdometer,
+                                    fuelLevelEnd: safeFuelLevel,
+                                    issuesComments: safeIssues,
+                                    submittedAt: new Date().toISOString()
+                                }
+                            };
+                            
+                            await updateBookingFirestore(tripId, updates);
+                            
+                            showSuccess('Trip finalized successfully! Trip log has been submitted and trip is now complete.');
+                            
+                            // Refresh dashboards
+                            const driverId = appState.currentUserId || 'driver_kore';
+                            await populateDriverDashboard(driverId);
+                            
+                            // Refresh employee dashboard if open
+                            const booking = getBookingById(tripId);
+                            if (booking && booking.requesterId) {
+                                const employeeDashboard = document.getElementById('view-employee-dashboard');
+                                if (employeeDashboard && employeeDashboard.classList.contains('active')) {
+                                    await populateEmployeeDashboard(booking.requesterId);
+                                }
+                            }
+                            
+                            // Refresh admin dashboard if open
+                            const adminDashboard = document.getElementById('view-admin-dashboard');
+                            if (adminDashboard && adminDashboard.classList.contains('active')) {
+                                await populateAdminDashboard();
+                            }
+                            
+                            // Navigate back to driver dashboard
+                            window.location.hash = 'guest/driver';
+                        } catch (error) {
+                            console.error('Error finalizing trip:', error);
+                            showError('Failed to finalize trip. Please try again.');
+                        }
                     }
                 });
             }

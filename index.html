@@ -3862,10 +3862,7 @@ The admin will assign a driver closer to the trip date.
                 });
             }
             
-            // Hash change listener for routing
-            window.addEventListener('hashchange', () => {
-                app.handleRoute();
-            });
+            // Hash change listener for routing (moved to initApp to avoid duplicates)
             
             // Prevent default navigation on header links
             const headerTitleLink = document.getElementById('header-title-link');
@@ -4247,14 +4244,14 @@ The admin will assign a driver closer to the trip date.
             
             // Initialize driver trip on page load
             initializeDriverTrip();
-            
-            // Populate dashboards with mock data (after DOM is ready)
-            setTimeout(() => {
-                populateEmployeeDashboard('emp_high'); // Guest mode - using Sarah Chen
-                populateAdminDashboard();
-                populateDriverDashboard('driver_kore'); // Guest mode - using Jake Olsen
-            }, 100);
-        });
+        }
+        
+        // Call initializeApp when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
         
         // Function to populate Employee Dashboard with mock bookings
         function populateEmployeeDashboard(userId) {
@@ -4506,15 +4503,43 @@ The admin will assign a driver closer to the trip date.
             }
         }
 
-        // Initialize with English and handle routing
-        try {
-            app.setLanguage('en');
-            app.handleRoute();
-        } catch (error) {
-            console.error('Error initializing app:', error);
-            // Fallback: ensure home view is shown
-            const viewHome = document.getElementById('view-home');
-            if (viewHome) viewHome.classList.add('active');
+        // Initialize app routing and navigation
+        function initAppRouting() {
+            try {
+                app.setLanguage('en');
+                app.handleRoute();
+                
+                // Set up hashchange listener for navigation
+                window.addEventListener('hashchange', () => {
+                    app.handleRoute();
+                    // Re-populate dashboards when navigating
+                    setTimeout(() => {
+                        populateEmployeeDashboard('emp_high');
+                        populateAdminDashboard();
+                        populateDriverDashboard('driver_kore');
+                    }, 100);
+                });
+                
+                // Populate dashboards with mock data after DOM is ready
+                setTimeout(() => {
+                    populateEmployeeDashboard('emp_high'); // Guest mode - using Sarah Chen
+                    populateAdminDashboard();
+                    populateDriverDashboard('driver_kore'); // Guest mode - using Jake Olsen
+                }, 100);
+            } catch (error) {
+                console.error('Error initializing app routing:', error);
+                // Fallback: ensure home view is shown
+                const viewHome = document.getElementById('view-home');
+                if (viewHome) viewHome.classList.add('active');
+            }
+        }
+        
+        // Call routing initialization after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAppRouting);
+        } else {
+            // DOM is already ready
+            initAppRouting();
         }
     </script>
 </body>

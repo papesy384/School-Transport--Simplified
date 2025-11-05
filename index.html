@@ -3946,6 +3946,60 @@ The admin will assign a driver closer to the trip date.
             
             modal.classList.add('open');
         }
+        
+        // Show scrollable booking success modal
+        function showBookingSuccessModal() {
+            const modalContent = `
+                <div class="flex items-center justify-center mb-4">
+                    <svg class="w-16 h-16 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 text-gray-800">Booking Request Submitted Successfully!</h3>
+                <div class="text-left space-y-3 text-sm text-gray-700 max-h-96 overflow-y-auto pr-2" style="-webkit-overflow-scrolling: touch;">
+                    <p class="font-semibold text-gray-800">Your request has been received and is now pending admin approval.</p>
+                    <div>
+                        <p class="font-semibold text-gray-800 mb-2">What happens next:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-2">
+                            <li>You will receive an email notification when the admin reviews your request</li>
+                            <li>You can track the status in "My Bookings" dashboard</li>
+                            <li>Status updates will appear in real-time</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-600 italic">No need to check your email repeatedly - the dashboard will show all updates!</p>
+                </div>
+                <button onclick="closeBookingSuccessModal(); window.location.hash = 'guest/employee';" class="mt-6 px-6 py-3 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 w-full">Go to Dashboard</button>
+            `;
+            
+            // Create or update modal
+            let modal = document.getElementById('booking-success-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'booking-success-modal';
+                modal.className = 'modal-overlay';
+                modal.innerHTML = `<div class="modal-content">${modalContent}</div>`;
+                document.body.appendChild(modal);
+                
+                // Close on outside click
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeBookingSuccessModal();
+                    }
+                });
+            } else {
+                modal.querySelector('.modal-content').innerHTML = modalContent;
+            }
+            
+            modal.classList.add('open');
+        }
+        
+        // Close booking success modal
+        function closeBookingSuccessModal() {
+            const modal = document.getElementById('booking-success-modal');
+            if (modal) {
+                modal.classList.remove('open');
+            }
+        }
 
         // Initialize when DOM is ready
         function initializeApp() {
@@ -4339,7 +4393,18 @@ The admin will assign a driver closer to the trip date.
                         const startTimeISO = startDateTime.toISOString();
                         
                         // Generate unique booking ID
-                        const bookingId = `B-${String(Object.keys(MOCK_BOOKINGS).length + 1).padStart(3, '0')}`;
+                        // Find the highest existing booking number
+                        let maxBookingNum = 0;
+                        Object.keys(MOCK_BOOKINGS).forEach(key => {
+                            const match = key.match(/^B-(\d+)$/);
+                            if (match) {
+                                const num = parseInt(match[1]);
+                                if (num > maxBookingNum) {
+                                    maxBookingNum = num;
+                                }
+                            }
+                        });
+                        const bookingId = `B-${String(maxBookingNum + 1).padStart(3, '0')}`;
                         
                         // Create booking object
                         const newBooking = {
@@ -4367,20 +4432,37 @@ The admin will assign a driver closer to the trip date.
                         // Add booking to MOCK_BOOKINGS
                         MOCK_BOOKINGS[bookingId] = newBooking;
                         
-                        // Show success message
-                        const successMessage = `✓ Booking Request Submitted Successfully!\n\nYour request has been received and is now pending admin approval.\n\nWhat happens next:\n• You will receive an email notification when the admin reviews your request\n• You can track the status in "My Bookings" dashboard\n• Status updates will appear in real-time\n\nNo need to check your email repeatedly - the dashboard will show all updates!`;
-                        alert(successMessage);
+                        // Debug: Log the booking
+                        console.log('New booking created:', bookingId, newBooking);
+                        console.log('Total bookings:', Object.keys(MOCK_BOOKINGS).length);
+                        console.log('All bookings:', MOCK_BOOKINGS);
                         
-                        // Reset form
+                        // Reset form first
                         newBookingForm.reset();
                         
-                        // Navigate to employee dashboard and refresh
-                        window.location.hash = 'guest/employee';
+                        // Show scrollable success modal
+                        showBookingSuccessModal();
                         
-                        // Refresh dashboard after navigation
+                        // Navigate to employee dashboard after a short delay
                         setTimeout(() => {
+                            window.location.hash = 'guest/employee';
+                        }, 100);
+                        
+                        // Force refresh dashboard multiple times to ensure it updates
+                        setTimeout(() => {
+                            console.log('First refresh - Refreshing dashboard after booking submission');
                             populateEmployeeDashboard('emp_high');
                         }, 100);
+                        
+                        setTimeout(() => {
+                            console.log('Second refresh - Refreshing dashboard after booking submission');
+                            populateEmployeeDashboard('emp_high');
+                        }, 500);
+                        
+                        setTimeout(() => {
+                            console.log('Third refresh - Refreshing dashboard after booking submission');
+                            populateEmployeeDashboard('emp_high');
+                        }, 1000);
                     }
                 });
             }
@@ -4815,10 +4897,12 @@ The admin will assign a driver closer to the trip date.
             
             const bookings = getBookingsByRequester(userId);
             console.log('populateEmployeeDashboard called with userId:', userId);
-            console.log('Found bookings:', bookings.length);
-            console.log('All bookings:', bookings.map(b => ({ id: b.id, status: b.status, purpose: b.tripPurpose })));
+            console.log('MOCK_BOOKINGS keys:', Object.keys(MOCK_BOOKINGS));
+            console.log('Found bookings for user:', bookings.length);
+            console.log('All bookings for user:', bookings.map(b => ({ id: b.id, status: b.status, purpose: b.tripPurpose, requesterId: b.requesterId })));
             
             const bookingsList = document.getElementById('employee-bookings-list');
+            console.log('Bookings list element:', bookingsList);
             
             // Always update stats, even if bookings list doesn't exist yet
             const pendingCount = bookings.filter(b => b.status === 'PENDING').length;

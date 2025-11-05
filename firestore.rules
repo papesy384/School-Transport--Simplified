@@ -1,0 +1,121 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to get user role from custom claims
+    function getUserRole() {
+      return request.auth.token.role;
+    }
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user is the requester of a booking
+    function isRequester(bookingId) {
+      return request.auth.uid == resource.data.requesterId;
+    }
+    
+    // Helper function to check if user is the assigned driver
+    function isAssignedDriver(bookingId) {
+      return request.auth.uid == resource.data.assignedDriverId;
+    }
+    
+    // Helper function to check if booking is pending
+    function isPending() {
+      return resource.data.status == 'PENDING';
+    }
+    
+    // ============================================
+    // ALL_REQUESTS Collection (Booking Requests)
+    // ============================================
+    match /all_requests/{bookingId} {
+      // Employees can CREATE their own booking requests
+      allow create: if isAuthenticated() 
+                   && getUserRole() == 'employee' 
+                   && request.resource.data.requesterId == request.auth.uid
+                   && request.resource.data.status == 'PENDING'; // Only create as pending
+      
+      // Employees can UPDATE only their own PENDING requests
+      allow update: if isAuthenticated() 
+                   && getUserRole() == 'employee' 
+                   && isRequester(bookingId)
+                   && isPending()
+                   && request.resource.data.requesterId == request.auth.uid; // Cannot change requester
+      
+      // Employees can DELETE/CANCEL their own PENDING or APPROVED requests
+      allow delete: if isAuthenticated() 
+                  && getUserRole() == 'employee' 
+                  && isRequester(bookingId)
+                  && (resource.data.status == 'PENDING' || resource.data.status == 'APPROVED');
+      
+      // Employees can READ their own requests
+      allow read: if isAuthenticated() 
+                 && getUserRole() == 'employee' 
+                 && resource.data.requesterId == request.auth.uid;
+      
+      // Admins have full access to all requests
+      allow read, write: if isAuthenticated() 
+                        && getUserRole() == 'admin';
+      
+      // Drivers can READ requests assigned to them
+      allow read: if isAuthenticated() 
+                 && getUserRole() == 'driver' 
+                 && (resource.data.assignedDriverId == request.auth.uid 
+                     || resource.data.status == 'APPROVED'); // Can see approved requests for assignment
+      
+      // Drivers can UPDATE their assigned trips (status updates, final log)
+      allow update: if isAuthenticated() 
+                   && getUserRole() == 'driver' 
+                   && isAssignedDriver(bookingId)
+                   && (resource.data.status == 'APPROVED' 
+                       || resource.data.status == 'ACTIVE' 
+                       || resource.data.status == 'COMPLETED');
+    }
+    
+    // ============================================
+    // VEHICLES Collection (Fleet Management)
+    // ============================================
+    match /vehicles/{vehicleId} {
+      // Only admins can manage vehicles
+      allow read: if isAuthenticated() && (getUserRole() == 'admin' || getUserRole() == 'employee');
+      allow write: if isAuthenticated() && getUserRole() == 'admin';
+    }
+    
+    // ============================================
+    // USERS Collection (User Management)
+    // ============================================
+    match /users/{userId} {
+      // Users can read their own profile
+      allow read: if isAuthenticated() && request.auth.uid == userId;
+      
+      // Only admins can manage users
+      allow write: if isAuthenticated() && getUserRole() == 'admin';
+    }
+    
+    // ============================================
+    // NOTIFICATIONS Collection (User Notifications)
+    // ============================================
+    match /notifications/{notificationId} {
+      // Users can read their own notifications
+      allow read: if isAuthenticated() 
+                 && resource.data.userId == request.auth.uid;
+      
+      // System can create notifications (handled by Cloud Functions)
+      allow create: if isAuthenticated() && getUserRole() == 'admin';
+      
+      // Users can update their own notifications (mark as read)
+      allow update: if isAuthenticated() 
+                  && resource.data.userId == request.auth.uid;
+    }
+    
+    // ============================================
+    // DEFAULT: Deny all other access
+    // ============================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

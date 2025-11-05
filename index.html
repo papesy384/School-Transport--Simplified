@@ -10,6 +10,46 @@
     <title>SmartCarBooking - ISD Transportation</title>
     <!-- Load Tailwind CSS for modern, responsive styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc, query, where, orderBy, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        
+        // Firebase configuration - Replace with your Firebase project config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // Initialize Firebase
+        const firebaseApp = initializeApp(firebaseConfig);
+        const db = getFirestore(firebaseApp);
+        const auth = getAuth(firebaseApp);
+        
+        // Make Firebase available globally
+        window.firebaseApp = firebaseApp;
+        window.firebaseDb = db;
+        window.firebaseAuth = auth;
+        window.firebaseConfig = firebaseConfig; // Store config for checking
+        window.firebaseFunctions = {
+            collection,
+            doc,
+            getDoc,
+            getDocs,
+            addDoc,
+            updateDoc,
+            deleteDoc,
+            query,
+            where,
+            orderBy,
+            onSnapshot
+        };
+    </script>
     <!-- Use Inter font, suitable for professional and modern web apps -->
     <style>
         /* Define ISD Brand Colors using Tailwind utility classes */
@@ -366,11 +406,111 @@
             outline-offset: 2px;
         }
         
-        /* Large touch targets for driver interface buttons */
+        /* Large touch targets for driver interface buttons - Enhanced for mobile safety */
         #view-assigned-trips button,
         #view-trip-finalization button {
-            min-height: 56px !important;
+            min-height: 64px !important; /* Increased from 56px for better touch target */
             min-width: 120px !important;
+            padding: 1rem 1.5rem !important; /* p-4 or higher (16px vertical, 24px horizontal) */
+            font-size: 18px !important; /* Larger text for better visibility */
+            font-weight: 700 !important; /* Extra bold for high contrast */
+            letter-spacing: 0.5px !important; /* Better text readability */
+        }
+        
+        /* Enhanced Start Trip button - Primary action, extra large */
+        #view-assigned-trips #start-trip-btn {
+            min-height: 72px !important; /* Extra large for primary action */
+            padding: 1.25rem 2rem !important; /* p-5 or higher (20px vertical, 32px horizontal) */
+            font-size: 20px !important;
+            background-color: #10b981 !important; /* Brighter green for dark mode */
+            border: 2px solid #059669 !important; /* Border for extra visibility */
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4) !important; /* Glow effect */
+        }
+        
+        #view-assigned-trips #start-trip-btn:hover {
+            background-color: #059669 !important;
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.6) !important;
+        }
+        
+        /* Dark mode button color enhancements for better contrast */
+        #view-assigned-trips button.bg-green-600,
+        #view-assigned-trips #start-trip-btn {
+            background-color: #10b981 !important; /* Brighter green (#10b981) instead of #16a34a */
+            color: #ffffff !important;
+            border: 2px solid #059669 !important;
+        }
+        
+        #view-assigned-trips button.bg-green-600:hover {
+            background-color: #059669 !important;
+        }
+        
+        #view-assigned-trips button.bg-blue-600 {
+            background-color: #3b82f6 !important; /* Brighter blue for dark mode */
+            color: #ffffff !important;
+            border: 2px solid #2563eb !important;
+        }
+        
+        #view-assigned-trips button.bg-blue-600:hover {
+            background-color: #2563eb !important;
+        }
+        
+        #view-assigned-trips button.bg-purple-600 {
+            background-color: #9333ea !important; /* Brighter purple for dark mode */
+            color: #ffffff !important;
+            border: 2px solid #7e22ce !important;
+        }
+        
+        #view-assigned-trips button.bg-purple-600:hover {
+            background-color: #7e22ce !important;
+        }
+        
+        #view-assigned-trips button.bg-indigo-600 {
+            background-color: #4f46e5 !important; /* Brighter indigo for dark mode */
+            color: #ffffff !important;
+            border: 2px solid #4338ca !important;
+        }
+        
+        #view-assigned-trips button.bg-indigo-600:hover {
+            background-color: #4338ca !important;
+        }
+        
+        #view-assigned-trips button.bg-orange-500 {
+            background-color: #f97316 !important; /* Brighter orange for dark mode */
+            color: #ffffff !important;
+            border: 2px solid #ea580c !important;
+        }
+        
+        #view-assigned-trips button.bg-orange-500:hover {
+            background-color: #ea580c !important;
+        }
+        
+        #view-assigned-trips button.bg-gray-700 {
+            background-color: #374151 !important; /* Lighter gray for dark mode visibility */
+            color: #ffffff !important;
+            border: 2px solid #4b5563 !important;
+        }
+        
+        #view-assigned-trips button.bg-gray-700:hover {
+            background-color: #4b5563 !important;
+        }
+        
+        /* Disabled buttons in dark mode */
+        #view-assigned-trips button:disabled {
+            background-color: #4b5563 !important;
+            color: #9ca3af !important;
+            border: 2px solid #6b7280 !important;
+            opacity: 0.6 !important;
+        }
+        
+        /* Button text shadows for better readability in dark mode */
+        #view-assigned-trips button:not(:disabled) {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important; /* Stronger shadow for dark mode */
+        }
+        
+        /* Active/pressed state for better feedback */
+        #view-assigned-trips button:active:not(:disabled) {
+            transform: scale(0.98) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
         }
         
         /* Style unavailable dates - match browser's disabled input styling exactly */
@@ -1758,7 +1898,7 @@
                 
                 <!-- Single-Tap Delay Communication Button -->
                 <div class="mb-6">
-                    <button id="delay-notification-btn" onclick="sendDelayNotification()" class="w-full py-4 px-6 bg-orange-500 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-orange-600 active:scale-95 transition-transform">
+                    <button id="delay-notification-btn" onclick="sendDelayNotification()" class="w-full py-5 px-8 bg-orange-500 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-orange-600 active:scale-95 transition-transform border-2 border-orange-400">
                         ⏱️ Running 10 Mins Late
                     </button>
                     <p class="text-xs text-gray-600 mt-2 text-center">Tap to instantly notify employee and admin</p>
@@ -1770,7 +1910,7 @@
                     
                     <!-- Step 1: Start Trip (Departing from garage/depot) -->
                     <div class="border-l-4 border-green-500 pl-4">
-                        <button id="start-trip-btn" onclick="updateTripStatus('start-trip')" class="w-full py-4 px-6 bg-green-600 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-green-700 active:scale-95 transition-transform">
+                        <button id="start-trip-btn" onclick="updateTripStatus('start-trip')" class="w-full py-5 px-8 bg-green-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-green-700 active:scale-95 transition-transform border-2 border-green-500">
                             🚗 Start Trip
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Departing from garage/depot</p>
@@ -1778,7 +1918,7 @@
                     
                     <!-- Step 2: Arrived at Pickup (Disabled until Start Trip is clicked) -->
                     <div class="border-l-4 border-gray-300 pl-4">
-                        <button id="arrived-pickup-btn" onclick="updateTripStatus('arrived-pickup')" class="w-full py-4 px-6 bg-blue-600 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-blue-700 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button id="arrived-pickup-btn" onclick="updateTripStatus('arrived-pickup')" class="w-full py-5 px-8 bg-blue-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-blue-700 active:scale-95 transition-transform border-2 border-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
                             📍 Arrived at Pickup
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Arrived at pickup location</p>
@@ -1824,7 +1964,7 @@
                 
                     <!-- Step 4: Start Driving (Disabled until Safety Check is confirmed) -->
                     <div class="border-l-4 border-gray-300 pl-4">
-                        <button id="start-driving-btn" onclick="updateTripStatus('start-driving')" class="w-full py-4 px-6 bg-purple-600 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-purple-700 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button id="start-driving-btn" onclick="updateTripStatus('start-driving')" class="w-full py-5 px-8 bg-purple-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-purple-700 active:scale-95 transition-transform border-2 border-purple-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
                             ▶️ Start Driving
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Passengers loaded, trip underway</p>
@@ -1832,7 +1972,7 @@
                     
                     <!-- Step 5: Arrived at Destination -->
                     <div class="border-l-4 border-gray-300 pl-4">
-                        <button id="arrived-destination-btn" onclick="updateTripStatus('arrived-destination')" class="w-full py-4 px-6 bg-indigo-600 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-indigo-700 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button id="arrived-destination-btn" onclick="updateTripStatus('arrived-destination')" class="w-full py-5 px-8 bg-indigo-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-indigo-700 active:scale-95 transition-transform border-2 border-indigo-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
                             🎯 Arrived at Destination
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Arrived at destination</p>
@@ -1840,7 +1980,7 @@
                     
                     <!-- Step 6: Trip Complete (Opens Finalization Log) -->
                     <div class="border-l-4 border-gray-300 pl-4">
-                        <button id="trip-complete-btn" onclick="openTripFinalization()" class="w-full py-4 px-6 bg-gray-700 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-gray-800 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button id="trip-complete-btn" onclick="openTripFinalization()" class="w-full py-5 px-8 bg-gray-700 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-gray-800 active:scale-95 transition-transform border-2 border-gray-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
                             ✅ Trip Complete
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Complete trip and submit log</p>
@@ -2269,12 +2409,20 @@
                             viewElement.classList.add('active');
                             if (homeLink) homeLink.classList.remove('hidden');
                             
+                            // Set current role in appState
+                            setCurrentRole(role);
+                            
+                            // Start real-time data listeners for the current role
+                            if (window.firebaseAuth && window.firebaseAuth.currentUser) {
+                                startDataListeners();
+                            }
+                            
                             // Populate dashboard data when navigating
-                            setTimeout(() => {
+                            setTimeout(async () => {
                                 if (role === 'employee') {
-                                    populateEmployeeDashboard('emp_high');
+                                    await populateEmployeeDashboard('emp_high');
                                 } else if (role === 'admin') {
-                                    populateAdminDashboard();
+                                    await populateAdminDashboard();
                                 } else if (role === 'driver') {
                                     populateDriverDashboard('driver_kore');
                                 }
@@ -2291,8 +2439,16 @@
                         if (viewElement) {
                             viewElement.classList.add('active');
                             if (homeLink) homeLink.classList.remove('hidden');
-                            setTimeout(() => {
-                                populateEmployeeDashboard('emp_high');
+                            // Ensure role is set to employee for my-bookings view
+                            setCurrentRole('employee');
+                            
+                            // Start real-time data listeners for employee role
+                            if (window.firebaseAuth && window.firebaseAuth.currentUser) {
+                                startDataListeners();
+                            }
+                            
+                            setTimeout(async () => {
+                                await populateEmployeeDashboard('emp_high');
                             }, 50);
                         }
                     } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
@@ -2384,6 +2540,408 @@
         
         // Current simulated date: 2025-11-05
         const CURRENT_DATE = new Date('2025-11-05');
+        
+        // ============================================
+        // APPLICATION STATE
+        // ============================================
+        const appState = {
+            currentRole: null, // 'employee', 'admin', 'driver', or null
+            currentUserId: null, // Current authenticated user ID
+            isAuthenticated: false
+        };
+        
+        // Helper function to set current role
+        function setCurrentRole(role) {
+            appState.currentRole = role;
+        }
+        
+        // Helper function to get current role
+        function getCurrentRole() {
+            return appState.currentRole;
+        }
+        
+        // ============================================
+        // FIREBASE HELPER FUNCTIONS
+        // ============================================
+        
+        // Check if Firebase is configured and available
+        function isFirebaseConfigured() {
+            return window.firebaseDb && 
+                   window.firebaseConfig && 
+                   window.firebaseConfig.apiKey !== "YOUR_API_KEY";
+        }
+        
+        // Get current authenticated user
+        async function getCurrentUser() {
+            if (!window.firebaseAuth) return null;
+            return window.firebaseAuth.currentUser;
+        }
+        
+        // Get user's role from custom claims
+        async function getUserRole() {
+            const user = await getCurrentUser();
+            if (!user) return null;
+            // Custom claims are set by Firebase Admin SDK
+            // For now, we'll check the user document
+            const userDoc = await window.firebaseFunctions.getDoc(
+                window.firebaseFunctions.doc(window.firebaseDb, 'users', user.uid)
+            );
+            if (userDoc.exists()) {
+                return userDoc.data().role;
+            }
+            return null;
+        }
+        
+        // Firestore: Create booking (Employee can create their own requests)
+        async function createBooking(bookingData) {
+            // Ensure numeric fields are properly typed as numbers (not strings) before saving to Firebase
+            if (bookingData.durationHours !== undefined) {
+                bookingData.durationHours = Number(bookingData.durationHours);
+                if (isNaN(bookingData.durationHours) || bookingData.durationHours <= 0) {
+                    throw new Error('Invalid durationHours: must be a positive number');
+                }
+            }
+            
+            if (bookingData.passengers !== undefined) {
+                bookingData.passengers = Number(bookingData.passengers);
+                if (isNaN(bookingData.passengers) || bookingData.passengers <= 0) {
+                    throw new Error('Invalid passengers: must be a positive number');
+                }
+            }
+            
+            if (!isFirebaseConfigured()) {
+                // Fallback to mock data
+                const bookingId = `B-${String(Object.keys(MOCK_BOOKINGS).length + 1).padStart(3, '0')}`;
+                MOCK_BOOKINGS[bookingId] = {
+                    ...bookingData,
+                    id: bookingId,
+                    submittedTime: new Date().toISOString()
+                };
+                return bookingId;
+            }
+            
+            const user = await getCurrentUser();
+            if (!user) throw new Error('User not authenticated');
+            
+            // Ensure requesterId matches authenticated user
+            bookingData.requesterId = user.uid;
+            bookingData.status = 'PENDING';
+            bookingData.submittedTime = new Date().toISOString();
+            
+            const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+            
+            try {
+                const docRef = await window.firebaseFunctions.addDoc(bookingsRef, bookingData);
+                console.log('✅ Booking successfully saved to Firebase:', docRef.id);
+                return docRef.id;
+            } catch (error) {
+                // Enhanced error logging for Firebase operations
+                console.error('❌ Firebase Error Details:', {
+                    code: error.code,
+                    message: error.message,
+                    stack: error.stack,
+                    bookingData: bookingData
+                });
+                
+                // Log specific error types
+                if (error.code === 'permission-denied') {
+                    console.error('🔒 PERMISSION DENIED: Check Firebase Security Rules for all_requests collection');
+                    console.error('   Expected: Employee can create with requesterId == auth.uid');
+                    console.error('   Current user UID:', user.uid);
+                    console.error('   Booking requesterId:', bookingData.requesterId);
+                } else if (error.code === 'unauthenticated') {
+                    console.error('🔐 UNAUTHENTICATED: User is not logged in');
+                } else if (error.code === 'invalid-argument') {
+                    console.error('⚠️ INVALID ARGUMENT: Check data types (durationHours should be number)');
+                    console.error('   durationHours type:', typeof bookingData.durationHours);
+                    console.error('   passengers type:', typeof bookingData.passengers);
+                }
+                
+                throw error; // Re-throw to be caught by calling function
+            }
+        }
+        
+        // Firestore: Get bookings by requester (Employee can read their own)
+        async function getBookingsByRequesterFirestore(userId) {
+            if (!isFirebaseConfigured()) {
+                return getBookingsByRequester(userId);
+            }
+            
+            const user = await getCurrentUser();
+            if (!user) return [];
+            
+            const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+            const q = window.firebaseFunctions.query(
+                bookingsRef,
+                window.firebaseFunctions.where('requesterId', '==', user.uid),
+                window.firebaseFunctions.orderBy('startTime', 'desc')
+            );
+            
+            const querySnapshot = await window.firebaseFunctions.getDocs(q);
+            const bookings = [];
+            querySnapshot.forEach((doc) => {
+                bookings.push({ id: doc.id, ...doc.data() });
+            });
+            return bookings;
+        }
+        
+        // Firestore: Get bookings by status (Admin can read all)
+        async function getBookingsByStatusFirestore(status) {
+            if (!isFirebaseConfigured()) {
+                return getBookingsByStatus(status);
+            }
+            
+            const user = await getCurrentUser();
+            if (!user) return [];
+            
+            const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+            const q = window.firebaseFunctions.query(
+                bookingsRef,
+                window.firebaseFunctions.where('status', '==', status),
+                window.firebaseFunctions.orderBy('startTime', 'asc')
+            );
+            
+            const querySnapshot = await window.firebaseFunctions.getDocs(q);
+            const bookings = [];
+            querySnapshot.forEach((doc) => {
+                bookings.push({ id: doc.id, ...doc.data() });
+            });
+            return bookings;
+        }
+        
+        // Firestore: Update booking (Employee can update their own PENDING, Admin can update any)
+        async function updateBookingFirestore(bookingId, updates) {
+            if (!isFirebaseConfigured()) {
+                if (MOCK_BOOKINGS[bookingId]) {
+                    MOCK_BOOKINGS[bookingId] = { ...MOCK_BOOKINGS[bookingId], ...updates };
+                }
+                return;
+            }
+            
+            const user = await getCurrentUser();
+            if (!user) throw new Error('User not authenticated');
+            
+            const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
+            await window.firebaseFunctions.updateDoc(bookingRef, updates);
+        }
+        
+        // Firestore: Delete booking (Employee can delete their own PENDING/APPROVED)
+        async function deleteBookingFirestore(bookingId) {
+            if (!isFirebaseConfigured()) {
+                delete MOCK_BOOKINGS[bookingId];
+                return;
+            }
+            
+            const user = await getCurrentUser();
+            if (!user) throw new Error('User not authenticated');
+            
+            const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
+            await window.firebaseFunctions.deleteDoc(bookingRef);
+        }
+        
+        // Firestore: Get single booking by ID
+        async function getBookingByIdFirestore(bookingId) {
+            if (!isFirebaseConfigured()) {
+                return getBookingById(bookingId);
+            }
+            
+            const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
+            const bookingDoc = await window.firebaseFunctions.getDoc(bookingRef);
+            
+            if (bookingDoc.exists()) {
+                return { id: bookingDoc.id, ...bookingDoc.data() };
+            }
+            return null;
+        }
+        
+        // Set up real-time listener for bookings (optional)
+        function setupBookingsListener(callback) {
+            if (!isFirebaseConfigured()) return;
+            
+            const user = window.firebaseAuth.currentUser;
+            if (!user) return;
+            
+            const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+            const q = window.firebaseFunctions.query(
+                bookingsRef,
+                window.firebaseFunctions.where('requesterId', '==', user.uid)
+            );
+            
+            return window.firebaseFunctions.onSnapshot(q, (snapshot) => {
+                const bookings = [];
+                snapshot.forEach((doc) => {
+                    bookings.push({ id: doc.id, ...doc.data() });
+                });
+                callback(bookings);
+            });
+        }
+        
+        // Start data listeners for real-time updates (role-specific scoping)
+        function startDataListeners() {
+            if (!isFirebaseConfigured()) return null;
+            
+            const user = window.firebaseAuth.currentUser;
+            if (!user) {
+                console.warn('startDataListeners: No authenticated user');
+                return null;
+            }
+            
+            const currentRole = getCurrentRole();
+            if (!currentRole) {
+                console.warn('startDataListeners: No role set in appState');
+                return null;
+            }
+            
+            const listeners = [];
+            
+            // Employee role: Listen to their own bookings only
+            if (currentRole === 'employee') {
+                const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+                const employeeQuery = window.firebaseFunctions.query(
+                    bookingsRef,
+                    window.firebaseFunctions.where('requesterId', '==', user.uid), // Scoped to employee's userId
+                    window.firebaseFunctions.orderBy('startTime', 'desc')
+                );
+                
+                const unsubscribe = window.firebaseFunctions.onSnapshot(employeeQuery, (snapshot) => {
+                    const bookings = [];
+                    snapshot.forEach((doc) => {
+                        bookings.push({ id: doc.id, ...doc.data() });
+                    });
+                    // Update employee dashboard when bookings change
+                    populateEmployeeDashboard(user.uid);
+                }, (error) => {
+                    console.error('❌ Employee bookings listener error:', error);
+                    if (error.code === 'permission-denied') {
+                        console.error('🔒 PERMISSION DENIED: Employee cannot read bookings');
+                        console.error('   Check Firebase Security Rules - Employee should be able to read where requesterId == auth.uid');
+                        console.error('   Current user UID:', user.uid);
+                    }
+                });
+                
+                listeners.push({ type: 'employee_bookings', unsubscribe });
+                console.log(`startDataListeners: Employee listener set up for userId: ${user.uid}`);
+            }
+            
+            // Driver role: Listen to assigned trips only
+            if (currentRole === 'driver') {
+                const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+                const driverQuery = window.firebaseFunctions.query(
+                    bookingsRef,
+                    window.firebaseFunctions.where('assignedDriverId', '==', user.uid), // Scoped to driver's userId
+                    window.firebaseFunctions.where('status', 'in', ['APPROVED', 'ACTIVE']),
+                    window.firebaseFunctions.orderBy('startTime', 'asc')
+                );
+                
+                const unsubscribe = window.firebaseFunctions.onSnapshot(driverQuery, (snapshot) => {
+                    const trips = [];
+                    snapshot.forEach((doc) => {
+                        const booking = { id: doc.id, ...doc.data() };
+                        // Double-check: Only include APPROVED or ACTIVE trips (exclude CANCELLED)
+                        if (booking.status !== 'CANCELLED' && (booking.status === 'APPROVED' || booking.status === 'ACTIVE')) {
+                            trips.push(booking);
+                        }
+                    });
+                    
+                    console.log(`🚗 Driver Listener: ${trips.length} active/approved trips found (CANCELLED trips automatically excluded)`);
+                    if (trips.length === 0) {
+                        console.log(`   ⚠️ No active trips - Trip card should show "No Active Trips"`);
+                    }
+                    
+                    // Update driver dashboard when assigned trips change
+                    populateDriverDashboard(user.uid);
+                }, (error) => {
+                    console.error('❌ Driver trips listener error:', error);
+                    if (error.code === 'permission-denied') {
+                        console.error('🔒 PERMISSION DENIED: Driver cannot read assigned trips');
+                        console.error('   Check Firebase Security Rules - Driver should be able to read where assignedDriverId == auth.uid');
+                        console.error('   Current user UID:', user.uid);
+                    }
+                });
+                
+                listeners.push({ type: 'driver_trips', unsubscribe });
+                console.log(`startDataListeners: Driver listener set up for userId: ${user.uid}`);
+            }
+            
+            // Admin role: Listen to all bookings (pending, approved, cancelled) for complete oversight
+            if (currentRole === 'admin') {
+                // Listener 1: Pending bookings (for queue management)
+                const pendingBookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+                const pendingQuery = window.firebaseFunctions.query(
+                    pendingBookingsRef,
+                    window.firebaseFunctions.where('status', '==', 'PENDING'),
+                    window.firebaseFunctions.orderBy('startTime', 'asc')
+                );
+                
+                const unsubscribePending = window.firebaseFunctions.onSnapshot(pendingQuery, (snapshot) => {
+                    const bookings = [];
+                    snapshot.forEach((doc) => {
+                        bookings.push({ id: doc.id, ...doc.data() });
+                    });
+                    console.log(`📊 Admin Pending Listener: ${bookings.length} pending bookings`);
+                    // Update admin dashboard when pending bookings change
+                    populateAdminDashboard();
+                }, (error) => {
+                    console.error('❌ Admin pending bookings listener error:', error);
+                    if (error.code === 'permission-denied') {
+                        console.error('🔒 PERMISSION DENIED: Admin cannot read pending bookings');
+                        console.error('   Check Firebase Security Rules - Admin should have full read/write access');
+                    }
+                });
+                
+                listeners.push({ type: 'admin_pending', unsubscribe: unsubscribePending });
+                
+                // Listener 2: All bookings including CANCELLED (for real-time status updates)
+                // This allows admin to see status changes (like CANCELLED) in real-time
+                const allBookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+                const allBookingsQuery = window.firebaseFunctions.query(
+                    allBookingsRef,
+                    window.firebaseFunctions.orderBy('startTime', 'desc')
+                );
+                
+                const unsubscribeAll = window.firebaseFunctions.onSnapshot(allBookingsQuery, (snapshot) => {
+                    const bookings = [];
+                    snapshot.forEach((doc) => {
+                        bookings.push({ id: doc.id, ...doc.data() });
+                    });
+                    
+                    // Log cancelled bookings for real-time verification
+                    const cancelledBookings = bookings.filter(b => b.status === 'CANCELLED');
+                    if (cancelledBookings.length > 0) {
+                        console.log(`🔄 Admin All Bookings Listener: ${cancelledBookings.length} cancelled booking(s) detected`);
+                        cancelledBookings.forEach(booking => {
+                            console.log(`   - Booking ${booking.id} is CANCELLED (real-time update) - Purpose: ${booking.tripPurpose || 'N/A'}`);
+                        });
+                    }
+                    
+                    // Update admin dashboard to show all statuses including cancelled
+                    populateAdminDashboard();
+                }, (error) => {
+                    console.error('❌ Admin all bookings listener error:', error);
+                    if (error.code === 'permission-denied') {
+                        console.error('🔒 PERMISSION DENIED: Admin cannot read all bookings');
+                        console.error('   Check Firebase Security Rules - Admin should have full read/write access');
+                    }
+                });
+                
+                listeners.push({ type: 'admin_all', unsubscribe: unsubscribeAll });
+                console.log(`startDataListeners: Admin listeners set up (pending + all bookings for real-time status updates)`);
+            }
+            
+            return listeners; // Return listeners array for cleanup
+        }
+        
+        // Stop all data listeners (cleanup function)
+        function stopDataListeners(listeners) {
+            if (!listeners || !Array.isArray(listeners)) return;
+            
+            listeners.forEach(listener => {
+                if (listener && listener.unsubscribe) {
+                    listener.unsubscribe();
+                    console.log(`stopDataListeners: Stopped ${listener.type} listener`);
+                }
+            });
+        }
         
         const MOCK_BOOKINGS = {
             "B-001": {
@@ -4038,9 +4596,9 @@
         }
         
         // Post-Submission Management: Cancel Request (for Pending or Approved bookings)
-        function cancelBooking(bookingId, currentStatus) {
+        async function cancelBooking(bookingId, currentStatus) {
             // Check if booking is in Pending or Approved status
-            if (currentStatus !== 'Pending' && currentStatus !== 'Approved') {
+            if (currentStatus !== 'Pending' && currentStatus !== 'Approved' && currentStatus !== 'PENDING' && currentStatus !== 'APPROVED') {
                 alert(`Cancel Request is only available for bookings with Pending or Approved status.\n\nCurrent Status: ${currentStatus}\n\nThis booking cannot be cancelled.`);
                 return;
             }
@@ -4048,20 +4606,44 @@
             const confirmed = confirm(`Cancel Request: ${bookingId}\n\nCurrent Status: ${currentStatus}\n\nAre you sure you want to cancel this booking request?\n\nThis action will:\n- Send an immediate notification to the Admin\n- If a driver is assigned, notify them to free up the vehicle\n- Cancel the booking permanently\n\nThis action cannot be undone.`);
             
             if (confirmed) {
-                setTimeout(() => {
-                    alert(`Booking ${bookingId} has been cancelled successfully.\n\nNotifications have been sent to:\n- Admin (to free up the vehicle)\n- Assigned Driver (if applicable)\n\nThe booking status has been updated to "Cancelled".`);
+                try {
+                    // Update booking status to CANCELLED in Firebase
+                    const updates = {
+                        status: 'CANCELLED',
+                        cancelledAt: new Date().toISOString(),
+                        adminNotes: (currentStatus === 'APPROVED' || currentStatus === 'Approved') 
+                            ? 'Booking cancelled by employee.' 
+                            : 'Booking cancelled by employee before approval.'
+                    };
                     
-                    // Update UI - remove from list or mark as cancelled
-                    const bookingElement = document.querySelector(`button[onclick*="${bookingId}"]`)?.closest('.bg-white');
-                    if (bookingElement) {
-                        bookingElement.style.opacity = '0.5';
-                        const statusBadge = bookingElement.querySelector('span');
-                        if (statusBadge && statusBadge.textContent.includes('Pending') || statusBadge.textContent.includes('Approved')) {
-                            statusBadge.textContent = 'Cancelled';
-                            statusBadge.className = 'px-3 py-1 bg-gray-500 text-white rounded-full text-xs font-semibold';
-                        }
+                    console.log(`🔄 Cancelling booking ${bookingId}...`, updates);
+                    
+                    // Update in Firebase (or mock data if not configured)
+                    await updateBookingFirestore(bookingId, updates);
+                    
+                    console.log(`✅ Booking ${bookingId} cancelled successfully. Status updated to CANCELLED.`);
+                    console.log(`📡 Real-time listeners should automatically update:\n   - Driver window: Trip will disappear from "Upcoming Trips"\n   - Admin window: Status will change to "Cancelled"`);
+                    
+                    alert(`Booking ${bookingId} has been cancelled successfully.\n\nNotifications have been sent to:\n- Admin (to free up the vehicle)\n- Assigned Driver (if applicable)\n\nThe booking status has been updated to "Cancelled".\n\nReal-time updates will appear in:\n- Driver's "Upcoming Trips" (trip will disappear)\n- Admin's dashboard (status will show "Cancelled")`);
+                    
+                    // Refresh employee dashboard to show updated status
+                    setTimeout(async () => {
+                        await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
+                    }, 100);
+                    
+                } catch (error) {
+                    console.error('❌ Error cancelling booking:', error);
+                    let errorMessage = 'Failed to cancel booking. Please try again.';
+                    
+                    if (error.code === 'permission-denied') {
+                        errorMessage = 'Permission Denied: You do not have permission to cancel this booking.\n\nCheck Network Tab for 403 Forbidden response.';
+                        console.error('🔒 PERMISSION DENIED: Check Firebase Security Rules for update permissions');
+                    } else if (error.message) {
+                        errorMessage += '\n\nError: ' + error.message;
                     }
-                }, 500);
+                    
+                    alert(errorMessage);
+                }
             }
         }
         
@@ -4462,7 +5044,7 @@ The admin will assign a driver closer to the trip date.
             // Form validation for New Booking
             const newBookingForm = document.getElementById('new-booking-form');
             if (newBookingForm) {
-                newBookingForm.addEventListener('submit', (e) => {
+                newBookingForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     
                     // Clear previous errors
@@ -4547,6 +5129,15 @@ The admin will assign a driver closer to the trip date.
                         document.getElementById('trip-duration-error').classList.remove('hidden');
                         tripDuration.classList.add('border-red-500');
                         isValid = false;
+                    } else {
+                        // Validate that duration is a valid number
+                        const durationValue = parseInt(tripDuration.value, 10);
+                        if (isNaN(durationValue) || durationValue <= 0) {
+                            document.getElementById('trip-duration-error').classList.remove('hidden');
+                            document.getElementById('trip-duration-error').textContent = 'Duration must be a valid number';
+                            tripDuration.classList.add('border-red-500');
+                            isValid = false;
+                        }
                     }
                     
                     // Validate Vehicle Type
@@ -4621,9 +5212,19 @@ The admin will assign a driver closer to the trip date.
                         const vehicleType = document.getElementById('vehicle-type').value;
                         const tripDate = document.getElementById('trip-date').value;
                         const pickupTime = document.getElementById('pickup-time').value;
-                        const tripDuration = parseInt(document.getElementById('trip-duration').value);
+                        
+                        // Parse duration as integer - ensure it's a number, not a string
+                        const tripDurationValue = document.getElementById('trip-duration').value;
+                        const tripDuration = parseInt(tripDurationValue, 10); // Explicit radix 10 for base-10 parsing
+                        
+                        // Validate duration is a valid number
+                        if (isNaN(tripDuration) || tripDuration <= 0) {
+                            alert('Invalid duration. Please select a valid duration.');
+                            return;
+                        }
+                        
                         const driverOption = document.getElementById('driver-option').value;
-                        const passengers = parseInt(document.getElementById('passengers').value);
+                        const passengers = parseInt(document.getElementById('passengers').value, 10); // Also ensure passengers is numeric
                         const notes = document.getElementById('notes')?.value.trim() || '';
                         const pickupLocation = document.getElementById('pickup-location')?.value.trim() || '';
                         
@@ -4646,30 +5247,15 @@ The admin will assign a driver closer to the trip date.
                         const startDateTime = new Date(`${tripDate}T${pickupTime}:00Z`);
                         const startTimeISO = startDateTime.toISOString();
                         
-                        // Generate unique booking ID
-                        // Find the highest existing booking number
-                        let maxBookingNum = 0;
-                        Object.keys(MOCK_BOOKINGS).forEach(key => {
-                            const match = key.match(/^B-(\d+)$/);
-                            if (match) {
-                                const num = parseInt(match[1]);
-                                if (num > maxBookingNum) {
-                                    maxBookingNum = num;
-                                }
-                            }
-                        });
-                        const bookingId = `B-${String(maxBookingNum + 1).padStart(3, '0')}`;
-                        
                         // Create booking object
+                        // Ensure all numeric fields are explicitly numbers (not strings) for Firebase
                         const newBooking = {
-                            requesterId: 'emp_high', // Guest mode - using Sarah Chen
                             vehicleType: mappedVehicleType,
                             startTime: startTimeISO,
-                            durationHours: tripDuration,
+                            durationHours: Number(tripDuration), // Explicitly convert to number type
                             driverOption: mappedDriverOption,
-                            status: 'PENDING',
                             adminNotes: '',
-                            passengers: passengers,
+                            passengers: Number(passengers), // Explicitly convert to number type
                             tripPurpose: tripPurpose
                         };
                         
@@ -4683,40 +5269,57 @@ The admin will assign a driver closer to the trip date.
                             newBooking.notes = notes;
                         }
                         
-                        // Add booking to MOCK_BOOKINGS
-                        MOCK_BOOKINGS[bookingId] = newBooking;
-                        
-                        // Debug: Log the booking
-                        console.log('New booking created:', bookingId, newBooking);
-                        console.log('Total bookings:', Object.keys(MOCK_BOOKINGS).length);
-                        console.log('All bookings:', MOCK_BOOKINGS);
-                        
-                        // Reset form first
-                        newBookingForm.reset();
-                        
-                        // Show scrollable success modal
-                        showBookingSuccessModal();
-                        
-                        // Navigate to employee dashboard after a short delay
-                        setTimeout(() => {
-                            window.location.hash = 'guest/employee';
-                        }, 100);
-                        
-                        // Force refresh dashboard multiple times to ensure it updates
-                        setTimeout(() => {
-                            console.log('First refresh - Refreshing dashboard after booking submission');
-                            populateEmployeeDashboard('emp_high');
-                        }, 100);
-                        
-                        setTimeout(() => {
-                            console.log('Second refresh - Refreshing dashboard after booking submission');
-                            populateEmployeeDashboard('emp_high');
-                        }, 500);
-                        
-                        setTimeout(() => {
-                            console.log('Third refresh - Refreshing dashboard after booking submission');
-                            populateEmployeeDashboard('emp_high');
-                        }, 1000);
+                        // Create booking in Firestore (or mock data if Firebase not configured)
+                        try {
+                            const bookingId = await createBooking(newBooking);
+                            console.log('New booking created:', bookingId, newBooking);
+                            
+                            // Reset form first
+                            newBookingForm.reset();
+                            
+                            // Show scrollable success modal
+                            showBookingSuccessModal();
+                            
+                            // Navigate to employee dashboard after a short delay
+                            setTimeout(() => {
+                                window.location.hash = 'guest/employee';
+                            }, 100);
+                            
+                            // Force refresh dashboard multiple times to ensure it updates
+                            setTimeout(async () => {
+                                console.log('First refresh - Refreshing dashboard after booking submission');
+                                await populateEmployeeDashboard('emp_high');
+                            }, 100);
+                            
+                            setTimeout(async () => {
+                                console.log('Second refresh - Refreshing dashboard after booking submission');
+                                await populateEmployeeDashboard('emp_high');
+                            }, 500);
+                            
+                            setTimeout(async () => {
+                                console.log('Third refresh - Refreshing dashboard after booking submission');
+                                await populateEmployeeDashboard('emp_high');
+                            }, 1000);
+                        } catch (error) {
+                            console.error('Error creating booking:', error);
+                            
+                            // Enhanced error handling for Firebase permission issues
+                            let errorMessage = 'Failed to create booking. Please try again.';
+                            
+                            if (error.code === 'permission-denied') {
+                                errorMessage = 'Permission Denied: You do not have permission to create bookings. Please check your authentication and role.\n\n' +
+                                    'Console Error Code: ' + error.code + '\n' +
+                                    'Check Network Tab for 403 Forbidden response.';
+                                console.error('Firebase Permission Denied - Check security rules:', error);
+                            } else if (error.code === 'unauthenticated') {
+                                errorMessage = 'Authentication Error: You are not logged in. Please refresh the page and try again.';
+                                console.error('Firebase Unauthenticated Error:', error);
+                            } else if (error.message) {
+                                errorMessage += '\n\nError: ' + error.message;
+                            }
+                            
+                            alert(errorMessage);
+                        }
                     }
                 });
             }
@@ -5188,15 +5791,21 @@ The admin will assign a driver closer to the trip date.
             initializeApp();
         }
         
-        // Function to populate Employee Dashboard with mock bookings
-        function populateEmployeeDashboard(userId) {
-            // Ensure MOCK_BOOKINGS is defined
-            if (typeof MOCK_BOOKINGS === 'undefined') {
-                console.error('MOCK_BOOKINGS is not defined');
-                return;
+        // Function to populate Employee Dashboard with bookings from Firestore or mock data
+        async function populateEmployeeDashboard(userId) {
+            // Try to get bookings from Firestore, fallback to mock data
+            let bookings;
+            try {
+                bookings = await getBookingsByRequesterFirestore(userId);
+            } catch (error) {
+                console.warn('Firestore not available, using mock data:', error);
+                // Ensure MOCK_BOOKINGS is defined
+                if (typeof MOCK_BOOKINGS === 'undefined') {
+                    console.error('MOCK_BOOKINGS is not defined');
+                    return;
+                }
+                bookings = getBookingsByRequester(userId);
             }
-            
-            const bookings = getBookingsByRequester(userId);
             console.log('populateEmployeeDashboard called with userId:', userId);
             console.log('MOCK_BOOKINGS keys:', Object.keys(MOCK_BOOKINGS));
             console.log('Found bookings for user:', bookings.length);
@@ -5405,7 +6014,9 @@ The admin will assign a driver closer to the trip date.
                     bookingHTML += `<button onclick="modifyBooking('${booking.id}')" class="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 text-sm">Modify Request</button>`;
                 }
                 
-                if (booking.status === 'PENDING' || booking.status === 'APPROVED') {
+                // Cancel button: Only render if currentRole is 'employee' AND status is NOT 'COMPLETED'
+                const shouldShowCancelButton = getCurrentRole() === 'employee' && booking.status !== 'COMPLETED';
+                if (shouldShowCancelButton && (booking.status === 'PENDING' || booking.status === 'APPROVED')) {
                     bookingHTML += `<button onclick="cancelBooking('${booking.id}', '${statusClass}')" class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 text-sm">Cancel Request</button>`;
                 }
                 
@@ -5421,9 +6032,16 @@ The admin will assign a driver closer to the trip date.
             console.log('Finished rendering all bookings. Total rendered:', bookingsList.children.length);
         }
         
-        // Function to populate Admin Dashboard with pending bookings
-        function populateAdminDashboard() {
-            const pendingBookings = getBookingsByStatus('PENDING');
+        // Function to populate Admin Dashboard with pending bookings from Firestore or mock data
+        async function populateAdminDashboard() {
+            // Try to get bookings from Firestore, fallback to mock data
+            let pendingBookings;
+            try {
+                pendingBookings = await getBookingsByStatusFirestore('PENDING');
+            } catch (error) {
+                console.warn('Firestore not available, using mock data:', error);
+                pendingBookings = getBookingsByStatus('PENDING');
+            }
             const queue = document.getElementById('pending-queue');
             if (!queue) return;
             
@@ -5482,14 +6100,63 @@ The admin will assign a driver closer to the trip date.
         }
         
         // Function to populate Driver Dashboard with assigned trips
-        function populateDriverDashboard(driverId) {
-            // Find all bookings assigned to this driver
-            const assignedTrips = Object.entries(MOCK_BOOKINGS)
-                .filter(([id, booking]) => booking.assignedDriverId === driverId && (booking.status === 'APPROVED' || booking.status === 'ACTIVE'))
-                .map(([id, booking]) => ({ id, ...booking }));
+        async function populateDriverDashboard(driverId) {
+            // Fetch bookings from Firebase or use mock data
+            let allBookings = [];
+            
+            if (isFirebaseConfigured() && window.firebaseAuth && window.firebaseAuth.currentUser) {
+                try {
+                    // Get bookings assigned to this driver from Firebase
+                    const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+                    const q = window.firebaseFunctions.query(
+                        bookingsRef,
+                        window.firebaseFunctions.where('assignedDriverId', '==', driverId),
+                        window.firebaseFunctions.where('status', 'in', ['APPROVED', 'ACTIVE']),
+                        window.firebaseFunctions.orderBy('startTime', 'asc')
+                    );
+                    
+                    const querySnapshot = await window.firebaseFunctions.getDocs(q);
+                    querySnapshot.forEach((doc) => {
+                        allBookings.push({ id: doc.id, ...doc.data() });
+                    });
+                    
+                    console.log(`🚗 Driver Dashboard: Found ${allBookings.length} active/approved trips for driver ${driverId}`);
+                    console.log(`   Note: CANCELLED trips are automatically excluded by query filter`);
+                } catch (error) {
+                    console.error('Error fetching driver trips from Firebase:', error);
+                    // Fallback to mock data
+                    allBookings = Object.entries(MOCK_BOOKINGS)
+                        .filter(([id, booking]) => booking.assignedDriverId === driverId && (booking.status === 'APPROVED' || booking.status === 'ACTIVE'))
+                        .map(([id, booking]) => ({ id, ...booking }));
+                }
+            } else {
+                // Use mock data
+                allBookings = Object.entries(MOCK_BOOKINGS)
+                    .filter(([id, booking]) => booking.assignedDriverId === driverId && (booking.status === 'APPROVED' || booking.status === 'ACTIVE'))
+                    .map(([id, booking]) => ({ id, ...booking }));
+            }
+            
+            // Filter out CANCELLED trips (should already be filtered by query, but double-check)
+            const assignedTrips = allBookings.filter(booking => 
+                booking.status !== 'CANCELLED' && 
+                (booking.status === 'APPROVED' || booking.status === 'ACTIVE')
+            );
+            
+            console.log(`🚗 Driver Dashboard: ${assignedTrips.length} active trips after filtering CANCELLED`);
             
             const activeTripCard = document.getElementById('active-trip-card');
-            if (!activeTripCard || assignedTrips.length === 0) return;
+            if (!activeTripCard) {
+                console.warn('Driver dashboard: active-trip-card element not found');
+                return;
+            }
+            
+            if (assignedTrips.length === 0) {
+                // No active trips - clear the card or show empty state
+                console.log('🚗 Driver Dashboard: No active trips found. Trip card should be empty or show "No active trips"');
+                const tripTitle = activeTripCard.querySelector('h3');
+                if (tripTitle) tripTitle.textContent = 'No Active Trips';
+                return;
+            }
             
             // Use the first active trip, or first approved trip
             const trip = assignedTrips.find(t => t.status === 'ACTIVE') || assignedTrips[0];
@@ -5531,9 +6198,28 @@ The admin will assign a driver closer to the trip date.
                 window.addEventListener('hashchange', () => {
                     app.handleRoute();
                     // Re-populate dashboards when navigating
-                    setTimeout(() => {
-                        populateEmployeeDashboard('emp_high');
-                        populateAdminDashboard();
+                    setTimeout(async () => {
+                        // Check current route to set role
+                        const hash = window.location.hash.replace('#', '');
+                        if (hash.startsWith('guest/')) {
+                            const role = hash.split('/')[1];
+                            setCurrentRole(role);
+                            
+                            // Start real-time listeners when role changes
+                            if (window.firebaseAuth && window.firebaseAuth.currentUser) {
+                                startDataListeners();
+                            }
+                        } else if (hash === 'my-bookings') {
+                            setCurrentRole('employee');
+                            
+                            // Start real-time listeners for employee
+                            if (window.firebaseAuth && window.firebaseAuth.currentUser) {
+                                startDataListeners();
+                            }
+                        }
+                        
+                        await populateEmployeeDashboard('emp_high');
+                        await populateAdminDashboard();
                         populateDriverDashboard('driver_kore');
                     }, 100);
                 });
@@ -5543,6 +6229,7 @@ The admin will assign a driver closer to the trip date.
                 setTimeout(() => {
                     const hash = window.location.hash.slice(1) || 'home';
                     if (hash === 'guest/employee' || hash === 'my-bookings') {
+                        setCurrentRole('employee'); // Set role for employee dashboard
                         populateEmployeeDashboard('emp_high'); // Guest mode - using Sarah Chen
                     }
                     if (hash === 'guest/admin' || hash === 'booking-approvals') {

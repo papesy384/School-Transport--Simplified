@@ -2118,11 +2118,32 @@
                         if (viewElement) {
                             viewElement.classList.add('active');
                             if (homeLink) homeLink.classList.remove('hidden');
+                            
+                            // Populate dashboard data when navigating
+                            setTimeout(() => {
+                                if (role === 'employee') {
+                                    populateEmployeeDashboard('emp_high');
+                                } else if (role === 'admin') {
+                                    populateAdminDashboard();
+                                } else if (role === 'driver') {
+                                    populateDriverDashboard('driver_kore');
+                                }
+                            }, 50);
                         } else {
                             // Invalid role, show home
                             const viewHome = document.getElementById('view-home');
                             if (viewHome) viewHome.classList.add('active');
                             if (homeLink) homeLink.classList.add('hidden');
+                        }
+                    } else if (hash === 'my-bookings') {
+                        // My Bookings view - also populate employee dashboard
+                        const viewElement = document.getElementById('view-my-bookings');
+                        if (viewElement) {
+                            viewElement.classList.add('active');
+                            if (homeLink) homeLink.classList.remove('hidden');
+                            setTimeout(() => {
+                                populateEmployeeDashboard('emp_high');
+                            }, 50);
                         }
                     } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
                                hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status' || hash === 'trip-finalization') {
@@ -4287,12 +4308,79 @@ The admin will assign a driver closer to the trip date.
                     }
                     
                     if (isValid) {
-                        // Form is valid - show success message with anxiety management
+                        // Collect form data
+                        const tripPurpose = document.getElementById('trip-purpose').value.trim();
+                        const vehicleType = document.getElementById('vehicle-type').value;
+                        const tripDate = document.getElementById('trip-date').value;
+                        const pickupTime = document.getElementById('pickup-time').value;
+                        const tripDuration = parseInt(document.getElementById('trip-duration').value);
+                        const driverOption = document.getElementById('driver-option').value;
+                        const passengers = parseInt(document.getElementById('passengers').value);
+                        const notes = document.getElementById('notes')?.value.trim() || '';
+                        const pickupLocation = document.getElementById('pickup-location')?.value.trim() || '';
+                        
+                        // Map vehicle type to booking format
+                        const vehicleTypeMap = {
+                            'bus': 'Minibus',
+                            'van': 'Passenger Van',
+                            'car': 'Sedan'
+                        };
+                        const mappedVehicleType = vehicleTypeMap[vehicleType] || vehicleType;
+                        
+                        // Map driver option to booking format
+                        const driverOptionMap = {
+                            'school-driver': 'Request Driver',
+                            'self-drive': 'Self-Drive'
+                        };
+                        const mappedDriverOption = driverOptionMap[driverOption] || driverOption;
+                        
+                        // Create start time string (ISO format)
+                        const startDateTime = new Date(`${tripDate}T${pickupTime}:00Z`);
+                        const startTimeISO = startDateTime.toISOString();
+                        
+                        // Generate unique booking ID
+                        const bookingId = `B-${String(Object.keys(MOCK_BOOKINGS).length + 1).padStart(3, '0')}`;
+                        
+                        // Create booking object
+                        const newBooking = {
+                            requesterId: 'emp_high', // Guest mode - using Sarah Chen
+                            vehicleType: mappedVehicleType,
+                            startTime: startTimeISO,
+                            durationHours: tripDuration,
+                            driverOption: mappedDriverOption,
+                            status: 'PENDING',
+                            adminNotes: '',
+                            passengers: passengers,
+                            tripPurpose: tripPurpose
+                        };
+                        
+                        // Add pickup location if school driver
+                        if (driverOption === 'school-driver' && pickupLocation) {
+                            newBooking.pickupLocation = pickupLocation;
+                        }
+                        
+                        // Add notes if provided
+                        if (notes) {
+                            newBooking.notes = notes;
+                        }
+                        
+                        // Add booking to MOCK_BOOKINGS
+                        MOCK_BOOKINGS[bookingId] = newBooking;
+                        
+                        // Show success message
                         const successMessage = `✓ Booking Request Submitted Successfully!\n\nYour request has been received and is now pending admin approval.\n\nWhat happens next:\n• You will receive an email notification when the admin reviews your request\n• You can track the status in "My Bookings" dashboard\n• Status updates will appear in real-time\n\nNo need to check your email repeatedly - the dashboard will show all updates!`;
                         alert(successMessage);
-                        // In a real app, this would submit to a backend
-                        // For now, just navigate back to employee dashboard
+                        
+                        // Reset form
+                        newBookingForm.reset();
+                        
+                        // Navigate to employee dashboard and refresh
                         window.location.hash = 'guest/employee';
+                        
+                        // Refresh dashboard after navigation
+                        setTimeout(() => {
+                            populateEmployeeDashboard('emp_high');
+                        }, 100);
                     }
                 });
             }

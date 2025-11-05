@@ -584,20 +584,20 @@
             
             <div class="flex flex-wrap items-center justify-center sm:justify-end gap-2 sm:gap-4 sm:gap-6 w-full sm:w-auto">
                 <!-- Home/Logout Button (shown in dashboard views) - First item -->
-                <a href="#home" id="home-link" class="text-sm text-isd-gold hover:text-white font-semibold hidden min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-1">Home</a>
+                <a href="#home" id="home-link" class="text-sm text-isd-gold hover:text-white font-semibold hidden min-h-[44px] min-w-[44px] flex items-center justify-center px-2 py-1" data-translate="home">Home</a>
                 
                 <!-- User Categories -->
                 <div class="flex items-center space-x-2 sm:space-x-4 flex-wrap justify-center sm:justify-end">
-                    <a href="#login/admin" id="btn-admin" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center">Admin</a>
-                    <a href="#login/employee" id="btn-employee" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center">Employee</a>
-                    <a href="#login/driver" id="btn-driver" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center">Driver</a>
+                    <a href="#login/admin" id="btn-admin" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="admin">Admin</a>
+                    <a href="#login/employee" id="btn-employee" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="employee">Employee</a>
+                    <a href="#login/driver" id="btn-driver" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="driver">Driver</a>
                 </div>
                 
                 <!-- Language Switcher -->
                 <div id="language-switcher" class="text-sm font-semibold flex items-center gap-1 min-h-[44px]">
-                    <a href="#" id="lang-en" class="text-isd-gold hover:text-white border-b border-isd-gold pb-0.5 px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center">EN</a>
+                    <a href="#" id="lang-en" class="text-isd-gold hover:text-white border-b border-isd-gold pb-0.5 px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="langEn">EN</a>
                     <span class="text-gray-400"> / </span>
-                    <a href="#" id="lang-fr" class="text-white hover:text-isd-gold px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center">FR</a>
+                    <a href="#" id="lang-fr" class="text-white hover:text-isd-gold px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="langFr">FR</a>
                 </div>
             </div>
         </div>
@@ -629,8 +629,8 @@
             <!-- Vehicle Gallery Section -->
             <div class="w-full px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
                 <div class="text-center mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Our Fleet</h2>
-                    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">A diverse range of vehicles to meet all your transportation needs</p>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4" data-translate="ourFleet">Our Fleet</h2>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto" data-translate="fleetDesc">A diverse range of vehicles to meet all your transportation needs</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-20">
@@ -641,11 +641,11 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         </div>
                         <div class="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
-                            <h3 class="text-3xl font-bold text-white mb-3">School Bus</h3>
-                            <p class="text-gray-200 mb-4 text-lg">50 seats • Perfect for field trips and large groups</p>
+                            <h3 class="text-3xl font-bold text-white mb-3" data-translate="schoolBus">School Bus</h3>
+                            <p class="text-gray-200 mb-4 text-lg" data-translate="schoolBusDesc">50 seats • Perfect for field trips and large groups</p>
                             <div class="flex items-center text-isd-gold">
                                 <span class="text-2xl font-bold">8</span>
-                                <span class="ml-2 text-lg">Available</span>
+                                <span class="ml-2 text-lg" data-translate="available">Available</span>
                             </div>
                         </div>
                     </div>
@@ -657,11 +657,11 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         </div>
                         <div class="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
-                            <h3 class="text-3xl font-bold text-white mb-3">SUV</h3>
-                            <p class="text-gray-200 mb-4 text-lg">7 seats • Comfortable for small groups</p>
+                            <h3 class="text-3xl font-bold text-white mb-3" data-translate="suv">SUV</h3>
+                            <p class="text-gray-200 mb-4 text-lg" data-translate="suvDesc">7 seats • Comfortable for small groups</p>
                             <div class="flex items-center text-isd-gold">
                                 <span class="text-2xl font-bold">10</span>
-                                <span class="ml-2 text-lg">Available</span>
+                                <span class="ml-2 text-lg" data-translate="available">Available</span>
                             </div>
                         </div>
                     </div>
@@ -673,11 +673,11 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                         </div>
                         <div class="relative z-10 p-8 h-full flex flex-col justify-end min-h-[400px]">
-                            <h3 class="text-3xl font-bold text-white mb-3">Sedan</h3>
-                            <p class="text-gray-200 mb-4 text-lg">5 seats • Ideal for staff travel</p>
+                            <h3 class="text-3xl font-bold text-white mb-3" data-translate="sedan">Sedan</h3>
+                            <p class="text-gray-200 mb-4 text-lg" data-translate="sedanDesc">5 seats • Ideal for staff travel</p>
                             <div class="flex items-center text-isd-gold">
                                 <span class="text-2xl font-bold">14</span>
-                                <span class="ml-2 text-lg">Available</span>
+                                <span class="ml-2 text-lg" data-translate="available">Available</span>
                             </div>
                         </div>
                     </div>
@@ -685,27 +685,27 @@
 
                 <!-- Features Section -->
                 <div class="max-w-6xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Platform Features</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12" data-translate="platformFeatures">Platform Features</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-isd-gold transition-all hover:shadow-2xl hover:shadow-isd-gold/20">
                             <div class="text-isd-gold text-4xl mb-4">🚌</div>
-                            <h3 class="text-xl font-bold text-white mb-2">Fleet Management</h3>
-                            <p class="text-gray-400">Track and manage all vehicles efficiently</p>
+                            <h3 class="text-xl font-bold text-white mb-2" data-translate="fleetManagement">Fleet Management</h3>
+                            <p class="text-gray-400" data-translate="fleetManagementDesc">Track and manage all vehicles efficiently</p>
                         </div>
                         <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-isd-gold transition-all hover:shadow-2xl hover:shadow-isd-gold/20">
                             <div class="text-isd-gold text-4xl mb-4">📅</div>
-                            <h3 class="text-xl font-bold text-white mb-2">Easy Booking</h3>
-                            <p class="text-gray-400">Book vehicles with just a few clicks</p>
+                            <h3 class="text-xl font-bold text-white mb-2" data-translate="easyBooking">Easy Booking</h3>
+                            <p class="text-gray-400" data-translate="easyBookingDesc">Book vehicles with just a few clicks</p>
                         </div>
                         <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-isd-gold transition-all hover:shadow-2xl hover:shadow-isd-gold/20">
                             <div class="text-isd-gold text-4xl mb-4">✅</div>
-                            <h3 class="text-xl font-bold text-white mb-2">Quick Approvals</h3>
-                            <p class="text-gray-400">Streamlined approval workflow</p>
+                            <h3 class="text-xl font-bold text-white mb-2" data-translate="quickApprovals">Quick Approvals</h3>
+                            <p class="text-gray-400" data-translate="quickApprovalsDesc">Streamlined approval workflow</p>
                         </div>
                         <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-isd-gold transition-all hover:shadow-2xl hover:shadow-isd-gold/20">
                             <div class="text-isd-gold text-4xl mb-4">📊</div>
-                            <h3 class="text-xl font-bold text-white mb-2">Real-time Tracking</h3>
-                            <p class="text-gray-400">Monitor trip status in real-time</p>
+                            <h3 class="text-xl font-bold text-white mb-2" data-translate="realTimeTracking">Real-time Tracking</h3>
+                            <p class="text-gray-400" data-translate="realTimeTrackingDesc">Monitor trip status in real-time</p>
                         </div>
                     </div>
                 </div>
@@ -717,10 +717,10 @@
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                     <div>
-                        <h2 id="dashboard-admin-title" class="text-2xl sm:text-3xl font-bold text-gray-800">Admin Dashboard</h2>
-                        <p id="dashboard-admin-desc" class="text-gray-600 mt-2 text-sm sm:text-base">Decision and Management Hub</p>
+                        <h2 id="dashboard-admin-title" class="text-2xl sm:text-3xl font-bold text-gray-800" data-translate="adminDashboard">Admin Dashboard</h2>
+                        <p id="dashboard-admin-desc" class="text-gray-600 mt-2 text-sm sm:text-base" data-translate="decisionManagementHub">Decision and Management Hub</p>
                 </div>
-                    <span id="guest-mode-badge" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap">GUEST MODE</span>
+                    <span id="guest-mode-badge" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap" data-translate="guestMode">GUEST MODE</span>
                 </div>
             </div>
             
@@ -729,19 +729,19 @@
                 <div class="lg:col-span-3 space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800">Fleet Management</h3>
-                            <p id="admin-fleet-desc" class="text-gray-600 mb-4 text-sm">View and manage vehicle fleet</p>
-                    <button id="admin-fleet-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Fleet</button>
+                    <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="fleetManagement">Fleet Management</h3>
+                            <p id="admin-fleet-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminFleetDesc">View and manage vehicle fleet</p>
+                    <button id="admin-fleet-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="manageFleet">Manage Fleet</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-approvals-title" class="text-xl font-bold mb-3 text-gray-800">Booking Approvals</h3>
-                            <p id="admin-approvals-desc" class="text-gray-600 mb-4 text-sm">Review and approve booking requests</p>
-                    <button id="admin-approvals-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Requests</button>
+                    <h3 id="admin-approvals-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="bookingApprovals">Booking Approvals</h3>
+                            <p id="admin-approvals-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminApprovalsDesc">Review and approve booking requests</p>
+                    <button id="admin-approvals-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="viewRequests">View Requests</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-users-title" class="text-xl font-bold mb-3 text-gray-800">User Management</h3>
-                            <p id="admin-users-desc" class="text-gray-600 mb-4 text-sm">Manage employees and drivers</p>
-                    <button id="admin-users-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Users</button>
+                    <h3 id="admin-users-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="userManagement">User Management</h3>
+                            <p id="admin-users-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminUsersDesc">Manage employees and drivers</p>
+                    <button id="admin-users-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="manageUsers">Manage Users</button>
                 </div>
             </div>
                     
@@ -750,22 +750,22 @@
                 <!-- Resource Health Monitoring Widget (Sidebar) -->
                 <div class="lg:col-span-1 space-y-6">
                     <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="text-lg font-bold text-gray-800 mb-4">Resource Health</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-4" data-translate="resourceHealth">Resource Health</h3>
                         
                         <!-- Driver Status -->
                         <div class="mb-6">
-                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Driver Status</h4>
+                            <h4 class="text-sm font-semibold text-gray-700 mb-3" data-translate="driverStatusLabel">Driver Status</h4>
                             <div class="space-y-2">
                                 <div class="flex items-center justify-between p-2 bg-green-50 rounded">
-                                    <span class="text-xs text-gray-700">Available</span>
+                                    <span class="text-xs text-gray-700" data-translate="driverAvailable">Available</span>
                                     <span class="text-sm font-bold text-green-600">12</span>
                 </div>
                                 <div class="flex items-center justify-between p-2 bg-blue-50 rounded">
-                                    <span class="text-xs text-gray-700">On Trip</span>
+                                    <span class="text-xs text-gray-700" data-translate="driverOnTrip">On Trip</span>
                                     <span class="text-sm font-bold text-blue-600">5</span>
                                 </div>
                                 <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
-                                    <span class="text-xs text-gray-700">Unavailable</span>
+                                    <span class="text-xs text-gray-700" data-translate="driverUnavailable">Unavailable</span>
                                     <span class="text-sm font-bold text-gray-600">2</span>
                                 </div>
                             </div>
@@ -773,14 +773,14 @@
             
                         <!-- Vehicle Warnings -->
                         <div>
-                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Vehicle Warnings</h4>
+                            <h4 class="text-sm font-semibold text-gray-700 mb-3" data-translate="vehicleWarnings">Vehicle Warnings</h4>
                             <div class="space-y-2">
                                 <div class="p-2 bg-yellow-50 border-l-4 border-yellow-500 rounded">
-                                    <p class="text-xs font-semibold text-yellow-800">Maintenance Due</p>
-                                    <p class="text-xs text-yellow-700">Bus VH-003 (2 days)</p>
+                                    <p class="text-xs font-semibold text-yellow-800" data-translate="maintenanceDue">Maintenance Due</p>
+                                    <p class="text-xs text-yellow-700">Bus VH-003 (2 <span data-translate="days">days</span>)</p>
                 </div>
                                 <div class="p-2 bg-red-50 border-l-4 border-red-500 rounded">
-                                    <p class="text-xs font-semibold text-red-800">Out of Commission</p>
+                                    <p class="text-xs font-semibold text-red-800" data-translate="outOfCommission">Out of Commission</p>
                                     <p class="text-xs text-red-700">Van VH-012</p>
                                 </div>
                             </div>
@@ -795,11 +795,11 @@
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                     <div>
-                        <h2 id="dashboard-employee-title" class="text-2xl sm:text-3xl font-bold text-gray-800">My Bookings</h2>
-                        <p id="dashboard-employee-desc" class="text-gray-600 mt-2 text-sm sm:text-base">View all your past, upcoming, pending, and active bookings</p>
+                        <h2 id="dashboard-employee-title" class="text-2xl sm:text-3xl font-bold text-gray-800" data-translate="employeeMyBookingsTitle">My Bookings</h2>
+                        <p id="dashboard-employee-desc" class="text-gray-600 mt-2 text-sm sm:text-base" data-translate="employeeDashboardDesc">View all your past, upcoming, pending, and active bookings</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <span id="guest-mode-badge-employee" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap">GUEST MODE</span>
+                        <span id="guest-mode-badge-employee" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap" data-translate="guestMode">GUEST MODE</span>
                         <button id="employee-booking-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 whitespace-nowrap" data-translate="newRequest">+ New Request</button>
                     </div>
                 </div>
@@ -840,23 +840,23 @@
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                     <div>
-                        <h2 id="dashboard-driver-title" class="text-2xl sm:text-3xl font-bold text-gray-800">Guest Driver Interface</h2>
-                        <p id="dashboard-driver-desc" class="text-gray-600 mt-2 text-sm sm:text-base">Welcome to the Driver Interface. You are logged in as a guest driver.</p>
+                        <h2 id="dashboard-driver-title" class="text-2xl sm:text-3xl font-bold text-gray-800" data-translate="guestDriverInterface">Guest Driver Interface</h2>
+                        <p id="dashboard-driver-desc" class="text-gray-600 mt-2 text-sm sm:text-base" data-translate="guestDriverDesc">Welcome to the Driver Interface. You are logged in as a guest driver.</p>
                 </div>
-                    <span id="guest-mode-badge-driver" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap">GUEST MODE</span>
+                    <span id="guest-mode-badge-driver" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap" data-translate="guestMode">GUEST MODE</span>
                 </div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="driver-trips-title" class="text-xl font-bold mb-3 text-gray-800">Assigned Trips</h3>
-                    <p id="driver-trips-desc" class="text-gray-600 mb-4">View your assigned trips and routes</p>
-                    <button id="driver-trips-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">View Trips</button>
+                    <h3 id="driver-trips-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="assignedTrips">Assigned Trips</h3>
+                    <p id="driver-trips-desc" class="text-gray-600 mb-4" data-translate="driverTripsDesc">View your assigned trips and routes</p>
+                    <button id="driver-trips-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600" data-translate="viewTrips">View Trips</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="driver-status-title" class="text-xl font-bold mb-3 text-gray-800">Update Status</h3>
-                    <p id="driver-status-desc" class="text-gray-600 mb-4">Update trip status and location</p>
-                    <button id="driver-status-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
+                    <h3 id="driver-status-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="updateStatus">Update Status</h3>
+                    <p id="driver-status-desc" class="text-gray-600 mb-4" data-translate="driverStatusDesc">Update trip status and location</p>
+                    <button id="driver-status-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600" data-translate="updateStatus">Update Status</button>
                 </div>
             </div>
         </div>
@@ -884,7 +884,7 @@
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <div class="flex justify-between items-center">
                             <div>
-                                <p class="text-sm text-gray-600 mb-1">School Bus</p>
+                                <p class="text-sm text-gray-600 mb-1" data-translate="schoolBus">School Bus</p>
                                 <p class="text-2xl font-bold text-gray-900">8</p>
                             </div>
                             <!-- School Bus Image -->
@@ -894,7 +894,7 @@
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <div class="flex justify-between items-center">
                             <div>
-                                <p class="text-sm text-gray-600 mb-1">SUV</p>
+                                <p class="text-sm text-gray-600 mb-1" data-translate="suv">SUV</p>
                                 <p class="text-2xl font-bold text-gray-900">10</p>
                             </div>
                             <!-- SUV Image -->
@@ -904,7 +904,7 @@
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
                         <div class="flex justify-between items-center">
                             <div>
-                                <p class="text-sm text-gray-600 mb-1">Sedan</p>
+                                <p class="text-sm text-gray-600 mb-1" data-translate="sedan">Sedan</p>
                                 <p class="text-2xl font-bold text-gray-900">14</p>
                             </div>
                             <!-- Sedan Image -->
@@ -933,9 +933,9 @@
                                     <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=100&h=100&fit=crop" alt="School Bus" class="w-16 h-16 object-cover rounded-lg">
                                 </td>
                                 <td class="p-3">SB-001</td>
-                                <td class="p-3">School Bus</td>
-                                <td class="p-3">50 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3" data-translate="schoolBus">School Bus</td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -948,9 +948,9 @@
                                     </svg>
                                 </td>
                                 <td class="p-3">SB-002</td>
-                                <td class="p-3">School Bus</td>
-                                <td class="p-3">50 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3" data-translate="schoolBus">School Bus</td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -963,9 +963,9 @@
                                     </svg>
                                 </td>
                                 <td class="p-3">SB-003</td>
-                                <td class="p-3">School Bus</td>
-                                <td class="p-3">50 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3" data-translate="schoolBus">School Bus</td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="statusInUse">In Use</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -978,9 +978,9 @@
                                     </svg>
                                 </td>
                                 <td class="p-3">SB-004</td>
-                                <td class="p-3">School Bus</td>
-                                <td class="p-3">50 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3" data-translate="schoolBus">School Bus</td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -993,9 +993,9 @@
                                     </svg>
                                 </td>
                                 <td class="p-3">SB-005</td>
-                                <td class="p-3">School Bus</td>
-                                <td class="p-3">50 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3" data-translate="schoolBus">School Bus</td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1008,9 +1008,9 @@
                                     </svg>
                                 </td>
                                 <td class="p-3">SB-006</td>
-                                <td class="p-3">School Bus</td>
-                                <td class="p-3">50 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3" data-translate="schoolBus">School Bus</td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1023,9 +1023,9 @@
                                     </svg>
                                 </td>
                                 <td class="p-3">SB-007</td>
-                                <td class="p-3">School Bus</td>
-                                <td class="p-3">50 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3" data-translate="schoolBus">School Bus</td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="statusInUse">In Use</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1038,9 +1038,9 @@
                                     </svg>
                                 </td>
                                 <td class="p-3">SB-008</td>
-                                <td class="p-3">School Bus</td>
-                                <td class="p-3">50 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3" data-translate="schoolBus">School Bus</td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1054,7 +1054,7 @@
                                 <td class="p-3">SUV-001</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1069,7 +1069,7 @@
                                 <td class="p-3">SUV-002</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1084,7 +1084,7 @@
                                 <td class="p-3">SUV-003</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="statusInUse">In Use</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1099,7 +1099,7 @@
                                 <td class="p-3">SUV-004</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1114,7 +1114,7 @@
                                 <td class="p-3">SUV-005</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1129,7 +1129,7 @@
                                 <td class="p-3">SUV-006</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1144,7 +1144,7 @@
                                 <td class="p-3">SUV-007</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1159,7 +1159,7 @@
                                 <td class="p-3">SUV-008</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="statusInUse">In Use</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1174,7 +1174,7 @@
                                 <td class="p-3">SUV-009</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1189,7 +1189,7 @@
                                 <td class="p-3">SUV-010</td>
                                 <td class="p-3">SUV</td>
                                 <td class="p-3">7 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1202,8 +1202,8 @@
                                 </td>
                                 <td class="p-3">SD-001</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1217,8 +1217,8 @@
                                 </td>
                                 <td class="p-3">SD-002</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1232,8 +1232,8 @@
                                 </td>
                                 <td class="p-3">SD-003</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="statusInUse">In Use</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1247,8 +1247,8 @@
                                 </td>
                                 <td class="p-3">SD-004</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1262,8 +1262,8 @@
                                 </td>
                                 <td class="p-3">SD-005</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1277,8 +1277,8 @@
                                 </td>
                                 <td class="p-3">SD-006</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1292,8 +1292,8 @@
                                 </td>
                                 <td class="p-3">SD-007</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1307,8 +1307,8 @@
                                 </td>
                                 <td class="p-3">SD-008</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1322,8 +1322,8 @@
                                 </td>
                                 <td class="p-3">SD-009</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="statusInUse">In Use</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1337,8 +1337,8 @@
                                 </td>
                                 <td class="p-3">SD-010</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1352,8 +1352,8 @@
                                 </td>
                                 <td class="p-3">SD-011</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1367,8 +1367,8 @@
                                 </td>
                                 <td class="p-3">SD-012</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1382,8 +1382,8 @@
                                 </td>
                                 <td class="p-3">SD-013</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1397,8 +1397,8 @@
                                 </td>
                                 <td class="p-3">SD-014</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3">5 seats</td>
-                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
+                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
                                     <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
@@ -1415,34 +1415,34 @@
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                     <div>
-                        <h2 class="text-3xl font-bold text-gray-800">Booking Approvals Queue</h2>
-                        <p class="text-gray-600 mt-2">Review and approve booking requests</p>
-                    </div>
-                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                        <h2 class="text-3xl font-bold text-gray-800" data-translate="bookingApprovalsQueue">Booking Approvals Queue</h2>
+                        <p class="text-gray-600 mt-2" data-translate="adminApprovalsDesc">Review and approve booking requests</p>
                 </div>
-                
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold" data-translate="backToDashboard">← Back to Dashboard</button>
+            </div>
+            
                 <!-- Queue Controls: Sorting and Filtering -->
                 <div class="flex flex-wrap items-center gap-4 mt-4 pt-4 border-t border-gray-200">
                     <div class="flex items-center gap-2">
-                        <label class="text-sm font-semibold text-gray-700">Sort:</label>
+                        <label class="text-sm font-semibold text-gray-700" data-translate="sort">Sort:</label>
                         <select id="queue-sort" onchange="sortQueue()" class="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-isd-gold">
-                            <option value="urgency">Most Urgent First</option>
-                            <option value="date">Date (Newest First)</option>
-                            <option value="requester">Requester Name</option>
+                            <option value="urgency" data-translate="mostUrgentFirst">Most Urgent First</option>
+                            <option value="date" data-translate="dateNewestFirst">Date (Newest First)</option>
+                            <option value="requester" data-translate="requesterName">Requester Name</option>
                         </select>
                     </div>
                     <div class="flex items-center gap-2">
-                        <label class="text-sm font-semibold text-gray-700">Filter:</label>
+                        <label class="text-sm font-semibold text-gray-700" data-translate="filter">Filter:</label>
                         <select id="queue-filter" onchange="filterQueue()" class="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-isd-gold">
-                            <option value="all">All Requests</option>
-                            <option value="urgent">Urgent (48h)</option>
-                            <option value="violations">Policy Violations</option>
-                            <option value="short-notice">Short Notice</option>
-                            <option value="max-duration">Exceeds Max Duration</option>
+                            <option value="all" data-translate="allRequests">All Requests</option>
+                            <option value="urgent" data-translate="urgent48h">Urgent (48h)</option>
+                            <option value="violations" data-translate="policyViolations">Policy Violations</option>
+                            <option value="short-notice" data-translate="shortNotice">Short Notice</option>
+                            <option value="max-duration" data-translate="exceedsMaxDuration">Exceeds Max Duration</option>
                         </select>
                     </div>
                     <div class="ml-auto text-sm text-gray-600">
-                        <span id="queue-count">3</span> pending requests
+                        <span id="queue-count">3</span> <span data-translate="pendingRequests">pending requests</span>
                     </div>
                 </div>
             </div>
@@ -1453,13 +1453,13 @@
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-lg font-bold text-gray-800">Trip to Museum - Field Trip</h3>
-                                <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">URGENT</span>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                            <h3 class="text-lg font-bold text-gray-800" data-translate="museumFieldTrip">Trip to Museum - Field Trip</h3>
+                                <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse" data-translate="urgent">URGENT</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="pending">Pending</span>
                         </div>
-                            <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">John Doe</span> (Science Department)</p>
-                            <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">March 15, 2025</span> | Time: <span class="font-semibold">9:00 AM</span> (Tomorrow)</p>
-                            <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">Bus (50 seats)</span> | Passengers: <span class="font-semibold">45 students</span></p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="requestedBy">Requested by:</span> <span class="font-semibold">John Doe</span> (<span data-translate="scienceDepartment">Science Department</span>)</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="dateLabel">Date:</span> <span class="font-semibold">March 15, 2025</span> | <span data-translate="timeLabel">Time:</span> <span class="font-semibold">9:00 AM</span> (<span data-translate="tomorrow">Tomorrow</span>)</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="vehicleLabel">Vehicle:</span> <span class="font-semibold"><span data-translate="bus">Bus</span> (50 <span data-translate="seats">seats</span>)</span> | <span data-translate="passengersLabel">Passengers:</span> <span class="font-semibold">45 <span data-translate="students">students</span></span></p>
                     </div>
                     </div>
                     <div class="flex flex-wrap gap-2">
@@ -1474,19 +1474,19 @@
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-lg font-bold text-gray-800">Sports Event - Basketball Game</h3>
-                                <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold">⚠️ Short Notice</span>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                            <h3 class="text-lg font-bold text-gray-800" data-translate="sportsEvent">Sports Event</h3>
+                                <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold" data-translate="shortNotice">⚠️ Short Notice</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="pending">Pending</span>
                         </div>
-                            <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">Jane Smith</span> (Athletics Department)</p>
-                            <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">March 16, 2025</span> | Time: <span class="font-semibold">2:00 PM</span></p>
-                            <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">Van (15 seats)</span> | Passengers: <span class="font-semibold">20 students</span></p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="requestedBy">Requested by:</span> <span class="font-semibold">Jane Smith</span> (<span data-translate="athleticsDepartment">Athletics Department</span>)</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="dateLabel">Date:</span> <span class="font-semibold">March 16, 2025</span> | <span data-translate="timeLabel">Time:</span> <span class="font-semibold">2:00 PM</span></p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="vehicleLabel">Vehicle:</span> <span class="font-semibold">Van (15 <span data-translate="seats">seats</span>)</span> | <span data-translate="passengersLabel">Passengers:</span> <span class="font-semibold">20 <span data-translate="students">students</span></span></p>
                     </div>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <button onclick="quickApprove('sports-event')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
-                        <button onclick="quickDenyAvailability('sports-event')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
-                        <button onclick="openRequestDetailView('sports-event')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
+                        <button onclick="quickApprove('sports-event')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm" data-translate="approve">✓ Approve</button>
+                        <button onclick="quickDenyAvailability('sports-event')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm" data-translate="quickDeny">Quick Deny (Availability)</button>
+                        <button onclick="openRequestDetailView('sports-event')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm" data-translate="viewDetails">View Details</button>
                     </div>
                 </div>
                 
@@ -1495,18 +1495,18 @@
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
-                                <h3 class="text-lg font-bold text-gray-800">Weekend Workshop</h3>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                                <h3 class="text-lg font-bold text-gray-800" data-translate="weekendWorkshop">Weekend Workshop</h3>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold" data-translate="pending">Pending</span>
                             </div>
-                            <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">Robert Brown</span> (Education Department)</p>
-                            <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">March 20, 2025</span> | Time: <span class="font-semibold">10:00 AM</span></p>
-                            <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">Bus (50 seats)</span> | Passengers: <span class="font-semibold">30 students</span></p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="requestedBy">Requested by:</span> <span class="font-semibold">Robert Brown</span> (<span data-translate="educationDepartment">Education Department</span>)</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="dateLabel">Date:</span> <span class="font-semibold">March 20, 2025</span> | <span data-translate="timeLabel">Time:</span> <span class="font-semibold">10:00 AM</span></p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="vehicleLabel">Vehicle:</span> <span class="font-semibold">Bus (50 <span data-translate="seats">seats</span>)</span> | <span data-translate="passengersLabel">Passengers:</span> <span class="font-semibold">30 <span data-translate="students">students</span></span></p>
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-2">
                         <button onclick="quickApprove('weekend-workshop')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
                         <button onclick="quickDenyAvailability('weekend-workshop')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
-                        <button onclick="openRequestDetailView('weekend-workshop')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
+                        <button onclick="openRequestDetailView('weekend-workshop')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm" data-translate="viewDetails">View Details</button>
                     </div>
                 </div>
             </div>
@@ -1552,14 +1552,14 @@
                         <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center">
                             <div>
                                 <p class="font-semibold">Mike Johnson</p>
-                                <p class="text-sm text-gray-600">License: DL-12345</p>
+                                <p class="text-sm text-gray-600"><span data-translate="license">License:</span> DL-12345</p>
                             </div>
                             <button onclick="openEditUserModal('John Doe', 'john.doe@isd.edu', 'Employee')" class="text-isd-gold hover:underline">Edit</button>
                         </div>
                         <div class="p-3 bg-gray-50 rounded-lg flex justify-between items-center">
                             <div>
                                 <p class="font-semibold">Sarah Williams</p>
-                                <p class="text-sm text-gray-600">License: DL-67890</p>
+                                <p class="text-sm text-gray-600"><span data-translate="license">License:</span> DL-67890</p>
                             </div>
                             <button onclick="openEditUserModal('John Doe', 'john.doe@isd.edu', 'Employee')" class="text-isd-gold hover:underline">Edit</button>
                         </div>
@@ -1572,10 +1572,10 @@
         <div id="view-new-booking" class="view-section w-full">
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">New Booking Request</h2>
-                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800" data-translate="employeeBookingTitle">New Booking Request</h2>
+                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold" data-translate="backToDashboard">← Back to Dashboard</button>
                 </div>
-                <p class="text-gray-600">Submit a new vehicle booking request</p>
+                <p class="text-gray-600" data-translate="employeeBookingDesc">Submit a new vehicle booking request</p>
             </div>
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
@@ -1583,16 +1583,16 @@
                     <!-- Trip Purpose -->
                     <div class="border-b border-gray-200 pb-4">
                     <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="tripPurpose">
                                 Trip Purpose <span class="text-red-600">*</span>
-                                <a href="#" onclick="showTripPolicy(); return false;" class="text-isd-gold hover:text-yellow-600 ml-2 text-xs" title="View Trip Policy">
+                                <a href="#" onclick="showTripPolicy(); return false;" class="text-isd-gold hover:text-yellow-600 ml-2 text-xs" title="View Trip Policy" data-translate="viewTripPolicy" data-title-key="viewTripPolicy">
                                     <svg class="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                 </a>
                             </label>
-                            <input type="text" id="trip-purpose" name="trip-purpose" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Field trip to museum, School business, Airport transfer">
-                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-purpose-error">Trip purpose is required</p>
+                            <input type="text" id="trip-purpose" name="trip-purpose" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Field trip to museum, School business, Airport transfer" data-placeholder-key="tripPurposePlaceholder">
+                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-purpose-error" data-translate="tripPurposeError">Trip purpose is required</p>
                     </div>
                     </div>
                     
@@ -1601,12 +1601,12 @@
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="vehicleType">Vehicle Type <span class="text-red-600">*</span></label>
                             <select id="vehicle-type" name="vehicle-type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                                <option value="">Select a vehicle type</option>
-                                <option value="bus">Bus / Minibus (50 seats)</option>
-                                <option value="van">Van (15 seats)</option>
-                                <option value="car">Sedan / Car (5 seats)</option>
+                                <option value="" data-translate="vehicleTypeSelect">Select a vehicle type</option>
+                                <option value="bus" data-translate="vehicleTypeBus">Bus / Minibus (50 seats)</option>
+                                <option value="van" data-translate="vehicleTypeVan">Van (15 seats)</option>
+                                <option value="car" data-translate="vehicleTypeCar">Sedan / Car (5 seats)</option>
                             </select>
-                            <p class="text-red-600 text-sm mt-1 hidden" id="vehicle-type-error">Please select a vehicle type</p>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="vehicle-type-error" data-translate="vehicleTypeError">Please select a vehicle type</p>
                         </div>
                     </div>
                     
@@ -1615,11 +1615,11 @@
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="startDate">Start Date <span class="text-red-600">*</span></label>
                             <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
-                            <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error">Date is required</p>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error" data-translate="dateError">Date is required</p>
                             <!-- Date Availability Message (appears next to date input) -->
                             <div id="date-availability-message" class="hidden mt-2"></div>
                         </div>
-                        </div>
+                    </div>
                     
                     <!-- Duration -->
                     <div class="border-b border-gray-200 pb-4">
@@ -1628,33 +1628,33 @@
                         <select id="trip-duration" name="trip-duration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
                             <option value="" data-translate="durationSelect">Select duration</option>
                                 <optgroup label="Hours" data-translate="durationHours">
-                            <option value="1">1 hour</option>
-                            <option value="2">2 hours</option>
-                            <option value="3">3 hours</option>
-                            <option value="4">4 hours</option>
-                            <option value="5">5 hours</option>
-                            <option value="6">6 hours</option>
-                                    <option value="8">8 hours</option>
-                                    <option value="10">10 hours</option>
-                                    <option value="12">12 hours</option>
+                            <option value="1" data-translate="duration1Hour">1 hour</option>
+                            <option value="2" data-translate="duration2Hours">2 hours</option>
+                            <option value="3" data-translate="duration3Hours">3 hours</option>
+                            <option value="4" data-translate="duration4Hours">4 hours</option>
+                            <option value="5" data-translate="duration5Hours">5 hours</option>
+                            <option value="6" data-translate="duration6Hours">6 hours</option>
+                                    <option value="8" data-translate="duration8Hours">8 hours</option>
+                                    <option value="10" data-translate="duration10Hours">10 hours</option>
+                                    <option value="12" data-translate="duration12Hours">12 hours</option>
                                 </optgroup>
                                 <optgroup label="Days" data-translate="durationDays">
-                                    <option value="24">1 day</option>
-                                    <option value="48">2 days</option>
-                                    <option value="72">3 days</option>
-                                    <option value="96">4 days</option>
-                                    <option value="120">5 days</option>
-                                    <option value="144">6 days</option>
-                                    <option value="168">7 days (1 week)</option>
+                                    <option value="24" data-translate="duration1Day">1 day</option>
+                                    <option value="48" data-translate="duration2Days">2 days</option>
+                                    <option value="72" data-translate="duration3Days">3 days</option>
+                                    <option value="96" data-translate="duration4Days">4 days</option>
+                                    <option value="120" data-translate="duration5Days">5 days</option>
+                                    <option value="144" data-translate="duration6Days">6 days</option>
+                                    <option value="168" data-translate="duration7Days1Week">7 days (1 week)</option>
                                 </optgroup>
                         </select>
-                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-duration-error">Duration is required</p>
+                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-duration-error" data-translate="durationError">Duration is required</p>
                     </div>
                     </div>
                     
                     <!-- Pickup Time (Scroll List with AM/PM) -->
                     <div class="border-b border-gray-200 pb-4">
-                        <div>
+                    <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="pickupTime">Pickup Time <span class="text-red-600">*</span></label>
                             <select id="pickup-time" name="pickup-time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
                                 <option value="" data-translate="pickupTimeSelect">Select pickup time</option>
@@ -1692,30 +1692,30 @@
                                     <option value="20:00">8:00 PM</option>
                                 </optgroup>
                             </select>
-                            <p class="text-red-600 text-sm mt-1 hidden" id="pickup-time-error">Pickup time is required</p>
-                        </div>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="pickup-time-error" data-translate="pickupTimeError">Pickup time is required</p>
+                    </div>
                     </div>
                     
                     <!-- Driver Option (Default: School Driver) -->
                     <div class="border-b border-gray-200 pb-4">
-                        <div>
+                    <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="driverOption">Driver Option <span class="text-red-600">*</span></label>
                             <select id="driver-option" name="driver-option" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
                                 <option value="school-driver" selected data-translate="driverOptionSchool">Request a School Driver</option>
                                 <option value="self-drive" data-translate="driverOptionSelf">Self-Drive / Own Authorized Driver</option>
-                            </select>
-                            <p class="text-red-600 text-sm mt-1 hidden" id="driver-option-error">Please select a driver option</p>
-                        </div>
+                        </select>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="driver-option-error" data-translate="driverOptionError">Please select a driver option</p>
+                    </div>
                         
                         <!-- School Driver Details -->
                         <div id="school-driver-details" class="mt-4 space-y-4">
                             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                                 <h4 class="text-sm font-semibold text-blue-800 mb-3" data-translate="schoolDriverRequirements">School Driver Requirements</h4>
-                                <div>
+                    <div>
                                     <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="pickupLocation">Pickup Location <span class="text-red-600">*</span></label>
-                                    <input type="text" id="pickup-location" name="pickup-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Main School Gate, Building A Entrance">
-                                    <p class="text-red-600 text-sm mt-1 hidden" id="pickup-location-error">Pickup location is required</p>
-                                </div>
+                                    <input type="text" id="pickup-location" name="pickup-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Main School Gate, Building A Entrance" data-placeholder-key="pickupLocationPlaceholder">
+                                    <p class="text-red-600 text-sm mt-1 hidden" id="pickup-location-error" data-translate="pickupLocationError">Pickup location is required</p>
+                    </div>
                             </div>
                         </div>
                         
@@ -1785,7 +1785,7 @@
                         </div>
                         
                         <div id="booking-summary" class="hidden bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-                            <h4 class="text-sm font-semibold text-gray-800 mb-3">Booking Summary</h4>
+                            <h4 class="text-sm font-semibold text-gray-800 mb-3" data-translate="bookingSummary">Booking Summary</h4>
                             <div id="summary-content" class="text-sm text-gray-700 space-y-2"></div>
                         </div>
                         
@@ -1813,66 +1813,66 @@
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-lg font-bold text-gray-800">Museum Field Trip</h3>
-                                <span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-semibold shadow-sm">Approved</span>
+                            <h3 class="text-lg font-bold text-gray-800" data-translate="museumFieldTrip">Museum Field Trip</h3>
+                                <span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-semibold shadow-sm" data-translate="approved">Approved</span>
                         </div>
-                            <p class="text-gray-600 text-sm mb-1">Date: March 10, 2025 | Time: 9:00 AM</p>
-                            <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 45</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="dateLabel">Date:</span> March 10, 2025 | <span data-translate="timeLabel">Time:</span> 9:00 AM</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="vehicleLabel">Vehicle:</span> <span data-translate="bus">Bus</span> (50 <span data-translate="seats">seats</span>) | <span data-translate="passengersLabel">Passengers:</span> 45</p>
                     </div>
                     </div>
-                    <button onclick="viewBookingDetails('museum-field-trip')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                    <button onclick="viewBookingDetails('museum-field-trip')" class="text-isd-gold hover:underline text-sm font-semibold" data-translate="viewDetails">View Details</button>
                 </div>
                 
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
-                            <h3 class="text-lg font-bold text-gray-800">Sports Event</h3>
-                                <span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-semibold shadow-sm">Pending</span>
+                            <h3 class="text-lg font-bold text-gray-800" data-translate="sportsEvent">Sports Event</h3>
+                                <span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-semibold shadow-sm" data-translate="pending">Pending</span>
                         </div>
-                            <p class="text-gray-600 text-sm mb-1">Date: March 18, 2025 | Time: 2:00 PM</p>
-                            <p class="text-gray-600 text-sm mb-1">Vehicle: Van (15 seats) | Passengers: 20</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="dateLabel">Date:</span> March 18, 2025 | <span data-translate="timeLabel">Time:</span> 2:00 PM</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="vehicleLabel">Vehicle:</span> <span data-translate="vehicleTypeVan">Van (15 seats)</span> | <span data-translate="passengersLabel">Passengers:</span> 20</p>
                             <p class="text-yellow-700 text-xs font-medium mt-2 flex items-center gap-1">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
                                 </svg>
-                                Submitted 4 hours ago
+                                <span data-translate="submittedAgo">Submitted 4 hours ago</span>
                             </p>
                     </div>
                 </div>
-                    <button onclick="viewBookingDetails('sports-event-booking')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                    <button onclick="viewBookingDetails('sports-event-booking')" class="text-isd-gold hover:underline text-sm font-semibold" data-translate="viewDetails">View Details</button>
             </div>
                 
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
-                                <h3 class="text-lg font-bold text-gray-800">Weekend Workshop</h3>
-                                <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm">Denied</span>
+                                <h3 class="text-lg font-bold text-gray-800" data-translate="weekendWorkshop">Weekend Workshop</h3>
+                                <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm" data-translate="denied">Denied</span>
                             </div>
-                            <p class="text-gray-600 text-sm mb-1">Date: March 20, 2025 | Time: 8:00 AM</p>
-                            <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 30</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="dateLabel">Date:</span> March 20, 2025 | <span data-translate="timeLabel">Time:</span> 8:00 AM</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="vehicleLabel">Vehicle:</span> Bus (50 <span data-translate="seats">seats</span>) | <span data-translate="passengersLabel">Passengers:</span> 30</p>
                             <div class="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-                                <p class="text-red-800 text-xs font-semibold mb-1">Admin Note:</p>
-                                <p class="text-red-700 text-sm">No buses available for weekend trips. Please consider alternative dates or use a smaller vehicle.</p>
+                                <p class="text-red-800 text-xs font-semibold mb-1" data-translate="adminNote">Admin Note:</p>
+                                <p class="text-red-700 text-sm" data-translate="noBusesAvailableWeekend">No buses available for weekend trips. Please consider alternative dates or use a smaller vehicle.</p>
                             </div>
                         </div>
                     </div>
-                    <button onclick="viewBookingDetails('weekend-workshop')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                    <button onclick="viewBookingDetails('weekend-workshop')" class="text-isd-gold hover:underline text-sm font-semibold" data-translate="viewDetails">View Details</button>
         </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
-                                <h3 class="text-lg font-bold text-gray-800">Science Museum Trip</h3>
-                                <span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm">Active Trip</span>
+                                <h3 class="text-lg font-bold text-gray-800" data-translate="scienceMuseum">Science Museum Trip</h3>
+                                <span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm" data-translate="activeTrip">Active Trip</span>
                             </div>
-                            <p class="text-gray-600 text-sm mb-1">Date: March 15, 2025 | Time: 10:00 AM</p>
-                            <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 42</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="dateLabel">Date:</span> March 15, 2025 | <span data-translate="timeLabel">Time:</span> 10:00 AM</p>
+                            <p class="text-gray-600 text-sm mb-1"><span data-translate="vehicleLabel">Vehicle:</span> Bus (50 <span data-translate="seats">seats</span>) | <span data-translate="passengersLabel">Passengers:</span> 42</p>
                         </div>
                     </div>
-                    <button onclick="viewBookingDetails('science-museum')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                    <button onclick="viewBookingDetails('science-museum')" class="text-isd-gold hover:underline text-sm font-semibold" data-translate="viewDetails">View Details</button>
                 </div>
             </div>
         </div>
@@ -1890,16 +1890,16 @@
             <div id="active-trip-card" class="bg-white p-6 rounded-xl shadow-lg mb-6 border-l-4 border-blue-500" data-trip-id="museum-trip" data-status="scheduled">
                 <div class="mb-6">
                     <div class="flex items-center justify-between mb-3">
-                        <h3 class="text-xl font-bold text-gray-800">Museum Field Trip</h3>
-                        <span id="trip-status-badge" class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Scheduled</span>
+                        <h3 class="text-xl font-bold text-gray-800" data-translate="museumFieldTrip">Museum Field Trip</h3>
+                        <span id="trip-status-badge" class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold" data-translate="scheduled">Scheduled</span>
                     </div>
                     <div class="space-y-2 text-sm text-gray-700">
-                        <p><span class="font-semibold">Date:</span> March 10, 2025</p>
-                        <p><span class="font-semibold">Pickup Time:</span> 9:00 AM</p>
-                        <p><span class="font-semibold">Vehicle:</span> VH-001 (Bus - 50 seats)</p>
-                        <p><span class="font-semibold">Passengers:</span> 45 students</p>
-                        <p><span class="font-semibold">Pickup Location:</span> Main School Gate</p>
-                        <p><span class="font-semibold">Route:</span> ISD → Museum → ISD</p>
+                        <p><span class="font-semibold" data-translate="dateLabel">Date:</span> March 10, 2025</p>
+                        <p><span class="font-semibold" data-translate="pickupTimeLabel">Pickup Time:</span> 9:00 AM</p>
+                        <p><span class="font-semibold" data-translate="vehicleLabel">Vehicle:</span> VH-001 (<span data-translate="bus">Bus</span> - 50 <span data-translate="seats">seats</span>)</p>
+                        <p><span class="font-semibold" data-translate="passengersLabel">Passengers:</span> 45 <span data-translate="students">students</span></p>
+                        <p><span class="font-semibold" data-translate="pickupLocationLabel">Pickup Location:</span> <span data-translate="mainSchoolGate">Main School Gate</span></p>
+                        <p><span class="font-semibold" data-translate="routeLabel">Route:</span> <span data-translate="routeIsdMuseumIsd">ISD → Museum → ISD</span></p>
                     </div>
                 </div>
                 
@@ -1920,7 +1920,7 @@
                         <button id="start-trip-btn" onclick="updateTripStatus('start-trip')" class="w-full py-5 px-8 bg-green-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-green-700 active:scale-95 transition-transform border-2 border-green-500" data-translate="startTrip">
                             🚗 Start Trip
                         </button>
-                        <p class="text-xs text-gray-600 mt-1">Departing from garage/depot</p>
+                        <p class="text-xs text-gray-600 mt-1" data-translate="departingFromGarage">Departing from garage/depot</p>
                         </div>
                     
                     <!-- Step 2: Arrived at Pickup (Disabled until Start Trip is clicked) -->
@@ -1928,43 +1928,43 @@
                         <button id="arrived-pickup-btn" onclick="updateTripStatus('arrived-pickup')" class="w-full py-5 px-8 bg-blue-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-blue-700 active:scale-95 transition-transform border-2 border-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="arrivedAtPickup">
                             📍 Arrived at Pickup
                         </button>
-                        <p class="text-xs text-gray-600 mt-1">Arrived at pickup location</p>
+                        <p class="text-xs text-gray-600 mt-1" data-translate="arrivedAtPickupLocation">Arrived at pickup location</p>
                     </div>
                     
                     <!-- Step 3: Pre-Departure Safety Checklist (Mandatory Gate) -->
                     <div id="safety-check-section" class="border-l-4 border-yellow-500 pl-4 bg-yellow-50 p-4 rounded-lg opacity-50">
-                        <h4 class="text-base font-bold text-gray-800 mb-3">Pre-Departure Safety Checklist</h4>
-                        <p class="text-xs text-gray-600 mb-3">Complete all checks before starting drive (Available after arriving at pickup)</p>
+                        <h4 class="text-base font-bold text-gray-800 mb-3" data-translate="preDepartureSafetyChecklist">Pre-Departure Safety Checklist</h4>
+                        <p class="text-xs text-gray-600 mb-3" data-translate="completeAllChecks">Complete all checks before starting drive (Available after arriving at pickup)</p>
                         <div class="space-y-2">
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="check-tires" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
-                                <span class="text-sm text-gray-800">Tires checked (pressure & condition)</span>
+                                <span class="text-sm text-gray-800" data-translate="tiresChecked">Tires checked (pressure & condition)</span>
                             </label>
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="check-lights" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
-                                <span class="text-sm text-gray-800">Lights functional (headlights, brake lights, indicators)</span>
+                                <span class="text-sm text-gray-800" data-translate="lightsFunctional">Lights functional (headlights, brake lights, indicators)</span>
                             </label>
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="check-brakes" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
-                                <span class="text-sm text-gray-800">Brakes tested</span>
+                                <span class="text-sm text-gray-800" data-translate="brakesTested">Brakes tested</span>
                             </label>
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="check-fuel" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
-                                <span class="text-sm text-gray-800">Fuel level adequate</span>
+                                <span class="text-sm text-gray-800" data-translate="fuelLevelAdequate">Fuel level adequate</span>
                             </label>
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="check-mirrors" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
-                                <span class="text-sm text-gray-800">Mirrors adjusted</span>
+                                <span class="text-sm text-gray-800" data-translate="mirrorsAdjusted">Mirrors adjusted</span>
                             </label>
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="check-first-aid" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
-                                <span class="text-sm text-gray-800">First aid kit present</span>
+                                <span class="text-sm text-gray-800" data-translate="firstAidKitPresent">First aid kit present</span>
                             </label>
                         </div>
                         <div class="mt-3 pt-3 border-t border-yellow-300">
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="safety-check-confirmed" onchange="toggleStartDrivingButton()" class="w-6 h-6 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
-                                <span class="text-base font-bold text-gray-800">All Safety Checks Confirmed</span>
+                                <span class="text-base font-bold text-gray-800" data-translate="safetyCheckConfirmed">All Safety Checks Confirmed</span>
                             </label>
                         </div>
                 </div>
@@ -1974,7 +1974,7 @@
                         <button id="start-driving-btn" onclick="updateTripStatus('start-driving')" class="w-full py-5 px-8 bg-purple-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-purple-700 active:scale-95 transition-transform border-2 border-purple-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="startDriving">
                             ▶️ Start Driving
                         </button>
-                        <p class="text-xs text-gray-600 mt-1">Passengers loaded, trip underway</p>
+                        <p class="text-xs text-gray-600 mt-1" data-translate="passengersLoaded">Passengers loaded, trip underway</p>
                         </div>
                     
                     <!-- Step 5: Arrived at Destination -->
@@ -1982,7 +1982,7 @@
                         <button id="arrived-destination-btn" onclick="updateTripStatus('arrived-destination')" class="w-full py-5 px-8 bg-indigo-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-indigo-700 active:scale-95 transition-transform border-2 border-indigo-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="arrivedDestination">
                             🎯 Arrived at Destination
                         </button>
-                        <p class="text-xs text-gray-600 mt-1">Arrived at destination</p>
+                        <p class="text-xs text-gray-600 mt-1" data-translate="arrivedAtDestinationText">Arrived at destination</p>
                     </div>
                     
                     <!-- Step 6: Trip Complete (Opens Finalization Log) -->
@@ -1990,7 +1990,7 @@
                         <button id="trip-complete-btn" onclick="openTripFinalization()" class="w-full py-5 px-8 bg-gray-700 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-gray-800 active:scale-95 transition-transform border-2 border-gray-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="tripComplete">
                             ✅ Trip Complete
                         </button>
-                        <p class="text-xs text-gray-600 mt-1">Complete trip and submit log</p>
+                        <p class="text-xs text-gray-600 mt-1" data-translate="completeTripSubmitLog">Complete trip and submit log</p>
                     </div>
                 </div>
             </div>
@@ -2003,13 +2003,13 @@
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800" data-translate="tripFinalization">Trip Finalization</h2>
                     <button onclick="window.location.hash = 'assigned-trips'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm" data-translate="cancel">← Back</button>
                 </div>
-                <p class="text-gray-600 text-sm">Complete trip and submit final log</p>
+                <p class="text-gray-600 text-sm" data-translate="completeTripSubmitFinalLog">Complete trip and submit final log</p>
             </div>
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
                 <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <h3 class="text-lg font-bold text-gray-800 mb-2">Museum Field Trip</h3>
-                    <p class="text-sm text-gray-700">Date: March 10, 2025 | Vehicle: VH-001 (Bus)</p>
+                    <h3 class="text-lg font-bold text-gray-800 mb-2" data-translate="museumFieldTrip">Museum Field Trip</h3>
+                    <p class="text-sm text-gray-700"><span data-translate="dateLabel">Date:</span> March 10, 2025 | <span data-translate="vehicleLabel">Vehicle:</span> VH-001 (<span data-translate="bus">Bus</span>)</p>
                     </div>
                 
                 <form id="trip-finalization-form" class="space-y-6">
@@ -2041,7 +2041,7 @@
                     
                     <!-- Mandatory Finalization Fields -->
                     <div class="space-y-4">
-                        <h4 class="text-lg font-bold text-gray-800 mb-4">Required Trip Metrics</h4>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4" data-translate="requiredTripMetrics">Required Trip Metrics</h4>
                         
                         <!-- Final Odometer Reading (Mandatory) -->
                     <div>
@@ -2261,6 +2261,8 @@
                     driver: 'Driver Login',
                     home: 'Home',
                     appName: 'ISD Car Booking',
+                    langEn: 'EN',
+                    langFr: 'FR',
                     
                     // Guest Mode
                     guestMode: 'GUEST MODE',
@@ -2271,12 +2273,16 @@
                     adminFleetTitle: 'Fleet Management',
                     adminFleetDesc: 'View and manage vehicle fleet',
                     adminFleetBtn: 'Manage Fleet',
+                    manageFleet: 'Manage Fleet',
                     adminApprovalsTitle: 'Booking Approvals',
+                    bookingApprovals: 'Booking Approvals',
                     adminApprovalsDesc: 'Review and approve booking requests',
                     adminApprovalsBtn: 'View Requests',
+                    viewRequests: 'View Requests',
                     adminUsersTitle: 'User Management',
                     adminUsersDesc: 'Manage employees and drivers',
                     adminUsersBtn: 'Manage Users',
+                    manageUsers: 'Manage Users',
                     backToDashboard: '← Back to Dashboard',
                     
                     // Employee Dashboard
@@ -2292,11 +2298,16 @@
                     
                     // Driver Dashboard
                     driverDashboardTitle: 'Guest Driver Interface',
+                    guestDriverInterface: 'Guest Driver Interface',
                     driverDashboardDesc: 'Welcome to the Driver Interface. You are logged in as a guest driver.',
+                    guestDriverDesc: 'Welcome to the Driver Interface. You are logged in as a guest driver.',
                     driverTripsTitle: 'Assigned Trips',
+                    assignedTrips: 'Assigned Trips',
                     driverTripsDesc: 'View your assigned trips and routes',
                     driverTripsBtn: 'View Trips',
+                    viewTrips: 'View Trips',
                     driverStatusTitle: 'Update Status',
+                    updateStatus: 'Update Status',
                     driverStatusDesc: 'Update trip status and location',
                     driverStatusBtn: 'Update Status',
                     myActiveTrip: 'My Active Trip',
@@ -2323,6 +2334,22 @@
                     durationDay: 'day',
                     durationDaysPlural: 'days',
                     durationWeek: 'week',
+                    duration1Hour: '1 hour',
+                    duration2Hours: '2 hours',
+                    duration3Hours: '3 hours',
+                    duration4Hours: '4 hours',
+                    duration5Hours: '5 hours',
+                    duration6Hours: '6 hours',
+                    duration8Hours: '8 hours',
+                    duration10Hours: '10 hours',
+                    duration12Hours: '12 hours',
+                    duration1Day: '1 day',
+                    duration2Days: '2 days',
+                    duration3Days: '3 days',
+                    duration4Days: '4 days',
+                    duration5Days: '5 days',
+                    duration6Days: '6 days',
+                    duration7Days1Week: '7 days (1 week)',
                     durationError: 'Duration is required',
                     pickupTime: 'Pickup Time',
                     pickupTimeSelect: 'Select pickup time',
@@ -2351,6 +2378,8 @@
                     submitRequest: 'Submit Request',
                     cancel: 'Cancel',
                     bookingSummary: 'Booking Summary',
+                    license: 'License:',
+                    viewTripPolicy: 'View Trip Policy',
                     
                     // Status Labels
                     pending: 'Pending',
@@ -2362,6 +2391,21 @@
                     cancelled: 'Cancelled',
                     scheduled: 'Scheduled',
                     
+                    // Example Content
+                    museumFieldTrip: 'Museum Field Trip',
+                    sportsEvent: 'Sports Event',
+                    weekendWorkshop: 'Weekend Workshop',
+                    scienceMuseum: 'Science Museum',
+                    shortNotice: '⚠️ Short Notice',
+                    scienceDepartment: 'Science Department',
+                    athleticsDepartment: 'Athletics Department',
+                    educationDepartment: 'Education Department',
+                    noBusesAvailableWeekend: 'No buses available for weekend trips. Please consider alternative dates or use a smaller vehicle.',
+                    students: 'students',
+                    mainSchoolGate: 'Main School Gate',
+                    routeIsdMuseumIsd: 'ISD → Museum → ISD',
+                    bus: 'Bus',
+                    
                     // Booking Actions
                     viewDetails: 'View Details',
                     modifyRequest: 'Modify Request',
@@ -2369,6 +2413,19 @@
                     approve: 'Approve',
                     deny: 'Deny',
                     quickDeny: 'Quick Deny (Availability)',
+                    
+                    // Booking Approvals Queue
+                    bookingApprovalsQueue: 'Booking Approvals Queue',
+                    sort: 'Sort:',
+                    filter: 'Filter:',
+                    mostUrgentFirst: 'Most Urgent First',
+                    dateNewestFirst: 'Date (Newest First)',
+                    requesterName: 'Requester Name',
+                    allRequests: 'All Requests',
+                    urgent48h: 'Urgent (48h)',
+                    policyViolations: 'Policy Violations',
+                    exceedsMaxDuration: 'Exceeds Max Duration',
+                    pendingRequests: 'pending requests',
                     
                     // Stats
                     statsPending: 'Pending',
@@ -2474,8 +2531,25 @@
                     finalOdometerLabel: 'Final Odometer:',
                     finalFuelLevelLabel: 'Final Fuel Level:',
                     vehicleIssuesLabel: 'Vehicle Issues/Comments:',
+                    vehicleIssuesComments: 'Vehicle Issues/Comments',
                     miles: 'miles',
                     noneReported: 'None reported',
+                    
+                    // Additional Employee Dashboard Labels
+                    driverLabel: 'Driver',
+                    schoolDriver: 'School Driver',
+                    isCurrently: 'is currently',
+                    viewFullDriverStatus: 'View Full Driver Status',
+                    adminNoteRequiredJustification: 'Admin Note (Required Justification)',
+                    waitingForAdminAction: 'Waiting for Admin Action',
+                    waiting: 'Waiting',
+                    day: 'day',
+                    days: 'days',
+                    hour: 'hour',
+                    hours: 'hours',
+                    minute: 'minute',
+                    minutes: 'minutes',
+                    waitingLessThan1Hour: 'Waiting less than 1 hour',
                     
                     // Resource Health
                     resourceHealth: 'Resource Health',
@@ -2615,7 +2689,122 @@
                     // Vehicle Types
                     busMinibus: 'Bus / Minibus',
                     van: 'Van',
-                    sedanCar: 'Sedan / Car'
+                    sedanCar: 'Sedan / Car',
+                    
+                    // Home Page Vehicle Cards
+                    schoolBus: 'School Bus',
+                    schoolBusDesc: '50 seats • Perfect for field trips and large groups',
+                    suv: 'SUV',
+                    suvDesc: '7 seats • Comfortable for small groups',
+                    sedan: 'Sedan',
+                    sedanDesc: '5 seats • Ideal for staff travel',
+                    
+                    // Driver Trip Details Labels
+                    dateLabel: 'Date:',
+                    pickupTimeLabel: 'Pickup Time:',
+                    vehicleLabel: 'Vehicle:',
+                    passengersLabel: 'Passengers:',
+                    pickupLocationLabel: 'Pickup Location:',
+                    routeLabel: 'Route:',
+                    
+                    // Safety Checklist
+                    preDepartureSafetyChecklist: 'Pre-Departure Safety Checklist',
+                    completeAllChecks: 'Complete all checks before starting drive (Available after arriving at pickup)',
+                    tiresChecked: 'Tires checked (pressure & condition)',
+                    lightsFunctional: 'Lights functional (headlights, brake lights, indicators)',
+                    brakesTested: 'Brakes tested',
+                    fuelLevelAdequate: 'Fuel level adequate',
+                    mirrorsAdjusted: 'Mirrors adjusted',
+                    firstAidKitPresent: 'First aid kit present',
+                    
+                    // Button Helper Text
+                    departingFromGarage: 'Departing from garage/depot',
+                    arrivedAtPickupLocation: 'Arrived at pickup location',
+                    passengersLoaded: 'Passengers loaded, trip underway',
+                    arrivedAtDestinationText: 'Arrived at destination',
+                    completeTripSubmitLog: 'Complete trip and submit log',
+                    completeTripSubmitFinalLog: 'Complete trip and submit final log',
+                    
+                    // Trip Finalization
+                    requiredTripMetrics: 'Required Trip Metrics',
+                    
+                    // Resource Health
+                    resourceHealth: 'Resource Health',
+                    driverStatusLabel: 'Driver Status',
+                    
+                    // Admin Dashboard
+                    adminDashboard: 'Admin Dashboard',
+                    decisionManagementHub: 'Decision and Management Hub',
+                    
+                    // Platform Features
+                    platformFeatures: 'Platform Features',
+                    easyBooking: 'Easy Booking',
+                    easyBookingDesc: 'Book vehicles with just a few clicks',
+                    quickApprovals: 'Quick Approvals',
+                    quickApprovalsDesc: 'Streamlined approval workflow',
+                    realTimeTracking: 'Real-time Tracking',
+                    realTimeTrackingDesc: 'Monitor trip status in real-time',
+                    
+                    // Additional Labels
+                    timeLabel: 'Time:',
+                    requestedBy: 'Requested by:',
+                    submittedAgo: 'Submitted 4 hours ago',
+                    scheduled: 'Scheduled',
+                    days: 'days',
+                    
+                    // Dynamic Messages
+                    currentImage: 'Current image:',
+                    noImageCurrently: 'No image currently',
+                    newImagePreview: 'New image preview:',
+                    vehicleCapacity: 'Vehicle capacity:',
+                    passengers: 'passengers',
+                    cannotExceedCapacity: 'Cannot exceed vehicle capacity of',
+                    pleaseEnterValidPassengers: 'Please enter a valid number of passengers',
+                    
+                    // Modal Content
+                    driverStatusTitle: 'Driver Status:',
+                    realTimeStatusUpdates: 'Real-time Status Updates:',
+                    driverStatusUpdatesDesc: 'Driver status updates automatically every 30 seconds. This replaces the need for direct employee/driver communication.',
+                    tripPolicyTitle: 'Trip Policy & Documentation Requirements',
+                    requiredDocumentation: 'Required Documentation:',
+                    completedTripRequestForm: 'Completed trip request form',
+                    parentalConsentForms: 'Parental consent forms (for student trips)',
+                    emergencyContactInfo: 'Emergency contact information',
+                    medicalInfoParticipants: 'Medical information for participants',
+                    bookingGuidelines: 'Booking Guidelines:',
+                    bookAtLeast2Weeks: 'Book at least 2 weeks in advance',
+                    maximumCapacityRespected: 'Maximum capacity must be respected',
+                    cancellation48Hours: 'Cancellation must be made 48 hours before trip',
+                    selfDriveAuthorizationRequired: 'Self-drive authorization required for certain vehicle classes',
+                    safetyRequirements: 'Safety Requirements:',
+                    allPassengersWearSeatbelts: 'All passengers must wear seatbelts',
+                    firstAidKitMustBePresent: 'First aid kit must be present',
+                    emergencyContactNumbersAccessible: 'Emergency contact numbers must be accessible',
+                    bookingSubmittedSuccessfully: 'Booking Request Submitted Successfully!',
+                    requestReceivedPending: 'Your request has been received and is now pending admin approval.',
+                    whatHappensNext: 'What happens next:',
+                    emailNotificationOnReview: 'You will receive an email notification when the admin reviews your request',
+                    trackStatusInDashboard: 'You can track the status in "My Bookings" dashboard',
+                    statusUpdatesRealTime: 'Status updates will appear in real-time on the dashboard',
+                    dashboardAutoRefreshes: 'The dashboard automatically refreshes when your booking status changes',
+                    realTimeDashboardUpdates: 'Real-time Dashboard Updates',
+                    noNeedCheckEmail: 'No need to check your email repeatedly - the dashboard will show all updates automatically!',
+                    bookingAppearsInDashboard: 'Your booking will appear in "My Bookings" with live status updates. The dashboard refreshes automatically when your booking is approved, denied, or cancelled.',
+                    
+                    // Availability Messages
+                    checkingAvailability: 'Checking availability...',
+                    dateUnavailableSuggested: 'This date is unavailable. Suggested nearest available date:',
+                    selectDate: 'Select',
+                    busesUnavailablePeriod: 'Buses/Minibuses are unavailable from December 5-15, 2025',
+                    selectDifferentDateOrVehicle: 'Please select a different date or choose Van/Car instead.',
+                    busesUnavailable: 'Buses/Minibuses Unavailable',
+                    busesUnavailableDesc: 'Buses and minibuses are unavailable from December 5-15, 2025. Please select a different date or choose Van/Car instead.',
+                    alternativeVehiclesAvailable: 'Alternative Vehicles Available:',
+                    vehicleAvailableForDateTime: 'Vehicle available for selected date and time!',
+                    proceedSubmitBooking: 'You can proceed to submit your booking request.',
+                    selectedVehicleNotAvailable: 'Selected vehicle type not available for this date/time',
+                    timeSlotsAvailable: 'Time Slots Available:',
+                    alternativeVehiclesSameTime: 'Alternative Vehicles Available for Same Time:'
                 },
                 fr: {
                     // Header & Navigation
@@ -2626,6 +2815,8 @@
                     driver: 'Connexion Chauffeur',
                     home: 'Accueil',
                     appName: 'ISD Car Booking',
+                    langEn: 'EN',
+                    langFr: 'FR',
                     
                     // Guest Mode
                     guestMode: 'MODE INVITÉ',
@@ -2636,12 +2827,16 @@
                     adminFleetTitle: 'Gestion de la Flotte',
                     adminFleetDesc: 'Voir et gérer la flotte de véhicules',
                     adminFleetBtn: 'Gérer la Flotte',
+                    manageFleet: 'Gérer la Flotte',
                     adminApprovalsTitle: 'Approbations de Réservation',
+                    bookingApprovals: 'Approbations de Réservation',
                     adminApprovalsDesc: 'Examiner et approuver les demandes de réservation',
                     adminApprovalsBtn: 'Voir les Demandes',
+                    viewRequests: 'Voir les Demandes',
                     adminUsersTitle: 'Gestion des Utilisateurs',
                     adminUsersDesc: 'Gérer les employés et les chauffeurs',
                     adminUsersBtn: 'Gérer les Utilisateurs',
+                    manageUsers: 'Gérer les Utilisateurs',
                     backToDashboard: '← Retour au Tableau de bord',
                     
                     // Employee Dashboard
@@ -2657,11 +2852,16 @@
                     
                     // Driver Dashboard
                     driverDashboardTitle: 'Interface Chauffeur Invité',
+                    guestDriverInterface: 'Interface Chauffeur Invité',
                     driverDashboardDesc: 'Bienvenue sur l\'interface Chauffeur. Vous êtes connecté en tant que chauffeur invité.',
+                    guestDriverDesc: 'Bienvenue sur l\'interface Chauffeur. Vous êtes connecté en tant que chauffeur invité.',
                     driverTripsTitle: 'Trajets Assignés',
+                    assignedTrips: 'Trajets Assignés',
                     driverTripsDesc: 'Voir vos trajets et itinéraires assignés',
                     driverTripsBtn: 'Voir les Trajets',
+                    viewTrips: 'Voir les Trajets',
                     driverStatusTitle: 'Mettre à jour le Statut',
+                    updateStatus: 'Mettre à jour le Statut',
                     driverStatusDesc: 'Mettre à jour le statut et la localisation du trajet',
                     driverStatusBtn: 'Mettre à jour le Statut',
                     myActiveTrip: 'Mon Trajet Actif',
@@ -2688,6 +2888,22 @@
                     durationDay: 'jour',
                     durationDaysPlural: 'jours',
                     durationWeek: 'semaine',
+                    duration1Hour: '1 heure',
+                    duration2Hours: '2 heures',
+                    duration3Hours: '3 heures',
+                    duration4Hours: '4 heures',
+                    duration5Hours: '5 heures',
+                    duration6Hours: '6 heures',
+                    duration8Hours: '8 heures',
+                    duration10Hours: '10 heures',
+                    duration12Hours: '12 heures',
+                    duration1Day: '1 jour',
+                    duration2Days: '2 jours',
+                    duration3Days: '3 jours',
+                    duration4Days: '4 jours',
+                    duration5Days: '5 jours',
+                    duration6Days: '6 jours',
+                    duration7Days1Week: '7 jours (1 semaine)',
                     durationError: 'La durée est requise',
                     pickupTime: 'Heure de Prise en Charge',
                     pickupTimeSelect: 'Sélectionner l\'heure de prise en charge',
@@ -2716,6 +2932,8 @@
                     submitRequest: 'Soumettre la Demande',
                     cancel: 'Annuler',
                     bookingSummary: 'Résumé de la Réservation',
+                    license: 'Permis:',
+                    viewTripPolicy: 'Voir la Politique de Voyage',
                     
                     // Status Labels
                     pending: 'En Attente',
@@ -2726,6 +2944,21 @@
                     completed: 'Terminé',
                     cancelled: 'Annulé',
                     scheduled: 'Programmé',
+                    
+                    // Example Content
+                    museumFieldTrip: 'Excursion au Musée',
+                    sportsEvent: 'Événement Sportif',
+                    weekendWorkshop: 'Atelier de Week-end',
+                    scienceMuseum: 'Visite du Musée des Sciences',
+                    shortNotice: '⚠️ Préavis Court',
+                    scienceDepartment: 'Département des Sciences',
+                    athleticsDepartment: 'Département des Sports',
+                    educationDepartment: 'Département de l\'Éducation',
+                    noBusesAvailableWeekend: 'Aucun bus disponible pour les voyages de week-end. Veuillez envisager des dates alternatives ou utiliser un véhicule plus petit.',
+                    students: 'étudiants',
+                    mainSchoolGate: 'Porte Principale de l\'École',
+                    routeIsdMuseumIsd: 'ISD → Musée → ISD',
+                    bus: 'Bus',
                     
                     // Booking Actions
                     viewDetails: 'Voir les Détails',
@@ -2839,148 +3072,51 @@
                     finalOdometerLabel: 'Compteur Kilométrique Final:',
                     finalFuelLevelLabel: 'Niveau Final de Carburant:',
                     vehicleIssuesLabel: 'Problèmes/Commentaires sur le Véhicule:',
+                    vehicleIssuesComments: 'Problèmes/Commentaires sur le Véhicule',
                     miles: 'miles',
                     noneReported: 'Aucun signalé',
                     
-                    // Resource Health
-                    resourceHealth: 'Santé des Ressources',
-                    driverStatus: 'Statut du Chauffeur',
-                    driverAvailable: 'Disponible',
-                    driverOnTrip: 'En Trajet',
-                    driverUnavailable: 'Indisponible',
-                    vehicleWarnings: 'Avertissements sur les Véhicules',
-                    maintenanceDue: 'Maintenance Due',
-                    outOfCommission: 'Hors Service',
+                    // Additional Employee Dashboard Labels
+                    driverLabel: 'Chauffeur',
+                    schoolDriver: 'Chauffeur Scolaire',
+                    isCurrently: 'est actuellement',
+                    viewFullDriverStatus: 'Voir le Statut Complet du Chauffeur',
+                    adminNoteRequiredJustification: 'Note de l\'Administrateur (Justification Requise)',
+                    waitingForAdminAction: 'En Attente de l\'Action de l\'Administrateur',
+                    waiting: 'En Attente',
+                    day: 'jour',
                     days: 'jours',
+                    hour: 'heure',
+                    hours: 'heures',
+                    minute: 'minute',
+                    minutes: 'minutes',
+                    waitingLessThan1Hour: 'En attente depuis moins d\'une heure',
                     
-                    // User Management
-                    userManagement: 'Gestion des Utilisateurs',
-                    editUser: 'Modifier l\'Utilisateur',
-                    name: 'Nom',
-                    email: 'Email',
-                    role: 'Rôle',
-                    roleEmployee: 'Employé',
-                    roleDriver: 'Chauffeur',
-                    addDriver: '+ Ajouter un Chauffeur',
-                    
-                    // Common
-                    date: 'Date',
-                    time: 'Heure',
-                    vehicle: 'Véhicule',
-                    passengers: 'Passagers',
-                    driver: 'Chauffeur',
-                    route: 'Itinéraire',
-                    pickupLocationLabel: 'Lieu de Prise en Charge:',
-                    routeLabel: 'Itinéraire:',
-                    dateLabel: 'Date:',
-                    timeLabel: 'Heure:',
-                    vehicleLabel: 'Véhicule:',
-                    passengersLabel: 'Passagers:',
-                    tripPurposeLabel: 'Objectif du Trajet:',
-                    pickupTimeLabel: 'Heure de Prise en Charge:',
-                    requestedBy: 'Demandé par:',
+                    // Fleet Section
                     ourFleet: 'Notre Flotte',
                     fleetDesc: 'Une gamme diversifiée de véhicules pour répondre à tous vos besoins de transport',
-                    available: 'Disponible',
-                    seats: 'places',
-                    perfectFor: 'Parfait pour',
-                    largeGroups: 'grands groupes',
-                    smallGroups: 'petits groupes',
-                    viewAllBookings: 'Voir Toutes les Réservations',
-                    viewAllRequests: 'Voir Toutes les Demandes',
-                    urgent: 'URGENT',
-                    waiting: 'En attente',
-                    hours: 'heures',
-                    ago: 'il y a',
-                    since: 'depuis',
-                    required: '*',
                     
-                    // Error/Success Messages
-                    errorRequired: 'Ce champ est requis',
-                    errorInvalid: 'Veuillez entrer une valeur valide',
-                    successBookingCreated: 'Demande de réservation soumise avec succès!',
-                    successBookingApproved: 'La demande de réservation a été approuvée avec succès!',
-                    successBookingDenied: 'La demande de réservation a été refusée avec succès.',
-                    successBookingCancelled: 'Réservation annulée avec succès!',
-                    successStatusUpdated: 'Statut mis à jour avec succès!',
-                    successTripFinalized: 'Trajet finalisé avec succès!',
-                    errorBookingFailed: 'Échec de la création de la réservation. Veuillez réessayer.',
-                    errorApprovalFailed: 'Échec de l\'approbation de la réservation. Veuillez réessayer.',
-                    errorDenialFailed: 'Échec du refus de la réservation. Veuillez réessayer.',
-                    errorCancellationFailed: 'Échec de l\'annulation de la réservation. Veuillez réessayer.',
+                    // Platform Features
+                    platformFeatures: 'Fonctionnalités de la Plateforme',
+                    easyBooking: 'Réservation Facile',
+                    easyBookingDesc: 'Réservez des véhicules en quelques clics',
+                    quickApprovals: 'Approbations Rapides',
+                    quickApprovalsDesc: 'Processus d\'approbation rationalisé',
+                    realTimeTracking: 'Suivi en Temps Réel',
+                    realTimeTrackingDesc: 'Surveillez le statut du trajet en temps réel',
                     
-                    // Booking Queue
-                    pendingRequests: 'Demandes en Attente',
-                    queueCount: 'Nombre de Demandes',
-                    sortBy: 'Trier Par',
-                    sortUrgency: 'Urgence',
-                    sortDate: 'Date',
-                    filterBy: 'Filtrer Par',
-                    filterAll: 'Tout',
-                    filterViolations: 'Violations de Politique',
-                    
-                    // Vehicle Booking
-                    selectVehicleType: 'Sélectionner un type de véhicule',
-                    selectDuration: 'Sélectionner la durée',
-                    selectPickupTime: 'Sélectionner l\'heure de prise en charge',
-                    checkingAvailability: 'Vérification de la disponibilité...',
-                    availableSlot: '✓ Créneau disponible',
-                    conflictDetected: 'Conflits de réservation détectés',
-                    alternativeVehicles: 'Véhicules Alternatifs Disponibles',
-                    timeSuggestions: 'Suggestions d\'Heures',
-                    
-                    // Admin Detail View
-                    requestDetails: 'Détails de la Demande',
-                    dateTime: 'Date et Heure',
-                    duration: 'Durée',
-                    vehicleTypeLabel: 'Type de Véhicule',
-                    passengersLabel: 'Passagers',
-                    purpose: 'Objectif',
-                    requesterProfile: 'Profil du Demandeur',
-                    nameDepartment: 'Nom et Département',
-                    contact: 'Contact',
-                    totalBookings: 'Total des Réservations (90 Derniers Jours)',
-                    cancelledBookings: 'Réservations Annulées/Refusées (Durée de vie)',
-                    availabilityConflicts: 'Calendrier de Disponibilité et Conflits',
-                    requestedTimeSlot: 'Créneau Demandé',
-                    noConflicts: '✓ Aucun conflit détecté - Créneau disponible',
-                    conflictDetails: 'Conflit',
-                    policyViolations: 'Drapeaux de Violation de Politique',
-                    shortNotice: '⚠️ Demande à Court Préavis',
-                    exceedsMaxDuration: '🚫 Dépasse la Durée Maximale',
-                    weekendBooking: '📅 Réservation de Week-end',
-                    
-                    // Denial Modal
-                    denyBookingRequest: 'Refuser la Demande de Réservation',
-                    denialTemplate: 'Modèle de Refus',
-                    denialMessage: 'Message de Refus',
-                    sendDenial: 'Envoyer le Refus',
-                    vehicleUnavailable: 'Véhicule Indisponible',
-                    insufficientLeadTime: 'Délai d\'Avis Insuffisant',
-                    missingDocumentation: 'Documentation Manquante',
-                    exceedsMaximumDuration: 'Dépasse la Durée Maximale',
-                    customMessage: 'Message Personnalisé',
-                    
-                    // Driver Status Messages
-                    enRoute: 'En Route',
-                    arrivedAtPickup: 'Arrivé au Point de Prise en Charge',
-                    driving: 'Conduite',
-                    arrivedAtDestination: 'Arrivé à Destination',
-                    tripCompleted: 'Terminé',
-                    isCurrently: 'est actuellement',
-                    viewFullStatus: 'Voir le Statut Complet du Chauffeur',
-                    
-                    // Success Modal
-                    bookingSubmitted: 'Demande de Réservation Soumise avec Succès!',
-                    bookingSubmittedDesc: 'Votre demande de réservation a été soumise et est maintenant en attente d\'approbation par l\'administrateur.',
-                    bookingId: 'ID de Réservation',
-                    goToDashboard: 'Aller au Tableau de bord',
-                    viewBooking: 'Voir la Réservation',
-                    
-                    // Vehicle Types
-                    busMinibus: 'Bus / Minibus',
-                    van: 'Fourgonnette',
-                    sedanCar: 'Berline / Voiture'
+                    // Booking Approvals Queue
+                    bookingApprovalsQueue: 'File d\'Attente des Approbations de Réservation',
+                    sort: 'Trier:',
+                    filter: 'Filtrer:',
+                    mostUrgentFirst: 'Plus Urgent en Premier',
+                    dateNewestFirst: 'Date (Plus Récent en Premier)',
+                    requesterName: 'Nom du Demandeur',
+                    allRequests: 'Toutes les Demandes',
+                    urgent48h: 'Urgent (48h)',
+                    policyViolations: 'Violations de Politique',
+                    exceedsMaxDuration: 'Dépasse la Durée Maximale',
+                    pendingRequests: 'demandes en attente'
                 }
             },
 
@@ -3091,8 +3227,8 @@
                     translate('admin-users-title', 'adminUsersTitle');
                     translate('admin-users-desc', 'adminUsersDesc');
                     translate('admin-users-btn', 'adminUsersBtn');
-                    
-                    // Employee Dashboard
+
+                // Employee Dashboard
                     translate('dashboard-employee-title', 'employeeDashboardTitle');
                     translate('dashboard-employee-desc', 'employeeDashboardDesc');
                     translate('employee-booking-title', 'employeeBookingTitle');
@@ -3174,20 +3310,20 @@
                             optgroup.label = data[key];
                         }
                     });
-                    
-                    // Update active/inactive styles for language links
-                    const langEn = document.getElementById('lang-en');
-                    const langFr = document.getElementById('lang-fr');
-                    if (langEn) {
-                        langEn.classList.toggle('text-white', lang === 'fr');
-                        langEn.classList.toggle('text-isd-gold', lang === 'en');
-                        langEn.classList.toggle('border-b', lang === 'en');
-                    }
-                    if (langFr) {
-                        langFr.classList.toggle('text-white', lang === 'en');
-                        langFr.classList.toggle('text-isd-gold', lang === 'fr');
-                        langFr.classList.toggle('border-b', lang === 'fr');
-                    }
+
+                // Update active/inactive styles for language links
+                const langEn = document.getElementById('lang-en');
+                const langFr = document.getElementById('lang-fr');
+                if (langEn) {
+                    langEn.classList.toggle('text-white', lang === 'fr');
+                    langEn.classList.toggle('text-isd-gold', lang === 'en');
+                    langEn.classList.toggle('border-b', lang === 'en');
+                }
+                if (langFr) {
+                    langFr.classList.toggle('text-white', lang === 'en');
+                    langFr.classList.toggle('text-isd-gold', lang === 'fr');
+                    langFr.classList.toggle('border-b', lang === 'fr');
+                }
                     
                     // Store current language
                     window.currentLanguage = lang;
@@ -4272,7 +4408,7 @@
                 currentImageInput.value = currentImageUrl;
                 imagePreview.src = currentImageUrl;
                 imagePreview.classList.remove('hidden');
-                imageCurrent.textContent = 'Current image:';
+                imageCurrent.textContent = window.t('currentImage');
             } else {
                 // Default images based on type
                 let defaultImage = '';
@@ -4286,10 +4422,10 @@
                 if (defaultImage) {
                     imagePreview.src = defaultImage;
                     imagePreview.classList.remove('hidden');
-                    imageCurrent.textContent = 'Current image:';
+                    imageCurrent.textContent = window.t('currentImage');
                 } else {
                     imagePreview.classList.add('hidden');
-                    imageCurrent.textContent = 'No image currently';
+                    imageCurrent.textContent = window.t('noImageCurrently');
                 }
             }
             
@@ -5064,7 +5200,7 @@
                         reader.onload = function(e) {
                             imagePreview.src = e.target.result;
                             imagePreview.classList.remove('hidden');
-                            imageCurrent.textContent = 'New image preview:';
+                            imageCurrent.textContent = window.t('newImagePreview');
                         };
                         reader.readAsDataURL(file);
                     }
@@ -5224,9 +5360,9 @@
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
                             </svg>
                             <div class="flex-1">
-                                <p class="text-sm text-blue-800 font-semibold mb-1">This date is unavailable. Suggested nearest available date:</p>
+                                <p class="text-sm text-blue-800 font-semibold mb-1">${window.t('dateUnavailableSuggested')}</p>
                                 <p class="text-sm text-blue-700 font-medium mb-2"><strong>${suggestedDateFormatted}</strong></p>
-                                <button type="button" onclick="const dateInput = document.getElementById('trip-date'); dateInput.value='${suggestedDate}'; dateInput.classList.remove('unavailable-date'); dateInput.removeAttribute('disabled'); dateInput.removeAttribute('readonly'); document.getElementById('date-availability-message').classList.add('hidden'); autoCheckAvailability();" class="px-3 py-1.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 text-sm">Select ${suggestedDateFormatted}</button>
+                                <button type="button" onclick="const dateInput = document.getElementById('trip-date'); dateInput.value='${suggestedDate}'; dateInput.classList.remove('unavailable-date'); dateInput.removeAttribute('disabled'); dateInput.removeAttribute('readonly'); document.getElementById('date-availability-message').classList.add('hidden'); autoCheckAvailability();" class="px-3 py-1.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 text-sm">${window.t('selectDate')} ${suggestedDateFormatted}</button>
                             </div>
                         </div>
                     `;
@@ -5257,8 +5393,8 @@
                                 <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                             </svg>
                             <div class="flex-1">
-                                <p class="text-sm text-yellow-800 font-semibold mb-1">Buses/Minibuses are unavailable from December 5-15, 2025</p>
-                                <p class="text-xs text-yellow-700 mb-2">Please select a different date or choose Van/Car instead.</p>
+                                <p class="text-sm text-yellow-800 font-semibold mb-1">${window.t('busesUnavailablePeriod')}</p>
+                                <p class="text-xs text-yellow-700 mb-2">${window.t('selectDifferentDateOrVehicle')}</p>
                             </div>
                         </div>
                     `;
@@ -5565,7 +5701,7 @@
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    <span class="text-blue-800 font-semibold">Checking availability...</span>
+                    <span class="text-blue-800 font-semibold">${window.t('checkingAvailability')}</span>
                 </div>
             `;
             
@@ -5600,9 +5736,9 @@
                             <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-yellow-800 font-semibold">Buses/Minibuses Unavailable</span>
+                            <span class="text-yellow-800 font-semibold">${window.t('busesUnavailable')}</span>
                         </div>
-                        <p class="text-sm text-yellow-700 mb-3">Buses and minibuses are unavailable from December 5-15, 2025. Please select a different date or choose Van/Car instead.</p>
+                        <p class="text-sm text-yellow-700 mb-3">${window.t('busesUnavailableDesc')}</p>
                     `;
                     
                     // Show alternative vehicles (Van/Car)
@@ -5610,15 +5746,15 @@
                         alternativeVehicles.classList.remove('hidden');
                         alternativeVehicles.className = 'p-4 bg-blue-50 border border-blue-200 rounded-lg';
                         alternativeVehicles.innerHTML = `
-                            <h4 class="text-sm font-semibold text-blue-800 mb-2">Alternative Vehicles Available:</h4>
+                            <h4 class="text-sm font-semibold text-blue-800 mb-2">${window.t('alternativeVehiclesAvailable')}:</h4>
                             <div class="space-y-2">
                                 <button type="button" onclick="document.getElementById('vehicle-type').value='van'; checkAvailability();" class="w-full text-left p-3 bg-white rounded-lg hover:bg-blue-50 border border-blue-200 text-sm">
-                                    <span class="font-semibold text-blue-800">Van (15 seats)</span>
-                                    <span class="text-blue-600 text-xs ml-2">Available</span>
+                                    <span class="font-semibold text-blue-800">${window.t('vehicleTypeVan')}</span>
+                                    <span class="text-blue-600 text-xs ml-2">${window.t('statusAvailable')}</span>
                                 </button>
                                 <button type="button" onclick="document.getElementById('vehicle-type').value='car'; checkAvailability();" class="w-full text-left p-3 bg-white rounded-lg hover:bg-blue-50 border border-blue-200 text-sm">
-                                    <span class="font-semibold text-blue-800">Sedan / Car (5 seats)</span>
-                                    <span class="text-blue-600 text-xs ml-2">Available</span>
+                                    <span class="font-semibold text-blue-800">${window.t('vehicleTypeCar')}</span>
+                                    <span class="text-blue-600 text-xs ml-2">${window.t('statusAvailable')}</span>
                                 </button>
                             </div>
                         `;
@@ -5682,9 +5818,9 @@
                             <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-green-800 font-semibold">Vehicle available for selected date and time!</span>
+                            <span class="text-green-800 font-semibold">${window.t('vehicleAvailableForDateTime')}</span>
                         </div>
-                        <p class="text-sm text-green-700 mt-2">You can proceed to submit your booking request.</p>
+                        <p class="text-sm text-green-700 mt-2">${window.t('proceedSubmitBooking')}</p>
                     `;
                     alternativeVehicles.classList.add('hidden');
                     timeSuggestions.classList.add('hidden');
@@ -5699,7 +5835,7 @@
                             <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                             </svg>
-                            <span class="text-yellow-800 font-semibold">Selected vehicle type not available for this date/time</span>
+                            <span class="text-yellow-800 font-semibold">${window.t('selectedVehicleNotAvailable')}</span>
                         </div>
                     `;
                     
@@ -5710,12 +5846,12 @@
                         <p class="text-blue-800 font-semibold mb-2 text-sm">Alternative vehicles available:</p>
                         <div class="space-y-2">
                             <div class="flex items-center justify-between p-2 bg-white rounded">
-                                <span class="text-sm">Van (15 seats)</span>
-                                <span class="text-xs text-green-600 font-semibold">Available</span>
+                                <span class="text-sm">${window.t('vehicleTypeVan')}</span>
+                                <span class="text-xs text-green-600 font-semibold">${window.t('statusAvailable')}</span>
                             </div>
                             <div class="flex items-center justify-between p-2 bg-white rounded">
-                                <span class="text-sm">Car (5 seats)</span>
-                                <span class="text-xs text-green-600 font-semibold">Available</span>
+                                <span class="text-sm">${window.t('vehicleTypeCar')}</span>
+                                <span class="text-xs text-green-600 font-semibold">${window.t('statusAvailable')}</span>
                             </div>
                         </div>
                     `;
@@ -6039,17 +6175,17 @@ The admin will assign a driver closer to the trip date.
             }
             
             const modalContent = `
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Driver Status: ${bookingId}</h3>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">${window.t('driverStatusTitle')} ${bookingId}</h3>
                 <div class="text-left space-y-3">
                     <div class="p-4 bg-gray-50 rounded-lg">
                         <pre class="text-sm text-gray-700 whitespace-pre-wrap">${statusDetails}</pre>
                     </div>
                     <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                        <p class="text-sm text-blue-800 font-semibold mb-1">Real-time Status Updates:</p>
-                        <p class="text-xs text-blue-700">Driver status updates automatically every 30 seconds. This replaces the need for direct employee/driver communication.</p>
+                        <p class="text-sm text-blue-800 font-semibold mb-1">${window.t('realTimeStatusUpdates')}</p>
+                        <p class="text-xs text-blue-700">${window.t('driverStatusUpdatesDesc')}</p>
                     </div>
                 </div>
-                <button onclick="document.getElementById('driver-status-modal').classList.remove('open')" class="mt-4 px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Close</button>
+                <button onclick="document.getElementById('driver-status-modal').classList.remove('open')" class="mt-4 px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400" data-translate="close">Close</button>
             `;
             
             let modal = document.getElementById('driver-status-modal');
@@ -6075,36 +6211,36 @@ The admin will assign a driver closer to the trip date.
         // Trip policy modal
         function showTripPolicy() {
             const policyContent = `
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Trip Policy & Documentation Requirements</h3>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">${window.t('tripPolicyTitle')}</h3>
                 <div class="text-left space-y-4 text-sm">
                     <div>
-                        <h4 class="font-semibold text-gray-800 mb-2">Required Documentation:</h4>
+                        <h4 class="font-semibold text-gray-800 mb-2">${window.t('requiredDocumentation')}</h4>
                         <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li>Completed trip request form</li>
-                            <li>Parental consent forms (for student trips)</li>
-                            <li>Emergency contact information</li>
-                            <li>Medical information for participants</li>
+                            <li>${window.t('completedTripRequestForm')}</li>
+                            <li>${window.t('parentalConsentForms')}</li>
+                            <li>${window.t('emergencyContactInfo')}</li>
+                            <li>${window.t('medicalInfoParticipants')}</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-gray-800 mb-2">Booking Guidelines:</h4>
+                        <h4 class="font-semibold text-gray-800 mb-2">${window.t('bookingGuidelines')}</h4>
                         <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li>Book at least 2 weeks in advance</li>
-                            <li>Maximum capacity must be respected</li>
-                            <li>Cancellation must be made 48 hours before trip</li>
-                            <li>Self-drive authorization required for certain vehicle classes</li>
+                            <li>${window.t('bookAtLeast2Weeks')}</li>
+                            <li>${window.t('maximumCapacityRespected')}</li>
+                            <li>${window.t('cancellation48Hours')}</li>
+                            <li>${window.t('selfDriveAuthorizationRequired')}</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-semibold text-gray-800 mb-2">Safety Requirements:</h4>
+                        <h4 class="font-semibold text-gray-800 mb-2">${window.t('safetyRequirements')}</h4>
                         <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li>All passengers must wear seatbelts</li>
-                            <li>First aid kit must be present</li>
-                            <li>Emergency contact numbers must be accessible</li>
+                            <li>${window.t('allPassengersWearSeatbelts')}</li>
+                            <li>${window.t('firstAidKitMustBePresent')}</li>
+                            <li>${window.t('emergencyContactNumbersAccessible')}</li>
                         </ul>
                     </div>
                 </div>
-                <button onclick="document.getElementById('trip-policy-modal').classList.remove('open')" class="mt-6 px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Close</button>
+                <button onclick="document.getElementById('trip-policy-modal').classList.remove('open')" class="mt-6 px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400" data-translate="close">Close</button>
             `;
             
             // Create or update modal
@@ -6137,28 +6273,28 @@ The admin will assign a driver closer to the trip date.
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold mb-4 text-gray-800">Booking Request Submitted Successfully!</h3>
+                <h3 class="text-2xl font-bold mb-4 text-gray-800">${window.t('bookingSubmittedSuccessfully')}</h3>
                 <div class="text-left space-y-3 text-sm text-gray-700 max-h-96 overflow-y-auto pr-2" style="-webkit-overflow-scrolling: touch; max-height: 400px;">
-                    <p class="font-semibold text-gray-800">Your request has been received and is now pending admin approval.</p>
+                    <p class="font-semibold text-gray-800">${window.t('requestReceivedPending')}</p>
                     <div>
-                        <p class="font-semibold text-gray-800 mb-2">What happens next:</p>
+                        <p class="font-semibold text-gray-800 mb-2">${window.t('whatHappensNext')}</p>
                         <ul class="list-disc list-inside space-y-1 ml-2">
-                            <li>You will receive an email notification when the admin reviews your request</li>
-                            <li>You can track the status in "My Bookings" dashboard</li>
-                            <li>Status updates will appear in real-time on the dashboard</li>
-                            <li>The dashboard automatically refreshes when your booking status changes</li>
+                            <li>${window.t('emailNotificationOnReview')}</li>
+                            <li>${window.t('trackStatusInDashboard')}</li>
+                            <li>${window.t('statusUpdatesRealTime')}</li>
+                            <li>${window.t('dashboardAutoRefreshes')}</li>
                         </ul>
                     </div>
                     <div class="bg-blue-50 border-l-4 border-blue-500 p-3 rounded mt-3">
                         <p class="text-blue-800 font-semibold text-sm flex items-center gap-2">
                             <span>📊</span>
-                            <span>Real-time Dashboard Updates</span>
+                            <span>${window.t('realTimeDashboardUpdates')}</span>
                         </p>
-                        <p class="text-blue-700 text-sm mt-2">No need to check your email repeatedly - the dashboard will show all updates automatically!</p>
-                        <p class="text-blue-600 text-xs mt-2 italic">Your booking will appear in "My Bookings" with live status updates. The dashboard refreshes automatically when your booking is approved, denied, or cancelled.</p>
+                        <p class="text-blue-700 text-sm mt-2">${window.t('noNeedCheckEmail')}</p>
+                        <p class="text-blue-600 text-xs mt-2 italic">${window.t('bookingAppearsInDashboard')}</p>
                     </div>
                 </div>
-                <button onclick="closeBookingSuccessModal(); setTimeout(() => { window.location.hash = 'guest/employee'; setTimeout(async () => { console.log('🔄 Refreshing dashboard after modal close...'); await populateEmployeeDashboard('emp_high'); }, 300); }, 100);" class="mt-6 px-6 py-3 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 w-full">Go to Dashboard</button>
+                <button onclick="closeBookingSuccessModal(); setTimeout(() => { window.location.hash = 'guest/employee'; setTimeout(async () => { console.log('🔄 Refreshing dashboard after modal close...'); await populateEmployeeDashboard('emp_high'); }, 300); }, 100);" class="mt-6 px-6 py-3 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 w-full" data-translate="goToDashboard">Go to Dashboard</button>
             `;
             
             // Create or update modal
@@ -6296,7 +6432,7 @@ The admin will assign a driver closer to the trip date.
                     const capacity = vehicleCapacities[vehicleType];
                     
                     if (capacity) {
-                        capacityInfo.textContent = `Vehicle capacity: ${capacity} passengers`;
+                        capacityInfo.textContent = `${window.t('vehicleCapacity')} ${capacity} ${window.t('passengers')}`;
                         passengersInput.setAttribute('max', capacity);
                     } else {
                         capacityInfo.textContent = '';
@@ -6311,11 +6447,11 @@ The admin will assign a driver closer to the trip date.
                     const passengers = parseInt(this.value);
                     
                     if (capacity && passengers > capacity) {
-                        this.setCustomValidity(`Cannot exceed vehicle capacity of ${capacity} passengers`);
+                        this.setCustomValidity(`${window.t('cannotExceedCapacity')} ${capacity} ${window.t('passengers')}`);
                         this.classList.add('border-red-500');
                         const errorMsg = document.getElementById('passengers-error');
                         if (errorMsg) {
-                            errorMsg.textContent = `Cannot exceed vehicle capacity of ${capacity} passengers`;
+                            errorMsg.textContent = `${window.t('cannotExceedCapacity')} ${capacity} ${window.t('passengers')}`;
                             errorMsg.classList.remove('hidden');
                         }
                     } else {
@@ -6323,7 +6459,7 @@ The admin will assign a driver closer to the trip date.
                         this.classList.remove('border-red-500');
                         const errorMsg = document.getElementById('passengers-error');
                         if (errorMsg && (!this.value || parseInt(this.value) < 1)) {
-                            errorMsg.textContent = 'Please enter a valid number of passengers';
+                            errorMsg.textContent = window.t('pleaseEnterValidPassengers');
                         } else if (errorMsg && this.value && parseInt(this.value) >= 1) {
                             errorMsg.classList.add('hidden');
                         }
@@ -7560,27 +7696,27 @@ The admin will assign a driver closer to the trip date.
                 
                 switch(booking.status) {
                     case 'PENDING':
-                        statusBadge = '<span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">⏳ Pending</span>';
+                        statusBadge = `<span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">⏳ ${window.t('pending')}</span>`;
                         borderColor = 'border-yellow-500';
                         statusClass = 'Pending';
                         break;
                     case 'APPROVED':
-                        statusBadge = '<span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-semibold shadow-sm">✓ Approved</span>';
+                        statusBadge = `<span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-semibold shadow-sm">✓ ${window.t('approved')}</span>`;
                         borderColor = 'border-green-500';
                         statusClass = 'Approved';
                         break;
                     case 'ACTIVE':
-                        statusBadge = '<span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm">▶ Active Trip</span>';
+                        statusBadge = `<span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm">▶ ${window.t('activeTrip')}</span>`;
                         borderColor = 'border-blue-500';
                         statusClass = 'Active';
                         break;
                     case 'DENIED':
-                        statusBadge = '<span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm">✗ Denied</span>';
+                        statusBadge = `<span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm">✗ ${window.t('denied')}</span>`;
                         borderColor = 'border-red-500';
                         statusClass = 'Denied';
                         break;
                     case 'COMPLETED':
-                        statusBadge = '<span class="px-3 py-1 bg-gray-500 text-white rounded-full text-xs font-semibold shadow-sm">✓ Completed</span>';
+                        statusBadge = `<span class="px-3 py-1 bg-gray-500 text-white rounded-full text-xs font-semibold shadow-sm">✓ ${window.t('completed')}</span>`;
                         borderColor = 'border-gray-500';
                         statusClass = 'Completed';
                         break;
@@ -7607,18 +7743,18 @@ The admin will assign a driver closer to the trip date.
                 
                 if (driver) {
                     const safeDriverName = sanitizeHTML(driver.name);
-                    bookingHTML += `<p class="text-gray-600 text-sm mb-2">Driver: School Driver - ${safeDriverName}</p>`;
+                    bookingHTML += `<p class="text-gray-600 text-sm mb-2">${window.t('driverLabel')}: ${window.t('schoolDriver')} - ${safeDriverName}</p>`;
                     
                     if (booking.status === 'ACTIVE' && booking.driverStatus) {
                         const safeDriverStatus = sanitizeHTML(booking.driverStatus);
                         bookingHTML += `
                             <div class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                                 <div class="flex items-center justify-between mb-2">
-                                    <p class="text-blue-800 text-xs font-semibold">Driver Status:</p>
+                                    <p class="text-blue-800 text-xs font-semibold">${window.t('driverStatusLabel')}:</p>
                                     <span class="px-2 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold">${safeDriverStatus}</span>
                                 </div>
-                                <p class="text-blue-700 text-xs">Driver ${safeDriverName} is currently ${safeDriverStatus.toLowerCase()}.</p>
-                                <button onclick="viewDriverStatus('${sanitizeHTML(booking.id)}')" class="mt-2 text-blue-700 hover:text-blue-900 text-xs font-semibold underline">View Full Driver Status</button>
+                                <p class="text-blue-700 text-xs">${window.t('driverLabel')} ${safeDriverName} ${window.t('isCurrently')} ${safeDriverStatus.toLowerCase()}.</p>
+                                <button onclick="viewDriverStatus('${sanitizeHTML(booking.id)}')" class="mt-2 text-blue-700 hover:text-blue-900 text-xs font-semibold underline">${window.t('viewFullDriverStatus')}</button>
                             </div>
                         `;
                     }
@@ -7633,7 +7769,7 @@ The admin will assign a driver closer to the trip date.
                                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                 </svg>
                                 <div class="flex-1">
-                                    <p class="text-red-800 text-sm font-bold mb-1">Admin Note (Required Justification):</p>
+                                    <p class="text-red-800 text-sm font-bold mb-1">${window.t('adminNoteRequiredJustification')}:</p>
                                     <p class="text-red-700 text-sm leading-relaxed">${safeAdminNotes}</p>
                                 </div>
                             </div>
@@ -7651,13 +7787,13 @@ The admin will assign a driver closer to the trip date.
                         const daysDiff = Math.floor(hoursDiff / 24);
                         
                         if (daysDiff > 0) {
-                            timeSinceSubmission = `Waiting ${daysDiff} day${daysDiff > 1 ? 's' : ''}`;
+                            timeSinceSubmission = `${window.t('waiting')} ${daysDiff} ${daysDiff > 1 ? window.t('days') : window.t('day')}`;
                         } else if (hoursDiff >= 1) {
                             const hours = Math.floor(hoursDiff);
-                            timeSinceSubmission = `Waiting ${hours} hour${hours > 1 ? 's' : ''}`;
+                            timeSinceSubmission = `${window.t('waiting')} ${hours} ${hours > 1 ? window.t('hours') : window.t('hour')}`;
                         } else {
                             const minutes = Math.floor(hoursDiff * 60);
-                            timeSinceSubmission = `Waiting ${minutes} minute${minutes > 1 ? 's' : ''}`;
+                            timeSinceSubmission = `${window.t('waiting')} ${minutes} ${minutes > 1 ? window.t('minutes') : window.t('minute')}`;
                         }
                     } else {
                         // Fallback: calculate from booking start time (simulated)
@@ -7667,12 +7803,12 @@ The admin will assign a driver closer to the trip date.
                         const daysDiff = Math.floor(hoursDiff / 24);
                         
                         if (daysDiff > 0) {
-                            timeSinceSubmission = `Waiting ${daysDiff} day${daysDiff > 1 ? 's' : ''}`;
+                            timeSinceSubmission = `${window.t('waiting')} ${daysDiff} ${daysDiff > 1 ? window.t('days') : window.t('day')}`;
                         } else if (hoursDiff >= 1) {
                             const hours = Math.floor(hoursDiff);
-                            timeSinceSubmission = `Waiting ${hours} hour${hours > 1 ? 's' : ''}`;
+                            timeSinceSubmission = `${window.t('waiting')} ${hours} ${hours > 1 ? window.t('hours') : window.t('hour')}`;
                         } else {
-                            timeSinceSubmission = 'Waiting less than 1 hour';
+                            timeSinceSubmission = window.t('waitingLessThan1Hour');
                         }
                     }
                     
@@ -7682,7 +7818,7 @@ The admin will assign a driver closer to the trip date.
                                 <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
                                 </svg>
-                                <p class="text-yellow-800 text-xs font-semibold">Waiting for Admin Action</p>
+                                <p class="text-yellow-800 text-xs font-semibold">${window.t('waitingForAdminAction')}</p>
                             </div>
                             <p class="text-yellow-700 text-sm font-medium">${timeSinceSubmission}</p>
                         </div>
@@ -7702,11 +7838,11 @@ The admin will assign a driver closer to the trip date.
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                                 <div class="flex-1">
-                                    <p class="text-gray-800 text-sm font-bold mb-2">Trip Finalization Log:</p>
+                                    <p class="text-gray-800 text-sm font-bold mb-2">${window.t('tripFinalizationLog')}:</p>
                                     <div class="space-y-1 text-sm text-gray-700">
-                                        <p><span class="font-semibold">Final Odometer:</span> ${safeOdometer} miles</p>
-                                        <p><span class="font-semibold">Final Fuel Level:</span> ${safeFuelLevel}</p>
-                                        <p><span class="font-semibold">Vehicle Issues/Comments:</span> ${safeIssues}</p>
+                                        <p><span class="font-semibold">${window.t('finalOdometer')}:</span> ${safeOdometer} ${window.t('miles')}</p>
+                                        <p><span class="font-semibold">${window.t('finalFuelLevel')}:</span> ${safeFuelLevel}</p>
+                                        <p><span class="font-semibold">${window.t('vehicleIssuesComments')}:</span> ${safeIssues}</p>
                                     </div>
                                 </div>
                             </div>
@@ -7722,17 +7858,17 @@ The admin will assign a driver closer to the trip date.
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mt-3">
-                            <button onclick="viewBookingDetails('${safeBookingId}')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">View Details</button>
+                            <button onclick="viewBookingDetails('${safeBookingId}')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">${window.t('viewDetails')}</button>
                 `;
                 
                 if (booking.status === 'PENDING') {
-                    bookingHTML += `<button onclick="modifyBooking('${safeBookingId}')" class="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 text-sm">Modify Request</button>`;
+                    bookingHTML += `<button onclick="modifyBooking('${safeBookingId}')" class="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 text-sm">${window.t('modifyRequest')}</button>`;
                 }
                 
                 // Cancel button: Only render if currentRole is 'employee' AND status is NOT 'COMPLETED'
                 const shouldShowCancelButton = getCurrentRole() === 'employee' && booking.status !== 'COMPLETED';
                 if (shouldShowCancelButton && (booking.status === 'PENDING' || booking.status === 'APPROVED')) {
-                    bookingHTML += `<button onclick="cancelBooking('${safeBookingId}', '${safeStatusClass}')" class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 text-sm">Cancel Request</button>`;
+                    bookingHTML += `<button onclick="cancelBooking('${safeBookingId}', '${safeStatusClass}')" class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 text-sm">${window.t('cancelRequest')}</button>`;
                 }
                 
                 bookingHTML += `
@@ -7820,17 +7956,17 @@ The admin will assign a driver closer to the trip date.
                                 <div class="flex items-center gap-3 mb-2">
                                     <h3 class="text-lg font-bold text-gray-800">${safePurpose}</h3>
                                     ${urgencyBadge}
-                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">${window.t('pending')}</span>
                                 </div>
-                                <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">${safeRequesterName}</span></p>
-                                <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">${safeDate}</span> | Time: <span class="font-semibold">${safeTime}</span></p>
-                                <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">${safeVehicle}</span> | Passengers: <span class="font-semibold">${safePassengers}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">${window.t('requestedBy')} <span class="font-semibold">${safeRequesterName}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">${window.t('dateLabel')} <span class="font-semibold">${safeDate}</span> | ${window.t('timeLabel')} <span class="font-semibold">${safeTime}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">${window.t('vehicleLabel')} <span class="font-semibold">${safeVehicle}</span> | ${window.t('passengersLabel')} <span class="font-semibold">${safePassengers}</span></p>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="quickApprove('${safeBookingId}')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
-                            <button onclick="quickDenyAvailability('${safeBookingId}')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
-                            <button onclick="openRequestDetailView('${safeBookingId}')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
+                            <button onclick="quickApprove('${safeBookingId}')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ ${window.t('approve')}</button>
+                            <button onclick="quickDenyAvailability('${safeBookingId}')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">${window.t('quickDeny')}</button>
+                            <button onclick="openRequestDetailView('${safeBookingId}')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">${window.t('viewDetails')}</button>
                         </div>
                     </div>
                 `;

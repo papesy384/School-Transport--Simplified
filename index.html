@@ -582,28 +582,28 @@
                 </div>
             </div>
             
-            <!-- Quick Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-yellow-500">
-                    <p class="text-sm text-gray-600 mb-1">Pending</p>
-                    <p class="text-2xl font-bold text-yellow-600">2</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-green-500">
-                    <p class="text-sm text-gray-600 mb-1">Approved</p>
-                    <p class="text-2xl font-bold text-green-600">1</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-blue-500">
-                    <p class="text-sm text-gray-600 mb-1">Active</p>
-                    <p class="text-2xl font-bold text-blue-600">1</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-red-500">
-                    <p class="text-sm text-gray-600 mb-1">Denied</p>
-                    <p class="text-2xl font-bold text-red-600">1</p>
-                </div>
-            </div>
-            
-            <!-- Bookings List - Post-Submission Management -->
-            <div class="space-y-4">
+               <!-- Quick Stats -->
+               <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                   <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-yellow-500">
+                       <p class="text-sm text-gray-600 mb-1">Pending</p>
+                       <p class="text-2xl font-bold text-yellow-600" id="stats-pending">0</p>
+                   </div>
+                   <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-green-500">
+                       <p class="text-sm text-gray-600 mb-1">Approved</p>
+                       <p class="text-2xl font-bold text-green-600" id="stats-approved">0</p>
+                   </div>
+                   <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-blue-500">
+                       <p class="text-sm text-gray-600 mb-1">Active</p>
+                       <p class="text-2xl font-bold text-blue-600" id="stats-active">0</p>
+                   </div>
+                   <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-red-500">
+                       <p class="text-sm text-gray-600 mb-1">Denied</p>
+                       <p class="text-2xl font-bold text-red-600" id="stats-denied">0</p>
+                   </div>
+               </div>
+               
+               <!-- Bookings List - Post-Submission Management -->
+               <div id="employee-bookings-list" class="space-y-4">
                 <!-- Approved Booking with School Driver -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500">
                     <div class="flex justify-between items-start mb-4">
@@ -2550,80 +2550,82 @@
             openDenialModal(bookingId, 'availability');
         }
         
-        // Enhanced Request Detail View
+        // Enhanced Request Detail View - uses MOCK_BOOKINGS data
         function openRequestDetailView(bookingId) {
-            // Simulate booking data (in production, this would be an API call)
-            const bookingData = {
-                'museum-trip': {
-                    title: 'Trip to Museum - Field Trip',
-                    requester: 'John Doe',
-                    department: 'Science Department',
-                    email: 'john.doe@isd.edu',
-                    phone: '+1 (555) 123-4567',
-                    date: 'March 15, 2025',
-                    time: '9:00 AM',
-                    vehicle: 'Bus (50 seats)',
-                    passengers: 45,
-                    duration: '4 hours',
-                    purpose: 'Educational field trip to the Natural History Museum',
-                    driverOption: 'School Driver',
-                    pickupLocation: 'Main School Gate',
-                    pickupTime: '8:45 AM',
-                    totalBookings90Days: 8,
-                    canceledBookings: 1,
-                    deniedBookings: 0,
-                    violations: [],
-                    conflicts: [
-                        { date: 'March 15, 2025', time: '9:00 AM - 1:00 PM', vehicle: 'Bus VH-001', booking: 'Science Fair Transport' },
-                        { date: 'March 15, 2025', time: '10:00 AM - 2:00 PM', vehicle: 'Bus VH-002', booking: 'Sports Competition' }
-                    ],
-                    alternatives: ['Van (15 seats) - Available', 'Car (5 seats) - Available']
-                },
-                'sports-event': {
-                    title: 'Sports Event - Basketball Game',
-                    requester: 'Jane Smith',
-                    department: 'Athletics Department',
-                    email: 'jane.smith@isd.edu',
-                    phone: '+1 (555) 234-5678',
-                    date: 'March 16, 2025',
-                    time: '2:00 PM',
-                    vehicle: 'Van (15 seats)',
-                    passengers: 20,
-                    duration: '6 hours',
-                    purpose: 'Basketball game at regional championship',
-                    driverOption: 'School Driver',
-                    pickupLocation: 'Athletics Building',
-                    pickupTime: '1:45 PM',
-                    totalBookings90Days: 12,
-                    canceledBookings: 2,
-                    deniedBookings: 1,
-                    violations: ['Short Notice Request'],
-                    conflicts: [],
-                    alternatives: ['Bus (50 seats) - Available', 'Car (5 seats) - Available']
-                },
-                'weekend-workshop': {
-                    title: 'Weekend Workshop',
-                    requester: 'Robert Brown',
-                    department: 'Education Department',
-                    email: 'robert.brown@isd.edu',
-                    phone: '+1 (555) 345-6789',
-                    date: 'March 20, 2025',
-                    time: '10:00 AM',
-                    vehicle: 'Bus (50 seats)',
-                    passengers: 30,
-                    duration: '2 days',
-                    purpose: 'Professional development workshop',
-                    driverOption: 'Self-Drive',
-                    totalBookings90Days: 5,
-                    canceledBookings: 0,
-                    deniedBookings: 0,
-                    violations: [],
-                    conflicts: [],
-                    alternatives: ['Van (15 seats) - Available', 'Car (5 seats) - Available']
-                }
-            };
+            // Get booking from MOCK_BOOKINGS
+            const booking = getBookingById(bookingId);
+            if (!booking) {
+                alert('Booking not found');
+                return;
+            }
             
-            const data = bookingData[bookingId] || bookingData['museum-trip'];
+            const requester = getUserById(booking.requesterId);
+            const driver = booking.assignedDriverId ? getUserById(booking.assignedDriverId) : null;
+            const dt = formatDateTime(booking.startTime);
+            
+            // Calculate end time
+            const endTime = new Date(new Date(booking.startTime).getTime() + booking.durationHours * 60 * 60 * 1000);
+            const endDt = formatDateTime(endTime.toISOString());
+            
+            // Check for conflicts with other bookings
+            const conflicts = [];
+            Object.entries(MOCK_BOOKINGS).forEach(([id, otherBooking]) => {
+                if (id !== bookingId && otherBooking.status !== 'DENIED' && otherBooking.status !== 'COMPLETED') {
+                    const otherStart = new Date(otherBooking.startTime);
+                    const otherEnd = new Date(otherStart.getTime() + otherBooking.durationHours * 60 * 60 * 1000);
+                    const bookingStart = new Date(booking.startTime);
+                    const bookingEnd = new Date(bookingStart.getTime() + booking.durationHours * 60 * 60 * 1000);
+                    
+                    // Check if time ranges overlap
+                    if (bookingStart < otherEnd && bookingEnd > otherStart && otherBooking.vehicleType === booking.vehicleType) {
+                        conflicts.push({
+                            date: formatDateTime(otherBooking.startTime).dateShort,
+                            time: `${formatDateTime(otherBooking.startTime).time} - ${endDt.time}`,
+                            vehicle: otherBooking.vehicleType,
+                            booking: otherBooking.tripPurpose || `Booking ${id}`
+                        });
+                    }
+                }
+            });
+            
+            // Get alternative vehicles
+            const alternatives = [];
+            Object.values(MOCK_VEHICLES).forEach(vehicle => {
+                if (vehicle.type !== booking.vehicleType && vehicle.status === 'Available') {
+                    alternatives.push(`${vehicle.type} (${vehicle.name}) - Available`);
+                }
+            });
+            
+            // Check for violations
+            const violations = [];
+            const hoursUntilBooking = (new Date(booking.startTime) - CURRENT_DATE) / (1000 * 60 * 60);
+            if (hoursUntilBooking < 48 && hoursUntilBooking >= 0) {
+                violations.push('Short Notice Request');
+            }
+            
+            // Build data object
+            const data = {
+                title: booking.tripPurpose || 'Trip',
+                requester: requester ? requester.name : 'Unknown',
+                department: requester ? `${requester.role} Department` : 'Unknown',
+                email: requester ? `${booking.requesterId}@isd.edu` : 'unknown@isd.edu',
+                phone: '+1 (555) 123-4567',
+                date: dt.dateShort,
+                time: dt.time,
+                vehicle: booking.vehicleType,
+                passengers: booking.passengers,
+                duration: `${booking.durationHours} ${booking.durationHours === 1 ? 'hour' : 'hours'}`,
+                purpose: booking.tripPurpose || 'Trip',
+                driverOption: booking.driverOption === 'Request Driver' ? 'School Driver' : 'Self-Drive',
+                pickupLocation: 'Main School Gate', // Default
+                pickupTime: dt.time,
+                totalBookings90Days: requester && requester.totalTrips90Days ? requester.totalTrips90Days : 0,
+                canceledBookings: requester && requester.cancelledTripsLifetime ? requester.cancelledTripsLifetime : 0,
+                deniedBookings: 0,
+                violations: violations,
+                conflicts: conflicts,
+                alternatives: alternatives.length > 0 ? alternatives : ['No alternative vehicles available']
+            };
             
             const modalContent = `
                 <div class="max-w-6xl max-h-[90vh] overflow-y-auto">
@@ -3259,7 +3261,7 @@
             updateAvailabilityButtonState();
         }
         
-        // Driver authorization check
+        // Driver authorization check - uses MOCK_USERS data
         function checkDriverAuthorization(vehicleType) {
             const authStatus = document.getElementById('driver-authorization-status');
             const authAuthorized = document.getElementById('authorization-authorized');
@@ -3267,9 +3269,19 @@
             
             if (!authStatus || !vehicleType) return;
             
-            // Simulate authorization check (in production, this would check user's authorization level)
-            // For demo: users authorized for car/van, not for bus
-            const isAuthorized = vehicleType === 'car' || vehicleType === 'van';
+            // Get current user (in guest mode, default to emp_high - Sarah Chen)
+            // In production, this would get the logged-in user ID
+            const currentUserId = 'emp_high'; // Guest mode - using Sarah Chen
+            const user = getUserById(currentUserId);
+            
+            if (!user || user.role !== 'Employee') {
+                if (authAuthorized) authAuthorized.classList.add('hidden');
+                if (authNotAuthorized) authNotAuthorized.classList.remove('hidden');
+                return;
+            }
+            
+            // Check authorization based on user's isAuthorizedDriver flag
+            const isAuthorized = user.isAuthorizedDriver === true;
             
             if (isAuthorized) {
                 if (authAuthorized) authAuthorized.classList.remove('hidden');
@@ -4236,24 +4248,273 @@ The admin will assign a driver closer to the trip date.
             // Initialize driver trip on page load
             initializeDriverTrip();
             
-            // Initialize with English and handle routing
-            try {
-                app.setLanguage('en');
-                app.handleRoute();
-            } catch (error) {
-                console.error('Error initializing app:', error);
-                // Fallback: ensure home view is shown
-                const viewHome = document.getElementById('view-home');
-                if (viewHome) viewHome.classList.add('active');
-            }
+            // Populate dashboards with mock data (after DOM is ready)
+            setTimeout(() => {
+                populateEmployeeDashboard('emp_high'); // Guest mode - using Sarah Chen
+                populateAdminDashboard();
+                populateDriverDashboard('driver_kore'); // Guest mode - using Jake Olsen
+            }, 100);
+        });
+        
+        // Function to populate Employee Dashboard with mock bookings
+        function populateEmployeeDashboard(userId) {
+            const bookings = getBookingsByRequester(userId);
+            const bookingsList = document.getElementById('employee-bookings-list');
+            if (!bookingsList) return;
+            
+            // Update stats
+            const pendingCount = bookings.filter(b => b.status === 'PENDING').length;
+            const approvedCount = bookings.filter(b => b.status === 'APPROVED').length;
+            const activeCount = bookings.filter(b => b.status === 'ACTIVE').length;
+            const deniedCount = bookings.filter(b => b.status === 'DENIED').length;
+            
+            const statsPending = document.getElementById('stats-pending');
+            const statsApproved = document.getElementById('stats-approved');
+            const statsActive = document.getElementById('stats-active');
+            const statsDenied = document.getElementById('stats-denied');
+            
+            if (statsPending) statsPending.textContent = pendingCount;
+            if (statsApproved) statsApproved.textContent = approvedCount;
+            if (statsActive) statsActive.textContent = activeCount;
+            if (statsDenied) statsDenied.textContent = deniedCount;
+            
+            // Clear existing bookings
+            bookingsList.innerHTML = '';
+            
+            // Sort bookings: Active > Approved > Pending > Denied > Completed
+            const statusOrder = { 'ACTIVE': 0, 'APPROVED': 1, 'PENDING': 2, 'DENIED': 3, 'COMPLETED': 4 };
+            bookings.sort((a, b) => (statusOrder[a.status] || 99) - (statusOrder[b.status] || 99));
+            
+            // Render each booking
+            bookings.forEach(booking => {
+                const dt = formatDateTime(booking.startTime);
+                const requester = getUserById(booking.requesterId);
+                const driver = booking.assignedDriverId ? getUserById(booking.assignedDriverId) : null;
+                
+                let statusBadge = '';
+                let borderColor = '';
+                let statusClass = '';
+                
+                switch(booking.status) {
+                    case 'PENDING':
+                        statusBadge = '<span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">⏳ Pending</span>';
+                        borderColor = 'border-yellow-500';
+                        statusClass = 'Pending';
+                        break;
+                    case 'APPROVED':
+                        statusBadge = '<span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-semibold shadow-sm">✓ Approved</span>';
+                        borderColor = 'border-green-500';
+                        statusClass = 'Approved';
+                        break;
+                    case 'ACTIVE':
+                        statusBadge = '<span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm">▶ Active Trip</span>';
+                        borderColor = 'border-blue-500';
+                        statusClass = 'Active';
+                        break;
+                    case 'DENIED':
+                        statusBadge = '<span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm">✗ Denied</span>';
+                        borderColor = 'border-red-500';
+                        statusClass = 'Denied';
+                        break;
+                    case 'COMPLETED':
+                        statusBadge = '<span class="px-3 py-1 bg-gray-500 text-white rounded-full text-xs font-semibold shadow-sm">✓ Completed</span>';
+                        borderColor = 'border-gray-500';
+                        statusClass = 'Completed';
+                        break;
+                }
+                
+                let bookingHTML = `
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 ${borderColor}">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <h3 class="text-lg font-bold text-gray-800">${booking.tripPurpose || 'Trip'}</h3>
+                                    ${statusBadge}
+                                </div>
+                                <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">${dt.dateShort}</span> | Time: <span class="font-semibold">${dt.time}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">${booking.vehicleType}</span> | Passengers: <span class="font-semibold">${booking.passengers}</span></p>
+                `;
+                
+                if (driver) {
+                    bookingHTML += `<p class="text-gray-600 text-sm mb-2">Driver: School Driver - ${driver.name}</p>`;
+                    
+                    if (booking.status === 'ACTIVE' && booking.driverStatus) {
+                        bookingHTML += `
+                            <div class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="text-blue-800 text-xs font-semibold">Driver Status:</p>
+                                    <span class="px-2 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold">${booking.driverStatus}</span>
+                                </div>
+                                <p class="text-blue-700 text-xs">Driver ${driver.name} is currently ${booking.driverStatus.toLowerCase()}.</p>
+                                <button onclick="viewDriverStatus('${booking.id}')" class="mt-2 text-blue-700 hover:text-blue-900 text-xs font-semibold underline">View Full Driver Status</button>
+                            </div>
+                        `;
+                    }
+                }
+                
+                if (booking.status === 'DENIED' && booking.adminNotes) {
+                    bookingHTML += `
+                        <div class="mt-3 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
+                            <div class="flex items-start gap-2 mb-2">
+                                <svg class="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                </svg>
+                                <div class="flex-1">
+                                    <p class="text-red-800 text-sm font-bold mb-1">Admin Note (Required Justification):</p>
+                                    <p class="text-red-700 text-sm leading-relaxed">${booking.adminNotes}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                if (booking.status === 'PENDING') {
+                    bookingHTML += `
+                        <div class="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <div class="flex items-center gap-2 mb-1">
+                                <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                </svg>
+                                <p class="text-yellow-800 text-xs font-semibold">Waiting for Admin Action</p>
+                            </div>
+                            <p class="text-yellow-700 text-sm font-medium">Submitted recently</p>
+                        </div>
+                    `;
+                }
+                
+                bookingHTML += `
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <button onclick="viewBookingDetails('${booking.id}')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">View Details</button>
+                `;
+                
+                if (booking.status === 'PENDING') {
+                    bookingHTML += `<button onclick="modifyBooking('${booking.id}')" class="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 text-sm">Modify Request</button>`;
+                }
+                
+                if (booking.status === 'PENDING' || booking.status === 'APPROVED') {
+                    bookingHTML += `<button onclick="cancelBooking('${booking.id}', '${statusClass}')" class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 text-sm">Cancel Request</button>`;
+                }
+                
+                bookingHTML += `
+                        </div>
+                    </div>
+                `;
+                
+                bookingsList.innerHTML += bookingHTML;
+            });
         }
         
-        // Initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeApp);
-        } else {
-            // DOM is already ready
-            initializeApp();
+        // Function to populate Admin Dashboard with pending bookings
+        function populateAdminDashboard() {
+            const pendingBookings = getBookingsByStatus('PENDING');
+            const queue = document.getElementById('pending-queue');
+            if (!queue) return;
+            
+            // Update count
+            document.getElementById('queue-count').textContent = pendingBookings.length;
+            
+            // Clear existing queue
+            queue.innerHTML = '';
+            
+            // Sort by urgency (most urgent first)
+            pendingBookings.sort((a, b) => {
+                const aUrgent = isUrgentBooking(a.startTime) ? 0 : 1;
+                const bUrgent = isUrgentBooking(b.startTime) ? 0 : 1;
+                if (aUrgent !== bUrgent) return aUrgent - bUrgent;
+                return new Date(a.startTime) - new Date(b.startTime);
+            });
+            
+            pendingBookings.forEach(booking => {
+                const dt = formatDateTime(booking.startTime);
+                const requester = getUserById(booking.requesterId);
+                const isUrgent = isUrgentBooking(booking.startTime);
+                
+                let urgencyBadge = '';
+                let borderColor = 'border-yellow-500';
+                let violations = 'none';
+                
+                if (isUrgent) {
+                    urgencyBadge = '<span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">URGENT</span>';
+                    borderColor = 'border-red-500';
+                }
+                
+                const bookingHTML = `
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 ${borderColor}" data-urgency="${isUrgent ? 'urgent' : 'normal'}" data-violations="${violations}" data-date="${booking.startTime}">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <h3 class="text-lg font-bold text-gray-800">${booking.tripPurpose || 'Trip'}</h3>
+                                    ${urgencyBadge}
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">${requester ? requester.name : 'Unknown'}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">${dt.dateShort}</span> | Time: <span class="font-semibold">${dt.time}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">${booking.vehicleType}</span> | Passengers: <span class="font-semibold">${booking.passengers}</span></p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="quickApprove('${booking.id}')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
+                            <button onclick="quickDenyAvailability('${booking.id}')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
+                            <button onclick="openRequestDetailView('${booking.id}')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
+                        </div>
+                    </div>
+                `;
+                
+                queue.innerHTML += bookingHTML;
+            });
+        }
+        
+        // Function to populate Driver Dashboard with assigned trips
+        function populateDriverDashboard(driverId) {
+            // Find all bookings assigned to this driver
+            const assignedTrips = Object.entries(MOCK_BOOKINGS)
+                .filter(([id, booking]) => booking.assignedDriverId === driverId && (booking.status === 'APPROVED' || booking.status === 'ACTIVE'))
+                .map(([id, booking]) => ({ id, ...booking }));
+            
+            const activeTripCard = document.getElementById('active-trip-card');
+            if (!activeTripCard || assignedTrips.length === 0) return;
+            
+            // Use the first active trip, or first approved trip
+            const trip = assignedTrips.find(t => t.status === 'ACTIVE') || assignedTrips[0];
+            const dt = formatDateTime(trip.startTime);
+            const requester = getUserById(trip.requesterId);
+            
+            // Update trip card
+            activeTripCard.dataset.tripId = trip.id;
+            activeTripCard.dataset.status = trip.status.toLowerCase();
+            
+            const tripTitle = activeTripCard.querySelector('h3');
+            const tripStatusBadge = document.getElementById('trip-status-badge');
+            const tripDetails = activeTripCard.querySelector('.space-y-2');
+            
+            if (tripTitle) tripTitle.textContent = trip.tripPurpose || 'Trip';
+            if (tripStatusBadge) {
+                tripStatusBadge.textContent = trip.status === 'ACTIVE' ? 'Active Trip' : 'Scheduled';
+                tripStatusBadge.className = trip.status === 'ACTIVE' ? 'px-3 py-1 bg-blue-500 text-white rounded-full text-sm font-semibold' : 'px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold';
+            }
+            
+            if (tripDetails) {
+                tripDetails.innerHTML = `
+                    <p><span class="font-semibold">Date:</span> ${dt.dateShort}</p>
+                    <p><span class="font-semibold">Pickup Time:</span> ${dt.time}</p>
+                    <p><span class="font-semibold">Vehicle:</span> ${trip.vehicleType}</p>
+                    <p><span class="font-semibold">Passengers:</span> ${trip.passengers}</p>
+                    <p><span class="font-semibold">Trip Purpose:</span> ${trip.tripPurpose || 'Trip'}</p>
+                `;
+            }
+        }
+
+        // Initialize with English and handle routing
+        try {
+            app.setLanguage('en');
+            app.handleRoute();
+        } catch (error) {
+            console.error('Error initializing app:', error);
+            // Fallback: ensure home view is shown
+            const viewHome = document.getElementById('view-home');
+            if (viewHome) viewHome.classList.add('active');
         }
     </script>
 </body>

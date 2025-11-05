@@ -2398,6 +2398,203 @@
 
         };
 
+        // MOCK DATA - Users, Vehicles, and Bookings
+        const MOCK_USERS = {
+            "admin_001": {
+                "role": "Admin",
+                "name": "Amelia Grant"
+            },
+            "emp_high": {
+                "role": "Employee",
+                "name": "Sarah Chen",
+                "isAuthorizedDriver": true,
+                "totalTrips90Days": 20,
+                "cancelledTripsLifetime": 1
+            },
+            "emp_low": {
+                "role": "Employee",
+                "name": "Ben Harris",
+                "isAuthorizedDriver": false,
+                "totalTrips90Days": 10,
+                "cancelledTripsLifetime": 5
+            },
+            "driver_kore": {
+                "role": "Driver",
+                "name": "Jake Olsen"
+            },
+            "driver_puck": {
+                "role": "Driver",
+                "name": "Maria Lee"
+            }
+        };
+        
+        const MOCK_VEHICLES = {
+            "vh_m_001": {
+                "type": "Minibus",
+                "name": "Minibus Alpha",
+                "status": "Available",
+                "location": "Garage 1",
+                "maintenanceDue": "2026-03-01"
+            },
+            "vh_v_002": {
+                "type": "Passenger Van",
+                "name": "Van Bravo",
+                "status": "Available",
+                "location": "Garage 2",
+                "maintenanceDue": "2025-11-05"
+            },
+            "vh_s_003": {
+                "type": "Sedan",
+                "name": "Sedan Charlie",
+                "status": "In Maintenance",
+                "location": "Workshop",
+                "maintenanceDue": "2025-11-15"
+            }
+        };
+        
+        // Current simulated date: 2025-11-05
+        const CURRENT_DATE = new Date('2025-11-05');
+        
+        const MOCK_BOOKINGS = {
+            "B-001": {
+                "requesterId": "emp_high",
+                "vehicleType": "Minibus",
+                "startTime": "2025-11-06T08:00:00Z",
+                "durationHours": 4,
+                "driverOption": "Request Driver",
+                "status": "PENDING",
+                "adminNotes": "",
+                "scenario": "Admin URGENT Flag / Employee Pending Status Check",
+                "passengers": 30,
+                "tripPurpose": "Field Trip to Museum"
+            },
+            "B-002": {
+                "requesterId": "emp_low",
+                "vehicleType": "Passenger Van",
+                "startTime": "2025-11-06T09:00:00Z",
+                "durationHours": 8,
+                "driverOption": "Self-Drive",
+                "status": "PENDING",
+                "adminNotes": "",
+                "scenario": "Admin Context Check (High Cancellation) / Vehicle Maintenance Conflict",
+                "passengers": 12,
+                "tripPurpose": "Sports Event"
+            },
+            "B-003": {
+                "requesterId": "emp_high",
+                "vehicleType": "Minibus",
+                "startTime": "2025-11-07T10:00:00Z",
+                "durationHours": 3,
+                "driverOption": "Request Driver",
+                "status": "APPROVED",
+                "assignedDriverId": "driver_puck",
+                "scenario": "Employee Approved Status / Driver Upcoming Trip Check",
+                "passengers": 25,
+                "tripPurpose": "Workshop"
+            },
+            "B-004": {
+                "requesterId": "emp_low",
+                "vehicleType": "Sedan",
+                "startTime": "2025-11-05T15:30:00Z",
+                "durationHours": 1,
+                "driverOption": "Self-Drive",
+                "status": "DENIED",
+                "adminNotes": "Denied: Vehicle Sedan Charlie is in maintenance until 11/15. Please select an alternate vehicle or date.",
+                "scenario": "Employee Denied Status Check / Admin Templated Denial",
+                "passengers": 3,
+                "tripPurpose": "Quick Trip"
+            },
+            "B-005": {
+                "requesterId": "emp_high",
+                "vehicleType": "Minibus",
+                "startTime": "2025-11-05T13:00:00Z",
+                "durationHours": 2,
+                "driverOption": "Request Driver",
+                "status": "ACTIVE",
+                "assignedDriverId": "driver_kore",
+                "driverStatus": "En Route",
+                "scenario": "Driver Active Trip / Employee Real-Time Status Check",
+                "passengers": 20,
+                "tripPurpose": "School Event"
+            },
+            "B-006": {
+                "requesterId": "emp_high",
+                "vehicleType": "Minibus",
+                "startTime": "2025-11-04T09:00:00Z",
+                "durationHours": 3,
+                "driverOption": "Request Driver",
+                "status": "COMPLETED",
+                "assignedDriverId": "driver_kore",
+                "finalLog": {
+                    "odometerEnd": 12150,
+                    "fuelLevelEnd": "3/4",
+                    "issuesComments": "Vehicle ran great, no issues."
+                },
+                "scenario": "Driver Log Enforcement Check / Employee History",
+                "passengers": 28,
+                "tripPurpose": "Past Trip"
+            },
+            "B-007": {
+                "requesterId": "emp_high",
+                "vehicleType": "Minibus",
+                "startTime": "2025-11-06T09:00:00Z",
+                "durationHours": 4,
+                "driverOption": "Request Driver",
+                "status": "PENDING",
+                "adminNotes": "",
+                "scenario": "Employee Proactive Check / Admin Booking Conflict Test (Minibus Alpha booked 08:00-12:00 by B-001)",
+                "passengers": 35,
+                "tripPurpose": "Museum Field Trip"
+            }
+        };
+        
+        // Helper function to get user by ID
+        function getUserById(userId) {
+            return MOCK_USERS[userId] || null;
+        }
+        
+        // Helper function to get vehicle by ID
+        function getVehicleById(vehicleId) {
+            return MOCK_VEHICLES[vehicleId] || null;
+        }
+        
+        // Helper function to get booking by ID
+        function getBookingById(bookingId) {
+            return MOCK_BOOKINGS[bookingId] || null;
+        }
+        
+        // Helper function to format date/time
+        function formatDateTime(dateTimeString) {
+            const date = new Date(dateTimeString);
+            return {
+                date: date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+                time: date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }),
+                dateShort: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                dateTime: date.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true })
+            };
+        }
+        
+        // Helper function to check if booking is urgent (within 48 hours)
+        function isUrgentBooking(startTime) {
+            const bookingDate = new Date(startTime);
+            const hoursUntilBooking = (bookingDate - CURRENT_DATE) / (1000 * 60 * 60);
+            return hoursUntilBooking <= 48 && hoursUntilBooking >= 0;
+        }
+        
+        // Helper function to get bookings by status
+        function getBookingsByStatus(status) {
+            return Object.entries(MOCK_BOOKINGS)
+                .filter(([id, booking]) => booking.status === status)
+                .map(([id, booking]) => ({ id, ...booking }));
+        }
+        
+        // Helper function to get bookings by requester
+        function getBookingsByRequester(requesterId) {
+            return Object.entries(MOCK_BOOKINGS)
+                .filter(([id, booking]) => booking.requesterId === requesterId)
+                .map(([id, booking]) => ({ id, ...booking }));
+        }
+
         // Helper function to open edit modal from table row
         function openEditVehicleModalFromRow(button) {
             const row = button.closest('tr');
@@ -4255,15 +4452,25 @@ The admin will assign a driver closer to the trip date.
         
         // Function to populate Employee Dashboard with mock bookings
         function populateEmployeeDashboard(userId) {
-            const bookings = getBookingsByRequester(userId);
-            const bookingsList = document.getElementById('employee-bookings-list');
-            if (!bookingsList) return;
+            // Ensure MOCK_BOOKINGS is defined
+            if (typeof MOCK_BOOKINGS === 'undefined') {
+                console.error('MOCK_BOOKINGS is not defined');
+                return;
+            }
             
-            // Update stats
+            const bookings = getBookingsByRequester(userId);
+            console.log('populateEmployeeDashboard called with userId:', userId);
+            console.log('Found bookings:', bookings.length);
+            
+            const bookingsList = document.getElementById('employee-bookings-list');
+            
+            // Always update stats, even if bookings list doesn't exist yet
             const pendingCount = bookings.filter(b => b.status === 'PENDING').length;
             const approvedCount = bookings.filter(b => b.status === 'APPROVED').length;
             const activeCount = bookings.filter(b => b.status === 'ACTIVE').length;
             const deniedCount = bookings.filter(b => b.status === 'DENIED').length;
+            
+            console.log('Stats:', { pendingCount, approvedCount, activeCount, deniedCount });
             
             const statsPending = document.getElementById('stats-pending');
             const statsApproved = document.getElementById('stats-approved');
@@ -4274,6 +4481,12 @@ The admin will assign a driver closer to the trip date.
             if (statsApproved) statsApproved.textContent = approvedCount;
             if (statsActive) statsActive.textContent = activeCount;
             if (statsDenied) statsDenied.textContent = deniedCount;
+            
+            // If bookings list doesn't exist, return early
+            if (!bookingsList) {
+                console.log('Employee bookings list not found, but stats updated');
+                return;
+            }
             
             // Clear existing bookings
             bookingsList.innerHTML = '';
@@ -4521,11 +4734,19 @@ The admin will assign a driver closer to the trip date.
                 });
                 
                 // Populate dashboards with mock data after DOM is ready
+                // Check current route and populate accordingly
                 setTimeout(() => {
-                    populateEmployeeDashboard('emp_high'); // Guest mode - using Sarah Chen
-                    populateAdminDashboard();
-                    populateDriverDashboard('driver_kore'); // Guest mode - using Jake Olsen
-                }, 100);
+                    const hash = window.location.hash.slice(1) || 'home';
+                    if (hash === 'guest/employee' || hash === 'my-bookings') {
+                        populateEmployeeDashboard('emp_high'); // Guest mode - using Sarah Chen
+                    }
+                    if (hash === 'guest/admin' || hash === 'booking-approvals') {
+                        populateAdminDashboard();
+                    }
+                    if (hash === 'guest/driver' || hash === 'assigned-trips') {
+                        populateDriverDashboard('driver_kore'); // Guest mode - using Jake Olsen
+                    }
+                }, 200);
             } catch (error) {
                 console.error('Error initializing app routing:', error);
                 // Fallback: ensure home view is shown

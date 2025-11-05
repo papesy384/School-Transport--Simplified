@@ -446,7 +446,7 @@
             </div>
         </div>
 
-        <!-- Guest Employee Dashboard View (Request Dashboard - My Bookings) -->
+        <!-- Guest Employee Dashboard View (Request Dashboard) -->
         <div id="view-guest-employee" class="view-section w-full">
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
@@ -481,72 +481,124 @@
                 </div>
             </div>
             
-            <!-- Bookings List - Same as My Bookings View -->
+            <!-- Bookings List - Post-Submission Management -->
             <div class="space-y-4">
+                <!-- Approved Booking with School Driver -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
                                 <h3 class="text-lg font-bold text-gray-800">Museum Field Trip</h3>
-                                <span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-semibold shadow-sm">Approved</span>
+                                <span class="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-semibold shadow-sm">✓ Approved</span>
                             </div>
                             <p class="text-gray-600 text-sm mb-1">Date: March 10, 2025 | Time: 9:00 AM</p>
                             <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 45</p>
+                            <p class="text-gray-600 text-sm mb-2">Driver: School Driver - John Smith</p>
+                            
+                            <!-- Driver Status (Post-Submission Management) -->
+                            <div class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="text-blue-800 text-xs font-semibold">Driver Status:</p>
+                                    <span class="px-2 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold">En Route</span>
+                                </div>
+                                <p class="text-blue-700 text-xs">Driver John Smith is currently en route to pickup location (Main School Gate). Estimated arrival: 8:55 AM</p>
+                                <button onclick="viewDriverStatus('museum-field-trip')" class="mt-2 text-blue-700 hover:text-blue-900 text-xs font-semibold underline">View Full Driver Status</button>
+                            </div>
                         </div>
                     </div>
-                    <button onclick="window.location.hash = 'my-bookings'; viewBookingDetails('museum-field-trip')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <button onclick="window.location.hash = 'my-bookings'; viewBookingDetails('museum-field-trip')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">View Details</button>
+                        <button onclick="cancelBooking('museum-field-trip', 'Approved')" class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 text-sm">Cancel Request</button>
+                    </div>
                 </div>
                 
+                <!-- Pending Booking -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
                                 <h3 class="text-lg font-bold text-gray-800">Sports Event</h3>
-                                <span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-semibold shadow-sm">Pending</span>
+                                <span class="px-3 py-1 bg-yellow-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">⏳ Pending</span>
                             </div>
                             <p class="text-gray-600 text-sm mb-1">Date: March 18, 2025 | Time: 2:00 PM</p>
                             <p class="text-gray-600 text-sm mb-1">Vehicle: Van (15 seats) | Passengers: 20</p>
-                            <p class="text-yellow-700 text-xs font-medium mt-2 flex items-center gap-1">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-                                </svg>
-                                Submitted 4 hours ago
-                            </p>
+                            
+                            <!-- Enhanced Time Since Submission Counter -->
+                            <div class="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <p class="text-yellow-800 text-xs font-semibold">Waiting for Admin Action</p>
+                                </div>
+                                <p class="text-yellow-700 text-sm font-medium">Submitted 4 hours ago</p>
+                                <p class="text-yellow-600 text-xs mt-1">Waiting since 10:30 AM • Your request is being reviewed</p>
+                            </div>
                         </div>
                     </div>
-                    <button onclick="window.location.hash = 'my-bookings'; viewBookingDetails('sports-event-booking')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <button onclick="viewBookingDetails('sports-event-booking')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">View Details</button>
+                        <button onclick="modifyBooking('sports-event-booking')" class="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 text-sm">Modify Request</button>
+                        <button onclick="cancelBooking('sports-event-booking', 'Pending')" class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 text-sm">Cancel Request</button>
+                    </div>
                 </div>
                 
+                <!-- Denied Booking -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
                                 <h3 class="text-lg font-bold text-gray-800">Weekend Workshop</h3>
-                                <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm">Denied</span>
+                                <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm">✗ Denied</span>
                             </div>
                             <p class="text-gray-600 text-sm mb-1">Date: March 20, 2025 | Time: 8:00 AM</p>
                             <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 30</p>
-                            <div class="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-                                <p class="text-red-800 text-xs font-semibold mb-1">Admin Note:</p>
-                                <p class="text-red-700 text-sm">No buses available for weekend trips. Please consider alternative dates or use a smaller vehicle.</p>
+                            <!-- Enhanced Admin Note Preview -->
+                            <div class="mt-3 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
+                                <div class="flex items-start gap-2 mb-2">
+                                    <svg class="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div class="flex-1">
+                                        <p class="text-red-800 text-sm font-bold mb-1">Admin Note (Required Justification):</p>
+                                        <p class="text-red-700 text-sm leading-relaxed">No buses available for weekend trips. Please consider alternative dates or use a smaller vehicle.</p>
+                                        <p class="text-red-600 text-xs mt-2 italic">This note is displayed directly on the dashboard - no need to click for details.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button onclick="window.location.hash = 'my-bookings'; viewBookingDetails('weekend-workshop')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <button onclick="viewBookingDetails('weekend-workshop')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">View Details</button>
+                    </div>
                 </div>
                 
+                <!-- Active Trip -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
                     <div class="flex justify-between items-start mb-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-3 mb-2">
                                 <h3 class="text-lg font-bold text-gray-800">Science Museum Trip</h3>
-                                <span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm">Active Trip</span>
+                                <span class="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold shadow-sm">▶ Active Trip</span>
                             </div>
                             <p class="text-gray-600 text-sm mb-1">Date: March 15, 2025 | Time: 10:00 AM</p>
                             <p class="text-gray-600 text-sm mb-1">Vehicle: Bus (50 seats) | Passengers: 42</p>
+                            <p class="text-gray-600 text-sm mb-2">Driver: School Driver - Sarah Johnson</p>
+                            
+                            <!-- Driver Status (Post-Submission Management) -->
+                            <div class="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <p class="text-green-800 text-xs font-semibold">Driver Status:</p>
+                                    <span class="px-2 py-1 bg-green-500 text-white rounded-full text-xs font-semibold">Arrived</span>
+                                </div>
+                                <p class="text-green-700 text-xs">Driver Sarah Johnson has arrived at the pickup location. Passengers are boarding.</p>
+                                <button onclick="viewDriverStatus('science-museum')" class="mt-2 text-green-700 hover:text-green-900 text-xs font-semibold underline">View Full Driver Status</button>
+                            </div>
                         </div>
                     </div>
-                    <button onclick="window.location.hash = 'my-bookings'; viewBookingDetails('science-museum')" class="text-isd-gold hover:underline text-sm font-semibold">View Details</button>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <button onclick="viewBookingDetails('science-museum')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">View Details</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1280,7 +1332,7 @@
                         </div>
                     </div>
                     
-                    <!-- STEP 3: Driver Option (Mandatory - Explicit at Start) -->
+                    <!-- STEP 3: Driver Option (Mandatory) -->
                     <div class="border-b border-gray-200 pb-4">
                         <div class="bg-orange-50 border-l-4 border-orange-500 p-4 mb-4">
                             <h3 class="text-sm font-semibold text-orange-800 mb-1">Step 3: Driver Option (Mandatory)</h3>
@@ -1321,7 +1373,7 @@
                                 <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="text-sm font-semibold text-green-800">You are authorized for self-drive with this vehicle type</span>
+                                <span class="text-sm font-semibold text-green-800">You are authorized for self-drive</span>
                             </div>
                             <div id="authorization-not-authorized" class="hidden p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
                                 <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
@@ -2490,6 +2542,106 @@
             if (reviewBtn) reviewBtn.classList.remove('hidden');
         }
         
+        // Post-Submission Management: Modify Request (only for Pending bookings)
+        function modifyBooking(bookingId) {
+            const confirmed = confirm(`Modify Request: ${bookingId}\n\nYou are about to modify this pending booking request. Changes will require re-approval by the Admin.\n\nDo you want to continue?`);
+            
+            if (confirmed) {
+                alert(`Opening modification form for: ${bookingId}\n\nThe form will be pre-filled with current booking details. After making changes, the request will be resubmitted and require re-approval.`);
+                window.location.hash = 'new-booking';
+            }
+        }
+        
+        // Post-Submission Management: Cancel Request (for Pending or Approved bookings)
+        function cancelBooking(bookingId, currentStatus) {
+            const confirmed = confirm(`Cancel Request: ${bookingId}\n\nCurrent Status: ${currentStatus}\n\nAre you sure you want to cancel this booking request?\n\nThis action will:\n- Send an immediate notification to the Admin\n- If a driver is assigned, notify them to free up the vehicle\n- Cancel the booking permanently\n\nThis action cannot be undone.`);
+            
+            if (confirmed) {
+                setTimeout(() => {
+                    alert(`Booking ${bookingId} has been cancelled successfully.\n\nNotifications have been sent to:\n- Admin (to free up the vehicle)\n- Assigned Driver (if applicable)\n\nThe booking status has been updated to "Cancelled".`);
+                }, 500);
+            }
+        }
+        
+        // Post-Submission Management: View Driver Status (for Approved bookings with school driver)
+        function viewDriverStatus(bookingId) {
+            let driverStatus = '';
+            let driverName = '';
+            let statusDetails = '';
+            
+            if (bookingId === 'museum-field-trip') {
+                driverName = 'John Smith';
+                driverStatus = 'En Route';
+                statusDetails = `
+Driver: John Smith
+Status: En Route
+Current Location: 2.5 km from pickup location
+Estimated Arrival: 8:55 AM (5 minutes)
+Vehicle: Bus VH-001
+Contact: +1 (555) 123-4567
+
+Last Updated: 8:50 AM
+Next Update: Real-time GPS tracking active
+                `;
+            } else if (bookingId === 'science-museum') {
+                driverName = 'Sarah Johnson';
+                driverStatus = 'Arrived';
+                statusDetails = `
+Driver: Sarah Johnson
+Status: Arrived
+Location: Main School Gate
+Arrival Time: 10:00 AM
+Vehicle: Bus VH-003
+Contact: +1 (555) 987-6543
+
+Current Activity: Passengers boarding
+Estimated Departure: 10:15 AM
+                `;
+            } else {
+                driverStatus = 'Assigned';
+                statusDetails = `
+Driver: Not yet assigned
+Status: Assigned (awaiting driver assignment)
+Vehicle: To be assigned
+
+The admin will assign a driver closer to the trip date.
+                `;
+            }
+            
+            const modalContent = `
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Driver Status: ${bookingId}</h3>
+                <div class="text-left space-y-3">
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <pre class="text-sm text-gray-700 whitespace-pre-wrap">${statusDetails}</pre>
+                    </div>
+                    <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                        <p class="text-sm text-blue-800 font-semibold mb-1">Real-time Status Updates:</p>
+                        <p class="text-xs text-blue-700">Driver status updates automatically every 30 seconds. This replaces the need for direct employee/driver communication.</p>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('driver-status-modal').classList.remove('open')" class="mt-4 px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Close</button>
+            `;
+            
+            let modal = document.getElementById('driver-status-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'driver-status-modal';
+                modal.className = 'modal-overlay';
+                modal.innerHTML = `<div class="modal-content">${modalContent}</div>`;
+                document.body.appendChild(modal);
+                
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.classList.remove('open');
+                    }
+                });
+            } else {
+                modal.querySelector('.modal-content').innerHTML = modalContent;
+            }
+            
+            modal.classList.add('open');
+        }
+        
         // Trip policy modal
         function showTripPolicy() {
             const policyContent = `
@@ -2799,8 +2951,9 @@
                     }
                     
                     if (isValid) {
-                        // Form is valid - show success message
-                        alert('Booking request submitted successfully!');
+                        // Form is valid - show success message with anxiety management
+                        const successMessage = `✓ Booking Request Submitted Successfully!\n\nYour request has been received and is now pending admin approval.\n\nWhat happens next:\n• You will receive an email notification when the admin reviews your request\n• You can track the status in "My Bookings" dashboard\n• Status updates will appear in real-time\n\nNo need to check your email repeatedly - the dashboard will show all updates!`;
+                        alert(successMessage);
                         // In a real app, this would submit to a backend
                         // For now, just navigate back to employee dashboard
                         window.location.hash = 'guest/employee';

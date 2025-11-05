@@ -267,6 +267,29 @@
             -webkit-appearance: none;
             appearance: none;
         }
+        
+        /* Fuel Level Radio Button Visual Feedback */
+        .fuel-level-option {
+            transition: all 0.2s ease;
+        }
+        
+        .fuel-level-radio:checked ~ span {
+            border-color: #D4AF37;
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        .fuel-level-option:has(.fuel-level-radio:checked) {
+            border-color: #D4AF37;
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Mobile-optimized button sizes for driver interface */
+        @media (max-width: 768px) {
+            #active-trip-card button {
+                min-height: 56px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -1639,17 +1662,23 @@
                         
                         <!-- Self-Drive Authorization Status (4b) -->
                         <div id="driver-authorization-status" class="mt-4 hidden">
-                            <div id="authorization-authorized" class="hidden p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2">
-                                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="text-sm font-semibold text-green-800">You are authorized for self-drive</span>
+                            <div id="authorization-authorized" class="hidden p-3 bg-green-50 border border-green-200 rounded-lg">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm font-bold text-green-800">Self-Drive (You are authorized)</span>
+                                </div>
+                                <p class="text-xs text-green-700 ml-7">You have authorization to drive this vehicle type</p>
                             </div>
-                            <div id="authorization-not-authorized" class="hidden p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2">
-                                <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="text-sm font-semibold text-red-800">Not authorized for this vehicle class. Please select 'Request a School Driver'</span>
+                            <div id="authorization-not-authorized" class="hidden p-3 bg-red-50 border border-red-200 rounded-lg">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm font-bold text-red-800">Self-Drive (Not Authorized - Request School Driver)</span>
+                                </div>
+                                <p class="text-xs text-red-700 ml-7">You are not authorized for this vehicle class. Please select 'Request a School Driver'</p>
                             </div>
                         </div>
                     </div>
@@ -1843,89 +1872,174 @@
             </div>
         </div>
 
-        <!-- Assigned Trips View -->
+        <!-- Assigned Trips View (My Trips - Active Trip Screen) -->
         <div id="view-assigned-trips" class="view-section w-full">
-            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Assigned Trips</h2>
-                    <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-4 border-t-4 border-isd-gold w-full">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">My Active Trip</h2>
+                    <button onclick="window.location.hash = 'guest/driver'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm">← Dashboard</button>
                 </div>
-                <p class="text-gray-600">View your assigned trips and routes</p>
             </div>
             
-            <div class="space-y-4">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Museum Field Trip</h3>
-                            <p class="text-gray-600 text-sm">Date: March 10, 2025 | Time: 9:00 AM</p>
-                            <p class="text-gray-600 text-sm">Vehicle: VH-001 (Bus) | Passengers: 45</p>
-                            <p class="text-gray-600 text-sm">Route: ISD → Museum → ISD</p>
-                        </div>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Scheduled</span>
+            <!-- Active Trip Card -->
+            <div id="active-trip-card" class="bg-white p-6 rounded-xl shadow-lg mb-6 border-l-4 border-blue-500" data-trip-id="museum-trip" data-status="scheduled">
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-xl font-bold text-gray-800">Museum Field Trip</h3>
+                        <span id="trip-status-badge" class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">Scheduled</span>
                     </div>
-                    <button onclick="window.location.hash = 'update-status'" class="px-4 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <p><span class="font-semibold">Date:</span> March 10, 2025</p>
+                        <p><span class="font-semibold">Pickup Time:</span> 9:00 AM</p>
+                        <p><span class="font-semibold">Vehicle:</span> VH-001 (Bus - 50 seats)</p>
+                        <p><span class="font-semibold">Passengers:</span> 45 students</p>
+                        <p><span class="font-semibold">Pickup Location:</span> Main School Gate</p>
+                        <p><span class="font-semibold">Route:</span> ISD → Museum → ISD</p>
+                    </div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Sports Event</h3>
-                            <p class="text-gray-600 text-sm">Date: March 18, 2025 | Time: 2:00 PM</p>
-                            <p class="text-gray-600 text-sm">Vehicle: VH-002 (Van) | Passengers: 20</p>
-                            <p class="text-gray-600 text-sm">Route: ISD → Sports Complex → ISD</p>
-                        </div>
-                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">In Progress</span>
+                <!-- Single-Tap Delay Communication Button -->
+                <div class="mb-6">
+                    <button id="delay-notification-btn" onclick="sendDelayNotification()" class="w-full py-4 px-6 bg-orange-500 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-orange-600 active:scale-95 transition-transform">
+                        ⏱️ Running 10 Mins Late
+                    </button>
+                    <p class="text-xs text-gray-600 mt-2 text-center">Tap to instantly notify employee and admin</p>
+                </div>
+                
+                <!-- Guided Status Workflow (Sequential Buttons) -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-bold text-gray-800 mb-3">Trip Status Updates</h4>
+                    
+                    <!-- Step 1: Start Trip (Departing from garage/depot) -->
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <button id="start-trip-btn" onclick="updateTripStatus('start-trip')" class="w-full py-4 px-6 bg-green-600 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-green-700 active:scale-95 transition-transform">
+                            🚗 Start Trip
+                        </button>
+                        <p class="text-xs text-gray-600 mt-1">Departing from garage/depot</p>
                     </div>
-                    <button onclick="window.location.hash = 'update-status'" class="px-4 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
+                    
+                    <!-- Step 2: Arrived at Pickup (Disabled until Start Trip is clicked) -->
+                    <div class="border-l-4 border-gray-300 pl-4">
+                        <button id="arrived-pickup-btn" onclick="updateTripStatus('arrived-pickup')" class="w-full py-4 px-6 bg-blue-600 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-blue-700 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                            📍 Arrived at Pickup
+                        </button>
+                        <p class="text-xs text-gray-600 mt-1">Arrived at pickup location</p>
+                    </div>
+                    
+                    <!-- Step 3: Vehicle Safety Check (Mandatory Gate) -->
+                    <div id="safety-check-section" class="border-l-4 border-yellow-500 pl-4 bg-yellow-50 p-4 rounded-lg opacity-50">
+                        <div class="mb-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="safety-check-confirmed" onchange="toggleStartDrivingButton()" class="w-6 h-6 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
+                                <span class="text-base font-bold text-gray-800">Vehicle Safety Check Confirmed</span>
+                            </label>
+                            <p class="text-xs text-gray-600 mt-1 ml-9">Confirm vehicle safety before starting drive (Available after arriving at pickup)</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Start Driving (Disabled until Safety Check is confirmed) -->
+                    <div class="border-l-4 border-gray-300 pl-4">
+                        <button id="start-driving-btn" onclick="updateTripStatus('start-driving')" class="w-full py-4 px-6 bg-purple-600 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-purple-700 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                            ▶️ Start Driving
+                        </button>
+                        <p class="text-xs text-gray-600 mt-1">Passengers loaded, trip underway</p>
+                    </div>
+                    
+                    <!-- Step 5: Arrived at Destination -->
+                    <div class="border-l-4 border-gray-300 pl-4">
+                        <button id="arrived-destination-btn" onclick="updateTripStatus('arrived-destination')" class="w-full py-4 px-6 bg-indigo-600 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-indigo-700 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                            🎯 Arrived at Destination
+                        </button>
+                        <p class="text-xs text-gray-600 mt-1">Arrived at destination</p>
+                    </div>
+                    
+                    <!-- Step 6: Trip Complete (Opens Finalization Log) -->
+                    <div class="border-l-4 border-gray-300 pl-4">
+                        <button id="trip-complete-btn" onclick="openTripFinalization()" class="w-full py-4 px-6 bg-gray-700 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-gray-800 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                            ✅ Trip Complete
+                        </button>
+                        <p class="text-xs text-gray-600 mt-1">Complete trip and submit log</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Update Status View -->
-        <div id="view-update-status" class="view-section w-full">
-            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Update Trip Status</h2>
-                    <button onclick="window.location.hash = 'guest/driver'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+        <!-- Trip Finalization/Log Screen -->
+        <div id="view-trip-finalization" class="view-section w-full">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-4 border-t-4 border-isd-gold w-full">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Trip Finalization</h2>
+                    <button onclick="window.location.hash = 'assigned-trips'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm">← Back</button>
                 </div>
-                <p class="text-gray-600">Update trip status and location</p>
+                <p class="text-gray-600 text-sm">Complete trip and submit final log</p>
             </div>
             
             <div class="bg-white p-6 rounded-xl shadow-lg">
-                <form id="update-status-form" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Trip <span class="text-red-600">*</span></label>
-                        <select id="trip-select" name="trip-select" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option value="">Select a trip</option>
-                            <option value="museum">Museum Field Trip - March 10, 2025</option>
-                            <option value="sports">Sports Event - March 18, 2025</option>
-                        </select>
-                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-select-error">Please select a trip</p>
+                <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">Museum Field Trip</h3>
+                    <p class="text-sm text-gray-700">Date: March 10, 2025 | Vehicle: VH-001 (Bus)</p>
+                </div>
+                
+                <form id="trip-finalization-form" class="space-y-6">
+                    <!-- Mandatory Finalization Fields -->
+                    <div class="space-y-4">
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">Required Trip Metrics</h4>
+                        
+                        <!-- Final Odometer Reading (Mandatory) -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                Final Odometer Reading <span class="text-red-600">*</span>
+                            </label>
+                            <input type="number" id="final-odometer" name="final-odometer" required min="0" step="0.1" class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-isd-gold text-lg" placeholder="Enter odometer reading (miles)">
+                            <p class="text-red-600 text-sm mt-1 hidden" id="odometer-error">Odometer reading is required</p>
+                        </div>
+                        
+                        <!-- Final Fuel Level (Mandatory) -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                Final Fuel Level <span class="text-red-600">*</span>
+                            </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                                <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-isd-gold transition-colors fuel-level-option">
+                                    <input type="radio" name="final-fuel-level" value="Full" required class="sr-only fuel-level-radio">
+                                    <span class="text-sm font-semibold text-gray-700">Full</span>
+                                </label>
+                                <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-isd-gold transition-colors fuel-level-option">
+                                    <input type="radio" name="final-fuel-level" value="3/4" required class="sr-only fuel-level-radio">
+                                    <span class="text-sm font-semibold text-gray-700">3/4</span>
+                                </label>
+                                <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-isd-gold transition-colors fuel-level-option">
+                                    <input type="radio" name="final-fuel-level" value="1/2" required class="sr-only fuel-level-radio">
+                                    <span class="text-sm font-semibold text-gray-700">1/2</span>
+                                </label>
+                                <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-isd-gold transition-colors fuel-level-option">
+                                    <input type="radio" name="final-fuel-level" value="1/4" required class="sr-only fuel-level-radio">
+                                    <span class="text-sm font-semibold text-gray-700">1/4</span>
+                                </label>
+                                <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-isd-gold transition-colors fuel-level-option">
+                                    <input type="radio" name="final-fuel-level" value="Empty" required class="sr-only fuel-level-radio">
+                                    <span class="text-sm font-semibold text-gray-700">Empty</span>
+                                </label>
+                            </div>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="fuel-level-error">Fuel level selection is required</p>
+                        </div>
+                        
+                        <!-- Vehicle Issues/Comments (Mandatory) -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                Vehicle Issues/Comments <span class="text-red-600">*</span>
+                            </label>
+                            <textarea id="vehicle-issues" name="vehicle-issues" rows="4" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-isd-gold text-base" placeholder="Report any vehicle issues, damage, or additional comments..."></textarea>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="vehicle-issues-error">Vehicle issues/comments are required</p>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Status <span class="text-red-600">*</span></label>
-                        <select id="status-select" name="status-select" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option value="">Select status</option>
-                            <option value="Scheduled">Scheduled</option>
-                            <option value="In Transit">In Transit</option>
-                            <option value="At Destination">At Destination</option>
-                            <option value="Returning">Returning</option>
-                            <option value="Completed">Completed</option>
-                        </select>
-                        <p class="text-red-600 text-sm mt-1 hidden" id="status-select-error">Please select a status</p>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Current Location</label>
-                        <input type="text" id="current-location" name="current-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Enter current location">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Notes</label>
-                        <textarea rows="3" id="status-notes" name="status-notes" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any updates or issues..."></textarea>
-                    </div>
-                    <div class="flex space-x-3">
-                        <button type="submit" class="px-6 py-2 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-600">Update Status</button>
-                        <button type="button" onclick="window.location.hash = 'guest/driver'" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                    
+                    <!-- Submit Button (Disabled until all fields are filled) -->
+                    <div class="border-t border-gray-200 pt-4">
+                        <button type="submit" id="submit-trip-log-btn" class="w-full py-4 px-6 bg-gray-700 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-gray-800 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                            ✅ Submit Log and Complete Trip
+                        </button>
+                        <p class="text-xs text-gray-600 mt-2 text-center">All fields must be completed before submission</p>
                     </div>
                 </form>
             </div>
@@ -2250,11 +2364,13 @@
                             if (homeLink) homeLink.classList.add('hidden');
                         }
                     } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || hash === 'admin/reports' || 
-                               hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status') {
+                               hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status' || hash === 'trip-finalization') {
                         // Handle feature views
                         let viewId = `view-${hash}`;
                         if (hash === 'admin/reports') {
                             viewId = 'view-admin-reports';
+                        } else if (hash === 'trip-finalization') {
+                            viewId = 'view-trip-finalization';
                         }
                         const viewElement = document.getElementById(viewId);
                         if (viewElement) {
@@ -2949,6 +3065,21 @@
             }
         }
         
+        // Auto-check availability when date and vehicle type are selected
+        function autoCheckAvailability() {
+            const vehicleType = document.getElementById('vehicle-type')?.value;
+            const tripDate = document.getElementById('trip-date')?.value;
+            const tripTime = document.getElementById('trip-time')?.value;
+            
+            // Only auto-check if both date and vehicle type are selected
+            if (vehicleType && tripDate && tripTime) {
+                // Small delay to ensure UI is updated
+                setTimeout(() => {
+                    checkAvailability();
+                }, 300);
+            }
+        }
+        
         // Check if all required fields are filled for availability check
         function canCheckAvailability() {
             const tripPurpose = document.getElementById('trip-purpose')?.value.trim();
@@ -3241,6 +3372,15 @@
         
         // Post-Submission Management: Modify Request (only for Pending bookings)
         function modifyBooking(bookingId) {
+            // Check if booking is in Pending status
+            const bookingElement = document.querySelector(`button[onclick*="${bookingId}"]`)?.closest('.bg-white');
+            const isPending = bookingElement?.querySelector('span')?.textContent.includes('Pending');
+            
+            if (!isPending) {
+                alert('Modify Request is only available for bookings with Pending status.\n\nThis booking has already been approved or denied.');
+                return;
+            }
+            
             const confirmed = confirm(`Modify Request: ${bookingId}\n\nYou are about to modify this pending booking request. Changes will require re-approval by the Admin.\n\nDo you want to continue?`);
             
             if (confirmed) {
@@ -3251,11 +3391,28 @@
         
         // Post-Submission Management: Cancel Request (for Pending or Approved bookings)
         function cancelBooking(bookingId, currentStatus) {
+            // Check if booking is in Pending or Approved status
+            if (currentStatus !== 'Pending' && currentStatus !== 'Approved') {
+                alert(`Cancel Request is only available for bookings with Pending or Approved status.\n\nCurrent Status: ${currentStatus}\n\nThis booking cannot be cancelled.`);
+                return;
+            }
+            
             const confirmed = confirm(`Cancel Request: ${bookingId}\n\nCurrent Status: ${currentStatus}\n\nAre you sure you want to cancel this booking request?\n\nThis action will:\n- Send an immediate notification to the Admin\n- If a driver is assigned, notify them to free up the vehicle\n- Cancel the booking permanently\n\nThis action cannot be undone.`);
             
             if (confirmed) {
                 setTimeout(() => {
                     alert(`Booking ${bookingId} has been cancelled successfully.\n\nNotifications have been sent to:\n- Admin (to free up the vehicle)\n- Assigned Driver (if applicable)\n\nThe booking status has been updated to "Cancelled".`);
+                    
+                    // Update UI - remove from list or mark as cancelled
+                    const bookingElement = document.querySelector(`button[onclick*="${bookingId}"]`)?.closest('.bg-white');
+                    if (bookingElement) {
+                        bookingElement.style.opacity = '0.5';
+                        const statusBadge = bookingElement.querySelector('span');
+                        if (statusBadge && statusBadge.textContent.includes('Pending') || statusBadge.textContent.includes('Approved')) {
+                            statusBadge.textContent = 'Cancelled';
+                            statusBadge.className = 'px-3 py-1 bg-gray-500 text-white rounded-full text-xs font-semibold';
+                        }
+                    }
                 }, 500);
             }
         }
@@ -3404,19 +3561,23 @@ The admin will assign a driver closer to the trip date.
                 const today = new Date().toISOString().split('T')[0];
                 tripDateInput.setAttribute('min', today);
                 
-                // Calculate end time on date change
+                // Calculate end time on date change and auto-check availability
                 tripDateInput.addEventListener('change', () => {
                     calculateEndTime();
                     updateAvailabilityButtonState();
+                    // Auto-check availability when date and vehicle type are selected
+                    autoCheckAvailability();
                 });
             }
             
-            // Calculate end time on time change
+            // Calculate end time on time change and auto-check availability
             const tripTimeInput = document.getElementById('trip-time');
             if (tripTimeInput) {
                 tripTimeInput.addEventListener('change', () => {
                     calculateEndTime();
                     updateAvailabilityButtonState();
+                    // Auto-check availability when date, time, and vehicle type are selected
+                    autoCheckAvailability();
                 });
             }
             
@@ -3438,6 +3599,8 @@ The admin will assign a driver closer to the trip date.
                         checkDriverAuthorization(vehicleTypeInput.value);
                     }
                     updateAvailabilityButtonState();
+                    // Auto-check availability when date and vehicle type are selected
+                    autoCheckAvailability();
                 });
             }
             
@@ -3775,6 +3938,182 @@ The admin will assign a driver closer to the trip date.
             }
             
             // Update Status Form Handler
+        // Driver Trip Status Management Functions
+        let tripStatusSequence = {
+            'museum-trip': {
+                currentStep: 0,
+                steps: ['start-trip', 'arrived-pickup', 'start-driving', 'arrived-destination', 'trip-complete']
+            }
+        };
+        
+        // Update Trip Status (Sequential Workflow)
+        function updateTripStatus(statusType) {
+            const tripCard = document.getElementById('active-trip-card');
+            const tripId = tripCard?.dataset.tripId || 'museum-trip';
+            const statusBadge = document.getElementById('trip-status-badge');
+            
+            // Update status sequence
+            if (!tripStatusSequence[tripId]) {
+                tripStatusSequence[tripId] = { currentStep: 0, steps: [] };
+            }
+            
+            const statusMap = {
+                'start-trip': { step: 0, status: 'En Route', badge: 'bg-green-100 text-green-800', nextButton: 'arrived-pickup-btn', message: 'Trip started! Departing from garage/depot.' },
+                'arrived-pickup': { step: 1, status: 'Arrived at Pickup', badge: 'bg-blue-100 text-blue-800', nextButton: null, message: 'Arrived at pickup location. Please complete safety check before starting drive.' },
+                'start-driving': { step: 2, status: 'Driving', badge: 'bg-purple-100 text-purple-800', nextButton: 'arrived-destination-btn', message: 'Driving started! Trip is underway.' },
+                'arrived-destination': { step: 3, status: 'Arrived at Destination', badge: 'bg-indigo-100 text-indigo-800', nextButton: 'trip-complete-btn', message: 'Arrived at destination.' },
+                'trip-complete': { step: 4, status: 'Completed', badge: 'bg-gray-100 text-gray-800', nextButton: null, message: 'Trip completed!' }
+            };
+            
+            const statusInfo = statusMap[statusType];
+            if (!statusInfo) return;
+            
+            // Update status badge
+            if (statusBadge) {
+                statusBadge.textContent = statusInfo.status;
+                statusBadge.className = `px-3 py-1 ${statusInfo.badge} rounded-full text-sm font-semibold`;
+            }
+            
+            // Disable current button and enable next button
+            const buttonIdMap = {
+                'start-trip': 'start-trip-btn',
+                'arrived-pickup': 'arrived-pickup-btn',
+                'start-driving': 'start-driving-btn',
+                'arrived-destination': 'arrived-destination-btn',
+                'trip-complete': 'trip-complete-btn'
+            };
+            
+            const currentBtnId = buttonIdMap[statusType];
+            const currentBtn = currentBtnId ? document.getElementById(currentBtnId) : null;
+            
+            if (currentBtn) {
+                currentBtn.disabled = true;
+                currentBtn.classList.add('opacity-50');
+            }
+            
+            if (statusInfo.nextButton) {
+                const nextBtn = document.getElementById(statusInfo.nextButton);
+                if (nextBtn) {
+                    nextBtn.disabled = false;
+                    nextBtn.classList.remove('opacity-50');
+                }
+            }
+            
+            // Special handling: When "Arrived at Pickup" is clicked, enable safety check
+            if (statusType === 'arrived-pickup') {
+                // Safety check section becomes visible/enabled
+                const safetyCheckSection = document.getElementById('safety-check-section');
+                const safetyCheckBox = document.getElementById('safety-check-confirmed');
+                if (safetyCheckSection) {
+                    safetyCheckSection.classList.remove('opacity-50');
+                }
+                if (safetyCheckBox) {
+                    safetyCheckBox.disabled = false;
+                }
+            }
+            
+            // Special handling: When "Start Driving" is clicked, enable "Arrived at Destination"
+            if (statusType === 'start-driving') {
+                const arrivedDestinationBtn = document.getElementById('arrived-destination-btn');
+                if (arrivedDestinationBtn) {
+                    arrivedDestinationBtn.disabled = false;
+                    arrivedDestinationBtn.classList.remove('opacity-50');
+                }
+            }
+            
+            // Special handling: When "Arrived at Destination" is clicked, enable "Trip Complete"
+            if (statusType === 'arrived-destination') {
+                const tripCompleteBtn = document.getElementById('trip-complete-btn');
+                if (tripCompleteBtn) {
+                    tripCompleteBtn.disabled = false;
+                    tripCompleteBtn.classList.remove('opacity-50');
+                }
+            }
+            
+            // Update trip card status
+            if (tripCard) {
+                tripCard.dataset.status = statusInfo.status.toLowerCase().replace(/\s+/g, '-');
+            }
+            
+            // Show confirmation
+            alert(`Status updated: ${statusInfo.status}\n\n${statusInfo.message || ''}`);
+        }
+        
+        // Toggle Start Driving Button (Safety Gate)
+        function toggleStartDrivingButton() {
+            const safetyCheck = document.getElementById('safety-check-confirmed');
+            const startDrivingBtn = document.getElementById('start-driving-btn');
+            
+            if (safetyCheck && startDrivingBtn) {
+                if (safetyCheck.checked) {
+                    startDrivingBtn.disabled = false;
+                    startDrivingBtn.classList.remove('opacity-50');
+                } else {
+                    startDrivingBtn.disabled = true;
+                    startDrivingBtn.classList.add('opacity-50');
+                }
+            }
+        }
+        
+        // Single-Tap Delay Notification
+        function sendDelayNotification() {
+            const delayBtn = document.getElementById('delay-notification-btn');
+            if (!delayBtn) return;
+            
+            // Disable button temporarily to prevent double-taps
+            delayBtn.disabled = true;
+            delayBtn.textContent = '⏱️ Notification Sent!';
+            delayBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+            delayBtn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+            
+            // In production, this would send a notification to employee and admin
+            // Simulate API call
+            setTimeout(() => {
+                alert('Delay notification sent!\n\nEmployee and Admin have been notified:\n"Driver is experiencing a short delay (approximately 10 minutes)."');
+                
+                // Re-enable button after 3 seconds
+                setTimeout(() => {
+                    delayBtn.disabled = false;
+                    delayBtn.textContent = '⏱️ Running 10 Mins Late';
+                    delayBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    delayBtn.classList.add('bg-orange-500', 'hover:bg-orange-600');
+                }, 3000);
+            }, 500);
+        }
+        
+        // Open Trip Finalization Screen
+        function openTripFinalization() {
+            window.location.hash = 'trip-finalization';
+        }
+        
+        // Validate Trip Finalization Form
+        function validateTripFinalization() {
+            const odometer = document.getElementById('final-odometer')?.value;
+            const fuelLevel = document.querySelector('input[name="final-fuel-level"]:checked')?.value;
+            const vehicleIssues = document.getElementById('vehicle-issues')?.value.trim();
+            const submitBtn = document.getElementById('submit-trip-log-btn');
+            
+            if (!submitBtn) return;
+            
+            // Enable submit button only if all fields are filled
+            if (odometer && fuelLevel && vehicleIssues) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50');
+            }
+        }
+        
+        // Initialize Start Trip Button (enable by default)
+        function initializeDriverTrip() {
+            const startTripBtn = document.getElementById('start-trip-btn');
+            if (startTripBtn) {
+                startTripBtn.disabled = false;
+                startTripBtn.classList.remove('opacity-50');
+            }
+        }
+
             const updateStatusForm = document.getElementById('update-status-form');
             if (updateStatusForm) {
                 updateStatusForm.addEventListener('submit', (e) => {
@@ -3820,6 +4159,82 @@ The admin will assign a driver closer to the trip date.
                     }
                 });
             }
+            
+            // Trip Finalization Form Handler
+            const tripFinalizationForm = document.getElementById('trip-finalization-form');
+            if (tripFinalizationForm) {
+                // Validate form on input changes
+                const odometerInput = document.getElementById('final-odometer');
+                const vehicleIssuesInput = document.getElementById('vehicle-issues');
+                const fuelLevelRadios = document.querySelectorAll('input[name="final-fuel-level"]');
+                
+                if (odometerInput) {
+                    odometerInput.addEventListener('input', validateTripFinalization);
+                }
+                if (vehicleIssuesInput) {
+                    vehicleIssuesInput.addEventListener('input', validateTripFinalization);
+                }
+                fuelLevelRadios.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        // Update visual state of fuel level options
+                        document.querySelectorAll('.fuel-level-option').forEach(option => {
+                            option.classList.remove('border-isd-gold', 'bg-isd-gold', 'bg-opacity-10');
+                        });
+                        if (this.checked) {
+                            this.closest('.fuel-level-option').classList.add('border-isd-gold', 'bg-isd-gold', 'bg-opacity-10');
+                        }
+                        validateTripFinalization();
+                    });
+                });
+                
+                // Form submission
+                tripFinalizationForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const odometer = document.getElementById('final-odometer')?.value;
+                    const fuelLevel = document.querySelector('input[name="final-fuel-level"]:checked')?.value;
+                    const vehicleIssues = document.getElementById('vehicle-issues')?.value.trim();
+                    
+                    // Clear previous errors
+                    document.querySelectorAll('[id$="-error"]').forEach(el => {
+                        el.classList.add('hidden');
+                    });
+                    document.querySelectorAll('#trip-finalization-form input, #trip-finalization-form textarea').forEach(input => {
+                        input.classList.remove('border-red-500');
+                    });
+                    
+                    let isValid = true;
+                    
+                    // Validate Odometer
+                    if (!odometer || parseFloat(odometer) < 0) {
+                        document.getElementById('odometer-error').classList.remove('hidden');
+                        document.getElementById('final-odometer').classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    // Validate Fuel Level
+                    if (!fuelLevel) {
+                        document.getElementById('fuel-level-error').classList.remove('hidden');
+                        isValid = false;
+                    }
+                    
+                    // Validate Vehicle Issues
+                    if (!vehicleIssues) {
+                        document.getElementById('vehicle-issues-error').classList.remove('hidden');
+                        document.getElementById('vehicle-issues').classList.add('border-red-500');
+                        isValid = false;
+                    }
+                    
+                    if (isValid) {
+                        // In a real app, this would submit to backend
+                        alert(`Trip finalized successfully!\n\nOdometer: ${odometer} miles\nFuel Level: ${fuelLevel}\nVehicle Issues: ${vehicleIssues}\n\nTrip log has been submitted and trip is now complete.`);
+                        window.location.hash = 'guest/driver';
+                    }
+                });
+            }
+            
+            // Initialize driver trip on page load
+            initializeDriverTrip();
             
             // Initialize with English and handle routing
             try {

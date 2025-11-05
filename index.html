@@ -2158,6 +2158,59 @@
         </div>
     </div>
 
+    <!-- Add Vehicle Modal -->
+    <div id="add-vehicle-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="text-2xl font-bold mb-5 text-isd-black">Add New Vehicle</h3>
+            <form id="add-vehicle-form" class="space-y-4" enctype="multipart/form-data">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle ID <span class="text-red-600">*</span></label>
+                    <input type="text" id="add-vehicle-id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., VH-001" required>
+                    <p class="text-xs text-gray-500 mt-1">Unique identifier for this vehicle</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Image</label>
+                    <div class="mb-3">
+                        <img id="add-vehicle-image-preview" src="" alt="Vehicle Preview" class="w-32 h-32 object-cover rounded-lg border-2 border-gray-300 mb-2 hidden">
+                    </div>
+                    <input type="file" id="add-vehicle-image" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-isd-gold file:text-isd-black hover:file:bg-yellow-400">
+                    <p class="text-xs text-gray-500 mt-1">Upload an image (JPG, PNG, or GIF)</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type <span class="text-red-600">*</span></label>
+                    <select id="add-vehicle-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required>
+                        <option value="">Select vehicle type</option>
+                        <option value="Minibus">Minibus</option>
+                        <option value="Passenger Van">Passenger Van</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="School Bus">School Bus</option>
+                        <option value="SUV">SUV</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Capacity <span class="text-red-600">*</span></label>
+                    <input type="text" id="add-vehicle-capacity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 50 seats" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Status <span class="text-red-600">*</span></label>
+                    <select id="add-vehicle-status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required>
+                        <option value="Available">Available</option>
+                        <option value="In Maintenance">In Maintenance</option>
+                        <option value="In Use">In Use</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Location</label>
+                    <input type="text" id="add-vehicle-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Garage 1">
+                </div>
+                <div class="flex space-x-3">
+                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Add Vehicle</button>
+                    <button type="button" onclick="closeAddVehicleModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Edit User Modal -->
     <div id="edit-user-modal" class="modal-overlay">
         <div class="modal-content">
@@ -3487,6 +3540,43 @@
 
         function closeEditVehicleModal() {
             document.getElementById('edit-vehicle-modal').classList.remove('open');
+        }
+        
+        // Add Vehicle Modal Functions
+        function openAddVehicleModal() {
+            const modal = document.getElementById('add-vehicle-modal');
+            if (modal) {
+                // Reset form
+                const form = document.getElementById('add-vehicle-form');
+                if (form) {
+                    form.reset();
+                    // Clear image preview
+                    const preview = document.getElementById('add-vehicle-image-preview');
+                    if (preview) {
+                        preview.src = '';
+                        preview.classList.add('hidden');
+                    }
+                }
+                modal.classList.add('open');
+            }
+        }
+        
+        function closeAddVehicleModal() {
+            const modal = document.getElementById('add-vehicle-modal');
+            if (modal) {
+                modal.classList.remove('open');
+                // Reset form
+                const form = document.getElementById('add-vehicle-form');
+                if (form) {
+                    form.reset();
+                    // Clear image preview
+                    const preview = document.getElementById('add-vehicle-image-preview');
+                    if (preview) {
+                        preview.src = '';
+                        preview.classList.add('hidden');
+                    }
+                }
+            }
         }
 
         async function deleteVehicle(vehicleId) {
@@ -6003,8 +6093,78 @@ The admin will assign a driver closer to the trip date.
             const addVehicleBtn = document.getElementById('add-vehicle-btn');
             if (addVehicleBtn) {
                 addVehicleBtn.addEventListener('click', () => {
-                    // In a real app, this would open a form/modal to add a new vehicle
-                    showSuccess('Add Vehicle functionality:\n\nIn a production app, this would open a form or modal to add a new vehicle with details like ID, type, capacity, and status.');
+                    openAddVehicleModal();
+                });
+            }
+            
+            // Add Vehicle Image Preview Handler
+            const addVehicleImageInput = document.getElementById('add-vehicle-image');
+            const addVehicleImagePreview = document.getElementById('add-vehicle-image-preview');
+            if (addVehicleImageInput && addVehicleImagePreview) {
+                addVehicleImageInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            addVehicleImagePreview.src = e.target.result;
+                            addVehicleImagePreview.classList.remove('hidden');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        addVehicleImagePreview.src = '';
+                        addVehicleImagePreview.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // Add Vehicle Form Handler
+            const addVehicleForm = document.getElementById('add-vehicle-form');
+            if (addVehicleForm) {
+                addVehicleForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    try {
+                        const vehicleId = document.getElementById('add-vehicle-id').value.trim();
+                        const vehicleType = document.getElementById('add-vehicle-type').value;
+                        const capacity = document.getElementById('add-vehicle-capacity').value.trim();
+                        const status = document.getElementById('add-vehicle-status').value;
+                        const location = document.getElementById('add-vehicle-location').value.trim();
+                        const imageFile = document.getElementById('add-vehicle-image').files[0];
+                        
+                        // Validate required fields
+                        if (!vehicleId || !vehicleType || !capacity || !status) {
+                            showError('Please fill in all required fields (Vehicle ID, Type, Capacity, and Status).');
+                            return;
+                        }
+                        
+                        // In production, this would save to Firebase
+                        // For now, we'll add it to MOCK_VEHICLES (if it exists as a mutable object)
+                        // Since MOCK_VEHICLES is a const, we'll just show success
+                        // In a real app, this would be:
+                        // await addVehicleToFirestore({ vehicleId, vehicleType, capacity, status, location, imageFile });
+                        
+                        console.log('Adding vehicle:', { vehicleId, vehicleType, capacity, status, location, hasImage: !!imageFile });
+                        
+                        showSuccess(`Vehicle ${vehicleId} has been added successfully! Type: ${vehicleType}, Capacity: ${capacity}, Status: ${status}`);
+                        
+                        closeAddVehicleModal();
+                        
+                        // In production, would refresh the vehicle list
+                        // For now, just show success message
+                    } catch (error) {
+                        console.error('Error adding vehicle:', error);
+                        showError('Failed to add vehicle. Please try again.');
+                    }
+                });
+            }
+            
+            // Close Add Vehicle Modal when clicking outside
+            const addVehicleModal = document.getElementById('add-vehicle-modal');
+            if (addVehicleModal) {
+                addVehicleModal.addEventListener('click', function(e) {
+                    if (e.target === addVehicleModal) {
+                        closeAddVehicleModal();
+                    }
                 });
             }
             

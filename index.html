@@ -2550,6 +2550,240 @@
         const CURRENT_DATE = new Date('2025-11-05');
         
         // ============================================
+        // UTILITY FUNCTIONS - Security, Error Handling, Cleanup
+        // ============================================
+        
+        /**
+         * Sanitize HTML to prevent XSS attacks
+         * @param {string} str - String to sanitize
+         * @returns {string} - Sanitized string
+         */
+        function sanitizeHTML(str) {
+            if (typeof str !== 'string') return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+        
+        /**
+         * Safely set innerHTML with sanitization
+         * @param {HTMLElement} element - Element to update
+         * @param {string} html - HTML content (will be sanitized if contains user data)
+         * @param {boolean} isTrusted - If true, skip sanitization (only for static templates)
+         */
+        function safeSetHTML(element, html, isTrusted = false) {
+            if (!element) return;
+            try {
+                if (isTrusted) {
+                    element.innerHTML = html;
+                } else {
+                    // For user-generated content, use textContent or sanitize
+                    const temp = document.createElement('div');
+                    temp.textContent = html;
+                    element.innerHTML = temp.innerHTML;
+                }
+            } catch (error) {
+                console.error('Error setting HTML:', error);
+                element.textContent = html;
+            }
+        }
+        
+        /**
+         * Safe DOM text content setter
+         * @param {HTMLElement} element - Element to update
+         * @param {string} text - Text content
+         */
+        function safeSetText(element, text) {
+            if (!element) return;
+            try {
+                element.textContent = text || '';
+            } catch (error) {
+                console.error('Error setting text:', error);
+            }
+        }
+        
+        /**
+         * Error handler wrapper for async functions
+         * @param {Function} fn - Async function to wrap
+         * @param {string} context - Context description for error messages
+         * @returns {Function} - Wrapped function
+         */
+        function withErrorHandling(fn, context = 'Operation') {
+            return async function(...args) {
+                try {
+                    return await fn.apply(this, args);
+                } catch (error) {
+                    console.error(`❌ ${context} failed:`, error);
+                    // Show user-friendly error message
+                    showError(`An error occurred: ${context}. Please try again.`);
+                    throw error;
+                }
+            };
+        }
+        
+        /**
+         * Show user-friendly error message
+         * @param {string} message - Error message
+         * @param {number} duration - Duration in milliseconds
+         */
+        function showError(message, duration = 5000) {
+            try {
+                // Remove existing error message
+                const existing = document.getElementById('error-message');
+                if (existing) existing.remove();
+                
+                const errorDiv = document.createElement('div');
+                errorDiv.id = 'error-message';
+                errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 max-w-md';
+                errorDiv.setAttribute('role', 'alert');
+                errorDiv.setAttribute('aria-live', 'assertive');
+                errorDiv.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="flex-1">
+                            <p class="font-semibold">Error</p>
+                            <p class="text-sm mt-1">${sanitizeHTML(message)}</p>
+                        </div>
+                        <button onclick="this.closest('#error-message').remove()" class="text-white hover:text-gray-200 ml-2" aria-label="Close error message">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(errorDiv);
+                
+                // Auto-remove after duration
+                setTimeout(() => {
+                    if (errorDiv.parentNode) {
+                        errorDiv.remove();
+                    }
+                }, duration);
+            } catch (error) {
+                console.error('Error showing error message:', error);
+                alert(message); // Fallback to alert
+            }
+        }
+        
+        /**
+         * Show success message
+         * @param {string} message - Success message
+         * @param {number} duration - Duration in milliseconds
+         */
+        function showSuccess(message, duration = 3000) {
+            try {
+                const existing = document.getElementById('success-message');
+                if (existing) existing.remove();
+                
+                const successDiv = document.createElement('div');
+                successDiv.id = 'success-message';
+                successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 max-w-md';
+                successDiv.setAttribute('role', 'status');
+                successDiv.setAttribute('aria-live', 'polite');
+                successDiv.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <p>${sanitizeHTML(message)}</p>
+                        <button onclick="this.closest('#success-message').remove()" class="text-white hover:text-gray-200 ml-2" aria-label="Close success message">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(successDiv);
+                
+                setTimeout(() => {
+                    if (successDiv.parentNode) {
+                        successDiv.remove();
+                    }
+                }, duration);
+            } catch (error) {
+                console.error('Error showing success message:', error);
+            }
+        }
+        
+        /**
+         * Event listener cleanup tracker
+         */
+        const eventListeners = new Map();
+        
+        /**
+         * Safely add event listener with cleanup tracking
+         * @param {HTMLElement} element - Element to attach listener to
+         * @param {string} event - Event type
+         * @param {Function} handler - Event handler
+         * @param {string} key - Unique key for cleanup
+         */
+        function safeAddEventListener(element, event, handler, key) {
+            if (!element || !key) return;
+            try {
+                element.addEventListener(event, handler);
+                if (!eventListeners.has(key)) {
+                    eventListeners.set(key, []);
+                }
+                eventListeners.get(key).push({ element, event, handler });
+            } catch (error) {
+                console.error('Error adding event listener:', error);
+            }
+        }
+        
+        /**
+         * Clean up all event listeners for a given key
+         * @param {string} key - Key to clean up
+         */
+        function cleanupEventListeners(key) {
+            const listeners = eventListeners.get(key);
+            if (!listeners) return;
+            
+            listeners.forEach(({ element, event, handler }) => {
+                try {
+                    element.removeEventListener(event, handler);
+                } catch (error) {
+                    console.error('Error removing event listener:', error);
+                }
+            });
+            
+            eventListeners.delete(key);
+        }
+        
+        /**
+         * Clean up all event listeners
+         */
+        function cleanupAllEventListeners() {
+            eventListeners.forEach((listeners, key) => {
+                cleanupEventListeners(key);
+            });
+        }
+        
+        /**
+         * Validate input to prevent injection attacks
+         * @param {string} input - Input to validate
+         * @param {string} type - Type of validation ('text', 'email', 'number', 'date')
+         * @returns {boolean} - True if valid
+         */
+        function validateInput(input, type = 'text') {
+            if (typeof input !== 'string') return false;
+            
+            switch (type) {
+                case 'email':
+                    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input);
+                case 'number':
+                    return /^\d+$/.test(input);
+                case 'date':
+                    return /^\d{4}-\d{2}-\d{2}$/.test(input);
+                case 'text':
+                    return input.length > 0 && input.length < 1000;
+                default:
+                    return true;
+            }
+        }
+        
+        // ============================================
         // APPLICATION STATE
         // ============================================
         const appState = {
@@ -2641,6 +2875,9 @@
                 console.log('✅ Booking added to MOCK_BOOKINGS:', bookingId, MOCK_BOOKINGS[bookingId]);
                 console.log('📊 Total bookings in MOCK_BOOKINGS:', Object.keys(MOCK_BOOKINGS).length);
                 
+                // Save to localStorage
+                saveMockBookings();
+                
                 return bookingId;
             }
             
@@ -2687,80 +2924,110 @@
         
         // Firestore: Get bookings by requester (Employee can read their own)
         async function getBookingsByRequesterFirestore(userId) {
-            if (!isFirebaseConfigured()) {
+            try {
+                if (!isFirebaseConfigured()) {
+                    return getBookingsByRequester(userId);
+                }
+                
+                const user = await getCurrentUser();
+                if (!user) return [];
+                
+                const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+                const q = window.firebaseFunctions.query(
+                    bookingsRef,
+                    window.firebaseFunctions.where('requesterId', '==', user.uid),
+                    window.firebaseFunctions.orderBy('startTime', 'desc')
+                );
+                
+                const querySnapshot = await window.firebaseFunctions.getDocs(q);
+                const bookings = [];
+                querySnapshot.forEach((doc) => {
+                    bookings.push({ id: doc.id, ...doc.data() });
+                });
+                return bookings;
+            } catch (error) {
+                console.error('❌ Error in getBookingsByRequesterFirestore:', error);
+                // Fallback to mock data on error
                 return getBookingsByRequester(userId);
             }
-            
-            const user = await getCurrentUser();
-            if (!user) return [];
-            
-            const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
-            const q = window.firebaseFunctions.query(
-                bookingsRef,
-                window.firebaseFunctions.where('requesterId', '==', user.uid),
-                window.firebaseFunctions.orderBy('startTime', 'desc')
-            );
-            
-            const querySnapshot = await window.firebaseFunctions.getDocs(q);
-            const bookings = [];
-            querySnapshot.forEach((doc) => {
-                bookings.push({ id: doc.id, ...doc.data() });
-            });
-            return bookings;
         }
         
         // Firestore: Get bookings by status (Admin can read all)
         async function getBookingsByStatusFirestore(status) {
-            if (!isFirebaseConfigured()) {
+            try {
+                if (!isFirebaseConfigured()) {
+                    return getBookingsByStatus(status);
+                }
+                
+                const user = await getCurrentUser();
+                if (!user) return [];
+                
+                const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+                const q = window.firebaseFunctions.query(
+                    bookingsRef,
+                    window.firebaseFunctions.where('status', '==', status),
+                    window.firebaseFunctions.orderBy('startTime', 'asc')
+                );
+                
+                const querySnapshot = await window.firebaseFunctions.getDocs(q);
+                const bookings = [];
+                querySnapshot.forEach((doc) => {
+                    bookings.push({ id: doc.id, ...doc.data() });
+                });
+                return bookings;
+            } catch (error) {
+                console.error('❌ Error in getBookingsByStatusFirestore:', error);
+                // Fallback to mock data on error
                 return getBookingsByStatus(status);
             }
-            
-            const user = await getCurrentUser();
-            if (!user) return [];
-            
-            const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
-            const q = window.firebaseFunctions.query(
-                bookingsRef,
-                window.firebaseFunctions.where('status', '==', status),
-                window.firebaseFunctions.orderBy('startTime', 'asc')
-            );
-            
-            const querySnapshot = await window.firebaseFunctions.getDocs(q);
-            const bookings = [];
-            querySnapshot.forEach((doc) => {
-                bookings.push({ id: doc.id, ...doc.data() });
-            });
-            return bookings;
         }
         
         // Firestore: Update booking (Employee can update their own PENDING, Admin can update any)
         async function updateBookingFirestore(bookingId, updates) {
-            if (!isFirebaseConfigured()) {
-                if (MOCK_BOOKINGS[bookingId]) {
-                    MOCK_BOOKINGS[bookingId] = { ...MOCK_BOOKINGS[bookingId], ...updates };
+            try {
+                if (!isFirebaseConfigured()) {
+                    if (MOCK_BOOKINGS[bookingId]) {
+                        MOCK_BOOKINGS[bookingId] = { ...MOCK_BOOKINGS[bookingId], ...updates };
+                        // Save to localStorage
+                        saveMockBookings();
+                    }
+                    return;
                 }
-                return;
+                
+                const user = await getCurrentUser();
+                if (!user) throw new Error('User not authenticated');
+                
+                const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
+                await window.firebaseFunctions.updateDoc(bookingRef, updates);
+            } catch (error) {
+                console.error('❌ Error in updateBookingFirestore:', error);
+                showError('Failed to update booking. Please try again.');
+                throw error;
             }
-            
-            const user = await getCurrentUser();
-            if (!user) throw new Error('User not authenticated');
-            
-            const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
-            await window.firebaseFunctions.updateDoc(bookingRef, updates);
         }
         
         // Firestore: Delete booking (Employee can delete their own PENDING/APPROVED)
         async function deleteBookingFirestore(bookingId) {
-            if (!isFirebaseConfigured()) {
-                delete MOCK_BOOKINGS[bookingId];
-                return;
+            try {
+                if (!isFirebaseConfigured()) {
+                    if (MOCK_BOOKINGS[bookingId]) {
+                        delete MOCK_BOOKINGS[bookingId];
+                        // Save to localStorage
+                        saveMockBookings();
+                    }
+                    return;
+                }
+                
+                const user = await getCurrentUser();
+                if (!user) throw new Error('User not authenticated');
+                
+                const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
+                await window.firebaseFunctions.deleteDoc(bookingRef);
+            } catch (error) {
+                console.error('❌ Error in deleteBookingFirestore:', error);
+                showError('Failed to delete booking. Please try again.');
+                throw error;
             }
-            
-            const user = await getCurrentUser();
-            if (!user) throw new Error('User not authenticated');
-            
-            const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
-            await window.firebaseFunctions.deleteDoc(bookingRef);
         }
         
         // Firestore: Get single booking by ID
@@ -2952,22 +3219,38 @@
                 console.log(`startDataListeners: Admin listeners set up (pending + all bookings for real-time status updates)`);
             }
             
+            // Store listeners globally for cleanup
+            window.dataListeners = listeners;
+            
             return listeners; // Return listeners array for cleanup
         }
         
         // Stop all data listeners (cleanup function)
         function stopDataListeners(listeners) {
-            if (!listeners || !Array.isArray(listeners)) return;
+            if (!listeners || !Array.isArray(listeners)) {
+                // Try to use global listeners if provided listeners is invalid
+                listeners = window.dataListeners || [];
+            }
             
             listeners.forEach(listener => {
                 if (listener && listener.unsubscribe) {
-                    listener.unsubscribe();
-                    console.log(`stopDataListeners: Stopped ${listener.type} listener`);
+                    try {
+                        listener.unsubscribe();
+                        console.log(`stopDataListeners: Stopped ${listener.type} listener`);
+                    } catch (error) {
+                        console.error('Error stopping listener:', error);
+                    }
                 }
             });
+            
+            window.dataListeners = [];
         }
         
-        const MOCK_BOOKINGS = {
+        // LocalStorage persistence for MOCK_BOOKINGS
+        const STORAGE_KEY = 'smartcar_mock_bookings';
+        
+        // Default/Initial bookings (for first-time users or reset)
+        const DEFAULT_MOCK_BOOKINGS = {
             "B-001": {
                 "requesterId": "emp_high",
                 "vehicleType": "Minibus",
@@ -3059,6 +3342,36 @@
                 "tripPurpose": "Museum Field Trip"
             }
         };
+        
+        // Load MOCK_BOOKINGS from localStorage or use default
+        function loadMockBookings() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const savedBookings = JSON.parse(saved);
+                    // Merge: saved bookings take precedence, but include any new default bookings not in saved
+                    return { ...DEFAULT_MOCK_BOOKINGS, ...savedBookings };
+                }
+            } catch (error) {
+                console.warn('Failed to load bookings from localStorage:', error);
+            }
+            // Return default bookings if localStorage is empty or error
+            return { ...DEFAULT_MOCK_BOOKINGS };
+        }
+        
+        // Save MOCK_BOOKINGS to localStorage
+        function saveMockBookings() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(MOCK_BOOKINGS));
+                console.log('💾 Bookings saved to localStorage');
+            } catch (error) {
+                console.error('Failed to save bookings to localStorage:', error);
+            }
+        }
+        
+        // Initialize MOCK_BOOKINGS from localStorage
+        const MOCK_BOOKINGS = loadMockBookings();
+        console.log('📦 Loaded bookings from localStorage:', Object.keys(MOCK_BOOKINGS).length, 'bookings');
         
         // Helper function to get user by ID
         function getUserById(userId) {
@@ -5250,10 +5563,25 @@ The admin will assign a driver closer to the trip date.
                     }
                     
                     if (isValid) {
-                        // Collect form data
-                        const tripPurpose = document.getElementById('trip-purpose').value.trim();
+                        // Collect form data with input validation
+                        const tripPurposeInput = document.getElementById('trip-purpose');
+                        const tripPurpose = tripPurposeInput ? tripPurposeInput.value.trim() : '';
+                        
+                        // Validate trip purpose input
+                        if (!validateInput(tripPurpose, 'text')) {
+                            showError('Trip purpose is required and must be less than 1000 characters.');
+                            return;
+                        }
+                        
                         const vehicleType = document.getElementById('vehicle-type').value;
                         const tripDate = document.getElementById('trip-date').value;
+                        
+                        // Validate date input
+                        if (!validateInput(tripDate, 'date')) {
+                            showError('Please select a valid date.');
+                            return;
+                        }
+                        
                         const pickupTime = document.getElementById('pickup-time').value;
                         
                         // Parse duration as integer - ensure it's a number, not a string
@@ -5262,14 +5590,39 @@ The admin will assign a driver closer to the trip date.
                         
                         // Validate duration is a valid number
                         if (isNaN(tripDuration) || tripDuration <= 0) {
-                            alert('Invalid duration. Please select a valid duration.');
+                            showError('Invalid duration. Please select a valid duration.');
                             return;
                         }
                         
                         const driverOption = document.getElementById('driver-option').value;
-                        const passengers = parseInt(document.getElementById('passengers').value, 10); // Also ensure passengers is numeric
-                        const notes = document.getElementById('notes')?.value.trim() || '';
-                        const pickupLocation = document.getElementById('pickup-location')?.value.trim() || '';
+                        const passengersInput = document.getElementById('passengers');
+                        const passengers = passengersInput ? parseInt(passengersInput.value, 10) : 0;
+                        
+                        // Validate passengers is a valid number
+                        if (isNaN(passengers) || passengers <= 0) {
+                            showError('Invalid number of passengers. Please enter a valid number.');
+                            return;
+                        }
+                        
+                        const notesInput = document.getElementById('notes');
+                        const notes = notesInput ? notesInput.value.trim() : '';
+                        
+                        // Validate notes input length if provided
+                        if (notes && !validateInput(notes, 'text')) {
+                            showError('Notes must be less than 1000 characters.');
+                            return;
+                        }
+                        
+                        const pickupLocationInput = document.getElementById('pickup-location');
+                        const pickupLocation = pickupLocationInput ? pickupLocationInput.value.trim() : '';
+                        
+                        // Validate pickup location if school driver
+                        if (driverOption === 'school-driver' && pickupLocation) {
+                            if (!validateInput(pickupLocation, 'text')) {
+                                showError('Pickup location must be less than 1000 characters.');
+                                return;
+                            }
+                        }
                         
                         // Map vehicle type to booking format
                         const vehicleTypeMap = {
@@ -5290,6 +5643,11 @@ The admin will assign a driver closer to the trip date.
                         const startDateTime = new Date(`${tripDate}T${pickupTime}:00Z`);
                         const startTimeISO = startDateTime.toISOString();
                         
+                        // Sanitize all text inputs before creating booking
+                        const safeTripPurpose = sanitizeHTML(tripPurpose);
+                        const safePickupLocation = pickupLocation ? sanitizeHTML(pickupLocation) : '';
+                        const safeNotes = notes ? sanitizeHTML(notes) : '';
+                        
                         // Create booking object
                         // Ensure all numeric fields are explicitly numbers (not strings) for Firebase
                         const newBooking = {
@@ -5299,24 +5657,27 @@ The admin will assign a driver closer to the trip date.
                             driverOption: mappedDriverOption,
                             adminNotes: '',
                             passengers: Number(passengers), // Explicitly convert to number type
-                            tripPurpose: tripPurpose,
+                            tripPurpose: safeTripPurpose, // Sanitized
                             requesterId: 'emp_high' // Set requesterId for guest mode (default to emp_high)
                         };
                         
-                        // Add pickup location if school driver
-                        if (driverOption === 'school-driver' && pickupLocation) {
-                            newBooking.pickupLocation = pickupLocation;
+                        // Add pickup location if school driver (already sanitized)
+                        if (driverOption === 'school-driver' && safePickupLocation) {
+                            newBooking.pickupLocation = safePickupLocation;
                         }
                         
-                        // Add notes if provided
-                        if (notes) {
-                            newBooking.notes = notes;
+                        // Add notes if provided (already sanitized)
+                        if (safeNotes) {
+                            newBooking.notes = safeNotes;
                         }
                         
                         // Create booking in Firestore (or mock data if Firebase not configured)
                         try {
                             const bookingId = await createBooking(newBooking);
                             console.log('New booking created:', bookingId, newBooking);
+                            
+                            // Show success message
+                            showSuccess('Booking request submitted successfully!');
                             
                             // Reset form first
                             newBookingForm.reset();
@@ -5845,24 +6206,26 @@ The admin will assign a driver closer to the trip date.
         
         // Function to populate Employee Dashboard with bookings from Firestore or mock data
         async function populateEmployeeDashboard(userId) {
-            // Use 'emp_high' as default userId in guest mode if not provided
-            const actualUserId = userId || 'emp_high';
-            
-            console.log('📊 populateEmployeeDashboard called with userId:', actualUserId);
-            
-            // Try to get bookings from Firestore, fallback to mock data
-            let bookings;
             try {
-                bookings = await getBookingsByRequesterFirestore(actualUserId);
-            } catch (error) {
-                console.warn('Firestore not available, using mock data:', error);
-                // Ensure MOCK_BOOKINGS is defined
-                if (typeof MOCK_BOOKINGS === 'undefined') {
-                    console.error('❌ MOCK_BOOKINGS is not defined');
-                    return;
+                // Use 'emp_high' as default userId in guest mode if not provided
+                const actualUserId = userId || 'emp_high';
+                
+                console.log('📊 populateEmployeeDashboard called with userId:', actualUserId);
+                
+                // Try to get bookings from Firestore, fallback to mock data
+                let bookings;
+                try {
+                    bookings = await getBookingsByRequesterFirestore(actualUserId);
+                } catch (error) {
+                    console.warn('Firestore not available, using mock data:', error);
+                    // Ensure MOCK_BOOKINGS is defined
+                    if (typeof MOCK_BOOKINGS === 'undefined') {
+                        console.error('❌ MOCK_BOOKINGS is not defined');
+                        showError('Unable to load bookings. Please refresh the page.');
+                        return;
+                    }
+                    bookings = getBookingsByRequester(actualUserId);
                 }
-                bookings = getBookingsByRequester(actualUserId);
-            }
             
             console.log('📊 MOCK_BOOKINGS total count:', Object.keys(MOCK_BOOKINGS).length);
             console.log('📊 MOCK_BOOKINGS keys:', Object.keys(MOCK_BOOKINGS));
@@ -5916,7 +6279,9 @@ The admin will assign a driver closer to the trip date.
             }
             
             // Clear existing bookings
-            bookingsList.innerHTML = '';
+            if (bookingsList) {
+                bookingsList.innerHTML = '';
+            }
             
             // Sort bookings: Active > Approved > Pending > Denied > Completed
             const statusOrder = { 'ACTIVE': 0, 'APPROVED': 1, 'PENDING': 2, 'DENIED': 3, 'COMPLETED': 4 };
@@ -5963,36 +6328,46 @@ The admin will assign a driver closer to the trip date.
                         break;
                 }
                 
+                // Sanitize user-generated content to prevent XSS
+                const safePurpose = sanitizeHTML(booking.tripPurpose || 'Trip');
+                const safeDate = sanitizeHTML(dt.dateShort);
+                const safeTime = sanitizeHTML(dt.time);
+                const safeVehicle = sanitizeHTML(booking.vehicleType);
+                const safePassengers = String(booking.passengers || 0);
+                
                 let bookingHTML = `
                     <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 ${borderColor}">
                         <div class="flex justify-between items-start mb-4">
                             <div class="flex-1">
                                 <div class="flex items-center gap-3 mb-2">
-                                    <h3 class="text-lg font-bold text-gray-800">${booking.tripPurpose || 'Trip'}</h3>
+                                    <h3 class="text-lg font-bold text-gray-800">${safePurpose}</h3>
                                     ${statusBadge}
                                 </div>
-                                <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">${dt.dateShort}</span> | Time: <span class="font-semibold">${dt.time}</span></p>
-                                <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">${booking.vehicleType}</span> | Passengers: <span class="font-semibold">${booking.passengers}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">${safeDate}</span> | Time: <span class="font-semibold">${safeTime}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">${safeVehicle}</span> | Passengers: <span class="font-semibold">${safePassengers}</span></p>
                 `;
                 
                 if (driver) {
-                    bookingHTML += `<p class="text-gray-600 text-sm mb-2">Driver: School Driver - ${driver.name}</p>`;
+                    const safeDriverName = sanitizeHTML(driver.name);
+                    bookingHTML += `<p class="text-gray-600 text-sm mb-2">Driver: School Driver - ${safeDriverName}</p>`;
                     
                     if (booking.status === 'ACTIVE' && booking.driverStatus) {
+                        const safeDriverStatus = sanitizeHTML(booking.driverStatus);
                         bookingHTML += `
                             <div class="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                                 <div class="flex items-center justify-between mb-2">
                                     <p class="text-blue-800 text-xs font-semibold">Driver Status:</p>
-                                    <span class="px-2 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold">${booking.driverStatus}</span>
+                                    <span class="px-2 py-1 bg-blue-500 text-white rounded-full text-xs font-semibold">${safeDriverStatus}</span>
                                 </div>
-                                <p class="text-blue-700 text-xs">Driver ${driver.name} is currently ${booking.driverStatus.toLowerCase()}.</p>
-                                <button onclick="viewDriverStatus('${booking.id}')" class="mt-2 text-blue-700 hover:text-blue-900 text-xs font-semibold underline">View Full Driver Status</button>
+                                <p class="text-blue-700 text-xs">Driver ${safeDriverName} is currently ${safeDriverStatus.toLowerCase()}.</p>
+                                <button onclick="viewDriverStatus('${sanitizeHTML(booking.id)}')" class="mt-2 text-blue-700 hover:text-blue-900 text-xs font-semibold underline">View Full Driver Status</button>
                             </div>
                         `;
                     }
                 }
                 
                 if (booking.status === 'DENIED' && booking.adminNotes) {
+                    const safeAdminNotes = sanitizeHTML(booking.adminNotes);
                     bookingHTML += `
                         <div class="mt-3 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
                             <div class="flex items-start gap-2 mb-2">
@@ -6001,7 +6376,7 @@ The admin will assign a driver closer to the trip date.
                                 </svg>
                                 <div class="flex-1">
                                     <p class="text-red-800 text-sm font-bold mb-1">Admin Note (Required Justification):</p>
-                                    <p class="text-red-700 text-sm leading-relaxed">${booking.adminNotes}</p>
+                                    <p class="text-red-700 text-sm leading-relaxed">${safeAdminNotes}</p>
                                 </div>
                             </div>
                         </div>
@@ -6058,6 +6433,10 @@ The admin will assign a driver closer to the trip date.
                 
                 // Show final log information for completed trips
                 if (booking.status === 'COMPLETED' && booking.finalLog) {
+                    const safeOdometer = String(booking.finalLog.odometerEnd || 'N/A');
+                    const safeFuelLevel = sanitizeHTML(booking.finalLog.fuelLevelEnd || 'N/A');
+                    const safeIssues = sanitizeHTML(booking.finalLog.issuesComments || 'None reported');
+                    
                     bookingHTML += `
                         <div class="mt-3 p-4 bg-gray-50 border-2 border-gray-300 rounded-lg">
                             <div class="flex items-start gap-2 mb-2">
@@ -6067,9 +6446,9 @@ The admin will assign a driver closer to the trip date.
                                 <div class="flex-1">
                                     <p class="text-gray-800 text-sm font-bold mb-2">Trip Finalization Log:</p>
                                     <div class="space-y-1 text-sm text-gray-700">
-                                        <p><span class="font-semibold">Final Odometer:</span> ${booking.finalLog.odometerEnd || 'N/A'} miles</p>
-                                        <p><span class="font-semibold">Final Fuel Level:</span> ${booking.finalLog.fuelLevelEnd || 'N/A'}</p>
-                                        <p><span class="font-semibold">Vehicle Issues/Comments:</span> ${booking.finalLog.issuesComments || 'None reported'}</p>
+                                        <p><span class="font-semibold">Final Odometer:</span> ${safeOdometer} miles</p>
+                                        <p><span class="font-semibold">Final Fuel Level:</span> ${safeFuelLevel}</p>
+                                        <p><span class="font-semibold">Vehicle Issues/Comments:</span> ${safeIssues}</p>
                                     </div>
                                 </div>
                             </div>
@@ -6077,21 +6456,25 @@ The admin will assign a driver closer to the trip date.
                     `;
                 }
                 
+                // Sanitize booking ID for onclick handlers
+                const safeBookingId = sanitizeHTML(booking.id);
+                const safeStatusClass = sanitizeHTML(statusClass);
+                
                 bookingHTML += `
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 mt-3">
-                            <button onclick="viewBookingDetails('${booking.id}')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">View Details</button>
+                            <button onclick="viewBookingDetails('${safeBookingId}')" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 text-sm">View Details</button>
                 `;
                 
                 if (booking.status === 'PENDING') {
-                    bookingHTML += `<button onclick="modifyBooking('${booking.id}')" class="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 text-sm">Modify Request</button>`;
+                    bookingHTML += `<button onclick="modifyBooking('${safeBookingId}')" class="px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 text-sm">Modify Request</button>`;
                 }
                 
                 // Cancel button: Only render if currentRole is 'employee' AND status is NOT 'COMPLETED'
                 const shouldShowCancelButton = getCurrentRole() === 'employee' && booking.status !== 'COMPLETED';
                 if (shouldShowCancelButton && (booking.status === 'PENDING' || booking.status === 'APPROVED')) {
-                    bookingHTML += `<button onclick="cancelBooking('${booking.id}', '${statusClass}')" class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 text-sm">Cancel Request</button>`;
+                    bookingHTML += `<button onclick="cancelBooking('${safeBookingId}', '${safeStatusClass}')" class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 text-sm">Cancel Request</button>`;
                 }
                 
                 bookingHTML += `
@@ -6099,31 +6482,47 @@ The admin will assign a driver closer to the trip date.
                     </div>
                 `;
                 
-                bookingsList.innerHTML += bookingHTML;
+                if (bookingsList) {
+                    bookingsList.innerHTML += bookingHTML;
+                }
                 console.log(`Booking ${booking.id} rendered successfully`);
             });
             
-            console.log('Finished rendering all bookings. Total rendered:', bookingsList.children.length);
+            console.log('Finished rendering all bookings. Total rendered:', bookingsList ? bookingsList.children.length : 0);
+            } catch (error) {
+                console.error('❌ Error in populateEmployeeDashboard:', error);
+                showError('Failed to load bookings. Please refresh the page.');
+            }
         }
         
         // Function to populate Admin Dashboard with pending bookings from Firestore or mock data
         async function populateAdminDashboard() {
-            // Try to get bookings from Firestore, fallback to mock data
-            let pendingBookings;
             try {
-                pendingBookings = await getBookingsByStatusFirestore('PENDING');
-            } catch (error) {
-                console.warn('Firestore not available, using mock data:', error);
-                pendingBookings = getBookingsByStatus('PENDING');
-            }
-            const queue = document.getElementById('pending-queue');
-            if (!queue) return;
-            
-            // Update count
-            document.getElementById('queue-count').textContent = pendingBookings.length;
+                // Try to get bookings from Firestore, fallback to mock data
+                let pendingBookings;
+                try {
+                    pendingBookings = await getBookingsByStatusFirestore('PENDING');
+                } catch (error) {
+                    console.warn('Firestore not available, using mock data:', error);
+                    pendingBookings = getBookingsByStatus('PENDING');
+                }
+                
+                const queue = document.getElementById('pending-queue');
+                if (!queue) {
+                    console.warn('Admin dashboard: pending-queue element not found');
+                    return;
+                }
+                
+                // Update count
+                const queueCount = document.getElementById('queue-count');
+                if (queueCount) {
+                    queueCount.textContent = pendingBookings.length;
+                }
             
             // Clear existing queue
-            queue.innerHTML = '';
+            if (queue) {
+                queue.innerHTML = '';
+            }
             
             // Sort by urgency (most urgent first)
             pendingBookings.sort((a, b) => {
@@ -6147,47 +6546,63 @@ The admin will assign a driver closer to the trip date.
                     borderColor = 'border-red-500';
                 }
                 
+                // Sanitize user-generated content
+                const safePurpose = sanitizeHTML(booking.tripPurpose || 'Trip');
+                const safeRequesterName = requester ? sanitizeHTML(requester.name) : 'Unknown';
+                const safeDate = sanitizeHTML(dt.dateShort);
+                const safeTime = sanitizeHTML(dt.time);
+                const safeVehicle = sanitizeHTML(booking.vehicleType);
+                const safePassengers = String(booking.passengers || 0);
+                const safeBookingId = sanitizeHTML(booking.id);
+                
                 const bookingHTML = `
-                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 ${borderColor}" data-urgency="${isUrgent ? 'urgent' : 'normal'}" data-violations="${violations}" data-date="${booking.startTime}">
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 ${borderColor}" data-urgency="${isUrgent ? 'urgent' : 'normal'}" data-violations="${violations}" data-date="${sanitizeHTML(booking.startTime)}">
                         <div class="flex justify-between items-start mb-4">
                             <div class="flex-1">
                                 <div class="flex items-center gap-3 mb-2">
-                                    <h3 class="text-lg font-bold text-gray-800">${booking.tripPurpose || 'Trip'}</h3>
+                                    <h3 class="text-lg font-bold text-gray-800">${safePurpose}</h3>
                                     ${urgencyBadge}
                                     <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
                                 </div>
-                                <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">${requester ? requester.name : 'Unknown'}</span></p>
-                                <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">${dt.dateShort}</span> | Time: <span class="font-semibold">${dt.time}</span></p>
-                                <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">${booking.vehicleType}</span> | Passengers: <span class="font-semibold">${booking.passengers}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">${safeRequesterName}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">${safeDate}</span> | Time: <span class="font-semibold">${safeTime}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">${safeVehicle}</span> | Passengers: <span class="font-semibold">${safePassengers}</span></p>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="quickApprove('${booking.id}')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
-                            <button onclick="quickDenyAvailability('${booking.id}')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
-                            <button onclick="openRequestDetailView('${booking.id}')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
+                            <button onclick="quickApprove('${safeBookingId}')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
+                            <button onclick="quickDenyAvailability('${safeBookingId}')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
+                            <button onclick="openRequestDetailView('${safeBookingId}')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
                         </div>
                     </div>
                 `;
                 
-                queue.innerHTML += bookingHTML;
+                if (queue) {
+                    queue.innerHTML += bookingHTML;
+                }
             });
+            } catch (error) {
+                console.error('❌ Error in populateAdminDashboard:', error);
+                showError('Failed to load pending bookings. Please refresh the page.');
+            }
         }
         
         // Function to populate Driver Dashboard with assigned trips
         async function populateDriverDashboard(driverId) {
-            // Fetch bookings from Firebase or use mock data
-            let allBookings = [];
-            
-            if (isFirebaseConfigured() && window.firebaseAuth && window.firebaseAuth.currentUser) {
-                try {
-                    // Get bookings assigned to this driver from Firebase
-                    const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
-                    const q = window.firebaseFunctions.query(
-                        bookingsRef,
-                        window.firebaseFunctions.where('assignedDriverId', '==', driverId),
-                        window.firebaseFunctions.where('status', 'in', ['APPROVED', 'ACTIVE']),
-                        window.firebaseFunctions.orderBy('startTime', 'asc')
-                    );
+            try {
+                // Fetch bookings from Firebase or use mock data
+                let allBookings = [];
+                
+                if (isFirebaseConfigured() && window.firebaseAuth && window.firebaseAuth.currentUser) {
+                    try {
+                        // Get bookings assigned to this driver from Firebase
+                        const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
+                        const q = window.firebaseFunctions.query(
+                            bookingsRef,
+                            window.firebaseFunctions.where('assignedDriverId', '==', driverId),
+                            window.firebaseFunctions.where('status', 'in', ['APPROVED', 'ACTIVE']),
+                            window.firebaseFunctions.orderBy('startTime', 'asc')
+                        );
                     
                     const querySnapshot = await window.firebaseFunctions.getDocs(q);
                     querySnapshot.forEach((doc) => {
@@ -6252,13 +6667,24 @@ The admin will assign a driver closer to the trip date.
             }
             
             if (tripDetails) {
+                // Sanitize user-generated content
+                const safeDate = sanitizeHTML(dt.dateShort);
+                const safeTime = sanitizeHTML(dt.time);
+                const safeVehicle = sanitizeHTML(trip.vehicleType);
+                const safePassengers = String(trip.passengers || 0);
+                const safePurpose = sanitizeHTML(trip.tripPurpose || 'Trip');
+                
                 tripDetails.innerHTML = `
-                    <p><span class="font-semibold">Date:</span> ${dt.dateShort}</p>
-                    <p><span class="font-semibold">Pickup Time:</span> ${dt.time}</p>
-                    <p><span class="font-semibold">Vehicle:</span> ${trip.vehicleType}</p>
-                    <p><span class="font-semibold">Passengers:</span> ${trip.passengers}</p>
-                    <p><span class="font-semibold">Trip Purpose:</span> ${trip.tripPurpose || 'Trip'}</p>
+                    <p><span class="font-semibold">Date:</span> ${safeDate}</p>
+                    <p><span class="font-semibold">Pickup Time:</span> ${safeTime}</p>
+                    <p><span class="font-semibold">Vehicle:</span> ${safeVehicle}</p>
+                    <p><span class="font-semibold">Passengers:</span> ${safePassengers}</p>
+                    <p><span class="font-semibold">Trip Purpose:</span> ${safePurpose}</p>
                 `;
+            }
+            } catch (error) {
+                console.error('❌ Error in populateDriverDashboard:', error);
+                showError('Failed to load driver trips. Please refresh the page.');
             }
         }
 
@@ -6320,6 +6746,23 @@ The admin will assign a driver closer to the trip date.
                 if (viewHome) viewHome.classList.add('active');
             }
         }
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            try {
+                cleanupAllEventListeners();
+                // Stop Firebase listeners if they exist
+                if (window.dataListeners && Array.isArray(window.dataListeners)) {
+                    window.dataListeners.forEach(listener => {
+                        if (listener && listener.unsubscribe) {
+                            listener.unsubscribe();
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Error during cleanup:', error);
+            }
+        });
         
         // Call routing initialization after DOM is ready
         if (document.readyState === 'loading') {

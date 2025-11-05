@@ -420,28 +420,126 @@
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                     <div>
-                        <h2 id="dashboard-admin-title" class="text-2xl sm:text-3xl font-bold text-gray-800">Guest Admin Dashboard</h2>
-                        <p id="dashboard-admin-desc" class="text-gray-600 mt-2 text-sm sm:text-base">Welcome to the Admin Dashboard. You are logged in as a guest administrator.</p>
+                        <h2 id="dashboard-admin-title" class="text-2xl sm:text-3xl font-bold text-gray-800">Admin Dashboard</h2>
+                        <p id="dashboard-admin-desc" class="text-gray-600 mt-2 text-sm sm:text-base">Decision and Management Hub</p>
                     </div>
                     <span id="guest-mode-badge" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap">GUEST MODE</span>
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800">Fleet Management</h3>
-                    <p id="admin-fleet-desc" class="text-gray-600 mb-4">View and manage vehicle fleet</p>
-                    <button id="admin-fleet-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Fleet</button>
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
+                <!-- Main Actions -->
+                <div class="lg:col-span-3 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800">Fleet Management</h3>
+                            <p id="admin-fleet-desc" class="text-gray-600 mb-4 text-sm">View and manage vehicle fleet</p>
+                            <button id="admin-fleet-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Fleet</button>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 id="admin-approvals-title" class="text-xl font-bold mb-3 text-gray-800">Booking Approvals</h3>
+                            <p id="admin-approvals-desc" class="text-gray-600 mb-4 text-sm">Review and approve booking requests</p>
+                            <button id="admin-approvals-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Requests</button>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 id="admin-users-title" class="text-xl font-bold mb-3 text-gray-800">User Management</h3>
+                            <p id="admin-users-desc" class="text-gray-600 mb-4 text-sm">Manage employees and drivers</p>
+                            <button id="admin-users-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Users</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Reporting Tab -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-800">Utilization Analytics</h3>
+                            <button onclick="window.location.hash = 'admin/reports'" class="text-isd-gold hover:text-yellow-600 text-sm font-semibold">View Full Report →</button>
+                        </div>
+                        
+                        <!-- Fleet Utilization Heatmap Preview -->
+                        <div class="mb-6">
+                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Fleet Utilization (Last 90 Days)</h4>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="h-20 bg-gradient-to-t from-green-500 to-green-200 rounded-lg mb-2 flex items-end justify-center">
+                                        <span class="text-white font-bold text-lg mb-2">85%</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600">Bus</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-20 bg-gradient-to-t from-yellow-500 to-yellow-200 rounded-lg mb-2 flex items-end justify-center">
+                                        <span class="text-white font-bold text-lg mb-2">65%</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600">Van</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="h-20 bg-gradient-to-t from-blue-500 to-blue-200 rounded-lg mb-2 flex items-end justify-center">
+                                        <span class="text-white font-bold text-lg mb-2">45%</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600">Car</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Denial Reasons Breakdown Preview -->
+                        <div>
+                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Top Denial Reasons (Last 90 Days)</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-32 bg-red-500 h-6 rounded"></div>
+                                    <span class="text-xs text-gray-600">Vehicle Unavailable (24)</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-24 bg-orange-500 h-6 rounded"></div>
+                                    <span class="text-xs text-gray-600">Short Notice (18)</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-16 bg-yellow-500 h-6 rounded"></div>
+                                    <span class="text-xs text-gray-600">Missing Docs (12)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-approvals-title" class="text-xl font-bold mb-3 text-gray-800">Booking Approvals</h3>
-                    <p id="admin-approvals-desc" class="text-gray-600 mb-4">Review and approve booking requests</p>
-                    <button id="admin-approvals-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">View Requests</button>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-users-title" class="text-xl font-bold mb-3 text-gray-800">User Management</h3>
-                    <p id="admin-users-desc" class="text-gray-600 mb-4">Manage employees and drivers</p>
-                    <button id="admin-users-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400">Manage Users</button>
+                
+                <!-- Resource Health Monitoring Widget (Sidebar) -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">Resource Health</h3>
+                        
+                        <!-- Driver Status -->
+                        <div class="mb-6">
+                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Driver Status</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between p-2 bg-green-50 rounded">
+                                    <span class="text-xs text-gray-700">Available</span>
+                                    <span class="text-sm font-bold text-green-600">12</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2 bg-blue-50 rounded">
+                                    <span class="text-xs text-gray-700">On Trip</span>
+                                    <span class="text-sm font-bold text-blue-600">5</span>
+                                </div>
+                                <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                                    <span class="text-xs text-gray-700">Unavailable</span>
+                                    <span class="text-sm font-bold text-gray-600">2</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vehicle Warnings -->
+                        <div>
+                            <h4 class="text-sm font-semibold text-gray-700 mb-3">Vehicle Warnings</h4>
+                            <div class="space-y-2">
+                                <div class="p-2 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+                                    <p class="text-xs font-semibold text-yellow-800">Maintenance Due</p>
+                                    <p class="text-xs text-yellow-700">Bus VH-003 (2 days)</p>
+                                </div>
+                                <div class="p-2 bg-red-50 border-l-4 border-red-500 rounded">
+                                    <p class="text-xs font-semibold text-red-800">Out of Commission</p>
+                                    <p class="text-xs text-red-700">Van VH-012</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1182,44 +1280,216 @@
         <div id="view-booking-approvals" class="view-section w-full">
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
-                    <h2 class="text-3xl font-bold text-gray-800">Booking Approvals</h2>
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800">Booking Approvals Queue</h2>
+                        <p class="text-gray-600 mt-2">Review and approve booking requests</p>
+                    </div>
                     <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
                 </div>
-                <p class="text-gray-600">Review and approve booking requests</p>
+                
+                <!-- Queue Controls: Sorting and Filtering -->
+                <div class="flex flex-wrap items-center gap-4 mt-4 pt-4 border-t border-gray-200">
+                    <div class="flex items-center gap-2">
+                        <label class="text-sm font-semibold text-gray-700">Sort:</label>
+                        <select id="queue-sort" onchange="sortQueue()" class="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-isd-gold">
+                            <option value="urgency">Most Urgent First</option>
+                            <option value="date">Date (Newest First)</option>
+                            <option value="requester">Requester Name</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label class="text-sm font-semibold text-gray-700">Filter:</label>
+                        <select id="queue-filter" onchange="filterQueue()" class="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-isd-gold">
+                            <option value="all">All Requests</option>
+                            <option value="urgent">Urgent (48h)</option>
+                            <option value="violations">Policy Violations</option>
+                            <option value="short-notice">Short Notice</option>
+                            <option value="max-duration">Exceeds Max Duration</option>
+                        </select>
+                    </div>
+                    <div class="ml-auto text-sm text-gray-600">
+                        <span id="queue-count">3</span> pending requests
+                    </div>
+                </div>
             </div>
             
-            <div class="space-y-4">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
+            <div id="pending-queue" class="space-y-4">
+                <!-- Urgent Request (within 48 hours) -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500" data-urgency="urgent" data-violations="none" data-date="2025-03-15T09:00">
                     <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Trip to Museum - Field Trip</h3>
-                            <p class="text-gray-600 text-sm">Requested by: John Doe</p>
-                            <p class="text-gray-600 text-sm">Date: March 15, 2025 | Time: 9:00 AM</p>
-                            <p class="text-gray-600 text-sm">Passengers: 45 students</p>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-bold text-gray-800">Trip to Museum - Field Trip</h3>
+                                <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">URGENT</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">John Doe</span> (Science Department)</p>
+                            <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">March 15, 2025</span> | Time: <span class="font-semibold">9:00 AM</span> (Tomorrow)</p>
+                            <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">Bus (50 seats)</span> | Passengers: <span class="font-semibold">45 students</span></p>
                         </div>
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
                     </div>
-                    <div class="flex space-x-3">
-                        <button onclick="approveBooking('museum-trip')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
-                        <button onclick="rejectBooking('museum-trip')" class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
-                        <button onclick="viewBookingDetails('museum-trip')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="quickApprove('museum-trip')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
+                        <button onclick="quickDenyAvailability('museum-trip')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
+                        <button onclick="openRequestDetailView('museum-trip')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
                     </div>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow-lg">
+                <!-- Request with Policy Violation -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500" data-urgency="normal" data-violations="short-notice" data-date="2025-03-16T14:00">
                     <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Sports Event - Basketball Game</h3>
-                            <p class="text-gray-600 text-sm">Requested by: Jane Smith</p>
-                            <p class="text-gray-600 text-sm">Date: March 18, 2025 | Time: 2:00 PM</p>
-                            <p class="text-gray-600 text-sm">Passengers: 20 students</p>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-bold text-gray-800">Sports Event - Basketball Game</h3>
+                                <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold">⚠️ Short Notice</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">Jane Smith</span> (Athletics Department)</p>
+                            <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">March 16, 2025</span> | Time: <span class="font-semibold">2:00 PM</span></p>
+                            <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">Van (15 seats)</span> | Passengers: <span class="font-semibold">20 students</span></p>
                         </div>
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">Pending</span>
                     </div>
-                    <div class="flex space-x-3">
-                        <button onclick="approveBooking('sports-event')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve</button>
-                        <button onclick="rejectBooking('sports-event')" class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Reject</button>
-                        <button onclick="viewBookingDetails('sports-event')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">View Details</button>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="quickApprove('sports-event')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
+                        <button onclick="quickDenyAvailability('sports-event')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
+                        <button onclick="openRequestDetailView('sports-event')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Normal Request -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500" data-urgency="normal" data-violations="none" data-date="2025-03-20T10:00">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="text-lg font-bold text-gray-800">Weekend Workshop</h3>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">Pending</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-1">Requested by: <span class="font-semibold">Robert Brown</span> (Education Department)</p>
+                            <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">March 20, 2025</span> | Time: <span class="font-semibold">10:00 AM</span></p>
+                            <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">Bus (50 seats)</span> | Passengers: <span class="font-semibold">30 students</span></p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="quickApprove('weekend-workshop')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
+                        <button onclick="quickDenyAvailability('weekend-workshop')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
+                        <button onclick="openRequestDetailView('weekend-workshop')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Reports View -->
+        <div id="view-admin-reports" class="view-section w-full">
+            <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800">Utilization Analytics</h2>
+                        <p class="text-gray-600 mt-2">Fleet utilization and denial reasons breakdown</p>
+                    </div>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Fleet Utilization Heatmap -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Fleet Utilization Heatmap (Last 90 Days)</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700">Bus / Minibus</span>
+                                <span class="text-sm font-bold text-gray-800">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div class="bg-green-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 85%">
+                                    <span class="text-xs text-white font-semibold">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700">Van</span>
+                                <span class="text-sm font-bold text-gray-800">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div class="bg-yellow-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 65%">
+                                    <span class="text-xs text-white font-semibold">65%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700">Car / Sedan</span>
+                                <span class="text-sm font-bold text-gray-800">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div class="bg-blue-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 45%">
+                                    <span class="text-xs text-white font-semibold">45%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Denial Reasons Breakdown -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Denial Reasons Breakdown (Last 90 Days)</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700">Vehicle Unavailable</span>
+                                <span class="text-sm font-bold text-gray-800">24</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div class="bg-red-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 100%">
+                                    <span class="text-xs text-white font-semibold">24</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700">Short Notice</span>
+                                <span class="text-sm font-bold text-gray-800">18</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div class="bg-orange-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 75%">
+                                    <span class="text-xs text-white font-semibold">18</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700">Missing Documentation</span>
+                                <span class="text-sm font-bold text-gray-800">12</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div class="bg-yellow-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 50%">
+                                    <span class="text-xs text-white font-semibold">12</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700">Insufficient Lead Time</span>
+                                <span class="text-sm font-bold text-gray-800">8</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div class="bg-blue-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 33%">
+                                    <span class="text-xs text-white font-semibold">8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700">Exceeds Max Duration</span>
+                                <span class="text-sm font-bold text-gray-800">5</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-6">
+                                <div class="bg-purple-500 h-6 rounded-full flex items-center justify-end pr-2" style="width: 21%">
+                                    <span class="text-xs text-white font-semibold">5</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1979,10 +2249,13 @@
                             if (viewHome) viewHome.classList.add('active');
                             if (homeLink) homeLink.classList.add('hidden');
                         }
-                    } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
+                    } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || hash === 'admin/reports' || 
                                hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status') {
                         // Handle feature views
-                        const viewId = `view-${hash}`;
+                        let viewId = `view-${hash}`;
+                        if (hash === 'admin/reports') {
+                            viewId = 'view-admin-reports';
+                        }
                         const viewElement = document.getElementById(viewId);
                         if (viewElement) {
                             viewElement.classList.add('active');
@@ -2082,6 +2355,437 @@
         }
 
         // Booking approval functions
+        // Queue Management Functions
+        function sortQueue() {
+            const sortValue = document.getElementById('queue-sort')?.value;
+            const queue = document.getElementById('pending-queue');
+            if (!queue) return;
+            
+            const items = Array.from(queue.children);
+            
+            items.sort((a, b) => {
+                if (sortValue === 'urgency') {
+                    const aUrgency = a.dataset.urgency === 'urgent' ? 0 : 1;
+                    const bUrgency = b.dataset.urgency === 'urgent' ? 0 : 1;
+                    if (aUrgency !== bUrgency) return aUrgency - bUrgency;
+                    // Then sort by date
+                    return new Date(a.dataset.date) - new Date(b.dataset.date);
+                } else if (sortValue === 'date') {
+                    return new Date(b.dataset.date) - new Date(a.dataset.date);
+                } else if (sortValue === 'requester') {
+                    const aName = a.querySelector('h3')?.textContent || '';
+                    const bName = b.querySelector('h3')?.textContent || '';
+                    return aName.localeCompare(bName);
+                }
+                return 0;
+            });
+            
+            items.forEach(item => queue.appendChild(item));
+        }
+        
+        function filterQueue() {
+            const filterValue = document.getElementById('queue-filter')?.value;
+            const queue = document.getElementById('pending-queue');
+            if (!queue) return;
+            
+            const items = queue.children;
+            let visibleCount = 0;
+            
+            for (let item of items) {
+                let show = false;
+                
+                if (filterValue === 'all') {
+                    show = true;
+                } else if (filterValue === 'urgent') {
+                    show = item.dataset.urgency === 'urgent';
+                } else if (filterValue === 'violations') {
+                    show = item.dataset.violations !== 'none';
+                } else if (filterValue === 'short-notice') {
+                    show = item.dataset.violations === 'short-notice';
+                } else if (filterValue === 'max-duration') {
+                    show = item.dataset.violations === 'max-duration';
+                }
+                
+                if (show) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            }
+            
+            document.getElementById('queue-count').textContent = visibleCount;
+        }
+        
+        // Quick Action Functions
+        function quickApprove(bookingId) {
+            if (confirm('Are you sure you want to approve this booking request?')) {
+                // In a real app, this would make an API call
+                alert('Booking request has been approved successfully!');
+                // Remove from queue
+                const item = document.querySelector(`[data-booking-id="${bookingId}"]`) || 
+                           document.querySelector(`button[onclick*="${bookingId}"]`)?.closest('.bg-white');
+                if (item) item.style.display = 'none';
+                filterQueue(); // Update count
+            }
+        }
+        
+        function quickDenyAvailability(bookingId) {
+            openDenialModal(bookingId, 'availability');
+        }
+        
+        // Enhanced Request Detail View
+        function openRequestDetailView(bookingId) {
+            // Simulate booking data (in production, this would be an API call)
+            const bookingData = {
+                'museum-trip': {
+                    title: 'Trip to Museum - Field Trip',
+                    requester: 'John Doe',
+                    department: 'Science Department',
+                    email: 'john.doe@isd.edu',
+                    phone: '+1 (555) 123-4567',
+                    date: 'March 15, 2025',
+                    time: '9:00 AM',
+                    vehicle: 'Bus (50 seats)',
+                    passengers: 45,
+                    duration: '4 hours',
+                    purpose: 'Educational field trip to the Natural History Museum',
+                    driverOption: 'School Driver',
+                    pickupLocation: 'Main School Gate',
+                    pickupTime: '8:45 AM',
+                    totalBookings90Days: 8,
+                    canceledBookings: 1,
+                    deniedBookings: 0,
+                    violations: [],
+                    conflicts: [
+                        { date: 'March 15, 2025', time: '9:00 AM - 1:00 PM', vehicle: 'Bus VH-001', booking: 'Science Fair Transport' },
+                        { date: 'March 15, 2025', time: '10:00 AM - 2:00 PM', vehicle: 'Bus VH-002', booking: 'Sports Competition' }
+                    ],
+                    alternatives: ['Van (15 seats) - Available', 'Car (5 seats) - Available']
+                },
+                'sports-event': {
+                    title: 'Sports Event - Basketball Game',
+                    requester: 'Jane Smith',
+                    department: 'Athletics Department',
+                    email: 'jane.smith@isd.edu',
+                    phone: '+1 (555) 234-5678',
+                    date: 'March 16, 2025',
+                    time: '2:00 PM',
+                    vehicle: 'Van (15 seats)',
+                    passengers: 20,
+                    duration: '6 hours',
+                    purpose: 'Basketball game at regional championship',
+                    driverOption: 'School Driver',
+                    pickupLocation: 'Athletics Building',
+                    pickupTime: '1:45 PM',
+                    totalBookings90Days: 12,
+                    canceledBookings: 2,
+                    deniedBookings: 1,
+                    violations: ['Short Notice Request'],
+                    conflicts: [],
+                    alternatives: ['Bus (50 seats) - Available', 'Car (5 seats) - Available']
+                },
+                'weekend-workshop': {
+                    title: 'Weekend Workshop',
+                    requester: 'Robert Brown',
+                    department: 'Education Department',
+                    email: 'robert.brown@isd.edu',
+                    phone: '+1 (555) 345-6789',
+                    date: 'March 20, 2025',
+                    time: '10:00 AM',
+                    vehicle: 'Bus (50 seats)',
+                    passengers: 30,
+                    duration: '2 days',
+                    purpose: 'Professional development workshop',
+                    driverOption: 'Self-Drive',
+                    totalBookings90Days: 5,
+                    canceledBookings: 0,
+                    deniedBookings: 0,
+                    violations: [],
+                    conflicts: [],
+                    alternatives: ['Van (15 seats) - Available', 'Car (5 seats) - Available']
+                }
+            };
+            
+            const data = bookingData[bookingId] || bookingData['museum-trip'];
+            
+            const modalContent = `
+                <div class="max-w-6xl max-h-[90vh] overflow-y-auto">
+                    <div class="sticky top-0 bg-white border-b border-gray-200 p-4 mb-4 z-10">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-2xl font-bold text-gray-800">${data.title}</h3>
+                            <button onclick="closeRequestDetailView()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        ${data.violations.length > 0 ? `
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                ${data.violations.map(v => `<span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold">⚠️ ${v}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Main Content -->
+                        <div class="lg:col-span-2 space-y-6">
+                            <!-- Request Details -->
+                            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                                <h4 class="text-lg font-bold text-gray-800 mb-4">Request Details</h4>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <p class="text-gray-600">Date & Time</p>
+                                        <p class="font-semibold text-gray-800">${data.date} at ${data.time}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-600">Duration</p>
+                                        <p class="font-semibold text-gray-800">${data.duration}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-600">Vehicle Type</p>
+                                        <p class="font-semibold text-gray-800">${data.vehicle}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-600">Passengers</p>
+                                        <p class="font-semibold text-gray-800">${data.passengers}</p>
+                                    </div>
+                                    <div class="col-span-2">
+                                        <p class="text-gray-600">Trip Purpose</p>
+                                        <p class="font-semibold text-gray-800">${data.purpose}</p>
+                                    </div>
+                                    ${data.driverOption === 'School Driver' ? `
+                                        <div>
+                                            <p class="text-gray-600">Pickup Location</p>
+                                            <p class="font-semibold text-gray-800">${data.pickupLocation}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600">Pickup Time</p>
+                                            <p class="font-semibold text-gray-800">${data.pickupTime}</p>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            </div>
+                            
+                            <!-- Availability Panel -->
+                            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                                <h4 class="text-lg font-bold text-gray-800 mb-4">Availability & Conflicts</h4>
+                                ${data.conflicts.length > 0 ? `
+                                    <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                                        <p class="text-sm font-semibold text-red-800 mb-2">Conflicting Bookings:</p>
+                                        <div class="space-y-2">
+                                            ${data.conflicts.map(c => `
+                                                <div class="text-sm text-red-700">
+                                                    <span class="font-semibold">${c.date} ${c.time}</span> - ${c.vehicle} (${c.booking})
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                ` : `
+                                    <div class="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                                        <p class="text-sm font-semibold text-green-800">✓ No conflicts detected</p>
+                                    </div>
+                                `}
+                                <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <p class="text-sm font-semibold text-blue-800 mb-2">Alternative Vehicles Available:</p>
+                                    <div class="space-y-1">
+                                        ${data.alternatives.map(a => `<p class="text-sm text-blue-700">• ${a}</p>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Requester Reliability Snapshot (Sidebar) -->
+                        <div class="lg:col-span-1">
+                            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 sticky top-4">
+                                <h4 class="text-lg font-bold text-gray-800 mb-4">Requester Profile</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <p class="text-xs text-gray-600 mb-1">Name & Department</p>
+                                        <p class="font-semibold text-gray-800">${data.requester}</p>
+                                        <p class="text-sm text-gray-600">${data.department}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-600 mb-1">Contact</p>
+                                        <p class="text-sm text-gray-800">${data.email}</p>
+                                        <p class="text-sm text-gray-800">${data.phone}</p>
+                                    </div>
+                                    <div class="pt-4 border-t border-gray-200">
+                                        <p class="text-xs text-gray-600 mb-2">Booking Statistics (Last 90 Days)</p>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-700">Total Bookings</span>
+                                                <span class="font-semibold text-gray-800">${data.totalBookings90Days}</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-700">Canceled</span>
+                                                <span class="font-semibold text-gray-600">${data.canceledBookings}</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-700">Denied</span>
+                                                <span class="font-semibold text-gray-600">${data.deniedBookings}</span>
+                                            </div>
+                                            <div class="mt-2 pt-2 border-t border-gray-200">
+                                                <div class="flex justify-between">
+                                                    <span class="text-sm font-semibold text-gray-700">Reliability Ratio</span>
+                                                    <span class="font-bold ${data.canceledBookings + data.deniedBookings === 0 ? 'text-green-600' : data.canceledBookings + data.deniedBookings < 3 ? 'text-yellow-600' : 'text-red-600'}">
+                                                        ${Math.round((1 - (data.canceledBookings + data.deniedBookings) / data.totalBookings90Days) * 100)}%
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="mt-6 flex gap-3 justify-end border-t border-gray-200 pt-4">
+                        <button onclick="closeRequestDetailView(); openDenialModal('${bookingId}', 'custom')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Deny Request</button>
+                        <button onclick="closeRequestDetailView(); approveBooking('${bookingId}')" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve Request</button>
+                    </div>
+                </div>
+            `;
+            
+            let modal = document.getElementById('request-detail-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'request-detail-modal';
+                modal.className = 'modal-overlay';
+                modal.innerHTML = `<div class="modal-content max-w-6xl">${modalContent}</div>`;
+                document.body.appendChild(modal);
+                
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeRequestDetailView();
+                    }
+                });
+            } else {
+                modal.querySelector('.modal-content').innerHTML = modalContent;
+            }
+            
+            modal.classList.add('open');
+        }
+        
+        function closeRequestDetailView() {
+            const modal = document.getElementById('request-detail-modal');
+            if (modal) modal.classList.remove('open');
+        }
+        
+        // Templated Denial Responses
+        function openDenialModal(bookingId, templateType) {
+            const templates = {
+                'availability': {
+                    title: 'Vehicle Unavailable',
+                    message: 'We regret to inform you that the requested vehicle type is not available for the selected date and time. Please consider alternative dates or vehicle types.'
+                },
+                'short-notice': {
+                    title: 'Insufficient Lead Time',
+                    message: 'This request requires a minimum of 2 weeks advance notice. Unfortunately, your request does not meet this requirement. Please resubmit with an earlier date.'
+                },
+                'missing-docs': {
+                    title: 'Missing Documentation',
+                    message: 'Your booking request is missing required documentation. Please submit all necessary forms before resubmitting your request.'
+                },
+                'max-duration': {
+                    title: 'Exceeds Maximum Duration',
+                    message: 'This request exceeds the maximum allowed booking duration. Please adjust the duration or contact the admin for special arrangements.'
+                },
+                'custom': {
+                    title: 'Custom Denial Reason',
+                    message: ''
+                }
+            };
+            
+            const template = templates[templateType] || templates['custom'];
+            
+            const modalContent = `
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Deny Booking Request</h3>
+                <div class="text-left space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Denial Template</label>
+                        <select id="denial-template-select" onchange="updateDenialTemplate()" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="availability" ${templateType === 'availability' ? 'selected' : ''}>Vehicle Unavailable</option>
+                            <option value="short-notice" ${templateType === 'short-notice' ? 'selected' : ''}>Short Notice</option>
+                            <option value="missing-docs" ${templateType === 'missing-docs' ? 'selected' : ''}>Missing Documentation</option>
+                            <option value="max-duration" ${templateType === 'max-duration' ? 'selected' : ''}>Exceeds Max Duration</option>
+                            <option value="custom">Custom Message</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Denial Message</label>
+                        <textarea id="denial-message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">${template.message}</textarea>
+                    </div>
+                </div>
+                <div class="flex gap-3 mt-6">
+                    <button onclick="closeDenialModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                    <button onclick="submitDenial('${bookingId}')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Send Denial</button>
+                </div>
+            `;
+            
+            let modal = document.getElementById('denial-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'denial-modal';
+                modal.className = 'modal-overlay';
+                modal.innerHTML = `<div class="modal-content">${modalContent}</div>`;
+                document.body.appendChild(modal);
+                
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeDenialModal();
+                    }
+                });
+            } else {
+                modal.querySelector('.modal-content').innerHTML = modalContent;
+            }
+            
+            modal.classList.add('open');
+        }
+        
+        function updateDenialTemplate() {
+            const select = document.getElementById('denial-template-select');
+            const textarea = document.getElementById('denial-message');
+            if (!select || !textarea) return;
+            
+            const templates = {
+                'availability': 'We regret to inform you that the requested vehicle type is not available for the selected date and time. Please consider alternative dates or vehicle types.',
+                'short-notice': 'This request requires a minimum of 2 weeks advance notice. Unfortunately, your request does not meet this requirement. Please resubmit with an earlier date.',
+                'missing-docs': 'Your booking request is missing required documentation. Please submit all necessary forms before resubmitting your request.',
+                'max-duration': 'This request exceeds the maximum allowed booking duration. Please adjust the duration or contact the admin for special arrangements.',
+                'custom': ''
+            };
+            
+            textarea.value = templates[select.value] || '';
+        }
+        
+        function submitDenial(bookingId) {
+            const message = document.getElementById('denial-message')?.value;
+            const template = document.getElementById('denial-template-select')?.value;
+            
+            if (!message || !message.trim()) {
+                alert('Please provide a denial message.');
+                return;
+            }
+            
+            if (confirm('Are you sure you want to deny this booking request?')) {
+                // In a real app, this would make an API call
+                alert(`Booking request has been denied.\n\nReason: ${message}`);
+                closeDenialModal();
+                closeRequestDetailView();
+                // Remove from queue
+                const item = document.querySelector(`button[onclick*="${bookingId}"]`)?.closest('.bg-white');
+                if (item) item.style.display = 'none';
+                filterQueue(); // Update count
+            }
+        }
+        
+        function closeDenialModal() {
+            const modal = document.getElementById('denial-modal');
+            if (modal) modal.classList.remove('open');
+        }
+
         function approveBooking(bookingId) {
             if (confirm('Are you sure you want to approve this booking request?')) {
                 // In a real app, this would make an API call
@@ -2092,18 +2796,11 @@
         }
 
         function rejectBooking(bookingId) {
-            const reason = prompt('Please provide a reason for rejection:');
-            if (reason !== null && reason.trim() !== '') {
-                // In a real app, this would make an API call
-                alert(`Booking request has been rejected. Reason: ${reason}`);
-                // Reload the page or update the UI
-                location.reload();
-            }
+            openDenialModal(bookingId, 'custom');
         }
 
         function viewBookingDetails(bookingId) {
-            // In a real app, this would fetch and display booking details
-            alert(`Viewing details for booking: ${bookingId}\n\nIn a production app, this would open a detailed view or modal with full booking information.`);
+            openRequestDetailView(bookingId);
         }
 
         // Edit User Functions

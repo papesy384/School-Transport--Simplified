@@ -291,6 +291,88 @@
             }
         }
         
+        /* Dark-Mode High-Contrast Theme for Driver Interface */
+        #view-assigned-trips,
+        #view-trip-finalization {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        #view-assigned-trips .bg-white,
+        #view-trip-finalization .bg-white {
+            background-color: #2d2d2d !important;
+            color: #ffffff !important;
+        }
+        
+        #view-assigned-trips .text-gray-800,
+        #view-trip-finalization .text-gray-800,
+        #view-assigned-trips .text-gray-700,
+        #view-trip-finalization .text-gray-700 {
+            color: #ffffff !important;
+        }
+        
+        #view-assigned-trips .text-gray-600,
+        #view-trip-finalization .text-gray-600 {
+            color: #d1d5db !important;
+        }
+        
+        #view-assigned-trips .border-gray-300,
+        #view-trip-finalization .border-gray-300 {
+            border-color: #4b5563 !important;
+        }
+        
+        #view-assigned-trips input,
+        #view-trip-finalization input,
+        #view-assigned-trips textarea,
+        #view-trip-finalization textarea,
+        #view-assigned-trips select,
+        #view-trip-finalization select {
+            background-color: #374151 !important;
+            color: #ffffff !important;
+            border-color: #4b5563 !important;
+        }
+        
+        #view-assigned-trips input::placeholder,
+        #view-trip-finalization input::placeholder,
+        #view-assigned-trips textarea::placeholder,
+        #view-trip-finalization textarea::placeholder {
+            color: #9ca3af !important;
+        }
+        
+        #view-assigned-trips button:not(.disabled),
+        #view-trip-finalization button:not(.disabled) {
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        #view-assigned-trips .bg-yellow-50,
+        #view-trip-finalization .bg-yellow-50 {
+            background-color: #3d3529 !important;
+            border-color: #fbbf24 !important;
+        }
+        
+        #view-assigned-trips .bg-blue-50,
+        #view-trip-finalization .bg-blue-50 {
+            background-color: #1e3a5f !important;
+            border-color: #3b82f6 !important;
+        }
+        
+        /* High-contrast focus states for driver interface */
+        #view-assigned-trips input:focus,
+        #view-trip-finalization input:focus,
+        #view-assigned-trips textarea:focus,
+        #view-trip-finalization textarea:focus {
+            outline: 3px solid #60a5fa !important;
+            outline-offset: 2px;
+        }
+        
+        /* Large touch targets for driver interface buttons */
+        #view-assigned-trips button,
+        #view-trip-finalization button {
+            min-height: 56px !important;
+            min-width: 120px !important;
+        }
+        
         /* Style unavailable dates - match browser's disabled input styling exactly */
         input[type="date"].unavailable-date,
         input[type="date"].unavailable-date:disabled,
@@ -1492,23 +1574,38 @@
                         
                         <!-- Self-Drive Authorization Status (Not Auto-Approved) -->
                         <div id="driver-authorization-status" class="mt-4 hidden">
-                            <div id="authorization-authorized" class="hidden p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            <div id="authorization-authorized" class="hidden p-4 bg-green-50 border-2 border-green-400 rounded-lg shadow-md">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <svg class="w-8 h-8 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
-                                    <span class="text-sm font-bold text-yellow-800">Self-Drive Authorization Pending</span>
+                                    <div>
+                                        <span class="text-base font-bold text-green-800 block">✅ You are authorized</span>
+                                        <p class="text-sm text-green-700 mt-1">Self-Drive / Own Authorized Driver option is available for this vehicle type.</p>
+                                    </div>
                                 </div>
-                                <p class="text-xs text-yellow-700 ml-7">Your authorization status will be verified by HR. This option is not automatically approved.</p>
                             </div>
-                            <div id="authorization-not-authorized" class="hidden p-3 bg-red-50 border border-red-200 rounded-lg">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <div id="authorization-not-authorized" class="hidden p-4 bg-red-50 border-2 border-red-400 rounded-lg shadow-md">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <svg class="w-8 h-8 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
                                     </svg>
-                                    <span class="text-sm font-bold text-red-800">Self-Drive (Not Authorized - Request School Driver)</span>
+                                    <div>
+                                        <span class="text-base font-bold text-red-800 block">❌ Not authorized for this vehicle class</span>
+                                        <p class="text-sm text-red-700 mt-1">Please select 'Request a School Driver' instead.</p>
+                                    </div>
                                 </div>
-                                <p class="text-xs text-red-700 ml-7">You are not authorized for this vehicle class. Please select 'Request a School Driver'</p>
+                            </div>
+                            <div id="authorization-pending" class="hidden p-4 bg-yellow-50 border-2 border-yellow-400 rounded-lg shadow-md">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <svg class="w-8 h-8 text-yellow-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div>
+                                        <span class="text-base font-bold text-yellow-800 block">⏳ Self-Drive Authorization Pending</span>
+                                        <p class="text-sm text-yellow-700 mt-1">Your authorization status will be verified by HR. This option is not automatically approved.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1687,14 +1784,41 @@
                         <p class="text-xs text-gray-600 mt-1">Arrived at pickup location</p>
                     </div>
                     
-                    <!-- Step 3: Vehicle Safety Check (Mandatory Gate) -->
+                    <!-- Step 3: Pre-Departure Safety Checklist (Mandatory Gate) -->
                     <div id="safety-check-section" class="border-l-4 border-yellow-500 pl-4 bg-yellow-50 p-4 rounded-lg opacity-50">
-                        <div class="mb-3">
+                        <h4 class="text-base font-bold text-gray-800 mb-3">Pre-Departure Safety Checklist</h4>
+                        <p class="text-xs text-gray-600 mb-3">Complete all checks before starting drive (Available after arriving at pickup)</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="check-tires" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
+                                <span class="text-sm text-gray-800">Tires checked (pressure & condition)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="check-lights" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
+                                <span class="text-sm text-gray-800">Lights functional (headlights, brake lights, indicators)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="check-brakes" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
+                                <span class="text-sm text-gray-800">Brakes tested</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="check-fuel" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
+                                <span class="text-sm text-gray-800">Fuel level adequate</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="check-mirrors" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
+                                <span class="text-sm text-gray-800">Mirrors adjusted</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" id="check-first-aid" onchange="checkAllSafetyChecks()" class="w-5 h-5 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
+                                <span class="text-sm text-gray-800">First aid kit present</span>
+                            </label>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-yellow-300">
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="safety-check-confirmed" onchange="toggleStartDrivingButton()" class="w-6 h-6 rounded border-gray-300 text-green-600 focus:ring-green-500" disabled>
-                                <span class="text-base font-bold text-gray-800">Vehicle Safety Check Confirmed</span>
+                                <span class="text-base font-bold text-gray-800">All Safety Checks Confirmed</span>
                             </label>
-                            <p class="text-xs text-gray-600 mt-1 ml-9">Confirm vehicle safety before starting drive (Available after arriving at pickup)</p>
                         </div>
                 </div>
                 
@@ -1742,6 +1866,32 @@
                     </div>
                 
                 <form id="trip-finalization-form" class="space-y-6">
+                    <!-- Mobile-First Fuel/Expense Logging (Quick Log) -->
+                    <div class="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mb-6">
+                        <h4 class="text-base font-bold text-gray-800 mb-3 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
+                                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path>
+                            </svg>
+                            Quick Fuel/Expense Log (Optional)
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">Fuel (Liters)</label>
+                                <input type="number" id="fuel-liters" name="fuel-liters" min="0" step="0.1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base" placeholder="0.0">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">Cost ($)</label>
+                                <input type="number" id="fuel-cost" name="fuel-cost" min="0" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base" placeholder="0.00">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">Odometer</label>
+                                <input type="number" id="quick-odometer" name="quick-odometer" min="0" step="0.1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base" placeholder="0.0">
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-2">Log fuel and expenses quickly during trip (optional - can be updated later)</p>
+                    </div>
+                    
                     <!-- Mandatory Finalization Fields -->
                     <div class="space-y-4">
                         <h4 class="text-lg font-bold text-gray-800 mb-4">Required Trip Metrics</h4>
@@ -2573,11 +2723,26 @@
                 }
             });
             
-            // Check for violations
+            // Check for violations (compliance flagging)
             const violations = [];
             const hoursUntilBooking = (new Date(booking.startTime) - CURRENT_DATE) / (1000 * 60 * 60);
+            const daysUntilBooking = hoursUntilBooking / 24;
+            
+            // Short Notice Request (less than 48 hours)
             if (hoursUntilBooking < 48 && hoursUntilBooking >= 0) {
                 violations.push('Short Notice Request');
+            }
+            
+            // Exceeds Max Duration (more than 7 days or 168 hours)
+            if (booking.durationHours > 168) {
+                violations.push('Exceeds Max Duration');
+            }
+            
+            // Weekend booking (optional flag - can be added)
+            const bookingDate = new Date(booking.startTime);
+            const dayOfWeek = bookingDate.getDay();
+            if (dayOfWeek === 0 || dayOfWeek === 6) {
+                violations.push('Weekend Booking');
             }
             
             // Build data object
@@ -2616,8 +2781,40 @@
                             </button>
                         </div>
                         ${data.violations.length > 0 ? `
-                            <div class="mt-3 flex flex-wrap gap-2">
-                                ${data.violations.map(v => `<span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold">⚠️ ${v}</span>`).join('')}
+                            <div class="mt-3 p-3 bg-red-50 border-2 border-red-400 rounded-lg">
+                                <h4 class="text-sm font-bold text-red-900 mb-2 flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Policy Violation Flags
+                                </h4>
+                                <div class="flex flex-wrap gap-2">
+                                    ${data.violations.map(v => {
+                                        let icon = '⚠️';
+                                        let bgColor = 'bg-yellow-100';
+                                        let textColor = 'text-yellow-900';
+                                        let borderColor = 'border-yellow-400';
+                                        
+                                        if (v.includes('Short Notice')) {
+                                            icon = '⚠️';
+                                            bgColor = 'bg-yellow-100';
+                                            textColor = 'text-yellow-900';
+                                            borderColor = 'border-yellow-400';
+                                        } else if (v.includes('Exceeds Max Duration')) {
+                                            icon = '🚫';
+                                            bgColor = 'bg-red-100';
+                                            textColor = 'text-red-900';
+                                            borderColor = 'border-red-400';
+                                        } else if (v.includes('Weekend')) {
+                                            icon = '📅';
+                                            bgColor = 'bg-orange-100';
+                                            textColor = 'text-orange-900';
+                                            borderColor = 'border-orange-400';
+                                        }
+                                        
+                                        return `<span class="px-3 py-2 ${bgColor} ${textColor} border-2 ${borderColor} rounded-full text-sm font-bold shadow-md">${icon} ${v}</span>`;
+                                    }).join('')}
+                                </div>
                             </div>
                         ` : ''}
                     </div>
@@ -2662,29 +2859,80 @@
                                 </div>
                             </div>
                             
-                            <!-- Availability Panel -->
+                            <!-- Availability Panel with Timeline -->
                             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                                <h4 class="text-lg font-bold text-gray-800 mb-4">Availability & Conflicts</h4>
+                                <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Availability & Conflicts Timeline
+                                </h4>
+                                
+                                <!-- Timeline View -->
+                                <div class="mb-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-3 h-3 rounded-full ${data.conflicts.length > 0 ? 'bg-red-500' : 'bg-green-500'}"></div>
+                                            <div class="flex-1">
+                                                <p class="text-sm font-semibold text-gray-800">Requested Time Slot</p>
+                                                <p class="text-xs text-gray-600">${data.date} at ${data.time} (${data.duration})</p>
+                                            </div>
+                                        </div>
+                                        ${data.conflicts.map((c, idx) => `
+                                            <div class="flex items-center gap-3 ml-4">
+                                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                                <div class="flex-1">
+                                                    <p class="text-sm font-semibold text-red-800">Conflict ${idx + 1}</p>
+                                                    <p class="text-xs text-red-600">${c.date} ${c.time} - ${c.vehicle}</p>
+                                                    <p class="text-xs text-red-500">${c.booking}</p>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                
                                 ${data.conflicts.length > 0 ? `
-                                    <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-                                        <p class="text-sm font-semibold text-red-800 mb-2">Conflicting Bookings:</p>
+                                    <div class="mb-4 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
+                                        <p class="text-sm font-bold text-red-900 mb-2 flex items-center gap-2">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            Conflicting Bookings Detected
+                                        </p>
                                         <div class="space-y-2">
                                             ${data.conflicts.map(c => `
-                                                <div class="text-sm text-red-700">
-                                                    <span class="font-semibold">${c.date} ${c.time}</span> - ${c.vehicle} (${c.booking})
+                                                <div class="text-sm text-red-800 bg-white p-2 rounded border border-red-200">
+                                                    <span class="font-semibold">${c.date} ${c.time}</span> - ${c.vehicle}<br>
+                                                    <span class="text-xs text-red-600">${c.booking}</span>
                                                 </div>
                                             `).join('')}
                                         </div>
                                     </div>
                                 ` : `
-                                    <div class="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-                                        <p class="text-sm font-semibold text-green-800">✓ No conflicts detected</p>
+                                    <div class="mb-4 p-4 bg-green-50 border-2 border-green-300 rounded-lg">
+                                        <p class="text-sm font-bold text-green-900 flex items-center gap-2">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            ✓ No conflicts detected - Time slot available
+                                        </p>
                                     </div>
                                 `}
-                                <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                                    <p class="text-sm font-semibold text-blue-800 mb-2">Alternative Vehicles Available:</p>
-                                    <div class="space-y-1">
-                                        ${data.alternatives.map(a => `<p class="text-sm text-blue-700">• ${a}</p>`).join('')}
+                                
+                                <div class="p-4 bg-blue-50 border-2 border-blue-300 rounded-lg">
+                                    <p class="text-sm font-bold text-blue-900 mb-3 flex items-center gap-2">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
+                                            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path>
+                                        </svg>
+                                        Alternative Vehicles Available
+                                    </p>
+                                    <div class="space-y-2">
+                                        ${data.alternatives.map(a => `
+                                            <div class="bg-white p-2 rounded border border-blue-200">
+                                                <p class="text-sm font-semibold text-blue-800">✓ ${a}</p>
+                                            </div>
+                                        `).join('')}
                                     </div>
                                 </div>
                             </div>
@@ -2721,12 +2969,13 @@
                                                 <span class="font-semibold text-gray-600">${data.deniedBookings}</span>
                                             </div>
                                             <div class="mt-2 pt-2 border-t border-gray-200">
-                                                <div class="flex justify-between">
-                                                    <span class="text-sm font-semibold text-gray-700">Reliability Ratio</span>
-                                                    <span class="font-bold ${data.canceledBookings + data.deniedBookings === 0 ? 'text-green-600' : data.canceledBookings + data.deniedBookings < 3 ? 'text-yellow-600' : 'text-red-600'}">
-                                                        ${Math.round((1 - (data.canceledBookings + data.deniedBookings) / data.totalBookings90Days) * 100)}%
+                                                <div class="flex justify-between items-center">
+                                                    <span class="text-sm font-semibold text-gray-700">Cancellation Rate</span>
+                                                    <span class="font-bold ${data.canceledBookings === 0 ? 'text-green-600' : data.canceledBookings < 2 ? 'text-yellow-600' : 'text-red-600'}">
+                                                        ${data.totalBookings90Days > 0 ? Math.round((data.canceledBookings / data.totalBookings90Days) * 100) : 0}%
                                                     </span>
                                                 </div>
+                                                <p class="text-xs text-gray-500 mt-1">${data.canceledBookings} canceled out of ${data.totalBookings90Days} bookings</p>
                                             </div>
                                         </div>
                                     </div>
@@ -3652,12 +3901,19 @@
         }
         
         // Driver authorization check - Self Drive is NOT auto-approved
+        // Shows appropriate status: authorized (green), not authorized (red), or pending (yellow)
         function checkDriverAuthorization(vehicleType) {
             const authStatus = document.getElementById('driver-authorization-status');
             const authAuthorized = document.getElementById('authorization-authorized');
             const authNotAuthorized = document.getElementById('authorization-not-authorized');
+            const authPending = document.getElementById('authorization-pending');
             
             if (!authStatus || !vehicleType) return;
+            
+            // Hide all authorization status messages first
+            if (authAuthorized) authAuthorized.classList.add('hidden');
+            if (authNotAuthorized) authNotAuthorized.classList.add('hidden');
+            if (authPending) authPending.classList.add('hidden');
             
             // Get current user (in guest mode, default to emp_high - Sarah Chen)
             // In production, this would get the logged-in user ID
@@ -3666,7 +3922,6 @@
             
             if (!user || user.role !== 'Employee') {
                 // Show "not authorized" if user is not an employee
-                if (authAuthorized) authAuthorized.classList.add('hidden');
                 if (authNotAuthorized) authNotAuthorized.classList.remove('hidden');
                 return;
             }
@@ -3674,14 +3929,13 @@
             // Check authorization based on user's isAuthorizedDriver flag
             const isAuthorized = user.isAuthorizedDriver === true;
             
-            // Self-drive is NOT automatically approved - always show "pending" status
-            // The authorization status message already indicates it needs HR verification
-            if (authAuthorized) authAuthorized.classList.remove('hidden');
-            if (authNotAuthorized) authNotAuthorized.classList.add('hidden');
-            
-            // If user is not authorized, show not authorized message
-            if (!isAuthorized) {
-                if (authAuthorized) authAuthorized.classList.add('hidden');
+            // Self-drive is NOT automatically approved - show pending status by default
+            // Only show authorized/not authorized if explicitly verified
+            if (isAuthorized) {
+                // User is authorized - show green checkmark
+                if (authAuthorized) authAuthorized.classList.remove('hidden');
+            } else {
+                // User is not authorized - show red X
                 if (authNotAuthorized) authNotAuthorized.classList.remove('hidden');
             }
         }
@@ -4646,13 +4900,31 @@ The admin will assign a driver closer to the trip date.
             if (statusType === 'arrived-pickup') {
                 // Safety check section becomes visible/enabled
                 const safetyCheckSection = document.getElementById('safety-check-section');
-                const safetyCheckBox = document.getElementById('safety-check-confirmed');
                 if (safetyCheckSection) {
                     safetyCheckSection.classList.remove('opacity-50');
                 }
-                if (safetyCheckBox) {
-                    safetyCheckBox.disabled = false;
-                }
+                
+                // Enable all individual safety check checkboxes
+                const checkBoxes = [
+                    'check-tires',
+                    'check-lights',
+                    'check-brakes',
+                    'check-fuel',
+                    'check-mirrors',
+                    'check-first-aid'
+                ];
+                
+                checkBoxes.forEach(checkId => {
+                    const checkBox = document.getElementById(checkId);
+                    if (checkBox) {
+                        checkBox.disabled = false;
+                        // Add event listener to check all checks when any individual check is toggled
+                        checkBox.addEventListener('change', checkAllSafetyChecks);
+                    }
+                });
+                
+                // Initialize check for all safety checks
+                checkAllSafetyChecks();
             }
             
             // Special handling: When "Start Driving" is clicked, enable "Arrived at Destination"
@@ -4682,12 +4954,41 @@ The admin will assign a driver closer to the trip date.
             alert(`Status updated: ${statusInfo.status}\n\n${statusInfo.message || ''}`);
         }
         
+        // Check if all individual safety checks are completed
+        function checkAllSafetyChecks() {
+            const checks = [
+                document.getElementById('check-tires'),
+                document.getElementById('check-lights'),
+                document.getElementById('check-brakes'),
+                document.getElementById('check-fuel'),
+                document.getElementById('check-mirrors'),
+                document.getElementById('check-first-aid')
+            ];
+            
+            const allChecked = checks.every(check => check && check.checked);
+            const safetyCheckConfirmed = document.getElementById('safety-check-confirmed');
+            
+            // Enable "All Safety Checks Confirmed" only if all individual checks are completed
+            if (safetyCheckConfirmed) {
+                if (allChecked) {
+                    safetyCheckConfirmed.disabled = false;
+                } else {
+                    safetyCheckConfirmed.disabled = true;
+                    safetyCheckConfirmed.checked = false;
+                }
+            }
+            
+            // Update Start Driving button state
+            toggleStartDrivingButton();
+        }
+        
         // Toggle Start Driving Button (Safety Gate)
         function toggleStartDrivingButton() {
             const safetyCheck = document.getElementById('safety-check-confirmed');
             const startDrivingBtn = document.getElementById('start-driving-btn');
             
             if (safetyCheck && startDrivingBtn) {
+                // Start Driving button is enabled only when "All Safety Checks Confirmed" is checked
                 if (safetyCheck.checked) {
                     startDrivingBtn.disabled = false;
                     startDrivingBtn.classList.remove('opacity-50');
@@ -5025,6 +5326,40 @@ The admin will assign a driver closer to the trip date.
                 }
                 
                 if (booking.status === 'PENDING') {
+                    // Calculate time since submission
+                    let timeSinceSubmission = '';
+                    if (booking.submittedTime) {
+                        const submittedDate = new Date(booking.submittedTime);
+                        const now = new Date();
+                        const hoursDiff = (now - submittedDate) / (1000 * 60 * 60);
+                        const daysDiff = Math.floor(hoursDiff / 24);
+                        
+                        if (daysDiff > 0) {
+                            timeSinceSubmission = `Waiting ${daysDiff} day${daysDiff > 1 ? 's' : ''}`;
+                        } else if (hoursDiff >= 1) {
+                            const hours = Math.floor(hoursDiff);
+                            timeSinceSubmission = `Waiting ${hours} hour${hours > 1 ? 's' : ''}`;
+                        } else {
+                            const minutes = Math.floor(hoursDiff * 60);
+                            timeSinceSubmission = `Waiting ${minutes} minute${minutes > 1 ? 's' : ''}`;
+                        }
+                    } else {
+                        // Fallback: calculate from booking start time (simulated)
+                        const bookingStart = new Date(booking.startTime);
+                        const now = new Date();
+                        const hoursDiff = (now - bookingStart) / (1000 * 60 * 60);
+                        const daysDiff = Math.floor(hoursDiff / 24);
+                        
+                        if (daysDiff > 0) {
+                            timeSinceSubmission = `Waiting ${daysDiff} day${daysDiff > 1 ? 's' : ''}`;
+                        } else if (hoursDiff >= 1) {
+                            const hours = Math.floor(hoursDiff);
+                            timeSinceSubmission = `Waiting ${hours} hour${hours > 1 ? 's' : ''}`;
+                        } else {
+                            timeSinceSubmission = 'Waiting less than 1 hour';
+                        }
+                    }
+                    
                     bookingHTML += `
                         <div class="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                             <div class="flex items-center gap-2 mb-1">
@@ -5033,7 +5368,7 @@ The admin will assign a driver closer to the trip date.
                                 </svg>
                                 <p class="text-yellow-800 text-xs font-semibold">Waiting for Admin Action</p>
                             </div>
-                            <p class="text-yellow-700 text-sm font-medium">Submitted recently</p>
+                            <p class="text-yellow-700 text-sm font-medium">${timeSinceSubmission}</p>
                         </div>
                     `;
                 }

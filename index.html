@@ -570,8 +570,7 @@
     <header class="bg-isd-black text-white p-3 sm:p-4 shadow-xl relative sticky top-0 z-50" style="padding-top: calc(0.75rem + env(safe-area-inset-top));">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0 px-2 sm:px-4">
             <div class="flex items-center space-x-3">
-                <!-- Logo Image -->logo isd.webp
-                 
+                <!-- Logo Image -->
                 <img id="header-logo" src="logo%20isd.webp" alt="ISD Logo" class="h-10 w-10 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <!-- Fallback SVG icon (hidden by default, shown if logo image fails to load) -->
                 <svg id="header-logo-fallback" class="w-8 h-8 text-isd-gold hidden" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -801,7 +800,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <span id="guest-mode-badge-employee" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap">GUEST MODE</span>
-                        <button id="employee-booking-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 whitespace-nowrap">+ New Request</button>
+                        <button id="employee-booking-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 whitespace-nowrap" data-translate="newRequest">+ New Request</button>
                     </div>
                 </div>
             </div>
@@ -809,23 +808,23 @@
                <!-- Quick Stats -->
                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
                    <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-yellow-500">
-                       <p class="text-sm text-gray-600 mb-1">Pending</p>
+                       <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsPending">Pending</p>
                        <p class="text-2xl font-bold text-yellow-600" id="stats-pending">0</p>
                    </div>
                    <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-green-500">
-                       <p class="text-sm text-gray-600 mb-1">Approved</p>
+                       <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsApproved">Approved</p>
                        <p class="text-2xl font-bold text-green-600" id="stats-approved">0</p>
                    </div>
                    <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-blue-500">
-                       <p class="text-sm text-gray-600 mb-1">Active</p>
+                       <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsActive">Active</p>
                        <p class="text-2xl font-bold text-blue-600" id="stats-active">0</p>
                    </div>
                    <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-red-500">
-                       <p class="text-sm text-gray-600 mb-1">Denied</p>
+                       <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsDenied">Denied</p>
                        <p class="text-2xl font-bold text-red-600" id="stats-denied">0</p>
                    </div>
                    <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-gray-500">
-                       <p class="text-sm text-gray-600 mb-1">Completed</p>
+                       <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsCompleted">Completed</p>
                        <p class="text-2xl font-bold text-gray-600" id="stats-completed">0</p>
                    </div>
                </div>
@@ -867,17 +866,17 @@
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                     <div>
-                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800">Fleet Management</h2>
-                        <p class="text-gray-600 mt-2 text-sm sm:text-base">View and manage your vehicle fleet</p>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800" data-translate="fleetManagement">Fleet Management</h2>
+                        <p class="text-gray-600 mt-2 text-sm sm:text-base" data-translate="fleetManagementDesc">View and manage your vehicle fleet</p>
                 </div>
-                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold whitespace-nowrap">← Back to Dashboard</button>
+                    <button onclick="window.location.hash = 'guest/admin'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold whitespace-nowrap" data-translate="backToDashboard">← Back to Dashboard</button>
                 </div>
             </div>
             
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-6 w-full">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
-                    <h3 class="text-lg sm:text-xl font-bold text-gray-800">Vehicle Fleet</h3>
-                    <button id="add-vehicle-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 whitespace-nowrap">+ Add Vehicle</button>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800" data-translate="vehicleFleet">Vehicle Fleet</h3>
+                    <button id="add-vehicle-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 whitespace-nowrap" data-translate="addVehicle">+ Add Vehicle</button>
                 </div>
                 
                 <!-- Fleet Summary -->
@@ -919,12 +918,12 @@
                     <table class="w-full text-left min-w-[600px]">
                         <thead class="bg-gray-100">
                             <tr>
-                                <th class="p-3 text-sm font-semibold text-gray-700">Image</th>
-                                <th class="p-3 text-sm font-semibold text-gray-700">Vehicle ID</th>
-                                <th class="p-3 text-sm font-semibold text-gray-700">Type</th>
-                                <th class="p-3 text-sm font-semibold text-gray-700">Capacity</th>
-                                <th class="p-3 text-sm font-semibold text-gray-700">Status</th>
-                                <th class="p-3 text-sm font-semibold text-gray-700">Actions</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700" data-translate="image">Image</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700" data-translate="vehicleIdCol">Vehicle ID</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700" data-translate="type">Type</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700" data-translate="capacityCol">Capacity</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700" data-translate="statusCol">Status</th>
+                                <th class="p-3 text-sm font-semibold text-gray-700" data-translate="actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="vehicle-table-body">
@@ -938,8 +937,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -953,8 +952,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -968,8 +967,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -983,8 +982,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -998,8 +997,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1013,8 +1012,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1028,8 +1027,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1043,8 +1042,8 @@
                                 <td class="p-3">50 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <!-- SUVs (10) -->
@@ -1057,8 +1056,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1072,8 +1071,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1087,8 +1086,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1102,8 +1101,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1117,8 +1116,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1132,8 +1131,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1147,8 +1146,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1162,8 +1161,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1177,8 +1176,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1192,8 +1191,8 @@
                                 <td class="p-3">7 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <!-- Sedans (14) -->
@@ -1206,8 +1205,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1221,8 +1220,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1236,8 +1235,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1251,8 +1250,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1266,8 +1265,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1281,8 +1280,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1296,8 +1295,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1311,8 +1310,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1326,8 +1325,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">In Use</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1341,8 +1340,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1356,8 +1355,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1371,8 +1370,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1386,8 +1385,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                             <tr class="border-b">
@@ -1401,8 +1400,8 @@
                                 <td class="p-3">5 seats</td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">Available</span></td>
                                 <td class="p-3">
-                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2">Edit</button>
-                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline">Delete</button>
+                                    <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
+                                    <button onclick="deleteVehicle('SB-001')" class="text-red-600 hover:underline" data-translate="delete">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -1464,9 +1463,9 @@
                     </div>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <button onclick="quickApprove('museum-trip')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ Approve</button>
-                        <button onclick="quickDenyAvailability('museum-trip')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">Quick Deny (Availability)</button>
-                        <button onclick="openRequestDetailView('museum-trip')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">View Details</button>
+                        <button onclick="quickApprove('museum-trip')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm" data-translate="approve">✓ Approve</button>
+                        <button onclick="quickDenyAvailability('museum-trip')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm" data-translate="quickDeny">Quick Deny (Availability)</button>
+                        <button onclick="openRequestDetailView('museum-trip')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm" data-translate="viewDetails">View Details</button>
                     </div>
                 </div>
                 
@@ -1600,7 +1599,7 @@
                     <!-- Vehicle Type -->
                     <div class="border-b border-gray-200 pb-4">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type <span class="text-red-600">*</span></label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="vehicleType">Vehicle Type <span class="text-red-600">*</span></label>
                             <select id="vehicle-type" name="vehicle-type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
                                 <option value="">Select a vehicle type</option>
                                 <option value="bus">Bus / Minibus (50 seats)</option>
@@ -1614,7 +1613,7 @@
                     <!-- Start Date -->
                     <div class="border-b border-gray-200 pb-4">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Start Date <span class="text-red-600">*</span></label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="startDate">Start Date <span class="text-red-600">*</span></label>
                             <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
                             <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error">Date is required</p>
                             <!-- Date Availability Message (appears next to date input) -->
@@ -1625,10 +1624,10 @@
                     <!-- Duration -->
                     <div class="border-b border-gray-200 pb-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Duration <span class="text-red-600">*</span></label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="duration">Duration <span class="text-red-600">*</span></label>
                         <select id="trip-duration" name="trip-duration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option value="">Select duration</option>
-                                <optgroup label="Hours">
+                            <option value="" data-translate="durationSelect">Select duration</option>
+                                <optgroup label="Hours" data-translate="durationHours">
                             <option value="1">1 hour</option>
                             <option value="2">2 hours</option>
                             <option value="3">3 hours</option>
@@ -1639,7 +1638,7 @@
                                     <option value="10">10 hours</option>
                                     <option value="12">12 hours</option>
                                 </optgroup>
-                                <optgroup label="Days">
+                                <optgroup label="Days" data-translate="durationDays">
                                     <option value="24">1 day</option>
                                     <option value="48">2 days</option>
                                     <option value="72">3 days</option>
@@ -1656,10 +1655,10 @@
                     <!-- Pickup Time (Scroll List with AM/PM) -->
                     <div class="border-b border-gray-200 pb-4">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Pickup Time <span class="text-red-600">*</span></label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="pickupTime">Pickup Time <span class="text-red-600">*</span></label>
                             <select id="pickup-time" name="pickup-time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                                <option value="">Select pickup time</option>
-                                <optgroup label="AM">
+                                <option value="" data-translate="pickupTimeSelect">Select pickup time</option>
+                                <optgroup label="AM" data-translate="pickupTimeAM">
                                     <option value="06:00">6:00 AM</option>
                                     <option value="06:30">6:30 AM</option>
                                     <option value="07:00">7:00 AM</option>
@@ -1673,7 +1672,7 @@
                                     <option value="11:00">11:00 AM</option>
                                     <option value="11:30">11:30 AM</option>
                                 </optgroup>
-                                <optgroup label="PM">
+                                <optgroup label="PM" data-translate="pickupTimePM">
                                     <option value="12:00">12:00 PM</option>
                                     <option value="12:30">12:30 PM</option>
                                     <option value="13:00">1:00 PM</option>
@@ -1700,10 +1699,10 @@
                     <!-- Driver Option (Default: School Driver) -->
                     <div class="border-b border-gray-200 pb-4">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Driver Option <span class="text-red-600">*</span></label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="driverOption">Driver Option <span class="text-red-600">*</span></label>
                             <select id="driver-option" name="driver-option" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                                <option value="school-driver" selected>Request a School Driver</option>
-                                <option value="self-drive">Self-Drive / Own Authorized Driver</option>
+                                <option value="school-driver" selected data-translate="driverOptionSchool">Request a School Driver</option>
+                                <option value="self-drive" data-translate="driverOptionSelf">Self-Drive / Own Authorized Driver</option>
                             </select>
                             <p class="text-red-600 text-sm mt-1 hidden" id="driver-option-error">Please select a driver option</p>
                         </div>
@@ -1711,9 +1710,9 @@
                         <!-- School Driver Details -->
                         <div id="school-driver-details" class="mt-4 space-y-4">
                             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                                <h4 class="text-sm font-semibold text-blue-800 mb-3">School Driver Requirements</h4>
+                                <h4 class="text-sm font-semibold text-blue-800 mb-3" data-translate="schoolDriverRequirements">School Driver Requirements</h4>
                                 <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Pickup Location <span class="text-red-600">*</span></label>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="pickupLocation">Pickup Location <span class="text-red-600">*</span></label>
                                     <input type="text" id="pickup-location" name="pickup-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Main School Gate, Building A Entrance">
                                     <p class="text-red-600 text-sm mt-1 hidden" id="pickup-location-error">Pickup location is required</p>
                                 </div>
@@ -1728,8 +1727,8 @@
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                     </svg>
                                     <div>
-                                        <span class="text-base font-bold text-green-800 block">✅ You are authorized</span>
-                                        <p class="text-sm text-green-700 mt-1">Self-Drive / Own Authorized Driver option is available for this vehicle type.</p>
+                                        <span class="text-base font-bold text-green-800 block" data-translate="authorizedMessage">✅ You are authorized</span>
+                                        <p class="text-sm text-green-700 mt-1" data-translate="authorizedDesc">Self-Drive / Own Authorized Driver option is available for this vehicle type.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1739,8 +1738,8 @@
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
                                     </svg>
                                     <div>
-                                        <span class="text-base font-bold text-red-800 block">❌ Not authorized for this vehicle class</span>
-                                        <p class="text-sm text-red-700 mt-1">Please select 'Request a School Driver' instead.</p>
+                                        <span class="text-base font-bold text-red-800 block" data-translate="notAuthorizedMessage">❌ Not authorized for this vehicle class</span>
+                                        <p class="text-sm text-red-700 mt-1" data-translate="notAuthorizedDesc">Please select 'Request a School Driver' instead.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1750,8 +1749,8 @@
                                         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                     </svg>
                                     <div>
-                                        <span class="text-base font-bold text-yellow-800 block">⏳ Self-Drive Authorization Pending</span>
-                                        <p class="text-sm text-yellow-700 mt-1">Your authorization status will be verified by HR. This option is not automatically approved.</p>
+                                        <span class="text-base font-bold text-yellow-800 block" data-translate="authorizationPending">⏳ Self-Drive Authorization Pending</span>
+                                        <p class="text-sm text-yellow-700 mt-1" data-translate="authorizationPendingDesc">Your authorization status will be verified by HR. This option is not automatically approved.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1761,7 +1760,7 @@
                     <!-- Number of Passengers -->
                     <div class="border-b border-gray-200 pb-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Number of Passengers <span class="text-red-600">*</span></label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="numberOfPassengers">Number of Passengers <span class="text-red-600">*</span></label>
                         <input type="number" id="passengers" name="passengers" required min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 45">
                         <p class="text-red-600 text-sm mt-1 hidden" id="passengers-error">Please enter a valid number of passengers</p>
                             <p class="text-xs text-gray-500 mt-1" id="passengers-capacity-info"></p>
@@ -1771,7 +1770,7 @@
                     <!-- Additional Notes -->
                     <div class="border-b border-gray-200 pb-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="additionalNotes">Additional Notes</label>
                             <textarea rows="3" id="notes" name="notes" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any special requirements or additional information..."></textarea>
                     </div>
                     </div>
@@ -1791,8 +1790,8 @@
                         </div>
                         
                     <div class="flex space-x-3">
-                            <button type="submit" id="submit-booking-btn" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>Submit Request</button>
-                        <button type="button" onclick="window.location.hash = 'guest/employee'" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                            <button type="submit" id="submit-booking-btn" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 disabled:bg-gray-300 disabled:cursor-not-allowed" disabled data-translate="submitRequest">Submit Request</button>
+                        <button type="button" onclick="window.location.hash = 'guest/employee'" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300" data-translate="cancel">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -1803,10 +1802,10 @@
         <div id="view-my-bookings" class="view-section w-full">
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-3xl font-bold text-gray-800">My Bookings</h2>
-                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold">← Back to Dashboard</button>
+                    <h2 class="text-3xl font-bold text-gray-800" data-translate="employeeMyBookingsTitle">My Bookings</h2>
+                    <button onclick="window.location.hash = 'guest/employee'" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold" data-translate="backToDashboard">← Back to Dashboard</button>
                 </div>
-                <p class="text-gray-600">View and track your booking requests</p>
+                <p class="text-gray-600" data-translate="employeeMyBookingsDesc">View and track your booking requests</p>
             </div>
             
             <div class="space-y-4">
@@ -1882,8 +1881,8 @@
         <div id="view-assigned-trips" class="view-section w-full">
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-4 border-t-4 border-isd-gold w-full">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">My Active Trip</h2>
-                    <button onclick="window.location.hash = 'guest/driver'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm">← Dashboard</button>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800" data-translate="myActiveTrip">My Active Trip</h2>
+                    <button onclick="window.location.hash = 'guest/driver'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm" data-translate="dashboard">← Dashboard</button>
                 </div>
             </div>
             
@@ -1906,19 +1905,19 @@
                 
                 <!-- Single-Tap Delay Communication Button -->
                 <div class="mb-6">
-                    <button id="delay-notification-btn" onclick="sendDelayNotification()" class="w-full py-5 px-8 bg-orange-500 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-orange-600 active:scale-95 transition-transform border-2 border-orange-400">
+                    <button id="delay-notification-btn" onclick="sendDelayNotification()" class="w-full py-5 px-8 bg-orange-500 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-orange-600 active:scale-95 transition-transform border-2 border-orange-400" data-translate="runningLate">
                         ⏱️ Running 10 Mins Late
                     </button>
-                    <p class="text-xs text-gray-600 mt-2 text-center">Tap to instantly notify employee and admin</p>
+                    <p class="text-xs text-gray-600 mt-2 text-center" data-translate="delayNotificationDesc">Tap to instantly notify employee and admin</p>
                 </div>
                 
                 <!-- Guided Status Workflow (Sequential Buttons) -->
             <div class="space-y-4">
-                    <h4 class="text-lg font-bold text-gray-800 mb-3">Trip Status Updates</h4>
+                    <h4 class="text-lg font-bold text-gray-800 mb-3" data-translate="tripStatusUpdates">Trip Status Updates</h4>
                     
                     <!-- Step 1: Start Trip (Departing from garage/depot) -->
                     <div class="border-l-4 border-green-500 pl-4">
-                        <button id="start-trip-btn" onclick="updateTripStatus('start-trip')" class="w-full py-5 px-8 bg-green-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-green-700 active:scale-95 transition-transform border-2 border-green-500">
+                        <button id="start-trip-btn" onclick="updateTripStatus('start-trip')" class="w-full py-5 px-8 bg-green-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-green-700 active:scale-95 transition-transform border-2 border-green-500" data-translate="startTrip">
                             🚗 Start Trip
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Departing from garage/depot</p>
@@ -1926,7 +1925,7 @@
                     
                     <!-- Step 2: Arrived at Pickup (Disabled until Start Trip is clicked) -->
                     <div class="border-l-4 border-gray-300 pl-4">
-                        <button id="arrived-pickup-btn" onclick="updateTripStatus('arrived-pickup')" class="w-full py-5 px-8 bg-blue-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-blue-700 active:scale-95 transition-transform border-2 border-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button id="arrived-pickup-btn" onclick="updateTripStatus('arrived-pickup')" class="w-full py-5 px-8 bg-blue-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-blue-700 active:scale-95 transition-transform border-2 border-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="arrivedAtPickup">
                             📍 Arrived at Pickup
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Arrived at pickup location</p>
@@ -1972,7 +1971,7 @@
                 
                     <!-- Step 4: Start Driving (Disabled until Safety Check is confirmed) -->
                     <div class="border-l-4 border-gray-300 pl-4">
-                        <button id="start-driving-btn" onclick="updateTripStatus('start-driving')" class="w-full py-5 px-8 bg-purple-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-purple-700 active:scale-95 transition-transform border-2 border-purple-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button id="start-driving-btn" onclick="updateTripStatus('start-driving')" class="w-full py-5 px-8 bg-purple-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-purple-700 active:scale-95 transition-transform border-2 border-purple-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="startDriving">
                             ▶️ Start Driving
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Passengers loaded, trip underway</p>
@@ -1980,7 +1979,7 @@
                     
                     <!-- Step 5: Arrived at Destination -->
                     <div class="border-l-4 border-gray-300 pl-4">
-                        <button id="arrived-destination-btn" onclick="updateTripStatus('arrived-destination')" class="w-full py-5 px-8 bg-indigo-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-indigo-700 active:scale-95 transition-transform border-2 border-indigo-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button id="arrived-destination-btn" onclick="updateTripStatus('arrived-destination')" class="w-full py-5 px-8 bg-indigo-600 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-indigo-700 active:scale-95 transition-transform border-2 border-indigo-500 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="arrivedDestination">
                             🎯 Arrived at Destination
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Arrived at destination</p>
@@ -1988,7 +1987,7 @@
                     
                     <!-- Step 6: Trip Complete (Opens Finalization Log) -->
                     <div class="border-l-4 border-gray-300 pl-4">
-                        <button id="trip-complete-btn" onclick="openTripFinalization()" class="w-full py-5 px-8 bg-gray-700 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-gray-800 active:scale-95 transition-transform border-2 border-gray-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button id="trip-complete-btn" onclick="openTripFinalization()" class="w-full py-5 px-8 bg-gray-700 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-gray-800 active:scale-95 transition-transform border-2 border-gray-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="tripComplete">
                             ✅ Trip Complete
                         </button>
                         <p class="text-xs text-gray-600 mt-1">Complete trip and submit log</p>
@@ -2001,8 +2000,8 @@
         <div id="view-trip-finalization" class="view-section w-full">
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-4 border-t-4 border-isd-gold w-full">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Trip Finalization</h2>
-                    <button onclick="window.location.hash = 'assigned-trips'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm">← Back</button>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800" data-translate="tripFinalization">Trip Finalization</h2>
+                    <button onclick="window.location.hash = 'assigned-trips'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm" data-translate="cancel">← Back</button>
                 </div>
                 <p class="text-gray-600 text-sm">Complete trip and submit final log</p>
             </div>
@@ -2024,18 +2023,18 @@
                             Quick Fuel/Expense Log (Optional)
                         </h4>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div>
+                    <div>
                                 <label class="block text-xs font-semibold text-gray-700 mb-1">Fuel (Liters)</label>
                                 <input type="number" id="fuel-liters" name="fuel-liters" min="0" step="0.1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base" placeholder="0.0">
-                            </div>
-                            <div>
+                    </div>
+                    <div>
                                 <label class="block text-xs font-semibold text-gray-700 mb-1">Cost ($)</label>
                                 <input type="number" id="fuel-cost" name="fuel-cost" min="0" step="0.01" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base" placeholder="0.00">
-                            </div>
-                            <div>
+                    </div>
+                    <div>
                                 <label class="block text-xs font-semibold text-gray-700 mb-1">Odometer</label>
                                 <input type="number" id="quick-odometer" name="quick-odometer" min="0" step="0.1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-base" placeholder="0.0">
-                            </div>
+                    </div>
                         </div>
                         <p class="text-xs text-gray-600 mt-2">Log fuel and expenses quickly during trip (optional - can be updated later)</p>
                     </div>
@@ -2046,22 +2045,22 @@
                         
                         <!-- Final Odometer Reading (Mandatory) -->
                     <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="finalOdometer">
                                 Final Odometer Reading <span class="text-red-600">*</span>
                             </label>
-                            <input type="number" id="final-odometer" name="final-odometer" required min="0" step="0.1" class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-isd-gold text-lg" placeholder="Enter odometer reading (miles)">
-                            <p class="text-red-600 text-sm mt-1 hidden" id="odometer-error">Odometer reading is required</p>
+                            <input type="number" id="final-odometer" name="final-odometer" required min="0" step="0.1" class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-isd-gold text-lg" placeholder="Enter odometer reading (miles)" data-placeholder-key="finalOdometerPlaceholder">
+                            <p class="text-red-600 text-sm mt-1 hidden" id="odometer-error" data-translate="finalOdometerError">Odometer reading is required</p>
                     </div>
                         
                         <!-- Final Fuel Level (Mandatory) -->
                     <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="finalFuelLevel">
                                 Final Fuel Level <span class="text-red-600">*</span>
                             </label>
                             <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
                                 <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-isd-gold transition-colors fuel-level-option">
                                     <input type="radio" name="final-fuel-level" value="Full" required class="sr-only fuel-level-radio">
-                                    <span class="text-sm font-semibold text-gray-700">Full</span>
+                                    <span class="text-sm font-semibold text-gray-700" data-translate="finalFuelLevelFull">Full</span>
                                 </label>
                                 <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-isd-gold transition-colors fuel-level-option">
                                     <input type="radio" name="final-fuel-level" value="3/4" required class="sr-only fuel-level-radio">
@@ -2077,25 +2076,25 @@
                                 </label>
                                 <label class="flex items-center justify-center p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:border-isd-gold transition-colors fuel-level-option">
                                     <input type="radio" name="final-fuel-level" value="Empty" required class="sr-only fuel-level-radio">
-                                    <span class="text-sm font-semibold text-gray-700">Empty</span>
+                                    <span class="text-sm font-semibold text-gray-700" data-translate="finalFuelLevelEmpty">Empty</span>
                                 </label>
                     </div>
-                            <p class="text-red-600 text-sm mt-1 hidden" id="fuel-level-error">Fuel level selection is required</p>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="fuel-level-error" data-translate="finalFuelLevelError">Fuel level selection is required</p>
                         </div>
                         
                         <!-- Vehicle Issues/Comments (Mandatory) -->
                     <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="vehicleIssues">
                                 Vehicle Issues/Comments <span class="text-red-600">*</span>
                             </label>
-                            <textarea id="vehicle-issues" name="vehicle-issues" rows="4" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-isd-gold text-base" placeholder="Report any vehicle issues, damage, or additional comments..."></textarea>
-                            <p class="text-red-600 text-sm mt-1 hidden" id="vehicle-issues-error">Vehicle issues/comments are required</p>
+                            <textarea id="vehicle-issues" name="vehicle-issues" rows="4" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-isd-gold text-base" placeholder="Report any vehicle issues, damage, or additional comments..." data-placeholder-key="vehicleIssuesPlaceholder"></textarea>
+                            <p class="text-red-600 text-sm mt-1 hidden" id="vehicle-issues-error" data-translate="vehicleIssuesError">Vehicle issues/comments are required</p>
                     </div>
                     </div>
                     
                     <!-- Submit Button (Disabled until all fields are filled) -->
                     <div class="border-t border-gray-200 pt-4">
-                        <button type="submit" id="submit-trip-log-btn" class="w-full py-4 px-6 bg-gray-700 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-gray-800 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled>
+                        <button type="submit" id="submit-trip-log-btn" class="w-full py-4 px-6 bg-gray-700 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-gray-800 active:scale-95 transition-transform disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="submitLogComplete">
                             ✅ Submit Log and Complete Trip
                         </button>
                         <p class="text-xs text-gray-600 mt-2 text-center">All fields must be completed before submission</p>
@@ -2116,16 +2115,16 @@
     <!-- Edit Vehicle Modal -->
     <div id="edit-vehicle-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3 class="text-2xl font-bold mb-5 text-isd-black">Edit Vehicle</h3>
+            <h3 class="text-2xl font-bold mb-5 text-isd-black" data-translate="editVehicle">Edit Vehicle</h3>
             <form id="edit-vehicle-form" class="space-y-4" enctype="multipart/form-data">
                 <input type="hidden" id="edit-vehicle-id">
                 <input type="hidden" id="edit-vehicle-current-image">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle ID</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="vehicleIdDisplay">Vehicle ID</label>
                     <input type="text" id="edit-vehicle-id-display" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" readonly>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Image</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="vehicleImage">Vehicle Image</label>
                     <div class="mb-3">
                         <img id="edit-vehicle-image-preview" src="" alt="Vehicle Preview" class="w-32 h-32 object-cover rounded-lg border-2 border-gray-300 mb-2 hidden">
                         <p id="edit-vehicle-image-current" class="text-sm text-gray-600 mb-2"></p>
@@ -2134,28 +2133,28 @@
                     <p class="text-xs text-gray-500 mt-1">Upload a new image to replace the current one (JPG, PNG, or GIF)</p>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Type</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="type">Type</label>
                     <select id="edit-vehicle-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                        <option value="School Bus">School Bus</option>
-                        <option value="SUV">SUV</option>
-                        <option value="Sedan">Sedan</option>
+                        <option value="School Bus" data-translate="schoolBus">School Bus</option>
+                        <option value="SUV" data-translate="suv">SUV</option>
+                        <option value="Sedan" data-translate="sedan">Sedan</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Capacity</label>
-                    <input type="text" id="edit-vehicle-capacity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 50 seats">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="capacity">Capacity</label>
+                    <input type="text" id="edit-vehicle-capacity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 50 seats" data-placeholder-key="capacityPlaceholder">
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Status</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="status">Status</label>
                     <select id="edit-vehicle-status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                        <option value="Available">Available</option>
-                        <option value="In Use">In Use</option>
-                        <option value="Maintenance">Maintenance</option>
+                        <option value="Available" data-translate="statusAvailable">Available</option>
+                        <option value="In Use" data-translate="statusInUse">In Use</option>
+                        <option value="Maintenance" data-translate="statusInMaintenance">Maintenance</option>
                     </select>
                 </div>
                 <div class="flex space-x-3">
-                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Save Changes</button>
-                    <button type="button" onclick="closeEditVehicleModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400" data-translate="saveChanges">Save Changes</button>
+                    <button type="button" onclick="closeEditVehicleModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300" data-translate="cancel">Cancel</button>
                 </div>
             </form>
         </div>
@@ -2164,15 +2163,15 @@
     <!-- Add Vehicle Modal -->
     <div id="add-vehicle-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3 class="text-2xl font-bold mb-5 text-isd-black">Add New Vehicle</h3>
+            <h3 class="text-2xl font-bold mb-5 text-isd-black" data-translate="addNewVehicle">Add New Vehicle</h3>
             <form id="add-vehicle-form" class="space-y-4" enctype="multipart/form-data">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle ID <span class="text-red-600">*</span></label>
-                    <input type="text" id="add-vehicle-id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., VH-001" required>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="vehicleId">Vehicle ID <span class="text-red-600">*</span></label>
+                    <input type="text" id="add-vehicle-id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., VH-001" data-placeholder-key="vehicleIdPlaceholder" required>
                     <p class="text-xs text-gray-500 mt-1">Unique identifier for this vehicle</p>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Image</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="vehicleImage">Vehicle Image</label>
                     <div class="mb-3">
                         <img id="add-vehicle-image-preview" src="" alt="Vehicle Preview" class="w-32 h-32 object-cover rounded-lg border-2 border-gray-300 mb-2 hidden">
                     </div>
@@ -2180,35 +2179,35 @@
                     <p class="text-xs text-gray-500 mt-1">Upload an image (JPG, PNG, or GIF)</p>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Vehicle Type <span class="text-red-600">*</span></label>
-                    <select id="add-vehicle-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required>
-                        <option value="">Select vehicle type</option>
-                        <option value="Minibus">Minibus</option>
-                        <option value="Passenger Van">Passenger Van</option>
-                        <option value="Sedan">Sedan</option>
-                        <option value="School Bus">School Bus</option>
-                        <option value="SUV">SUV</option>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="vehicleTypeSelect">Vehicle Type <span class="text-red-600">*</span></label>
+                    <select id="add-vehicle-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required data-translate="vehicleTypeSelect">
+                        <option value="" data-translate="vehicleTypeSelect">Select vehicle type</option>
+                        <option value="Minibus" data-translate="vehicleTypeMinibus">Minibus</option>
+                        <option value="Passenger Van" data-translate="vehicleTypePassengerVan">Passenger Van</option>
+                        <option value="Sedan" data-translate="vehicleTypeSedan">Sedan</option>
+                        <option value="School Bus" data-translate="vehicleTypeSchoolBus">School Bus</option>
+                        <option value="SUV" data-translate="vehicleTypeSUV">SUV</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Capacity <span class="text-red-600">*</span></label>
-                    <input type="text" id="add-vehicle-capacity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 50 seats" required>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="capacity">Capacity <span class="text-red-600">*</span></label>
+                    <input type="text" id="add-vehicle-capacity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., 50 seats" data-placeholder-key="capacityPlaceholder" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Status <span class="text-red-600">*</span></label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="status">Status <span class="text-red-600">*</span></label>
                     <select id="add-vehicle-status" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required>
-                        <option value="Available">Available</option>
-                        <option value="In Maintenance">In Maintenance</option>
-                        <option value="In Use">In Use</option>
+                        <option value="Available" data-translate="statusAvailable">Available</option>
+                        <option value="In Maintenance" data-translate="statusInMaintenance">In Maintenance</option>
+                        <option value="In Use" data-translate="statusInUse">In Use</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Location</label>
-                    <input type="text" id="add-vehicle-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Garage 1">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="location">Location</label>
+                    <input type="text" id="add-vehicle-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="e.g., Garage 1" data-placeholder-key="locationPlaceholder">
                 </div>
                 <div class="flex space-x-3">
-                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Add Vehicle</button>
-                    <button type="button" onclick="closeAddVehicleModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400" data-translate="addVehicle">Add Vehicle</button>
+                    <button type="button" onclick="closeAddVehicleModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300" data-translate="cancel">Cancel</button>
                 </div>
             </form>
         </div>
@@ -2217,27 +2216,27 @@
     <!-- Edit User Modal -->
     <div id="edit-user-modal" class="modal-overlay">
         <div class="modal-content">
-            <h3 class="text-2xl font-bold mb-5 text-isd-black">Edit User</h3>
+            <h3 class="text-2xl font-bold mb-5 text-isd-black" data-translate="editUser">Edit User</h3>
             <form id="edit-user-form" class="space-y-4">
                 <input type="hidden" id="edit-user-id">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Name</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="name">Name</label>
                     <input type="text" id="edit-user-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="email">Email</label>
                     <input type="email" id="edit-user-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" required>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Role</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="role">Role</label>
                     <select id="edit-user-role" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                        <option value="Employee">Employee</option>
-                        <option value="Driver">Driver</option>
+                        <option value="Employee" data-translate="roleEmployee">Employee</option>
+                        <option value="Driver" data-translate="roleDriver">Driver</option>
                     </select>
                 </div>
                 <div class="flex space-x-3">
-                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400">Save Changes</button>
-                    <button type="button" onclick="closeEditUserModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                    <button type="submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400" data-translate="saveChanges">Save Changes</button>
+                    <button type="button" onclick="closeEditUserModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300" data-translate="cancel">Cancel</button>
                 </div>
             </form>
         </div>
@@ -2245,7 +2244,7 @@
 
     <!-- Load Testing Script (Development Only) -->
     <script src="load-test.js"></script>
-    
+
     <!-- JavaScript for Basic Interactions (Language Toggle) -->
     <script>
         // Wait for DOM to be ready
@@ -2254,13 +2253,19 @@
         const app = {
             content: {
                 en: {
+                    // Header & Navigation
                     title: 'Your Centralized Transportation Platform',
                     text: 'Easily book vehicles for field trips, sports events, and staff travel. A centralized platform for all your school\'s transportation needs at the International School of Dakar.',
                     admin: 'Admin Access',
                     employee: 'Employee Login',
                     driver: 'Driver Login',
                     home: 'Home',
+                    appName: 'ISD Car Booking',
+                    
+                    // Guest Mode
                     guestMode: 'GUEST MODE',
+                    
+                    // Admin Dashboard
                     adminDashboardTitle: 'Guest Admin Dashboard',
                     adminDashboardDesc: 'Welcome to the Admin Dashboard. You are logged in as a guest administrator.',
                     adminFleetTitle: 'Fleet Management',
@@ -2272,6 +2277,9 @@
                     adminUsersTitle: 'User Management',
                     adminUsersDesc: 'Manage employees and drivers',
                     adminUsersBtn: 'Manage Users',
+                    backToDashboard: '← Back to Dashboard',
+                    
+                    // Employee Dashboard
                     employeeDashboardTitle: 'Guest Employee Dashboard',
                     employeeDashboardDesc: 'Welcome to the Employee Dashboard. You are logged in as a guest employee.',
                     employeeBookingTitle: 'New Booking Request',
@@ -2280,6 +2288,9 @@
                     employeeMyBookingsTitle: 'My Bookings',
                     employeeMyBookingsDesc: 'View and track your booking requests',
                     employeeMyBookingsBtn: 'View Bookings',
+                    newRequest: '+ New Request',
+                    
+                    // Driver Dashboard
                     driverDashboardTitle: 'Guest Driver Interface',
                     driverDashboardDesc: 'Welcome to the Driver Interface. You are logged in as a guest driver.',
                     driverTripsTitle: 'Assigned Trips',
@@ -2287,16 +2298,339 @@
                     driverTripsBtn: 'View Trips',
                     driverStatusTitle: 'Update Status',
                     driverStatusDesc: 'Update trip status and location',
-                    driverStatusBtn: 'Update Status'
+                    driverStatusBtn: 'Update Status',
+                    myActiveTrip: 'My Active Trip',
+                    dashboard: 'Dashboard',
+                    
+                    // Booking Form
+                    tripPurpose: 'Trip Purpose',
+                    tripPurposePlaceholder: 'e.g., Field trip to museum, School business, Airport transfer',
+                    tripPurposeError: 'Trip purpose is required',
+                    vehicleType: 'Vehicle Type',
+                    vehicleTypeSelect: 'Select a vehicle type',
+                    vehicleTypeBus: 'Bus / Minibus (50 seats)',
+                    vehicleTypeVan: 'Van (15 seats)',
+                    vehicleTypeCar: 'Sedan / Car (5 seats)',
+                    vehicleTypeError: 'Please select a vehicle type',
+                    startDate: 'Start Date',
+                    dateError: 'Date is required',
+                    duration: 'Duration',
+                    durationSelect: 'Select duration',
+                    durationHours: 'Hours',
+                    durationDays: 'Days',
+                    durationHour: 'hour',
+                    durationHoursPlural: 'hours',
+                    durationDay: 'day',
+                    durationDaysPlural: 'days',
+                    durationWeek: 'week',
+                    durationError: 'Duration is required',
+                    pickupTime: 'Pickup Time',
+                    pickupTimeSelect: 'Select pickup time',
+                    pickupTimeAM: 'AM',
+                    pickupTimePM: 'PM',
+                    pickupTimeError: 'Pickup time is required',
+                    driverOption: 'Driver Option',
+                    driverOptionSchool: 'Request a School Driver',
+                    driverOptionSelf: 'Self-Drive / Own Authorized Driver',
+                    driverOptionError: 'Please select a driver option',
+                    schoolDriverRequirements: 'School Driver Requirements',
+                    pickupLocation: 'Pickup Location',
+                    pickupLocationPlaceholder: 'e.g., Main School Gate, Building A Entrance',
+                    pickupLocationError: 'Pickup location is required',
+                    authorizedMessage: '✅ You are authorized',
+                    authorizedDesc: 'Self-Drive / Own Authorized Driver option is available for this vehicle type.',
+                    notAuthorizedMessage: '❌ Not authorized for this vehicle class',
+                    notAuthorizedDesc: 'Please select \'Request a School Driver\' instead.',
+                    authorizationPending: '⏳ Self-Drive Authorization Pending',
+                    authorizationPendingDesc: 'Your authorization status will be verified by HR. This option is not automatically approved.',
+                    numberOfPassengers: 'Number of Passengers',
+                    passengersPlaceholder: 'e.g., 45',
+                    passengersError: 'Please enter a valid number of passengers',
+                    additionalNotes: 'Additional Notes',
+                    notesPlaceholder: 'Any special requirements or additional information...',
+                    submitRequest: 'Submit Request',
+                    cancel: 'Cancel',
+                    bookingSummary: 'Booking Summary',
+                    
+                    // Status Labels
+                    pending: 'Pending',
+                    approved: 'Approved',
+                    denied: 'Denied',
+                    active: 'Active',
+                    activeTrip: 'Active Trip',
+                    completed: 'Completed',
+                    cancelled: 'Cancelled',
+                    scheduled: 'Scheduled',
+                    
+                    // Booking Actions
+                    viewDetails: 'View Details',
+                    modifyRequest: 'Modify Request',
+                    cancelRequest: 'Cancel Request',
+                    approve: 'Approve',
+                    deny: 'Deny',
+                    quickDeny: 'Quick Deny (Availability)',
+                    
+                    // Stats
+                    statsPending: 'Pending',
+                    statsApproved: 'Approved',
+                    statsActive: 'Active',
+                    statsDenied: 'Denied',
+                    statsCompleted: 'Completed',
+                    
+                    // Fleet Management
+                    fleetManagement: 'Fleet Management',
+                    fleetManagementDesc: 'View and manage your vehicle fleet',
+                    vehicleFleet: 'Vehicle Fleet',
+                    addVehicle: '+ Add Vehicle',
+                    addNewVehicle: 'Add New Vehicle',
+                    editVehicle: 'Edit Vehicle',
+                    deleteVehicle: 'Delete Vehicle',
+                    vehicleId: 'Vehicle ID',
+                    vehicleIdPlaceholder: 'e.g., VH-001',
+                    vehicleImage: 'Vehicle Image',
+                    vehicleTypeSelect: 'Select vehicle type',
+                    vehicleTypeMinibus: 'Minibus',
+                    vehicleTypePassengerVan: 'Passenger Van',
+                    vehicleTypeSedan: 'Sedan',
+                    vehicleTypeSchoolBus: 'School Bus',
+                    vehicleTypeSUV: 'SUV',
+                    capacity: 'Capacity',
+                    capacityPlaceholder: 'e.g., 50 seats',
+                    status: 'Status',
+                    statusAvailable: 'Available',
+                    statusInMaintenance: 'In Maintenance',
+                    statusInUse: 'In Use',
+                    location: 'Location',
+                    locationPlaceholder: 'e.g., Garage 1',
+                    saveChanges: 'Save Changes',
+                    edit: 'Edit',
+                    delete: 'Delete',
+                    vehicleIdDisplay: 'Vehicle ID',
+                    image: 'Image',
+                    vehicleIdCol: 'Vehicle ID',
+                    type: 'Type',
+                    capacityCol: 'Capacity',
+                    statusCol: 'Status',
+                    actions: 'Actions',
+                    schoolBus: 'School Bus',
+                    suv: 'SUV',
+                    sedan: 'Sedan',
+                    
+                    // Driver Trip Status
+                    tripStatusUpdates: 'Trip Status Updates',
+                    startTrip: '🚗 Start Trip',
+                    arrivedAtPickup: '📍 Arrived at Pickup',
+                    startDriving: '🚙 Start Driving',
+                    arrivedDestination: '🏁 Arrived at Destination',
+                    tripComplete: '✅ Trip Complete',
+                    runningLate: '⏱️ Running 10 Mins Late',
+                    delayNotificationSent: '⏱️ Notification Sent!',
+                    delayNotificationDesc: 'Tap to instantly notify employee and admin',
+                    
+                    // Safety Checks
+                    safetyCheck: 'Vehicle Safety Check',
+                    safetyCheckConfirmed: 'All Safety Checks Confirmed',
+                    checkTires: 'Tires',
+                    checkLights: 'Lights',
+                    checkBrakes: 'Brakes',
+                    checkFuel: 'Fuel',
+                    checkMirrors: 'Mirrors',
+                    checkFirstAid: 'First Aid Kit',
+                    
+                    // Trip Finalization
+                    tripFinalization: 'Trip Finalization',
+                    finalOdometer: 'Final Odometer Reading',
+                    finalOdometerPlaceholder: 'e.g., 12500',
+                    finalOdometerError: 'Please enter a valid odometer reading',
+                    finalFuelLevel: 'Final Fuel Level',
+                    finalFuelLevelFull: 'Full',
+                    finalFuelLevelThreeQuarter: '3/4',
+                    finalFuelLevelHalf: '1/2',
+                    finalFuelLevelQuarter: '1/4',
+                    finalFuelLevelEmpty: 'Empty',
+                    finalFuelLevelError: 'Please select fuel level',
+                    vehicleIssues: 'Vehicle Issues/Comments',
+                    vehicleIssuesPlaceholder: 'Any issues or comments about the vehicle...',
+                    vehicleIssuesError: 'Please provide vehicle issues or comments',
+                    submitLogComplete: 'Submit Log and Complete',
+                    
+                    // Update Status Form
+                    updateStatus: 'Update Trip Status',
+                    selectTrip: 'Select Trip',
+                    selectTripPlaceholder: 'Choose a trip',
+                    currentStatus: 'Current Status',
+                    currentStatusPlaceholder: 'Select status',
+                    currentLocation: 'Current Location',
+                    currentLocationPlaceholder: 'Enter current location',
+                    statusNotes: 'Status Notes',
+                    statusNotesPlaceholder: 'Any additional notes...',
+                    
+                    // Messages
+                    submittedAgo: 'Submitted {hours} hours ago',
+                    waitingForAdmin: 'Waiting for Admin Action',
+                    adminNote: 'Admin Note:',
+                    driverStatus: 'Driver Status:',
+                    tripFinalizationLog: 'Trip Finalization Log:',
+                    finalOdometerLabel: 'Final Odometer:',
+                    finalFuelLevelLabel: 'Final Fuel Level:',
+                    vehicleIssuesLabel: 'Vehicle Issues/Comments:',
+                    miles: 'miles',
+                    noneReported: 'None reported',
+                    
+                    // Resource Health
+                    resourceHealth: 'Resource Health',
+                    driverStatus: 'Driver Status',
+                    driverAvailable: 'Available',
+                    driverOnTrip: 'On Trip',
+                    driverUnavailable: 'Unavailable',
+                    vehicleWarnings: 'Vehicle Warnings',
+                    maintenanceDue: 'Maintenance Due',
+                    outOfCommission: 'Out of Commission',
+                    days: 'days',
+                    
+                    // User Management
+                    userManagement: 'User Management',
+                    editUser: 'Edit User',
+                    name: 'Name',
+                    email: 'Email',
+                    role: 'Role',
+                    roleEmployee: 'Employee',
+                    roleDriver: 'Driver',
+                    addDriver: '+ Add Driver',
+                    
+                    // Common
+                    date: 'Date',
+                    time: 'Time',
+                    vehicle: 'Vehicle',
+                    passengers: 'Passengers',
+                    driver: 'Driver',
+                    route: 'Route',
+                    pickupLocationLabel: 'Pickup Location:',
+                    routeLabel: 'Route:',
+                    dateLabel: 'Date:',
+                    timeLabel: 'Time:',
+                    vehicleLabel: 'Vehicle:',
+                    passengersLabel: 'Passengers:',
+                    tripPurposeLabel: 'Trip Purpose:',
+                    pickupTimeLabel: 'Pickup Time:',
+                    requestedBy: 'Requested by:',
+                    ourFleet: 'Our Fleet',
+                    fleetDesc: 'A diverse range of vehicles to meet all your transportation needs',
+                    available: 'Available',
+                    seats: 'seats',
+                    perfectFor: 'Perfect for',
+                    largeGroups: 'large groups',
+                    smallGroups: 'small groups',
+                    viewAllBookings: 'View All Bookings',
+                    viewAllRequests: 'View All Requests',
+                    urgent: 'URGENT',
+                    waiting: 'Waiting',
+                    hours: 'hours',
+                    ago: 'ago',
+                    since: 'since',
+                    required: '*',
+                    
+                    // Error/Success Messages
+                    errorRequired: 'This field is required',
+                    errorInvalid: 'Please enter a valid value',
+                    successBookingCreated: 'Booking request submitted successfully!',
+                    successBookingApproved: 'Booking request has been approved successfully!',
+                    successBookingDenied: 'Booking request has been denied successfully.',
+                    successBookingCancelled: 'Booking cancelled successfully!',
+                    successStatusUpdated: 'Status updated successfully!',
+                    successTripFinalized: 'Trip finalized successfully!',
+                    errorBookingFailed: 'Failed to create booking. Please try again.',
+                    errorApprovalFailed: 'Failed to approve booking. Please try again.',
+                    errorDenialFailed: 'Failed to deny booking. Please try again.',
+                    errorCancellationFailed: 'Failed to cancel booking. Please try again.',
+                    
+                    // Booking Queue
+                    pendingRequests: 'Pending Requests',
+                    queueCount: 'Queue Count',
+                    sortBy: 'Sort By',
+                    sortUrgency: 'Urgency',
+                    sortDate: 'Date',
+                    filterBy: 'Filter By',
+                    filterAll: 'All',
+                    filterViolations: 'Policy Violations',
+                    
+                    // Vehicle Booking
+                    selectVehicleType: 'Select a vehicle type',
+                    selectDuration: 'Select duration',
+                    selectPickupTime: 'Select pickup time',
+                    checkingAvailability: 'Checking availability...',
+                    availableSlot: '✓ Time slot available',
+                    conflictDetected: 'Conflicting bookings detected',
+                    alternativeVehicles: 'Alternative Vehicles Available',
+                    timeSuggestions: 'Time Suggestions',
+                    
+                    // Admin Detail View
+                    requestDetails: 'Request Details',
+                    dateTime: 'Date & Time',
+                    duration: 'Duration',
+                    vehicleTypeLabel: 'Vehicle Type',
+                    passengersLabel: 'Passengers',
+                    purpose: 'Purpose',
+                    requesterProfile: 'Requester Profile',
+                    nameDepartment: 'Name & Department',
+                    contact: 'Contact',
+                    totalBookings: 'Total Bookings (Last 90 Days)',
+                    cancelledBookings: 'Canceled/Denied Bookings (Lifetime)',
+                    availabilityConflicts: 'Availability & Conflicts Timeline',
+                    requestedTimeSlot: 'Requested Time Slot',
+                    noConflicts: '✓ No conflicts detected - Time slot available',
+                    conflictDetails: 'Conflict',
+                    policyViolations: 'Policy Violation Flags',
+                    shortNotice: '⚠️ Short Notice Request',
+                    exceedsMaxDuration: '🚫 Exceeds Max Duration',
+                    weekendBooking: '📅 Weekend Booking',
+                    
+                    // Denial Modal
+                    denyBookingRequest: 'Deny Booking Request',
+                    denialTemplate: 'Denial Template',
+                    denialMessage: 'Denial Message',
+                    sendDenial: 'Send Denial',
+                    vehicleUnavailable: 'Vehicle Unavailable',
+                    insufficientLeadTime: 'Insufficient Lead Time',
+                    missingDocumentation: 'Missing Documentation',
+                    exceedsMaximumDuration: 'Exceeds Maximum Duration',
+                    customMessage: 'Custom Message',
+                    
+                    // Driver Status Messages
+                    enRoute: 'En Route',
+                    arrivedAtPickup: 'Arrived at Pickup',
+                    driving: 'Driving',
+                    arrivedAtDestination: 'Arrived at Destination',
+                    tripCompleted: 'Completed',
+                    isCurrently: 'is currently',
+                    viewFullStatus: 'View Full Driver Status',
+                    
+                    // Success Modal
+                    bookingSubmitted: 'Booking Request Submitted Successfully!',
+                    bookingSubmittedDesc: 'Your booking request has been submitted and is now pending admin approval.',
+                    bookingId: 'Booking ID',
+                    goToDashboard: 'Go to Dashboard',
+                    viewBooking: 'View Booking',
+                    
+                    // Vehicle Types
+                    busMinibus: 'Bus / Minibus',
+                    van: 'Van',
+                    sedanCar: 'Sedan / Car'
                 },
                 fr: {
+                    // Header & Navigation
                     title: 'Votre Plateforme de Transport Centralisée',
                     text: 'Réservez facilement des véhicules pour les excursions, les événements sportifs et les déplacements du personnel. Une plateforme centralisée pour tous vos besoins de transport à l\'École Internationale de Dakar.',
                     admin: 'Accès Administrateur',
                     employee: 'Connexion Employé',
                     driver: 'Connexion Chauffeur',
                     home: 'Accueil',
+                    appName: 'ISD Car Booking',
+                    
+                    // Guest Mode
                     guestMode: 'MODE INVITÉ',
+                    
+                    // Admin Dashboard
                     adminDashboardTitle: 'Tableau de bord Admin Invité',
                     adminDashboardDesc: 'Bienvenue sur le tableau de bord Administrateur. Vous êtes connecté en tant qu\'administrateur invité.',
                     adminFleetTitle: 'Gestion de la Flotte',
@@ -2308,6 +2642,9 @@
                     adminUsersTitle: 'Gestion des Utilisateurs',
                     adminUsersDesc: 'Gérer les employés et les chauffeurs',
                     adminUsersBtn: 'Gérer les Utilisateurs',
+                    backToDashboard: '← Retour au Tableau de bord',
+                    
+                    // Employee Dashboard
                     employeeDashboardTitle: 'Tableau de bord Employé Invité',
                     employeeDashboardDesc: 'Bienvenue sur le tableau de bord Employé. Vous êtes connecté en tant qu\'employé invité.',
                     employeeBookingTitle: 'Nouvelle Demande de Réservation',
@@ -2316,6 +2653,9 @@
                     employeeMyBookingsTitle: 'Mes Réservations',
                     employeeMyBookingsDesc: 'Voir et suivre vos demandes de réservation',
                     employeeMyBookingsBtn: 'Voir les Réservations',
+                    newRequest: '+ Nouvelle Demande',
+                    
+                    // Driver Dashboard
                     driverDashboardTitle: 'Interface Chauffeur Invité',
                     driverDashboardDesc: 'Bienvenue sur l\'interface Chauffeur. Vous êtes connecté en tant que chauffeur invité.',
                     driverTripsTitle: 'Trajets Assignés',
@@ -2323,7 +2663,372 @@
                     driverTripsBtn: 'Voir les Trajets',
                     driverStatusTitle: 'Mettre à jour le Statut',
                     driverStatusDesc: 'Mettre à jour le statut et la localisation du trajet',
-                    driverStatusBtn: 'Mettre à jour le Statut'
+                    driverStatusBtn: 'Mettre à jour le Statut',
+                    myActiveTrip: 'Mon Trajet Actif',
+                    dashboard: 'Tableau de bord',
+                    
+                    // Booking Form
+                    tripPurpose: 'Objectif du Trajet',
+                    tripPurposePlaceholder: 'p. ex., Excursion au musée, Affaires scolaires, Transfert aéroport',
+                    tripPurposeError: 'L\'objectif du trajet est requis',
+                    vehicleType: 'Type de Véhicule',
+                    vehicleTypeSelect: 'Sélectionner un type de véhicule',
+                    vehicleTypeBus: 'Bus / Minibus (50 places)',
+                    vehicleTypeVan: 'Fourgonnette (15 places)',
+                    vehicleTypeCar: 'Berline / Voiture (5 places)',
+                    vehicleTypeError: 'Veuillez sélectionner un type de véhicule',
+                    startDate: 'Date de Début',
+                    dateError: 'La date est requise',
+                    duration: 'Durée',
+                    durationSelect: 'Sélectionner la durée',
+                    durationHours: 'Heures',
+                    durationDays: 'Jours',
+                    durationHour: 'heure',
+                    durationHoursPlural: 'heures',
+                    durationDay: 'jour',
+                    durationDaysPlural: 'jours',
+                    durationWeek: 'semaine',
+                    durationError: 'La durée est requise',
+                    pickupTime: 'Heure de Prise en Charge',
+                    pickupTimeSelect: 'Sélectionner l\'heure de prise en charge',
+                    pickupTimeAM: 'AM',
+                    pickupTimePM: 'PM',
+                    pickupTimeError: 'L\'heure de prise en charge est requise',
+                    driverOption: 'Option de Chauffeur',
+                    driverOptionSchool: 'Demander un Chauffeur de l\'École',
+                    driverOptionSelf: 'Conduite Personnelle / Chauffeur Autorisé',
+                    driverOptionError: 'Veuillez sélectionner une option de chauffeur',
+                    schoolDriverRequirements: 'Exigences du Chauffeur de l\'École',
+                    pickupLocation: 'Lieu de Prise en Charge',
+                    pickupLocationPlaceholder: 'p. ex., Porte Principale de l\'École, Entrée Bâtiment A',
+                    pickupLocationError: 'Le lieu de prise en charge est requis',
+                    authorizedMessage: '✅ Vous êtes autorisé',
+                    authorizedDesc: 'L\'option Conduite Personnelle / Chauffeur Autorisé est disponible pour ce type de véhicule.',
+                    notAuthorizedMessage: '❌ Non autorisé pour cette classe de véhicule',
+                    notAuthorizedDesc: 'Veuillez sélectionner \'Demander un Chauffeur de l\'École\' à la place.',
+                    authorizationPending: '⏳ Autorisation de Conduite Personnelle en Attente',
+                    authorizationPendingDesc: 'Votre statut d\'autorisation sera vérifié par les RH. Cette option n\'est pas automatiquement approuvée.',
+                    numberOfPassengers: 'Nombre de Passagers',
+                    passengersPlaceholder: 'p. ex., 45',
+                    passengersError: 'Veuillez entrer un nombre valide de passagers',
+                    additionalNotes: 'Notes Supplémentaires',
+                    notesPlaceholder: 'Toute exigence spéciale ou information supplémentaire...',
+                    submitRequest: 'Soumettre la Demande',
+                    cancel: 'Annuler',
+                    bookingSummary: 'Résumé de la Réservation',
+                    
+                    // Status Labels
+                    pending: 'En Attente',
+                    approved: 'Approuvé',
+                    denied: 'Refusé',
+                    active: 'Actif',
+                    activeTrip: 'Trajet Actif',
+                    completed: 'Terminé',
+                    cancelled: 'Annulé',
+                    scheduled: 'Programmé',
+                    
+                    // Booking Actions
+                    viewDetails: 'Voir les Détails',
+                    modifyRequest: 'Modifier la Demande',
+                    cancelRequest: 'Annuler la Demande',
+                    approve: 'Approuver',
+                    deny: 'Refuser',
+                    quickDeny: 'Refus Rapide (Disponibilité)',
+                    
+                    // Stats
+                    statsPending: 'En Attente',
+                    statsApproved: 'Approuvé',
+                    statsActive: 'Actif',
+                    statsDenied: 'Refusé',
+                    statsCompleted: 'Terminé',
+                    
+                    // Fleet Management
+                    fleetManagement: 'Gestion de la Flotte',
+                    fleetManagementDesc: 'Voir et gérer votre flotte de véhicules',
+                    vehicleFleet: 'Flotte de Véhicules',
+                    addVehicle: '+ Ajouter un Véhicule',
+                    addNewVehicle: 'Ajouter un Nouveau Véhicule',
+                    editVehicle: 'Modifier le Véhicule',
+                    deleteVehicle: 'Supprimer le Véhicule',
+                    vehicleId: 'ID du Véhicule',
+                    vehicleIdPlaceholder: 'p. ex., VH-001',
+                    vehicleImage: 'Image du Véhicule',
+                    vehicleTypeSelect: 'Sélectionner le type de véhicule',
+                    vehicleTypeMinibus: 'Minibus',
+                    vehicleTypePassengerVan: 'Fourgonnette',
+                    vehicleTypeSedan: 'Berline',
+                    vehicleTypeSchoolBus: 'Bus Scolaire',
+                    vehicleTypeSUV: 'SUV',
+                    capacity: 'Capacité',
+                    capacityPlaceholder: 'p. ex., 50 places',
+                    status: 'Statut',
+                    statusAvailable: 'Disponible',
+                    statusInMaintenance: 'En Maintenance',
+                    statusInUse: 'En Utilisation',
+                    location: 'Emplacement',
+                    locationPlaceholder: 'p. ex., Garage 1',
+                    saveChanges: 'Enregistrer les Modifications',
+                    edit: 'Modifier',
+                    delete: 'Supprimer',
+                    vehicleIdDisplay: 'ID du Véhicule',
+                    image: 'Image',
+                    vehicleIdCol: 'ID du Véhicule',
+                    type: 'Type',
+                    capacityCol: 'Capacité',
+                    statusCol: 'Statut',
+                    actions: 'Actions',
+                    schoolBus: 'Bus Scolaire',
+                    suv: 'SUV',
+                    sedan: 'Berline',
+                    
+                    // Driver Trip Status
+                    tripStatusUpdates: 'Mises à jour du Statut du Trajet',
+                    startTrip: '🚗 Démarrer le Trajet',
+                    arrivedAtPickup: '📍 Arrivé au Point de Prise en Charge',
+                    startDriving: '🚙 Commencer à Conduire',
+                    arrivedDestination: '🏁 Arrivé à Destination',
+                    tripComplete: '✅ Trajet Terminé',
+                    runningLate: '⏱️ En Retard de 10 Minutes',
+                    delayNotificationSent: '⏱️ Notification Envoyée!',
+                    delayNotificationDesc: 'Appuyer pour notifier instantanément l\'employé et l\'administrateur',
+                    
+                    // Safety Checks
+                    safetyCheck: 'Vérification de Sécurité du Véhicule',
+                    safetyCheckConfirmed: 'Toutes les Vérifications de Sécurité Confirmées',
+                    checkTires: 'Pneus',
+                    checkLights: 'Phares',
+                    checkBrakes: 'Freins',
+                    checkFuel: 'Carburant',
+                    checkMirrors: 'Rétroviseurs',
+                    checkFirstAid: 'Trousse de Premiers Secours',
+                    
+                    // Trip Finalization
+                    tripFinalization: 'Finalisation du Trajet',
+                    finalOdometer: 'Lecture Finale du Compteur Kilométrique',
+                    finalOdometerPlaceholder: 'p. ex., 12500',
+                    finalOdometerError: 'Veuillez entrer une lecture valide du compteur kilométrique',
+                    finalFuelLevel: 'Niveau Final de Carburant',
+                    finalFuelLevelFull: 'Plein',
+                    finalFuelLevelThreeQuarter: '3/4',
+                    finalFuelLevelHalf: '1/2',
+                    finalFuelLevelQuarter: '1/4',
+                    finalFuelLevelEmpty: 'Vide',
+                    finalFuelLevelError: 'Veuillez sélectionner le niveau de carburant',
+                    vehicleIssues: 'Problèmes/Commentaires sur le Véhicule',
+                    vehicleIssuesPlaceholder: 'Tout problème ou commentaire sur le véhicule...',
+                    vehicleIssuesError: 'Veuillez fournir des problèmes ou commentaires sur le véhicule',
+                    submitLogComplete: 'Soumettre le Journal et Terminer',
+                    
+                    // Update Status Form
+                    updateStatus: 'Mettre à jour le Statut du Trajet',
+                    selectTrip: 'Sélectionner le Trajet',
+                    selectTripPlaceholder: 'Choisir un trajet',
+                    currentStatus: 'Statut Actuel',
+                    currentStatusPlaceholder: 'Sélectionner le statut',
+                    currentLocation: 'Localisation Actuelle',
+                    currentLocationPlaceholder: 'Entrer la localisation actuelle',
+                    statusNotes: 'Notes sur le Statut',
+                    statusNotesPlaceholder: 'Toute note supplémentaire...',
+                    
+                    // Messages
+                    submittedAgo: 'Soumis il y a {hours} heures',
+                    waitingForAdmin: 'En attente de l\'action de l\'administrateur',
+                    adminNote: 'Note de l\'Administrateur:',
+                    driverStatus: 'Statut du Chauffeur:',
+                    tripFinalizationLog: 'Journal de Finalisation du Trajet:',
+                    finalOdometerLabel: 'Compteur Kilométrique Final:',
+                    finalFuelLevelLabel: 'Niveau Final de Carburant:',
+                    vehicleIssuesLabel: 'Problèmes/Commentaires sur le Véhicule:',
+                    miles: 'miles',
+                    noneReported: 'Aucun signalé',
+                    
+                    // Resource Health
+                    resourceHealth: 'Santé des Ressources',
+                    driverStatus: 'Statut du Chauffeur',
+                    driverAvailable: 'Disponible',
+                    driverOnTrip: 'En Trajet',
+                    driverUnavailable: 'Indisponible',
+                    vehicleWarnings: 'Avertissements sur les Véhicules',
+                    maintenanceDue: 'Maintenance Due',
+                    outOfCommission: 'Hors Service',
+                    days: 'jours',
+                    
+                    // User Management
+                    userManagement: 'Gestion des Utilisateurs',
+                    editUser: 'Modifier l\'Utilisateur',
+                    name: 'Nom',
+                    email: 'Email',
+                    role: 'Rôle',
+                    roleEmployee: 'Employé',
+                    roleDriver: 'Chauffeur',
+                    addDriver: '+ Ajouter un Chauffeur',
+                    
+                    // Common
+                    date: 'Date',
+                    time: 'Heure',
+                    vehicle: 'Véhicule',
+                    passengers: 'Passagers',
+                    driver: 'Chauffeur',
+                    route: 'Itinéraire',
+                    pickupLocationLabel: 'Lieu de Prise en Charge:',
+                    routeLabel: 'Itinéraire:',
+                    dateLabel: 'Date:',
+                    timeLabel: 'Heure:',
+                    vehicleLabel: 'Véhicule:',
+                    passengersLabel: 'Passagers:',
+                    tripPurposeLabel: 'Objectif du Trajet:',
+                    pickupTimeLabel: 'Heure de Prise en Charge:',
+                    requestedBy: 'Demandé par:',
+                    ourFleet: 'Notre Flotte',
+                    fleetDesc: 'Une gamme diversifiée de véhicules pour répondre à tous vos besoins de transport',
+                    available: 'Disponible',
+                    seats: 'places',
+                    perfectFor: 'Parfait pour',
+                    largeGroups: 'grands groupes',
+                    smallGroups: 'petits groupes',
+                    viewAllBookings: 'Voir Toutes les Réservations',
+                    viewAllRequests: 'Voir Toutes les Demandes',
+                    urgent: 'URGENT',
+                    waiting: 'En attente',
+                    hours: 'heures',
+                    ago: 'il y a',
+                    since: 'depuis',
+                    required: '*',
+                    
+                    // Error/Success Messages
+                    errorRequired: 'Ce champ est requis',
+                    errorInvalid: 'Veuillez entrer une valeur valide',
+                    successBookingCreated: 'Demande de réservation soumise avec succès!',
+                    successBookingApproved: 'La demande de réservation a été approuvée avec succès!',
+                    successBookingDenied: 'La demande de réservation a été refusée avec succès.',
+                    successBookingCancelled: 'Réservation annulée avec succès!',
+                    successStatusUpdated: 'Statut mis à jour avec succès!',
+                    successTripFinalized: 'Trajet finalisé avec succès!',
+                    errorBookingFailed: 'Échec de la création de la réservation. Veuillez réessayer.',
+                    errorApprovalFailed: 'Échec de l\'approbation de la réservation. Veuillez réessayer.',
+                    errorDenialFailed: 'Échec du refus de la réservation. Veuillez réessayer.',
+                    errorCancellationFailed: 'Échec de l\'annulation de la réservation. Veuillez réessayer.',
+                    
+                    // Booking Queue
+                    pendingRequests: 'Demandes en Attente',
+                    queueCount: 'Nombre de Demandes',
+                    sortBy: 'Trier Par',
+                    sortUrgency: 'Urgence',
+                    sortDate: 'Date',
+                    filterBy: 'Filtrer Par',
+                    filterAll: 'Tout',
+                    filterViolations: 'Violations de Politique',
+                    
+                    // Vehicle Booking
+                    selectVehicleType: 'Sélectionner un type de véhicule',
+                    selectDuration: 'Sélectionner la durée',
+                    selectPickupTime: 'Sélectionner l\'heure de prise en charge',
+                    checkingAvailability: 'Vérification de la disponibilité...',
+                    availableSlot: '✓ Créneau disponible',
+                    conflictDetected: 'Conflits de réservation détectés',
+                    alternativeVehicles: 'Véhicules Alternatifs Disponibles',
+                    timeSuggestions: 'Suggestions d\'Heures',
+                    
+                    // Admin Detail View
+                    requestDetails: 'Détails de la Demande',
+                    dateTime: 'Date et Heure',
+                    duration: 'Durée',
+                    vehicleTypeLabel: 'Type de Véhicule',
+                    passengersLabel: 'Passagers',
+                    purpose: 'Objectif',
+                    requesterProfile: 'Profil du Demandeur',
+                    nameDepartment: 'Nom et Département',
+                    contact: 'Contact',
+                    totalBookings: 'Total des Réservations (90 Derniers Jours)',
+                    cancelledBookings: 'Réservations Annulées/Refusées (Durée de vie)',
+                    availabilityConflicts: 'Calendrier de Disponibilité et Conflits',
+                    requestedTimeSlot: 'Créneau Demandé',
+                    noConflicts: '✓ Aucun conflit détecté - Créneau disponible',
+                    conflictDetails: 'Conflit',
+                    policyViolations: 'Drapeaux de Violation de Politique',
+                    shortNotice: '⚠️ Demande à Court Préavis',
+                    exceedsMaxDuration: '🚫 Dépasse la Durée Maximale',
+                    weekendBooking: '📅 Réservation de Week-end',
+                    
+                    // Denial Modal
+                    denyBookingRequest: 'Refuser la Demande de Réservation',
+                    denialTemplate: 'Modèle de Refus',
+                    denialMessage: 'Message de Refus',
+                    sendDenial: 'Envoyer le Refus',
+                    vehicleUnavailable: 'Véhicule Indisponible',
+                    insufficientLeadTime: 'Délai d\'Avis Insuffisant',
+                    missingDocumentation: 'Documentation Manquante',
+                    exceedsMaximumDuration: 'Dépasse la Durée Maximale',
+                    customMessage: 'Message Personnalisé',
+                    
+                    // Driver Status Messages
+                    enRoute: 'En Route',
+                    arrivedAtPickup: 'Arrivé au Point de Prise en Charge',
+                    driving: 'Conduite',
+                    arrivedAtDestination: 'Arrivé à Destination',
+                    tripCompleted: 'Terminé',
+                    isCurrently: 'est actuellement',
+                    viewFullStatus: 'Voir le Statut Complet du Chauffeur',
+                    
+                    // Success Modal
+                    bookingSubmitted: 'Demande de Réservation Soumise avec Succès!',
+                    bookingSubmittedDesc: 'Votre demande de réservation a été soumise et est maintenant en attente d\'approbation par l\'administrateur.',
+                    bookingId: 'ID de Réservation',
+                    goToDashboard: 'Aller au Tableau de bord',
+                    viewBooking: 'Voir la Réservation',
+                    
+                    // Vehicle Types
+                    busMinibus: 'Bus / Minibus',
+                    van: 'Fourgonnette',
+                    sedanCar: 'Berline / Voiture'
+                }
+            },
+
+            // Helper function to translate an element by key
+            translateElement(element, key, data) {
+                if (!element || !data[key]) return;
+                
+                // For input elements, update placeholder
+                if (element.tagName === 'INPUT' && element.type !== 'submit' && element.type !== 'button') {
+                    // Check for data-placeholder-key attribute first
+                    const placeholderKey = element.getAttribute('data-placeholder-key');
+                    if (placeholderKey && data[placeholderKey]) {
+                        element.placeholder = data[placeholderKey];
+                    } else if (element.placeholder && data[key]) {
+                        element.placeholder = data[key];
+                    }
+                }
+                // For textarea elements, update placeholder
+                else if (element.tagName === 'TEXTAREA') {
+                    // Check for data-placeholder-key attribute first
+                    const placeholderKey = element.getAttribute('data-placeholder-key');
+                    if (placeholderKey && data[placeholderKey]) {
+                        element.placeholder = data[placeholderKey];
+                    } else if (element.placeholder && data[key]) {
+                        element.placeholder = data[key];
+                    }
+                }
+                // For select elements, update option text
+                else if (element.tagName === 'SELECT') {
+                    // Update placeholder option
+                    const placeholderOption = element.querySelector('option[value=""]');
+                    if (placeholderOption && data[key]) {
+                        placeholderOption.textContent = data[key];
+                    }
+                }
+                // For label elements, update text
+                else if (element.tagName === 'LABEL') {
+                    // Preserve required asterisk if present
+                    const requiredSpan = element.querySelector('span.text-red-600');
+                    if (requiredSpan) {
+                        element.innerHTML = data[key] + ' <span class="text-red-600">*</span>';
+                    } else {
+                        element.textContent = data[key];
+                    }
+                }
+                // For other elements, update textContent or innerHTML
+                else {
+                    element.textContent = data[key];
                 }
             },
 
@@ -2331,122 +3036,170 @@
             setLanguage(lang) {
                 try {
                     const data = this.content[lang];
-                    // Home page content
-                    const msgTitle = document.getElementById('msg-title');
-                    const msgText = document.getElementById('msg-text');
-                    const btnAdmin = document.getElementById('btn-admin');
-                    const btnEmployee = document.getElementById('btn-employee');
-                    const btnDriver = document.getElementById('btn-driver');
                     
-                    if (msgTitle) msgTitle.textContent = data.title;
-                    if (msgText) msgText.textContent = data.text;
-                    if (btnAdmin) btnAdmin.textContent = data.admin;
-                    if (btnEmployee) btnEmployee.textContent = data.employee;
-                    if (btnDriver) btnDriver.textContent = data.driver;
-
-                // Update header
-                const homeLink = document.getElementById('home-link');
-                if (homeLink) {
-                    homeLink.textContent = data.home;
-                }
-
-                // Update dashboard content if visible
-                const guestModeBadge = document.getElementById('guest-mode-badge');
-                const guestModeBadgeEmployee = document.getElementById('guest-mode-badge-employee');
-                const guestModeBadgeDriver = document.getElementById('guest-mode-badge-driver');
-                if (guestModeBadge) {
-                    guestModeBadge.textContent = data.guestMode;
-                }
-                if (guestModeBadgeEmployee) {
-                    guestModeBadgeEmployee.textContent = data.guestMode;
-                }
-                if (guestModeBadgeDriver) {
-                    guestModeBadgeDriver.textContent = data.guestMode;
-                }
-
-                // Admin Dashboard
-                const adminDashboardTitle = document.getElementById('dashboard-admin-title');
-                const adminDashboardDesc = document.getElementById('dashboard-admin-desc');
-                if (adminDashboardTitle) adminDashboardTitle.textContent = data.adminDashboardTitle;
-                if (adminDashboardDesc) adminDashboardDesc.textContent = data.adminDashboardDesc;
-                
-                const adminFleetTitle = document.getElementById('admin-fleet-title');
-                const adminFleetDesc = document.getElementById('admin-fleet-desc');
-                const adminFleetBtn = document.getElementById('admin-fleet-btn');
-                if (adminFleetTitle) adminFleetTitle.textContent = data.adminFleetTitle;
-                if (adminFleetDesc) adminFleetDesc.textContent = data.adminFleetDesc;
-                if (adminFleetBtn) adminFleetBtn.textContent = data.adminFleetBtn;
-                
-                const adminApprovalsTitle = document.getElementById('admin-approvals-title');
-                const adminApprovalsDesc = document.getElementById('admin-approvals-desc');
-                const adminApprovalsBtn = document.getElementById('admin-approvals-btn');
-                if (adminApprovalsTitle) adminApprovalsTitle.textContent = data.adminApprovalsTitle;
-                if (adminApprovalsDesc) adminApprovalsDesc.textContent = data.adminApprovalsDesc;
-                if (adminApprovalsBtn) adminApprovalsBtn.textContent = data.adminApprovalsBtn;
-                
-                const adminUsersTitle = document.getElementById('admin-users-title');
-                const adminUsersDesc = document.getElementById('admin-users-desc');
-                const adminUsersBtn = document.getElementById('admin-users-btn');
-                if (adminUsersTitle) adminUsersTitle.textContent = data.adminUsersTitle;
-                if (adminUsersDesc) adminUsersDesc.textContent = data.adminUsersDesc;
-                if (adminUsersBtn) adminUsersBtn.textContent = data.adminUsersBtn;
-
-                // Employee Dashboard
-                const employeeDashboardTitle = document.getElementById('dashboard-employee-title');
-                const employeeDashboardDesc = document.getElementById('dashboard-employee-desc');
-                if (employeeDashboardTitle) employeeDashboardTitle.textContent = data.employeeDashboardTitle;
-                if (employeeDashboardDesc) employeeDashboardDesc.textContent = data.employeeDashboardDesc;
-                
-                const employeeBookingTitle = document.getElementById('employee-booking-title');
-                const employeeBookingDesc = document.getElementById('employee-booking-desc');
-                const employeeBookingBtn = document.getElementById('employee-booking-btn');
-                if (employeeBookingTitle) employeeBookingTitle.textContent = data.employeeBookingTitle;
-                if (employeeBookingDesc) employeeBookingDesc.textContent = data.employeeBookingDesc;
-                if (employeeBookingBtn) employeeBookingBtn.textContent = data.employeeBookingBtn;
-                
-                const employeeMyBookingsTitle = document.getElementById('employee-mybookings-title');
-                const employeeMyBookingsDesc = document.getElementById('employee-mybookings-desc');
-                const employeeMyBookingsBtn = document.getElementById('employee-mybookings-btn');
-                if (employeeMyBookingsTitle) employeeMyBookingsTitle.textContent = data.employeeMyBookingsTitle;
-                if (employeeMyBookingsDesc) employeeMyBookingsDesc.textContent = data.employeeMyBookingsDesc;
-                if (employeeMyBookingsBtn) employeeMyBookingsBtn.textContent = data.employeeMyBookingsBtn;
-
-                // Driver Dashboard
-                const driverDashboardTitle = document.getElementById('dashboard-driver-title');
-                const driverDashboardDesc = document.getElementById('dashboard-driver-desc');
-                if (driverDashboardTitle) driverDashboardTitle.textContent = data.driverDashboardTitle;
-                if (driverDashboardDesc) driverDashboardDesc.textContent = data.driverDashboardDesc;
-                
-                const driverTripsTitle = document.getElementById('driver-trips-title');
-                const driverTripsDesc = document.getElementById('driver-trips-desc');
-                const driverTripsBtn = document.getElementById('driver-trips-btn');
-                if (driverTripsTitle) driverTripsTitle.textContent = data.driverTripsTitle;
-                if (driverTripsDesc) driverTripsDesc.textContent = data.driverTripsDesc;
-                if (driverTripsBtn) driverTripsBtn.textContent = data.driverTripsBtn;
-                
-                const driverStatusTitle = document.getElementById('driver-status-title');
-                const driverStatusDesc = document.getElementById('driver-status-desc');
-                const driverStatusBtn = document.getElementById('driver-status-btn');
-                if (driverStatusTitle) driverStatusTitle.textContent = data.driverStatusTitle;
-                if (driverStatusDesc) driverStatusDesc.textContent = data.driverStatusDesc;
-                if (driverStatusBtn) driverStatusBtn.textContent = data.driverStatusBtn;
-
-                // Update active/inactive styles for language links
-                const langEn = document.getElementById('lang-en');
-                const langFr = document.getElementById('lang-fr');
-                if (langEn) {
-                    langEn.classList.toggle('text-white', lang === 'fr');
-                    langEn.classList.toggle('text-isd-gold', lang === 'en');
-                    langEn.classList.toggle('border-b', lang === 'en');
-                }
-                if (langFr) {
-                    langFr.classList.toggle('text-white', lang === 'en');
-                    langFr.classList.toggle('text-isd-gold', lang === 'fr');
-                    langFr.classList.toggle('border-b', lang === 'fr');
-                }
+                    // Helper to translate by element ID
+                    const translate = (id, key) => {
+                        const el = document.getElementById(id);
+                        if (el && data[key]) {
+                            this.translateElement(el, key, data);
+                        }
+                    };
+                    
+                    // Helper to translate by selector
+                    const translateSelector = (selector, key) => {
+                        const el = document.querySelector(selector);
+                        if (el && data[key]) {
+                            this.translateElement(el, key, data);
+                        }
+                    };
+                    
+                    // Helper to translate all elements with data-translate attribute
+                    const translateAll = () => {
+                        document.querySelectorAll('[data-translate]').forEach(el => {
+                            const key = el.getAttribute('data-translate');
+                            if (data[key]) {
+                                this.translateElement(el, key, data);
+                            }
+                        });
+                    };
+                    
+                    // Home page content
+                    translate('msg-title', 'title');
+                    translate('msg-text', 'text');
+                    translate('btn-admin', 'admin');
+                    translate('btn-employee', 'employee');
+                    translate('btn-driver', 'driver');
+                    translate('home-link', 'home');
+                    
+                    // Header title
+                    translate('header-title-link', 'appName');
+                    
+                    // Guest Mode badges
+                    translate('guest-mode-badge', 'guestMode');
+                    translate('guest-mode-badge-employee', 'guestMode');
+                    translate('guest-mode-badge-driver', 'guestMode');
+                    
+                    // Admin Dashboard
+                    translate('dashboard-admin-title', 'adminDashboardTitle');
+                    translate('dashboard-admin-desc', 'adminDashboardDesc');
+                    translate('admin-fleet-title', 'adminFleetTitle');
+                    translate('admin-fleet-desc', 'adminFleetDesc');
+                    translate('admin-fleet-btn', 'adminFleetBtn');
+                    translate('admin-approvals-title', 'adminApprovalsTitle');
+                    translate('admin-approvals-desc', 'adminApprovalsDesc');
+                    translate('admin-approvals-btn', 'adminApprovalsBtn');
+                    translate('admin-users-title', 'adminUsersTitle');
+                    translate('admin-users-desc', 'adminUsersDesc');
+                    translate('admin-users-btn', 'adminUsersBtn');
+                    
+                    // Employee Dashboard
+                    translate('dashboard-employee-title', 'employeeDashboardTitle');
+                    translate('dashboard-employee-desc', 'employeeDashboardDesc');
+                    translate('employee-booking-title', 'employeeBookingTitle');
+                    translate('employee-booking-desc', 'employeeBookingDesc');
+                    translate('employee-booking-btn', 'employeeBookingBtn');
+                    translate('employee-mybookings-title', 'employeeMyBookingsTitle');
+                    translate('employee-mybookings-desc', 'employeeMyBookingsDesc');
+                    translate('employee-mybookings-btn', 'employeeMyBookingsBtn');
+                    translate('employee-booking-btn', 'newRequest');
+                    
+                    // Driver Dashboard
+                    translate('dashboard-driver-title', 'driverDashboardTitle');
+                    translate('dashboard-driver-desc', 'driverDashboardDesc');
+                    translate('driver-trips-title', 'driverTripsTitle');
+                    translate('driver-trips-desc', 'driverTripsDesc');
+                    translate('driver-trips-btn', 'driverTripsBtn');
+                    translate('driver-status-title', 'driverStatusTitle');
+                    translate('driver-status-desc', 'driverStatusDesc');
+                    translate('driver-status-btn', 'driverStatusBtn');
+                    
+                    // Booking Form
+                    translateSelector('label[for="trip-purpose"]', 'tripPurpose');
+                    translate('trip-purpose', 'tripPurposePlaceholder');
+                    translate('trip-purpose-error', 'tripPurposeError');
+                    translateSelector('label[for="vehicle-type"]', 'vehicleType');
+                    translate('vehicle-type', 'vehicleTypeSelect');
+                    translateSelector('label[for="trip-date"]', 'startDate');
+                    translate('trip-date-error', 'dateError');
+                    translateSelector('label[for="trip-duration"]', 'duration');
+                    translate('trip-duration', 'durationSelect');
+                    translateSelector('label[for="pickup-time"]', 'pickupTime');
+                    translate('pickup-time', 'pickupTimeSelect');
+                    translate('pickup-time-error', 'pickupTimeError');
+                    translateSelector('label[for="driver-option"]', 'driverOption');
+                    translate('driver-option', 'driverOptionSchool');
+                    translateSelector('label[for="pickup-location"]', 'pickupLocation');
+                    translate('pickup-location', 'pickupLocationPlaceholder');
+                    translate('pickup-location-error', 'pickupLocationError');
+                    translateSelector('label[for="passengers"]', 'numberOfPassengers');
+                    translate('passengers', 'passengersPlaceholder');
+                    translate('passengers-error', 'passengersError');
+                    translateSelector('label[for="notes"]', 'additionalNotes');
+                    translate('notes', 'notesPlaceholder');
+                    translate('submit-booking-btn', 'submitRequest');
+                    
+                    // Stats labels
+                    document.querySelectorAll('.stats-label').forEach(el => {
+                        const stat = el.textContent.trim();
+                        if (stat === 'Pending') el.textContent = data.statsPending;
+                        else if (stat === 'Approved') el.textContent = data.statsApproved;
+                        else if (stat === 'Active') el.textContent = data.statsActive;
+                        else if (stat === 'Denied') el.textContent = data.statsDenied;
+                        else if (stat === 'Completed') el.textContent = data.statsCompleted;
+                    });
+                    
+                    // Translate all elements with data-translate attribute
+                    translateAll();
+                    
+                    // Translate placeholders with data-placeholder-key
+                    document.querySelectorAll('[data-placeholder-key]').forEach(el => {
+                        const placeholderKey = el.getAttribute('data-placeholder-key');
+                        if (data[placeholderKey]) {
+                            el.placeholder = data[placeholderKey];
+                        }
+                    });
+                    
+                    // Translate select options with data-translate
+                    document.querySelectorAll('select option[data-translate]').forEach(option => {
+                        const key = option.getAttribute('data-translate');
+                        if (data[key]) {
+                            option.textContent = data[key];
+                        }
+                    });
+                    
+                    // Translate optgroup labels with data-translate
+                    document.querySelectorAll('optgroup[data-translate]').forEach(optgroup => {
+                        const key = optgroup.getAttribute('data-translate');
+                        if (data[key]) {
+                            optgroup.label = data[key];
+                        }
+                    });
+                    
+                    // Update active/inactive styles for language links
+                    const langEn = document.getElementById('lang-en');
+                    const langFr = document.getElementById('lang-fr');
+                    if (langEn) {
+                        langEn.classList.toggle('text-white', lang === 'fr');
+                        langEn.classList.toggle('text-isd-gold', lang === 'en');
+                        langEn.classList.toggle('border-b', lang === 'en');
+                    }
+                    if (langFr) {
+                        langFr.classList.toggle('text-white', lang === 'en');
+                        langFr.classList.toggle('text-isd-gold', lang === 'fr');
+                        langFr.classList.toggle('border-b', lang === 'fr');
+                    }
+                    
+                    // Store current language
+                    window.currentLanguage = lang;
                 } catch (error) {
                     console.error('Error in setLanguage:', error);
                 }
+            },
+
+            // Global helper function to get translated text
+            t(key) {
+                const lang = window.currentLanguage || 'en';
+                return this.content[lang]?.[key] || key;
             },
 
             // Function to handle routing based on hash
@@ -2546,6 +3299,11 @@
                 }
             },
 
+        };
+        
+        // Global translation helper function
+        window.t = function(key) {
+            return app.t(key);
         };
 
         // MOCK DATA - Users, Vehicles, and Bookings
@@ -3544,7 +4302,7 @@
         function closeEditVehicleModal() {
             document.getElementById('edit-vehicle-modal').classList.remove('open');
         }
-        
+
         // Add Vehicle Modal Functions
         function openAddVehicleModal() {
             const modal = document.getElementById('add-vehicle-modal');
@@ -5742,8 +6500,8 @@ The admin will assign a driver closer to the trip date.
                         if (isNaN(durationValue) || durationValue <= 0) {
                             document.getElementById('trip-duration-error').classList.remove('hidden');
                             document.getElementById('trip-duration-error').textContent = 'Duration must be a valid number';
-                            tripDuration.classList.add('border-red-500');
-                            isValid = false;
+                        tripDuration.classList.add('border-red-500');
+                        isValid = false;
                         }
                     }
                     

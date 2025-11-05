@@ -2648,13 +2648,23 @@
                     requesterProfile: 'Requester Profile',
                     nameDepartment: 'Name & Department',
                     contact: 'Contact',
-                    totalBookings: 'Total Bookings (Last 90 Days)',
+                    totalBookings: 'Total Bookings',
+                    bookingStatisticsLast90Days: 'Booking Statistics (Last 90 Days)',
                     cancelledBookings: 'Canceled/Denied Bookings (Lifetime)',
-                    availabilityConflicts: 'Availability & Conflicts Timeline',
+                    availabilityConflictsTimeline: 'Availability & Conflicts Timeline',
                     requestedTimeSlot: 'Requested Time Slot',
-                    noConflicts: '✓ No conflicts detected - Time slot available',
-                    conflictDetails: 'Conflict',
-                    policyViolations: 'Policy Violation Flags',
+                    conflict: 'Conflict',
+                    conflictingBookingsDetected: 'Conflicting Bookings Detected',
+                    noConflictsDetected: 'No conflicts detected - Time slot available',
+                    policyViolationFlags: 'Policy Violation Flags',
+                    canceled: 'Canceled',
+                    cancellationRate: 'Cancellation Rate',
+                    canceledOutOf: 'canceled out of',
+                    bookings: 'bookings',
+                    denyRequest: 'Deny Request',
+                    approveRequest: 'Approve Request',
+                    dateTimeLabel: 'Date & Time',
+                    at: 'at',
                     shortNotice: '⚠️ Short Notice Request',
                     exceedsMaxDuration: '🚫 Exceeds Max Duration',
                     weekendBooking: '📅 Weekend Booking',
@@ -3011,8 +3021,12 @@
                     statusCol: 'Statut',
                     actions: 'Actions',
                     schoolBus: 'Bus Scolaire',
+                    schoolBusDesc: '50 places • Parfait pour les excursions et les grands groupes',
                     suv: 'SUV',
+                    suvDesc: '7 places • Confortable pour les petits groupes',
                     sedan: 'Berline',
+                    sedanDesc: '5 places • Idéal pour les déplacements du personnel',
+                    available: 'Disponible',
                     
                     // Driver Trip Status
                     tripStatusUpdates: 'Mises à jour du Statut du Trajet',
@@ -3116,7 +3130,29 @@
                     urgent48h: 'Urgent (48h)',
                     policyViolations: 'Violations de Politique',
                     exceedsMaxDuration: 'Dépasse la Durée Maximale',
-                    pendingRequests: 'demandes en attente'
+                    pendingRequests: 'demandes en attente',
+                    
+                    // Booking Details View
+                    requestDetails: 'Détails de la Demande',
+                    requesterProfile: 'Profil du Demandeur',
+                    nameDepartment: 'Nom et Département',
+                    contact: 'Contact',
+                    totalBookings: 'Total des Réservations',
+                    bookingStatisticsLast90Days: 'Statistiques de Réservation (90 Derniers Jours)',
+                    requestedTimeSlot: 'Créneau Horaire Demandé',
+                    availabilityConflictsTimeline: 'Disponibilité et Chronologie des Conflits',
+                    conflict: 'Conflit',
+                    conflictingBookingsDetected: 'Réservations en Conflit Détectées',
+                    noConflictsDetected: 'Aucun conflit détecté - Créneau disponible',
+                    canceled: 'Annulé',
+                    cancellationRate: 'Taux d\'Annulation',
+                    canceledOutOf: 'annulé sur',
+                    bookings: 'réservations',
+                    denyRequest: 'Refuser la Demande',
+                    approveRequest: 'Approuver la Demande',
+                    policyViolationFlags: 'Drapeaux de Violation de Politique',
+                    dateTimeLabel: 'Date et Heure',
+                    at: 'à'
                 }
             },
 
@@ -4733,7 +4769,7 @@
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                     </svg>
-                                    Policy Violation Flags
+                                    ${window.t('policyViolationFlags')}
                                 </h4>
                                 <div class="flex flex-wrap gap-2">
                                     ${data.violations.map(v => {
@@ -4741,25 +4777,29 @@
                                         let bgColor = 'bg-yellow-100';
                                         let textColor = 'text-yellow-900';
                                         let borderColor = 'border-yellow-400';
+                                        let translatedText = v;
                                         
                                         if (v.includes('Short Notice')) {
                                             icon = '⚠️';
                                             bgColor = 'bg-yellow-100';
                                             textColor = 'text-yellow-900';
                                             borderColor = 'border-yellow-400';
+                                            translatedText = window.t('shortNotice');
                                         } else if (v.includes('Exceeds Max Duration')) {
                                             icon = '🚫';
                                             bgColor = 'bg-red-100';
                                             textColor = 'text-red-900';
                                             borderColor = 'border-red-400';
+                                            translatedText = window.t('exceedsMaxDuration');
                                         } else if (v.includes('Weekend')) {
                                             icon = '📅';
                                             bgColor = 'bg-orange-100';
                                             textColor = 'text-orange-900';
                                             borderColor = 'border-orange-400';
+                                            translatedText = window.t('weekendBooking');
                                         }
                                         
-                                        return `<span class="px-3 py-2 ${bgColor} ${textColor} border-2 ${borderColor} rounded-full text-sm font-bold shadow-md">${icon} ${v}</span>`;
+                                        return `<span class="px-3 py-2 ${bgColor} ${textColor} border-2 ${borderColor} rounded-full text-sm font-bold shadow-md">${icon} ${translatedText}</span>`;
                                     }).join('')}
                                 </div>
                             </div>
@@ -4771,35 +4811,35 @@
                         <div class="lg:col-span-2 space-y-6">
                             <!-- Request Details -->
                             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                                <h4 class="text-lg font-bold text-gray-800 mb-4">Request Details</h4>
+                                <h4 class="text-lg font-bold text-gray-800 mb-4">${window.t('requestDetails')}</h4>
                                 <div class="grid grid-cols-2 gap-4 text-sm">
                                     <div>
-                                        <p class="text-gray-600">Date & Time</p>
-                                        <p class="font-semibold text-gray-800">${data.date} at ${data.time}</p>
+                                        <p class="text-gray-600">${window.t('dateTimeLabel')}</p>
+                                        <p class="font-semibold text-gray-800">${data.date} ${window.t('at')} ${data.time}</p>
                                     </div>
                                     <div>
-                                        <p class="text-gray-600">Duration</p>
+                                        <p class="text-gray-600">${window.t('duration')}</p>
                                         <p class="font-semibold text-gray-800">${data.duration}</p>
                                     </div>
                                     <div>
-                                        <p class="text-gray-600">Vehicle Type</p>
+                                        <p class="text-gray-600">${window.t('vehicleType')}</p>
                                         <p class="font-semibold text-gray-800">${data.vehicle}</p>
                                     </div>
                                     <div>
-                                        <p class="text-gray-600">Passengers</p>
+                                        <p class="text-gray-600">${window.t('passengersLabel')}</p>
                                         <p class="font-semibold text-gray-800">${data.passengers}</p>
                                     </div>
                                     <div class="col-span-2">
-                                        <p class="text-gray-600">Trip Purpose</p>
+                                        <p class="text-gray-600">${window.t('tripPurpose')}</p>
                                         <p class="font-semibold text-gray-800">${data.purpose}</p>
                                     </div>
                                     ${data.driverOption === 'School Driver' ? `
                                         <div>
-                                            <p class="text-gray-600">Pickup Location</p>
+                                            <p class="text-gray-600">${window.t('pickupLocation')}</p>
                                             <p class="font-semibold text-gray-800">${data.pickupLocation}</p>
                                         </div>
                                         <div>
-                                            <p class="text-gray-600">Pickup Time</p>
+                                            <p class="text-gray-600">${window.t('pickupTime')}</p>
                                             <p class="font-semibold text-gray-800">${data.pickupTime}</p>
                                         </div>
                                     ` : ''}
@@ -4812,7 +4852,7 @@
                                     <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                                     </svg>
-                                    Availability & Conflicts Timeline
+                                    ${window.t('availabilityConflictsTimeline')}
                                 </h4>
                                 
                                 <!-- Timeline View -->
@@ -4821,15 +4861,15 @@
                                         <div class="flex items-center gap-3">
                                             <div class="w-3 h-3 rounded-full ${data.conflicts.length > 0 ? 'bg-red-500' : 'bg-green-500'}"></div>
                                             <div class="flex-1">
-                                                <p class="text-sm font-semibold text-gray-800">Requested Time Slot</p>
-                                                <p class="text-xs text-gray-600">${data.date} at ${data.time} (${data.duration})</p>
+                                                <p class="text-sm font-semibold text-gray-800">${window.t('requestedTimeSlot')}</p>
+                                                <p class="text-xs text-gray-600">${data.date} ${window.t('at')} ${data.time} (${data.duration})</p>
                                             </div>
                                         </div>
                                         ${data.conflicts.map((c, idx) => `
                                             <div class="flex items-center gap-3 ml-4">
                                                 <div class="w-3 h-3 rounded-full bg-red-500"></div>
                                                 <div class="flex-1">
-                                                    <p class="text-sm font-semibold text-red-800">Conflict ${idx + 1}</p>
+                                                    <p class="text-sm font-semibold text-red-800">${window.t('conflict')} ${idx + 1}</p>
                                                     <p class="text-xs text-red-600">${c.date} ${c.time} - ${c.vehicle}</p>
                                                     <p class="text-xs text-red-500">${c.booking}</p>
                                                 </div>
@@ -4844,7 +4884,7 @@
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
                                             </svg>
-                                            Conflicting Bookings Detected
+                                            ${window.t('conflictingBookingsDetected')}
                                         </p>
                                         <div class="space-y-2">
                                             ${data.conflicts.map(c => `
@@ -4861,7 +4901,7 @@
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                             </svg>
-                                            ✓ No conflicts detected - Time slot available
+                                            ✓ ${window.t('noConflictsDetected')}
                                         </p>
                                     </div>
                                 `}
@@ -4872,7 +4912,7 @@
                                             <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
                                             <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path>
                                         </svg>
-                                        Alternative Vehicles Available
+                                        ${window.t('alternativeVehiclesAvailable')}
                                     </p>
                                     <div class="space-y-2">
                                         ${data.alternatives.map(a => `
@@ -4888,41 +4928,41 @@
                         <!-- Requester Reliability Snapshot (Sidebar) -->
                         <div class="lg:col-span-1">
                             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 sticky top-4">
-                                <h4 class="text-lg font-bold text-gray-800 mb-4">Requester Profile</h4>
+                                <h4 class="text-lg font-bold text-gray-800 mb-4">${window.t('requesterProfile')}</h4>
                                 <div class="space-y-4">
                                     <div>
-                                        <p class="text-xs text-gray-600 mb-1">Name & Department</p>
+                                        <p class="text-xs text-gray-600 mb-1">${window.t('nameDepartment')}</p>
                                         <p class="font-semibold text-gray-800">${data.requester}</p>
                                         <p class="text-sm text-gray-600">${data.department}</p>
                                     </div>
                                     <div>
-                                        <p class="text-xs text-gray-600 mb-1">Contact</p>
+                                        <p class="text-xs text-gray-600 mb-1">${window.t('contact')}</p>
                                         <p class="text-sm text-gray-800">${data.email}</p>
                                         <p class="text-sm text-gray-800">${data.phone}</p>
                                     </div>
                                     <div class="pt-4 border-t border-gray-200">
-                                        <p class="text-xs text-gray-600 mb-2">Booking Statistics (Last 90 Days)</p>
+                                        <p class="text-xs text-gray-600 mb-2">${window.t('bookingStatisticsLast90Days')}</p>
                                         <div class="space-y-2">
                                             <div class="flex justify-between">
-                                                <span class="text-sm text-gray-700">Total Bookings</span>
+                                                <span class="text-sm text-gray-700">${window.t('totalBookings')}</span>
                                                 <span class="font-semibold text-gray-800">${data.totalBookings90Days}</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-sm text-gray-700">Canceled</span>
+                                                <span class="text-sm text-gray-700">${window.t('canceled')}</span>
                                                 <span class="font-semibold text-gray-600">${data.canceledBookings}</span>
                                             </div>
                                             <div class="flex justify-between">
-                                                <span class="text-sm text-gray-700">Denied</span>
+                                                <span class="text-sm text-gray-700">${window.t('denied')}</span>
                                                 <span class="font-semibold text-gray-600">${data.deniedBookings}</span>
                                             </div>
                                             <div class="mt-2 pt-2 border-t border-gray-200">
                                                 <div class="flex justify-between items-center">
-                                                    <span class="text-sm font-semibold text-gray-700">Cancellation Rate</span>
+                                                    <span class="text-sm font-semibold text-gray-700">${window.t('cancellationRate')}</span>
                                                     <span class="font-bold ${data.canceledBookings === 0 ? 'text-green-600' : data.canceledBookings < 2 ? 'text-yellow-600' : 'text-red-600'}">
                                                         ${data.totalBookings90Days > 0 ? Math.round((data.canceledBookings / data.totalBookings90Days) * 100) : 0}%
                                                     </span>
                                                 </div>
-                                                <p class="text-xs text-gray-500 mt-1">${data.canceledBookings} canceled out of ${data.totalBookings90Days} bookings</p>
+                                                <p class="text-xs text-gray-500 mt-1">${data.canceledBookings} ${window.t('canceledOutOf')} ${data.totalBookings90Days} ${window.t('bookings')}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -4933,8 +4973,8 @@
                     
                     <!-- Action Buttons -->
                     <div class="mt-6 flex gap-3 justify-end border-t border-gray-200 pt-4">
-                        <button onclick="closeRequestDetailView(); openDenialModal('${bookingId}', 'custom')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Deny Request</button>
-                        <button onclick="closeRequestDetailView(); approveBooking('${bookingId}')" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">Approve Request</button>
+                        <button onclick="closeRequestDetailView(); openDenialModal('${bookingId}', 'custom')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">${window.t('denyRequest')}</button>
+                        <button onclick="closeRequestDetailView(); approveBooking('${bookingId}')" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">${window.t('approveRequest')}</button>
                     </div>
                 </div>
             `;

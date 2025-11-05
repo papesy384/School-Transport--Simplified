@@ -3556,15 +3556,35 @@
         }
         
         // Quick Action Functions
-        function quickApprove(bookingId) {
+        async function quickApprove(bookingId) {
             if (confirm('Are you sure you want to approve this booking request?')) {
-                // In a real app, this would make an API call
-                alert('Booking request has been approved successfully!');
-                // Remove from queue
-                const item = document.querySelector(`[data-booking-id="${bookingId}"]`) || 
-                           document.querySelector(`button[onclick*="${bookingId}"]`)?.closest('.bg-white');
-                if (item) item.style.display = 'none';
-                filterQueue(); // Update count
+                try {
+                    // Update booking status to APPROVED
+                    const updates = {
+                        status: 'APPROVED',
+                        approvedAt: new Date().toISOString(),
+                        adminNotes: 'Booking approved by admin'
+                    };
+                    
+                    await updateBookingFirestore(bookingId, updates);
+                    
+                    showSuccess('Booking request has been approved successfully!');
+                    
+                    // Refresh admin dashboard to remove from pending queue
+                    await populateAdminDashboard();
+                    
+                    // Refresh employee dashboard if it's open
+                    const employeeDashboard = document.getElementById('view-employee-dashboard');
+                    if (employeeDashboard && employeeDashboard.classList.contains('active')) {
+                        await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
+                    }
+                    
+                    // Close detail view if open
+                    closeRequestDetailView();
+                } catch (error) {
+                    console.error('Error approving booking:', error);
+                    showError('Failed to approve booking. Please try again.');
+                }
             }
         }
         
@@ -3999,24 +4019,47 @@
             textarea.value = templates[select.value] || '';
         }
         
-        function submitDenial(bookingId) {
-            const message = document.getElementById('denial-message')?.value;
+        async function submitDenial(bookingId) {
+            const messageInput = document.getElementById('denial-message');
+            const message = messageInput ? messageInput.value.trim() : '';
             const template = document.getElementById('denial-template-select')?.value;
             
-            if (!message || !message.trim()) {
-                alert('Please provide a denial message.');
+            if (!message) {
+                showError('Please provide a denial message.');
                 return;
             }
             
             if (confirm('Are you sure you want to deny this booking request?')) {
-                // In a real app, this would make an API call
-                alert(`Booking request has been denied.\n\nReason: ${message}`);
-                closeDenialModal();
-                closeRequestDetailView();
-                // Remove from queue
-                const item = document.querySelector(`button[onclick*="${bookingId}"]`)?.closest('.bg-white');
-                if (item) item.style.display = 'none';
-                filterQueue(); // Update count
+                try {
+                    // Sanitize the denial message
+                    const safeMessage = sanitizeHTML(message);
+                    
+                    // Update booking status to DENIED
+                    const updates = {
+                        status: 'DENIED',
+                        deniedAt: new Date().toISOString(),
+                        adminNotes: `Denied: ${safeMessage}`
+                    };
+                    
+                    await updateBookingFirestore(bookingId, updates);
+                    
+                    showSuccess('Booking request has been denied successfully.');
+                    
+                    // Refresh admin dashboard to remove from pending queue
+                    await populateAdminDashboard();
+                    
+                    // Refresh employee dashboard if it's open
+                    const employeeDashboard = document.getElementById('view-employee-dashboard');
+                    if (employeeDashboard && employeeDashboard.classList.contains('active')) {
+                        await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
+                    }
+                    
+                    closeDenialModal();
+                    closeRequestDetailView();
+                } catch (error) {
+                    console.error('Error denying booking:', error);
+                    showError('Failed to deny booking. Please try again.');
+                }
             }
         }
         
@@ -4025,12 +4068,35 @@
             if (modal) modal.classList.remove('open');
         }
 
-        function approveBooking(bookingId) {
+        async function approveBooking(bookingId) {
             if (confirm('Are you sure you want to approve this booking request?')) {
-                // In a real app, this would make an API call
-                alert('Booking request has been approved successfully!');
-                // Reload the page or update the UI
-                location.reload();
+                try {
+                    // Update booking status to APPROVED
+                    const updates = {
+                        status: 'APPROVED',
+                        approvedAt: new Date().toISOString(),
+                        adminNotes: 'Booking approved by admin'
+                    };
+                    
+                    await updateBookingFirestore(bookingId, updates);
+                    
+                    showSuccess('Booking request has been approved successfully!');
+                    
+                    // Refresh admin dashboard to remove from pending queue
+                    await populateAdminDashboard();
+                    
+                    // Refresh employee dashboard if it's open
+                    const employeeDashboard = document.getElementById('view-employee-dashboard');
+                    if (employeeDashboard && employeeDashboard.classList.contains('active')) {
+                        await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
+                    }
+                    
+                    // Close detail view if open
+                    closeRequestDetailView();
+                } catch (error) {
+                    console.error('Error approving booking:', error);
+                    showError('Failed to approve booking. Please try again.');
+                }
             }
         }
 

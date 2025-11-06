@@ -26,29 +26,68 @@
             appId: "YOUR_APP_ID"
         };
         
-        // Initialize Firebase
-        const firebaseApp = initializeApp(firebaseConfig);
-        const db = getFirestore(firebaseApp);
-        const auth = getAuth(firebaseApp);
+        // Check if Firebase is properly configured (not using placeholder values)
+        const isFirebaseConfigValid = firebaseConfig && 
+            firebaseConfig.apiKey && 
+            firebaseConfig.apiKey !== "YOUR_API_KEY" &&
+            firebaseConfig.projectId && 
+            firebaseConfig.projectId !== "YOUR_PROJECT_ID" &&
+            firebaseConfig.appId && 
+            firebaseConfig.appId !== "YOUR_APP_ID";
         
-        // Make Firebase available globally
-        window.firebaseApp = firebaseApp;
-        window.firebaseDb = db;
-        window.firebaseAuth = auth;
-        window.firebaseConfig = firebaseConfig; // Store config for checking
-        window.firebaseFunctions = {
-            collection,
-            doc,
-            getDoc,
-            getDocs,
-            addDoc,
-            updateDoc,
-            deleteDoc,
-            query,
-            where,
-            orderBy,
-            onSnapshot
-        };
+        // Only initialize Firebase if configuration is valid
+        if (isFirebaseConfigValid) {
+            try {
+                // Initialize Firebase
+                const firebaseApp = initializeApp(firebaseConfig);
+                const db = getFirestore(firebaseApp);
+                const auth = getAuth(firebaseApp);
+                
+                // Make Firebase available globally
+                window.firebaseApp = firebaseApp;
+                window.firebaseDb = db;
+                window.firebaseAuth = auth;
+                window.firebaseConfig = firebaseConfig; // Store config for checking
+                window.firebaseFunctions = {
+                    collection,
+                    doc,
+                    getDoc,
+                    getDocs,
+                    addDoc,
+                    updateDoc,
+                    deleteDoc,
+                    query,
+                    where,
+                    orderBy,
+                    onSnapshot
+                };
+                window.firebaseAuthFunctions = {
+                    signInWithEmailAndPassword,
+                    signOut,
+                    onAuthStateChanged
+                };
+                console.log('✅ Firebase initialized successfully');
+            } catch (error) {
+                console.warn('⚠️ Firebase initialization failed:', error.message);
+                console.log('📦 Using mock data instead');
+                // Set Firebase as not configured
+                window.firebaseApp = null;
+                window.firebaseDb = null;
+                window.firebaseAuth = null;
+                window.firebaseConfig = null;
+                window.firebaseFunctions = null;
+                window.firebaseAuthFunctions = null;
+            }
+        } else {
+            console.log('📦 Firebase not configured - using mock data');
+            // Set Firebase as not configured
+            window.firebaseApp = null;
+            window.firebaseDb = null;
+            window.firebaseAuth = null;
+            window.firebaseConfig = null;
+            window.firebaseFunctions = null;
+            window.firebaseAuthFunctions = null;
+        }
     </script>
     <!-- Use Inter font, suitable for professional and modern web apps -->
     <style>
@@ -591,9 +630,9 @@
                 
                 <!-- User Categories -->
                 <div class="flex items-center space-x-2 sm:space-x-4 flex-wrap justify-center sm:justify-end">
-                    <a href="#login/admin" id="btn-admin" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="admin">Admin</a>
-                    <a href="#login/employee" id="btn-employee" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="employee">Employee</a>
-                    <a href="#login/driver" id="btn-driver" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="driver">Driver</a>
+                    <a href="#guest/admin" id="btn-admin" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="admin">Admin</a>
+                    <a href="#guest/employee" id="btn-employee" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="employee">Employee</a>
+                    <a href="#guest/driver" id="btn-driver" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="driver">Driver</a>
                 </div>
                 
                 <!-- Language Switcher -->
@@ -3546,20 +3585,28 @@
                             if (homeLink) homeLink.classList.remove('hidden');
                             
                             // Set current role in appState
-                            setCurrentRole(role);
+                            if (typeof setCurrentRole === 'function') {
+                                setCurrentRole(role);
+                            } else {
+                                console.warn('setCurrentRole function not found');
+                            }
                             
                             // Start real-time data listeners for the current role
                             if (window.firebaseAuth && window.firebaseAuth.currentUser) {
-                                startDataListeners();
+                                if (typeof startDataListeners === 'function') {
+                                    startDataListeners();
+                                } else {
+                                    console.warn('startDataListeners function not found');
+                                }
                             }
                             
                             // Populate dashboard data when navigating
                             setTimeout(async () => {
-                                if (role === 'employee') {
+                                if (role === 'employee' && typeof populateEmployeeDashboard === 'function') {
                                     await populateEmployeeDashboard('emp_high');
-                                } else if (role === 'admin') {
+                                } else if (role === 'admin' && typeof populateAdminDashboard === 'function') {
                                     await populateAdminDashboard();
-                                } else if (role === 'driver') {
+                                } else if (role === 'driver' && typeof populateDriverDashboard === 'function') {
                                     populateDriverDashboard('driver_kore');
                                 }
                             }, 50);
@@ -3623,9 +3670,21 @@
                     }
                 } catch (error) {
                     console.error('Error in handleRoute:', error);
+                    console.error('Error details:', error.message, error.stack);
                     // Fallback to home view on error
+                    document.querySelectorAll('.view-section').forEach(view => {
+                        view.classList.remove('active');
+                    });
                     const viewHome = document.getElementById('view-home');
-                    if (viewHome) viewHome.classList.add('active');
+                    if (viewHome) {
+                        viewHome.classList.add('active');
+                    } else {
+                        // If home view doesn't exist, show first available view
+                        const firstView = document.querySelector('.view-section');
+                        if (firstView) {
+                            firstView.classList.add('active');
+                        }
+                    }
                 }
             },
 
@@ -8936,15 +8995,31 @@ The admin will assign a driver closer to the trip date.
         // Initialize app routing and navigation
         function initAppRouting() {
             try {
-                app.setLanguage('en');
-                app.handleRoute();
+                if (typeof app !== 'undefined' && app.setLanguage) {
+                    app.setLanguage('en');
+                } else {
+                    console.error('app.setLanguage not available');
+                }
+                
+                if (typeof app !== 'undefined' && app.handleRoute) {
+                    app.handleRoute();
+                } else {
+                    console.error('app.handleRoute not available');
+                }
                 
                 // Set up hashchange listener for navigation
                 window.addEventListener('hashchange', () => {
+                    console.log('Hash changed to:', window.location.hash);
                     // Stop existing listeners before starting new ones
-                    stopDataListeners();
+                    if (typeof stopDataListeners === 'function') {
+                        stopDataListeners();
+                    }
                     
-                    app.handleRoute();
+                    if (typeof app !== 'undefined' && app.handleRoute) {
+                        app.handleRoute();
+                    } else {
+                        console.error('app.handleRoute not available on hashchange');
+                    }
                     // Re-populate dashboards when navigating
                     setTimeout(async () => {
                         // Check current route to set role

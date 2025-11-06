@@ -3569,6 +3569,17 @@
                             if (viewHome) viewHome.classList.add('active');
                             if (homeLink) homeLink.classList.add('hidden');
                         }
+                    } else if (hash === 'guest/employee/new-booking') {
+                        // New Booking form view - ensure form fields are enabled
+                        const viewElement = document.getElementById('view-new-booking');
+                        if (viewElement) {
+                            viewElement.classList.add('active');
+                            if (homeLink) homeLink.classList.remove('hidden');
+                            // Ensure form fields are enabled when view is shown
+                            setTimeout(() => {
+                                ensureBookingFormFieldsEnabled();
+                            }, 100);
+                        }
                     } else if (hash === 'my-bookings') {
                         // My Bookings view - also populate employee dashboard
                         const viewElement = document.getElementById('view-my-bookings');
@@ -6980,21 +6991,8 @@ The admin will assign a driver closer to the trip date.
                 });
             }
             
-            // Auto-check availability on pickup time change
-            const pickupTimeInput = document.getElementById('pickup-time');
-            if (pickupTimeInput) {
-                pickupTimeInput.addEventListener('change', () => {
-                    autoCheckAvailability();
-                });
-            }
-            
-            // Auto-check availability on duration change
-            const durationInput = document.getElementById('trip-duration');
-            if (durationInput) {
-                durationInput.addEventListener('change', () => {
-                    autoCheckAvailability();
-                });
-            }
+            // Ensure duration and pickup time fields are enabled and visible
+            ensureBookingFormFieldsEnabled();
             
             // Initialize school driver details to be visible by default
             const driverOptionInput = document.getElementById('driver-option');
@@ -7098,6 +7096,32 @@ The admin will assign a driver closer to the trip date.
                 passengersInput.addEventListener('input', updateAvailabilityButtonState);
             }
             
+        // Function to ensure booking form fields are enabled and visible
+        function ensureBookingFormFieldsEnabled() {
+            const pickupTimeInput = document.getElementById('pickup-time');
+            const durationInput = document.getElementById('trip-duration');
+            
+            if (pickupTimeInput) {
+                // Ensure field is enabled and visible
+                pickupTimeInput.removeAttribute('disabled');
+                pickupTimeInput.removeAttribute('readonly');
+                pickupTimeInput.style.display = '';
+                pickupTimeInput.style.visibility = 'visible';
+                pickupTimeInput.style.opacity = '1';
+                pickupTimeInput.style.pointerEvents = 'auto';
+            }
+            
+            if (durationInput) {
+                // Ensure field is enabled and visible
+                durationInput.removeAttribute('disabled');
+                durationInput.removeAttribute('readonly');
+                durationInput.style.display = '';
+                durationInput.style.visibility = 'visible';
+                durationInput.style.opacity = '1';
+                durationInput.style.pointerEvents = 'auto';
+            }
+        }
+        
             // Availability check button
             const checkAvailabilityBtn = document.getElementById('check-availability-btn');
             if (checkAvailabilityBtn) {

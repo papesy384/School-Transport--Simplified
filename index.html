@@ -2613,6 +2613,7 @@
                     vehicleLabel: 'Vehicle:',
                     passengersLabel: 'Passengers:',
                     tripPurposeLabel: 'Trip Purpose:',
+                    pastTrip: 'Past Trip',
                     pickupTimeLabel: 'Pickup Time:',
                     requestedBy: 'Requested by:',
                     ourFleet: 'Our Fleet',
@@ -3099,6 +3100,16 @@
                     runningLate: '⏱️ En Retard de 10 Minutes',
                     delayNotificationSent: '⏱️ Notification Envoyée!',
                     delayNotificationDesc: 'Appuyer pour notifier instantanément l\'employé et l\'administrateur',
+                    
+                    // Driver Trip Details Labels
+                    dateLabel: 'Date:',
+                    pickupTimeLabel: 'Heure de Prise en Charge:',
+                    vehicleLabel: 'Véhicule:',
+                    passengersLabel: 'Passagers:',
+                    tripPurposeLabel: 'Objectif du Trajet:',
+                    pastTrip: 'Trajet Passé',
+                    pickupLocationLabel: 'Lieu de Prise en Charge:',
+                    routeLabel: 'Route:',
                     
                     // Safety Checks
                     safetyCheck: 'Vérification de Sécurité du Véhicule',
@@ -3808,10 +3819,22 @@
                 document.body.appendChild(successDiv);
                 
                 setTimeout(() => {
-                    if (successDiv.parentNode) {
-                        successDiv.remove();
+                    const successMsg = document.getElementById('success-message');
+                    if (successMsg && successMsg.parentNode) {
+                        successMsg.remove();
                     }
                 }, duration);
+                
+                // Also ensure it can be closed manually
+                const closeBtn = successDiv.querySelector('button[aria-label="Close success message"]');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        const msg = document.getElementById('success-message');
+                        if (msg && msg.parentNode) {
+                            msg.remove();
+                        }
+                    });
+                }
             } catch (error) {
                 console.error('Error showing success message:', error);
             }
@@ -8219,8 +8242,8 @@ The admin will assign a driver closer to the trip date.
                                     <h3 class="text-lg font-bold text-gray-800">${safePurpose}</h3>
                                     ${statusBadge}
                                 </div>
-                                <p class="text-gray-600 text-sm mb-1">Date: <span class="font-semibold">${safeDate}</span> | Time: <span class="font-semibold">${safeTime}</span></p>
-                                <p class="text-gray-600 text-sm mb-1">Vehicle: <span class="font-semibold">${safeVehicle}</span> | Passengers: <span class="font-semibold">${safePassengers}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">${window.t('dateLabel')} <span class="font-semibold">${safeDate}</span> | ${window.t('timeLabel')} <span class="font-semibold">${safeTime}</span></p>
+                                <p class="text-gray-600 text-sm mb-1">${window.t('vehicleLabel')} <span class="font-semibold">${safeVehicle}</span> | ${window.t('passengersLabel')} <span class="font-semibold">${safePassengers}</span></p>
                 `;
                 
                 if (driver) {
@@ -8712,11 +8735,11 @@ The admin will assign a driver closer to the trip date.
                 const safePurpose = sanitizeHTML(trip.tripPurpose || 'Trip');
                 
                 tripDetails.innerHTML = `
-                    <p><span class="font-semibold">Date:</span> ${safeDate}</p>
-                    <p><span class="font-semibold">Pickup Time:</span> ${safeTime}</p>
-                    <p><span class="font-semibold">Vehicle:</span> ${safeVehicle}</p>
-                    <p><span class="font-semibold">Passengers:</span> ${safePassengers}</p>
-                    <p><span class="font-semibold">Trip Purpose:</span> ${safePurpose}</p>
+                    <p><span class="font-semibold">${window.t('dateLabel')}</span> ${safeDate}</p>
+                    <p><span class="font-semibold">${window.t('pickupTimeLabel')}</span> ${safeTime}</p>
+                    <p><span class="font-semibold">${window.t('vehicleLabel')}</span> ${safeVehicle}</p>
+                    <p><span class="font-semibold">${window.t('passengersLabel')}</span> ${safePassengers}</p>
+                    <p><span class="font-semibold">${window.t('tripPurposeLabel')}</span> ${safePurpose}</p>
                 `;
             }
             } catch (error) {

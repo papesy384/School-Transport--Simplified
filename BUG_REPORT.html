@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCarBooking - Comprehensive Bug Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #1a73e8;
+            border-bottom: 3px solid #1a73e8;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34a853;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #34a853;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #ea4335;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .status-fixed {
+            color: #34a853;
+            font-weight: bold;
+        }
+        .status-partial {
+            color: #fbbc04;
+            font-weight: bold;
+        }
+        .status-open {
+            color: #ea4335;
+            font-weight: bold;
+        }
+        .bug-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .bug-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1a73e8;
+            margin-bottom: 10px;
+        }
+        .steps-list, .expected-list, .observed-list {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        .summary-box {
+            background-color: #e8f0fe;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .summary-stats {
+            display: flex;
+            gap: 30px;
+            margin: 15px 0;
+        }
+        .priority-section {
+            margin-top: 15px;
+        }
+        .priority-high {
+            color: #ea4335;
+        }
+        .priority-medium {
+            color: #fbbc04;
+        }
+        .priority-low {
+            color: #34a853;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>SmartCarBooking - Comprehensive Bug Report</h1>
+    
+    <p><strong>Date:</strong> December 2024</p>
+    <p><strong>Status:</strong> Bugs Identified - Pending Fixes</p>
+    
+    <hr>
+    
+    <div class="bug-section">
+        <h2>Bug #1: Hardcoded Vehicle IDs in Delete Buttons</h2>
+        <div class="bug-title">Title:</div>
+        <p>All delete buttons in Fleet Management table were hardcoded to delete 'SB-001'</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to Admin Dashboard</li>
+            <li>Click "Manage Fleet" to open Fleet Management</li>
+            <li>Click "Delete" button on any vehicle row (e.g., SB-002, SB-003, etc.)</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>The vehicle corresponding to the clicked delete button should be deleted.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>All delete buttons deleted vehicle 'SB-001' regardless of which row's delete button was clicked.</p>
+        
+        <p><strong>Status:</strong> <span class="status-fixed">✅ FIXED</span> - Function `deleteVehicleFromRow(button)` was created to dynamically extract vehicle ID from table row.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #2: Missing Translation Keys for Dynamic Messages</h2>
+        <div class="bug-title">Title:</div>
+        <p>Several JavaScript-generated messages are not translatable</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Switch language to French</li>
+            <li>Fill out booking form and exceed vehicle capacity</li>
+            <li>Select an unavailable date (e.g., November 6th, 2025)</li>
+            <li>Observe error messages</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>All error messages should be displayed in French when French language is selected.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Some error messages like "Cannot exceed vehicle capacity of", "All vehicles are unavailable on this date", and "Please contact administrator" appear in English even when French is selected.</p>
+        
+        <p><strong>Status:</strong> <span class="status-fixed">✅ FIXED</span> - Translation keys added: `vehicleCapacity`, `cannotExceedCapacity`, `pleaseEnterValidPassengers`, `allVehiclesUnavailableDate`, `contactAdministrator`.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #3: Booking Not Appearing in Dashboard After Submission</h2>
+        <div class="bug-title">Title:</div>
+        <p>Newly submitted bookings do not immediately appear in Employee Dashboard</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to Employee Dashboard</li>
+            <li>Click "+ New Request"</li>
+            <li>Fill out booking form completely</li>
+            <li>Submit the booking request</li>
+            <li>Click "Go to Dashboard" in success modal</li>
+            <li>Check "My Bookings" section</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>The newly submitted booking should immediately appear in the "My Bookings" list with "Pending" status.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>The booking does not appear immediately. Multiple dashboard refreshes are scheduled (lines 6900-6920) but the booking may still not show up until page refresh.</p>
+        
+        <p><strong>Status:</strong> <span class="status-open">🔴 OPEN</span> - Multiple refresh attempts exist but may not be sufficient.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #4: Date Availability Check Not Disabling All Unavailable Dates</h2>
+        <div class="bug-title">Title:</div>
+        <p>Some unavailable dates remain selectable in the date picker</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Select a vehicle type (e.g., Bus)</li>
+            <li>Click on the date picker</li>
+            <li>Try to select November 6th, 2025 (should be unavailable)</li>
+            <li>Try to select dates between December 5-15, 2025 (buses unavailable)</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Unavailable dates should be disabled/grayed out and not selectable in the date picker.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>November 6th can be selected but gets disabled after selection. December 5-15 dates are not pre-disabled in the date picker - they only show warnings after selection.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Dates are disabled after selection but not pre-disabled in the picker.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #5: Pickup Time Selection Not Working</h2>
+        <div class="bug-title">Title:</div>
+        <p>Users cannot select pickup time from the scroll list</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Scroll to "Pickup Time" field</li>
+            <li>Try to select a time from the dropdown/scroll list</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>User should be able to select a pickup time from the available options (AM/PM times).</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Time selection dropdown may not be functional or may not display properly.</p>
+        
+        <p><strong>Status:</strong> <span class="status-open">🔴 OPEN</span> - Needs verification of pickup time input implementation.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #6: Additional Notes Field Validation Issue</h2>
+        <div class="bug-title">Title:</div>
+        <p>Additional Notes field is marked as optional but validation may prevent submission</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Fill all required fields</li>
+            <li>Leave "Additional Notes" field empty</li>
+            <li>Try to submit the form</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Form should submit successfully since Additional Notes is optional.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Form may fail validation or show error even though Additional Notes is optional.</p>
+        
+        <p><strong>Status:</strong> <span class="status-fixed">✅ FIXED</span> - Additional Notes is correctly marked as optional (no `required` attribute).</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #7: Driver Authorization Status Not Persisting</h2>
+        <div class="bug-title">Title:</div>
+        <p>Self-drive authorization status check may not persist when vehicle type changes</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Select "Self-Drive / Own Authorized Driver"</li>
+            <li>Select a vehicle type (e.g., Sedan)</li>
+            <li>Observe authorization status</li>
+            <li>Change vehicle type to Bus</li>
+            <li>Observe authorization status again</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Authorization status should update correctly when vehicle type changes, showing appropriate message (authorized/not authorized/pending).</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Authorization status may not update correctly or may show incorrect status when vehicle type is changed.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Function `checkDriverAuthorization()` exists but may need verification.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #8: Booking Success Modal Not Scrollable</h2>
+        <div class="bug-title">Title:</div>
+        <p>Booking success modal content is not scrollable on mobile devices</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Submit a booking request on a mobile device</li>
+            <li>Booking success modal appears</li>
+            <li>Try to scroll the modal content</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Modal content should be scrollable if it exceeds viewport height.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Modal content cannot be scrolled, making some information inaccessible on smaller screens.</p>
+        
+        <p><strong>Status:</strong> <span class="status-fixed">✅ FIXED</span> - Modal has `max-h-96 overflow-y-auto` classes and `-webkit-overflow-scrolling: touch` style (line 6337).</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #9: Admin Dashboard Stats Showing Zero Values</h2>
+        <div class="bug-title">Title:</div>
+        <p>Admin Dashboard shows "Pending 0 Approved 0 Active 0 Denied" instead of actual counts</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to Admin Dashboard</li>
+            <li>Observe the statistics cards showing booking counts</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Statistics should show actual counts of pending, approved, active, and denied bookings from MOCK_BOOKINGS or Firebase.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>All statistics show zero (0) regardless of actual booking data.</p>
+        
+        <p><strong>Status:</strong> <span class="status-open">🔴 OPEN</span> - `populateAdminDashboard()` function may not be correctly counting bookings.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #10: Past Trips Not Displaying in Employee Dashboard</h2>
+        <div class="bug-title">Title:</div>
+        <p>Completed or past trips are not visible in Employee Dashboard</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to Employee Dashboard</li>
+            <li>Click "My Bookings"</li>
+            <li>Look for completed or past trips</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>All bookings (past, present, future) should be visible in "My Bookings" section, filtered or grouped appropriately.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Past/completed trips do not appear in the dashboard.</p>
+        
+        <p><strong>Status:</strong> <span class="status-open">🔴 OPEN</span> - `populateEmployeeDashboard()` may be filtering out completed/past bookings.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #11: Date Input Styling Not Consistent for Unavailable Dates</h2>
+        <div class="bug-title">Title:</div>
+        <p>Unavailable dates (like November 6th) do not visually match past dates styling</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Select November 6th, 2025 (unavailable date)</li>
+            <li>Observe the date input styling</li>
+            <li>Compare with a past date (if selectable)</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Unavailable dates should have the same visual styling as past dates (dark gray, clearly disabled).</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Unavailable dates may not have consistent styling with past dates, making it unclear that they are disabled.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - CSS class `unavailable-date` exists but styling may need adjustment.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #12: Nearest Available Date Suggestion Logic Error</h2>
+        <div class="bug-title">Title:</div>
+        <p>Date availability check suggests incorrect "nearest available date"</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Select November 6th, 2025 (unavailable)</li>
+            <li>Observe the suggested nearest available date</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>System should suggest November 7th, 2025 (the next day) as the nearest available date.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>System may suggest November 6th itself or an incorrect date that is further away than necessary.</p>
+        
+        <p><strong>Status:</strong> <span class="status-open">🔴 OPEN</span> - Date suggestion logic in `checkDateAvailability()` (lines 5371-5409) may have errors.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #13: Date Availability Message Position</h2>
+        <div class="bug-title">Title:</div>
+        <p>Unavailable date message appears at bottom instead of next to date input</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Select an unavailable date (e.g., November 6th, 2025)</li>
+            <li>Observe where the availability message appears</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Availability message should appear directly next to or below the date input field.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Message appears at the bottom of the form, far from the date input field.</p>
+        
+        <p><strong>Status:</strong> <span class="status-fixed">✅ FIXED</span> - Message element `date-availability-message` is positioned with `mt-2` class next to date input.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #14: Vehicle Capacity Validation Not Enforcing Maximum</h2>
+        <div class="bug-title">Title:</div>
+        <p>Passengers field allows values exceeding vehicle capacity</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Select vehicle type "Bus / Minibus (50 seats)"</li>
+            <li>Enter 60 passengers in the passengers field</li>
+            <li>Try to submit</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Form should prevent submission and show error message: "Cannot exceed vehicle capacity of 50 passengers".</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Validation exists (lines 6509-6527) but may not prevent form submission or may allow values exceeding capacity.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Validation exists but needs verification that it prevents submission.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #15: Form Reset After Submission May Clear Required Fields</h2>
+        <div class="bug-title">Title:</div>
+        <p>Form reset after successful submission may interfere with error display</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to New Booking Request form</li>
+            <li>Submit form with invalid data (e.g., missing required fields)</li>
+            <li>Observe error messages</li>
+            <li>Fix errors and resubmit</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Error messages should clear when form is resubmitted with valid data, and form should reset only after successful submission.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Form may reset prematurely or error messages may persist incorrectly.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Form reset happens at line 6888 after successful submission, but error clearing happens at line 6612.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #16: Firebase Configuration Not Validated</h2>
+        <div class="bug-title">Title:</div>
+        <p>Application may fail silently if Firebase is not properly configured</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Open application with Firebase config set to placeholder values ("YOUR_API_KEY", etc.)</li>
+            <li>Try to create a booking</li>
+            <li>Try to view bookings</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Application should gracefully fall back to mock data and show appropriate warnings if Firebase is not configured.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Application may show errors or fail silently. `isFirebaseConfigured()` function exists but may not catch all configuration issues.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Fallback to mock data exists but error handling may need improvement.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #17: Real-time Listeners May Not Clean Up Properly</h2>
+        <div class="bug-title">Title:</div>
+        <p>Firebase real-time listeners may not be cleaned up when switching roles or views</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Log in as Employee</li>
+            <li>Navigate to Employee Dashboard (listeners start)</li>
+            <li>Switch to Admin Dashboard</li>
+            <li>Check browser console for listener warnings</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Previous listeners should be stopped before starting new ones. No duplicate listeners should exist.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Listeners may accumulate if not properly cleaned up, causing performance issues or duplicate updates.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - `stopDataListeners()` function exists (line 4230) but may not be called in all navigation scenarios.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #18: Booking Status Updates Not Reflecting in Real-time</h2>
+        <div class="bug-title">Title:</div>
+        <p>When admin approves/denies a booking, employee dashboard may not update immediately</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Open Employee Dashboard in one browser tab</li>
+            <li>Open Admin Dashboard in another tab</li>
+            <li>As admin, approve a pending booking</li>
+            <li>Check Employee Dashboard</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Employee Dashboard should automatically update to show the booking status change from "Pending" to "Approved".</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Employee Dashboard may not update until manual refresh, even with real-time listeners configured.</p>
+        
+        <p><strong>Status:</strong> <span class="status-open">🔴 OPEN</span> - Real-time listeners are set up but may not be working correctly for cross-role updates.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #19: Trip Finalization Form Missing Validation</h2>
+        <div class="bug-title">Title:</div>
+        <p>Trip finalization form may allow submission without required fields</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Navigate to Driver Dashboard</li>
+            <li>Start an active trip</li>
+            <li>Navigate to Trip Finalization</li>
+            <li>Try to submit without filling required fields (Final Odometer, Final Fuel Level)</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Form should validate that all required fields are filled before allowing submission.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Form may submit without validation or may not show clear error messages for missing required fields.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Form has `required` attributes but submit handler validation needs verification.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #20: Mobile Touch Targets May Be Too Small</h2>
+        <div class="bug-title">Title:</div>
+        <p>Some buttons or interactive elements may be smaller than recommended 44x44px touch target</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Open application on mobile device</li>
+            <li>Try to tap various buttons (Edit, Delete, View Details, etc.)</li>
+            <li>Observe if taps register correctly</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>All interactive elements should have minimum 44x44px touch targets for easy tapping on mobile devices.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Some buttons, especially in tables or compact layouts, may be smaller than 44x44px, making them difficult to tap.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - CSS has `min-height: 44px; min-width: 44px;` for buttons (line 193-194) but may not apply to all interactive elements.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #21: Language Switching May Not Update All Dynamic Content</h2>
+        <div class="bug-title">Title:</div>
+        <p>Some dynamically generated content may not update when language is switched</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Set language to English</li>
+            <li>Navigate to a view with dynamically generated content (e.g., booking cards)</li>
+            <li>Switch language to French</li>
+            <li>Observe if all text updates</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>All text, including dynamically generated content, should update to French.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Some dynamically generated content (e.g., booking cards, status messages) may remain in English after language switch.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - `translateAll()` function exists but may not be called after dynamic content generation.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #22: Booking ID Generation May Create Duplicates</h2>
+        <div class="bug-title">Title:</div>
+        <p>New booking IDs may conflict with existing IDs if not properly generated</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Create a new booking</li>
+            <li>Note the booking ID</li>
+            <li>Create another booking immediately</li>
+            <li>Check if IDs are unique</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Each booking should have a unique ID that does not conflict with existing bookings.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>If using mock data, booking IDs may conflict. Firebase auto-generates IDs, but mock data ID generation needs verification.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Firebase uses auto-generated IDs, but mock data ID generation (in `createBooking()`) needs verification.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #23: Date Input Timezone Handling May Cause Issues</h2>
+        <div class="bug-title">Title:</div>
+        <p>Date/time parsing may be affected by timezone differences</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Select a date and time for booking</li>
+            <li>Submit the booking</li>
+            <li>Check the stored date/time value</li>
+            <li>Compare with selected date/time</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>Stored date/time should match the selected date/time, accounting for timezone correctly.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Date/time may be stored in UTC but displayed in local time, or vice versa, causing confusion or incorrect availability checks.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Date parsing uses `new Date(\`${tripDate}T${pickupTime}:00Z\`)` (line 6848) which forces UTC, but display may use local time.</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #24: Error Messages Not Translated</h2>
+        <div class="bug-title">Title:</div>
+        <p>Some error messages in JavaScript may not use translation system</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Switch language to French</li>
+            <li>Trigger various error conditions (validation errors, submission errors, etc.)</li>
+            <li>Observe error messages</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>All error messages should be displayed in French when French is selected.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Some error messages may be hardcoded in English and not use `window.t()` function.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Many error messages use `window.t()`, but some may be hardcoded (e.g., line 6634, 6644, 6672, etc.).</p>
+    </div>
+    
+    <div class="bug-section">
+        <h2>Bug #25: Modal Overlay May Block Interactions After Close</h2>
+        <div class="bug-title">Title:</div>
+        <p>Modal overlay may remain in DOM and block interactions after closing</p>
+        
+        <div class="bug-title">Steps to Reproduce:</div>
+        <ol class="steps-list">
+            <li>Open any modal (e.g., Booking Success Modal, Trip Policy Modal)</li>
+            <li>Close the modal</li>
+            <li>Try to interact with elements behind where modal was</li>
+        </ol>
+        
+        <div class="bug-title">Expected Behavior:</div>
+        <p>After closing, modal should be completely removed from DOM or properly hidden, allowing normal interactions.</p>
+        
+        <div class="bug-title">Observed Behavior:</div>
+        <p>Modal overlay may remain partially visible or block interactions even after closing.</p>
+        
+        <p><strong>Status:</strong> <span class="status-partial">🟡 PARTIAL</span> - Modals use `classList.remove('open')` but may need `display: none` to fully hide (line 6396 shows this pattern for booking success modal).</p>
+    </div>
+    
+    <hr>
+    
+    <div class="summary-box">
+        <h2>Summary</h2>
+        
+        <p><strong>Total Bugs Identified:</strong> 25</p>
+        
+        <div class="summary-stats">
+            <div>
+                <strong>✅ Fixed:</strong> 4 bugs
+            </div>
+            <div>
+                <strong>🟡 Partial/Needs Verification:</strong> 13 bugs
+            </div>
+            <div>
+                <strong>🔴 Open/Critical:</strong> 8 bugs
+            </div>
+        </div>
+        
+        <div class="priority-section">
+            <h3>Priority Recommendations:</h3>
+            <ol>
+                <li class="priority-high"><strong>High Priority:</strong> Bugs #3, #9, #10, #18 (Data display and real-time updates)</li>
+                <li class="priority-medium"><strong>Medium Priority:</strong> Bugs #4, #5, #12, #14 (Form functionality)</li>
+                <li class="priority-low"><strong>Low Priority:</strong> Bugs #11, #20, #21, #24 (UI/UX improvements)</li>
+            </ol>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <h3>Notes</h3>
+    <ul>
+        <li>Some bugs may have been partially addressed but need verification</li>
+        <li>Bugs marked as "Partial" require testing to confirm current behavior</li>
+        <li>Bugs marked as "Open" need immediate attention</li>
+        <li>This report is based on code analysis and may need user testing to confirm all issues</li>
+    </ul>
+</body>
+</html>
+

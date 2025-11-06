@@ -637,9 +637,9 @@
                 
                 <!-- Language Switcher -->
                 <div id="language-switcher" class="text-sm font-semibold flex items-center gap-1 min-h-[44px]">
-                    <a href="#" id="lang-en" class="text-isd-gold hover:text-white border-b border-isd-gold pb-0.5 px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="langEn">EN</a>
+                    <a href="#" id="lang-en" onclick="if(typeof window.setLanguage==='function'){window.setLanguage('en');}else if(typeof app!=='undefined'&&app.setLanguage){app.setLanguage('en');}return false;" class="text-isd-gold hover:text-white border-b border-isd-gold pb-0.5 px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="langEn">EN</a>
                     <span class="text-gray-400"> / </span>
-                    <a href="#" id="lang-fr" class="text-white hover:text-isd-gold px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="langFr">FR</a>
+                    <a href="#" id="lang-fr" onclick="if(typeof window.setLanguage==='function'){window.setLanguage('fr');}else if(typeof app!=='undefined'&&app.setLanguage){app.setLanguage('fr');}return false;" class="text-white hover:text-isd-gold px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="langFr">FR</a>
                 </div>
             </div>
         </div>
@@ -801,17 +801,17 @@
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="fleetManagement">Fleet Management</h3>
                             <p id="admin-fleet-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminFleetDesc">View and manage vehicle fleet</p>
-                    <button id="admin-fleet-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="manageFleet">Manage Fleet</button>
+                    <button id="admin-fleet-btn" onclick="window.location.hash = 'fleet-management'; return false;" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="manageFleet">Manage Fleet</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="admin-approvals-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="bookingApprovals">Booking Approvals</h3>
                             <p id="admin-approvals-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminApprovalsDesc">Review and approve booking requests</p>
-                    <button id="admin-approvals-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="viewRequests">View Requests</button>
+                    <button id="admin-approvals-btn" onclick="window.location.hash = 'booking-approvals'; return false;" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="viewRequests">View Requests</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="admin-users-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="userManagement">User Management</h3>
                             <p id="admin-users-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminUsersDesc">Manage employees and drivers</p>
-                    <button id="admin-users-btn" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="manageUsers">Manage Users</button>
+                    <button id="admin-users-btn" onclick="window.location.hash = 'user-management'; return false;" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="manageUsers">Manage Users</button>
                 </div>
             </div>
                     
@@ -870,7 +870,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <span id="guest-mode-badge-employee" class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold whitespace-nowrap" data-translate="guestMode">GUEST MODE</span>
-                        <button id="employee-booking-btn" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 whitespace-nowrap" data-translate="newRequest">+ New Request</button>
+                        <button id="employee-booking-btn" onclick="window.location.hash = 'new-booking'; return false;" class="px-4 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 whitespace-nowrap" data-translate="newRequest">+ New Request</button>
                     </div>
                 </div>
             </div>
@@ -921,12 +921,12 @@
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="driver-trips-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="assignedTrips">Assigned Trips</h3>
                     <p id="driver-trips-desc" class="text-gray-600 mb-4" data-translate="driverTripsDesc">View your assigned trips and routes</p>
-                    <button id="driver-trips-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600" data-translate="viewTrips">View Trips</button>
+                    <button id="driver-trips-btn" onclick="window.location.hash = 'assigned-trips'; return false;" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600" data-translate="viewTrips">View Trips</button>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="driver-status-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="updateStatus">Update Status</h3>
                     <p id="driver-status-desc" class="text-gray-600 mb-4" data-translate="driverStatusDesc">Update trip status and location</p>
-                    <button id="driver-status-btn" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600" data-translate="updateStatus">Update Status</button>
+                    <button id="driver-status-btn" onclick="window.location.hash = 'update-status'; return false;" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600" data-translate="updateStatus">Update Status</button>
                 </div>
             </div>
         </div>
@@ -3690,9 +3690,27 @@
 
         };
         
+        // Make app.setLanguage globally accessible
+        window.setLanguage = function(lang) {
+            if (typeof app !== 'undefined' && app.setLanguage) {
+                app.setLanguage(lang);
+            } else {
+                console.error('app.setLanguage not available');
+            }
+        };
+        
         // Global translation helper function
         window.t = function(key) {
             return app.t(key);
+        };
+        
+        // Make app.handleRoute globally accessible
+        window.handleRoute = function() {
+            if (typeof app !== 'undefined' && app.handleRoute) {
+                app.handleRoute();
+            } else {
+                console.error('app.handleRoute not available');
+            }
         };
 
         // MOCK DATA - Users, Vehicles, and Bookings
@@ -4743,9 +4761,43 @@
             document.getElementById('edit-vehicle-modal').classList.add('open');
         }
 
-        function closeEditVehicleModal() {
-            document.getElementById('edit-vehicle-modal').classList.remove('open');
-        }
+        // Make modal close functions globally accessible
+        window.closeEditVehicleModal = function() {
+            const modal = document.getElementById('edit-vehicle-modal');
+            if (modal) {
+                modal.classList.remove('open');
+            }
+        };
+        
+        // Make vehicle edit/delete functions globally accessible
+        window.openEditVehicleModalFromRow = function(button) {
+            const row = button.closest('tr');
+            if (!row) return;
+            
+            const vehicleId = row.querySelector('td:nth-child(2)')?.textContent.trim();
+            const type = row.querySelector('td:nth-child(3)')?.textContent.trim();
+            const capacity = row.querySelector('td:nth-child(4)')?.textContent.trim();
+            const status = row.querySelector('td:nth-child(5) span')?.textContent.trim();
+            const image = row.querySelector('td:nth-child(1) img')?.src || '';
+            
+            if (vehicleId && type && capacity && status) {
+                openEditVehicleModal(vehicleId, type, capacity, status, image);
+            } else {
+                showError('Could not find vehicle information.');
+            }
+        };
+        
+        window.deleteVehicleFromRow = function(button) {
+            const row = button.closest('tr');
+            if (!row) return;
+            
+            const vehicleId = row.querySelector('td:nth-child(2)')?.textContent.trim();
+            if (vehicleId) {
+                deleteVehicle(vehicleId);
+            } else {
+                showError('Could not find vehicle ID.');
+            }
+        };
 
         // Add Vehicle Modal Functions
         function openAddVehicleModal() {
@@ -4766,7 +4818,7 @@
             }
         }
         
-        function closeAddVehicleModal() {
+        window.closeAddVehicleModal = function() {
             const modal = document.getElementById('add-vehicle-modal');
             if (modal) {
                 modal.classList.remove('open');
@@ -4976,7 +5028,8 @@
         }
         
         // Enhanced Request Detail View - uses MOCK_BOOKINGS data
-        function openRequestDetailView(bookingId) {
+        // Make booking functions globally accessible
+        window.openRequestDetailView = function(bookingId) {
             // Get booking from MOCK_BOOKINGS
             const booking = getBookingById(bookingId);
             if (!booking) {
@@ -5728,9 +5781,9 @@
             openDenialModal(bookingId, 'custom');
         }
 
-        function viewBookingDetails(bookingId) {
+        window.viewBookingDetails = function(bookingId) {
             openRequestDetailView(bookingId);
-        }
+        };
 
         // Edit User Functions
         function openEditUserModal(name, email, role) {
@@ -6634,7 +6687,7 @@
         }
         
         // Post-Submission Management: Modify Request (only for Pending bookings)
-        function modifyBooking(bookingId) {
+        window.modifyBooking = function(bookingId) {
             // Check if booking is in Pending status
             const bookingElement = document.querySelector(`button[onclick*="${bookingId}"]`)?.closest('.bg-white');
             const isPending = bookingElement?.querySelector('span')?.textContent.includes('Pending');
@@ -6704,7 +6757,8 @@
         }
         
         // Close cancellation modal
-        function closeCancellationModal() {
+        // Make cancellation modal functions globally accessible
+        window.closeCancellationModal = function() {
             const modal = document.getElementById('cancellation-confirmation-modal');
             if (modal) {
                 modal.classList.remove('open');
@@ -6714,19 +6768,19 @@
                     }
                 }, 300);
             }
-        }
+        };
         
         // Confirm cancellation
-        function confirmCancellation() {
+        window.confirmCancellation = function() {
             const modal = document.getElementById('cancellation-confirmation-modal');
             if (modal && modal._cancellationCallback) {
-                closeCancellationModal();
+                window.closeCancellationModal();
                 modal._cancellationCallback();
             }
-        }
+        };
         
         // Post-Submission Management: Cancel Request (for Pending or Approved bookings)
-        async function cancelBooking(bookingId, currentStatus) {
+        window.cancelBooking = async function(bookingId, currentStatus) {
             // Check if booking is in Pending or Approved status
             if (currentStatus !== 'Pending' && currentStatus !== 'Approved' && currentStatus !== 'PENDING' && currentStatus !== 'APPROVED') {
                 showError(`Cancel Request is only available for bookings with Pending or Approved status. Current Status: ${currentStatus}. This booking cannot be cancelled.`);
@@ -6981,7 +7035,7 @@ The admin will assign a driver closer to the trip date.
         }
         
         // Close booking success modal
-        function closeBookingSuccessModal() {
+        window.closeBookingSuccessModal = function() {
             const modal = document.getElementById('booking-success-modal');
             if (modal) {
                 modal.classList.remove('open');
@@ -7196,19 +7250,39 @@ The admin will assign a driver closer to the trip date.
                 });
             }
             
-            // Event Listeners for Language
+            // Event Listeners for Language - Make globally accessible
             const langEn = document.getElementById('lang-en');
             const langFr = document.getElementById('lang-fr');
             if (langEn) {
-                langEn.addEventListener('click', (e) => {
+                // Remove existing listeners to prevent duplicates
+                langEn.replaceWith(langEn.cloneNode(true));
+                const newLangEn = document.getElementById('lang-en');
+                newLangEn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    app.setLanguage('en');
+                    e.stopPropagation();
+                    if (typeof app !== 'undefined' && app.setLanguage) {
+                        app.setLanguage('en');
+                    } else if (typeof window.setLanguage === 'function') {
+                        window.setLanguage('en');
+                    } else {
+                        console.error('Language switching not available');
+                    }
                 });
             }
             if (langFr) {
-                langFr.addEventListener('click', (e) => {
+                // Remove existing listeners to prevent duplicates
+                langFr.replaceWith(langFr.cloneNode(true));
+                const newLangFr = document.getElementById('lang-fr');
+                newLangFr.addEventListener('click', (e) => {
                     e.preventDefault();
-                    app.setLanguage('fr');
+                    e.stopPropagation();
+                    if (typeof app !== 'undefined' && app.setLanguage) {
+                        app.setLanguage('fr');
+                    } else if (typeof window.setLanguage === 'function') {
+                        window.setLanguage('fr');
+                    } else {
+                        console.error('Language switching not available');
+                    }
                 });
             }
             

@@ -2708,6 +2708,9 @@
                     dateTime: 'Date & Time',
                     duration: 'Duration',
                     vehicleTypeLabel: 'Vehicle Type',
+                    driverOptionLabel: 'Driver Option',
+                    startDateLabel: 'Start Date',
+                    endTimeLabel: 'End Time',
                     passengersLabel: 'Passengers',
                     purpose: 'Purpose',
                     requesterProfile: 'Requester Profile',
@@ -2843,7 +2846,7 @@
                     realTimeTrackingDesc: 'Monitor trip status in real-time',
                     
                     // Additional Labels
-                    timeLabel: 'Time:',
+                    timeLabel: 'Heure:',
                     requestedBy: 'Requested by:',
                     submittedAgo: 'Submitted 4 hours ago',
                     scheduled: 'Scheduled',
@@ -3158,7 +3161,12 @@
                     
                     // Driver Trip Details Labels
                     dateLabel: 'Date:',
+                    timeLabel: 'Heure:',
                     pickupTimeLabel: 'Heure de Prise en Charge:',
+                    vehicleTypeLabel: 'Type de Véhicule',
+                    driverOptionLabel: 'Option de Chauffeur',
+                    startDateLabel: 'Date de Début',
+                    endTimeLabel: 'Heure de Fin',
                     vehicleLabel: 'Véhicule:',
                     passengersLabel: 'Passagers:',
                     tripPurposeLabel: 'Objectif du Trajet:',
@@ -3390,7 +3398,16 @@
             // Function to update text based on language
             setLanguage(lang) {
                 try {
+                    // Validate language
+                    if (!this.content[lang]) {
+                        console.warn(`Language "${lang}" not found, defaulting to "en"`);
+                        lang = 'en';
+                    }
+                    
                     const data = this.content[lang];
+                    
+                    // Update window.currentLanguage immediately
+                    window.currentLanguage = lang;
                     
                     // Helper to translate by element ID
                     const translate = (id, key) => {
@@ -3557,8 +3574,13 @@
                     langFr.classList.toggle('border-b', lang === 'fr');
                 }
                     
-                    // Store current language
+                    // Store current language in memory and localStorage
                     window.currentLanguage = lang;
+                    try {
+                        localStorage.setItem('appLanguage', lang);
+                    } catch (e) {
+                        console.warn('Could not save language preference to localStorage:', e);
+                    }
                 } catch (error) {
                     console.error('Error in setLanguage:', error);
                 }
@@ -5301,7 +5323,7 @@
                                         <p class="font-semibold text-gray-800">${data.passengers}</p>
                                     </div>
                                     <div class="col-span-2">
-                                        <p class="text-gray-600">${window.t('tripPurpose')}</p>
+                                        <p class="text-gray-600">${window.t('tripPurposeLabel')}</p>
                                         <p class="font-semibold text-gray-800">${data.purpose}</p>
                                     </div>
                                     ${data.driverOption === 'School Driver' ? `
@@ -6817,16 +6839,16 @@
             
             summaryContent.innerHTML = `
                 <div class="space-y-2">
-                    <p><strong>Trip Purpose:</strong> ${tripPurpose}</p>
-                    <p><strong>Vehicle Type:</strong> ${vehicleTypeMap[vehicleType] || vehicleType}</p>
-                    <p><strong>Driver Option:</strong> ${driverOptionMap[driverOption] || driverOption}</p>
+                    <p><strong>${window.t('tripPurposeLabel')}</strong> ${tripPurpose}</p>
+                    <p><strong>${window.t('vehicleTypeLabel')}</strong> ${vehicleTypeMap[vehicleType] || vehicleType}</p>
+                    <p><strong>${window.t('driverOptionLabel')}</strong> ${driverOptionMap[driverOption] || driverOption}</p>
                     ${pickupInfo}
-                    <p><strong>Start Date:</strong> ${new Date(tripDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
-                    <p><strong>Pickup Time:</strong> ${formatTime(pickupTime)}</p>
-                    <p><strong>Duration:</strong> ${durationText}</p>
-                    <p><strong>End Time:</strong> ${endTimeDisplay}</p>
-                    <p><strong>Number of Passengers:</strong> ${passengers}</p>
-                    ${notes ? `<p><strong>Additional Notes:</strong> ${notes}</p>` : ''}
+                    <p><strong>${window.t('startDateLabel')}</strong> ${new Date(tripDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                    <p><strong>${window.t('pickupTimeLabel')}</strong> ${formatTime(pickupTime)}</p>
+                    <p><strong>${window.t('duration')}</strong> ${durationText}</p>
+                    <p><strong>${window.t('endTimeLabel')}</strong> ${endTimeDisplay}</p>
+                    <p><strong>${window.t('numberOfPassengers')}</strong> ${passengers}</p>
+                    ${notes ? `<p><strong>${window.t('additionalNotes')}</strong> ${notes}</p>` : ''}
                 </div>
             `;
             
@@ -7199,6 +7221,23 @@ The admin will assign a driver closer to the trip date.
 
         // Initialize when DOM is ready
         function initializeApp() {
+            // Initialize language from localStorage or default to 'en'
+            let initialLanguage = 'en';
+            try {
+                const savedLanguage = localStorage.getItem('appLanguage');
+                if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+                    initialLanguage = savedLanguage;
+                }
+            } catch (e) {
+                console.warn('Could not read language preference from localStorage:', e);
+            }
+            
+            // Set initial language if not already set
+            if (typeof app !== 'undefined' && app.setLanguage && !window.currentLanguage) {
+                app.setLanguage(initialLanguage);
+                console.log(`✅ Language initialized to: ${initialLanguage}`);
+            }
+            
             // Set minimum date to today for booking form
             const tripDateInput = document.getElementById('trip-date');
             if (tripDateInput) {
@@ -9381,8 +9420,21 @@ The admin will assign a driver closer to the trip date.
         // Initialize app routing and navigation
         function initAppRouting() {
             try {
+                // Initialize language from localStorage or default to 'en'
+                let initialLanguage = 'en';
+                try {
+                    const savedLanguage = localStorage.getItem('appLanguage');
+                    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+                        initialLanguage = savedLanguage;
+                    }
+                } catch (e) {
+                    console.warn('Could not read language preference from localStorage:', e);
+                }
+                
+                // Set initial language
                 if (typeof app !== 'undefined' && app.setLanguage) {
-                    app.setLanguage('en');
+                    app.setLanguage(initialLanguage);
+                    console.log(`✅ Language initialized to: ${initialLanguage}`);
                 } else {
                     console.error('app.setLanguage not available');
                 }

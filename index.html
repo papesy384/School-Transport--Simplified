@@ -155,6 +155,9 @@
             max-height: 90vh;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            pointer-events: auto; /* Ensure clicks work on modal content */
+            position: relative;
+            z-index: 10001; /* Higher than overlay */
         }
         .modal-button {
             display: inline-block;
@@ -2703,6 +2706,26 @@
                     missingDocumentation: 'Missing Documentation',
                     exceedsMaximumDuration: 'Exceeds Maximum Duration',
                     customMessage: 'Custom Message',
+                    pleaseProvideDenialMessage: 'Please provide a denial message.',
+                    confirmDenyBooking: 'Are you sure you want to deny this booking request?',
+                    bookingDeniedSuccessfully: 'Booking request has been denied successfully.',
+                    failedToDenyBooking: 'Failed to deny booking. Please try again.',
+                    confirmApproveBooking: 'Are you sure you want to approve this booking request?',
+                    bookingNotFound: 'Booking not found.',
+                    bookingApprovedByAdmin: 'Booking approved by admin',
+                    bookingApprovedSuccessfully: 'Booking request has been approved successfully!',
+                    hasBeenAssigned: 'has been assigned',
+                    failedToApproveBooking: 'Failed to approve booking. Please try again.',
+                    bookingNotPending: 'This booking is no longer pending and cannot be approved.',
+                    denialTemplateAvailability: 'We regret to inform you that the requested vehicle type is not available for the selected date and time. Please consider alternative dates or vehicle types.',
+                    denialTemplateShortNotice: 'This request requires a minimum of 2 weeks advance notice. Unfortunately, your request does not meet this requirement. Please resubmit with an earlier date.',
+                    denialTemplateMissingDocs: 'Your booking request is missing required documentation. Please submit all necessary forms before resubmitting your request.',
+                    denialTemplateMaxDuration: 'This request exceeds the maximum allowed booking duration. Please adjust the duration or contact the admin for special arrangements.',
+                    denialTitleAvailability: 'Vehicle Unavailable',
+                    denialTitleShortNotice: 'Insufficient Lead Time',
+                    denialTitleMissingDocs: 'Missing Documentation',
+                    denialTitleMaxDuration: 'Exceeds Maximum Duration',
+                    denialTitleCustom: 'Custom Denial Reason',
                     
                     // Driver Status Messages
                     enRoute: 'En Route',
@@ -2831,6 +2854,18 @@
                     checkingAvailability: 'Checking availability...',
                     dateUnavailableSuggested: 'This date is unavailable. Suggested nearest available date:',
                     selectDate: 'Select',
+                    dateUnavailable: 'This date is unavailable. Please select a different date.',
+                    cannotBookPastDate: 'Cannot book for a past date.',
+                    cannotBookPastTime: 'Cannot book for a past time.',
+                    tripPurposeRequired: 'Trip purpose is required and must be less than 1000 characters.',
+                    pleaseSelectValidDate: 'Please select a valid date.',
+                    invalidDuration: 'Invalid duration. Please select a valid duration.',
+                    notesTooLong: 'Notes must be less than 1000 characters.',
+                    pickupLocationTooLong: 'Pickup location must be less than 1000 characters.',
+                    odometerRequired: 'Odometer reading is required and must be a valid number.',
+                    fuelLevelRequired: 'Fuel level is required.',
+                    vehicleIssuesRequired: 'Vehicle issues/comments are required.',
+                    dateRequired: 'Date is required.',
                     busesUnavailablePeriod: 'Buses/Minibuses are unavailable from December 5-15, 2025',
                     selectDifferentDateOrVehicle: 'Please select a different date or choose Van/Car instead.',
                     busesUnavailable: 'Buses/Minibuses Unavailable',
@@ -3185,7 +3220,50 @@
                     cannotExceedCapacity: 'Ne peut pas dépasser la capacité du véhicule de',
                     pleaseEnterValidPassengers: 'Veuillez entrer un nombre valide de passagers',
                     allVehiclesUnavailableDate: 'Tous les véhicules sont indisponibles à cette date. Date disponible la plus proche suggérée:',
-                    contactAdministrator: 'Veuillez contacter l\'administrateur pour obtenir de l\'aide.'
+                    contactAdministrator: 'Veuillez contacter l\'administrateur pour obtenir de l\'aide.',
+                    dateUnavailable: 'Cette date n\'est pas disponible. Veuillez sélectionner une autre date.',
+                    cannotBookPastDate: 'Impossible de réserver pour une date passée.',
+                    cannotBookPastTime: 'Impossible de réserver pour une heure passée.',
+                    tripPurposeRequired: 'Le but du voyage est requis et doit contenir moins de 1000 caractères.',
+                    pleaseSelectValidDate: 'Veuillez sélectionner une date valide.',
+                    invalidDuration: 'Durée invalide. Veuillez sélectionner une durée valide.',
+                    notesTooLong: 'Les notes doivent contenir moins de 1000 caractères.',
+                    pickupLocationTooLong: 'Le lieu de prise en charge doit contenir moins de 1000 caractères.',
+                    odometerRequired: 'La lecture de l\'odomètre est requise et doit être un nombre valide.',
+                    fuelLevelRequired: 'Le niveau de carburant est requis.',
+                    vehicleIssuesRequired: 'Les problèmes/commentaires du véhicule sont requis.',
+                    dateRequired: 'La date est requise.',
+                    
+                    // Denial Modal
+                    denyBookingRequest: 'Refuser la Demande de Réservation',
+                    denialTemplate: 'Modèle de Refus',
+                    denialMessage: 'Message de Refus',
+                    sendDenial: 'Envoyer le Refus',
+                    vehicleUnavailable: 'Véhicule Indisponible',
+                    insufficientLeadTime: 'Délai Insuffisant',
+                    missingDocumentation: 'Documentation Manquante',
+                    exceedsMaximumDuration: 'Dépasse la Durée Maximale',
+                    customMessage: 'Message Personnalisé',
+                    pleaseProvideDenialMessage: 'Veuillez fournir un message de refus.',
+                    confirmDenyBooking: 'Êtes-vous sûr de vouloir refuser cette demande de réservation?',
+                    bookingDeniedSuccessfully: 'La demande de réservation a été refusée avec succès.',
+                    failedToDenyBooking: 'Échec du refus de la réservation. Veuillez réessayer.',
+                    confirmApproveBooking: 'Êtes-vous sûr de vouloir approuver cette demande de réservation?',
+                    bookingNotFound: 'Réservation introuvable.',
+                    bookingApprovedByAdmin: 'Réservation approuvée par l\'administrateur',
+                    bookingApprovedSuccessfully: 'La demande de réservation a été approuvée avec succès!',
+                    hasBeenAssigned: 'a été assigné',
+                    failedToApproveBooking: 'Échec de l\'approbation de la réservation. Veuillez réessayer.',
+                    bookingNotPending: 'Cette réservation n\'est plus en attente et ne peut pas être approuvée.',
+                    denialTemplateAvailability: 'Nous regrettons de vous informer que le type de véhicule demandé n\'est pas disponible pour la date et l\'heure sélectionnées. Veuillez envisager d\'autres dates ou types de véhicules.',
+                    denialTemplateShortNotice: 'Cette demande nécessite un préavis minimum de 2 semaines. Malheureusement, votre demande ne répond pas à cette exigence. Veuillez soumettre à nouveau avec une date antérieure.',
+                    denialTemplateMissingDocs: 'Votre demande de réservation manque de documentation requise. Veuillez soumettre tous les formulaires nécessaires avant de soumettre à nouveau votre demande.',
+                    denialTemplateMaxDuration: 'Cette demande dépasse la durée maximale autorisée de réservation. Veuillez ajuster la durée ou contacter l\'administrateur pour des arrangements spéciaux.',
+                    denialTitleAvailability: 'Véhicule Indisponible',
+                    denialTitleShortNotice: 'Délai Insuffisant',
+                    denialTitleMissingDocs: 'Documentation Manquante',
+                    denialTitleMaxDuration: 'Dépasse la Durée Maximale',
+                    denialTitleCustom: 'Raison de Refus Personnalisée'
                 }
             },
 
@@ -3363,6 +3441,19 @@
                             el.placeholder = data[placeholderKey];
                         }
                     });
+                    
+                    // Refresh dynamic content after language change
+                    // Re-populate dashboards to update dynamic content
+                    setTimeout(async () => {
+                        const hash = window.location.hash.replace('#', '');
+                        if (hash === 'guest/employee' || hash === 'my-bookings') {
+                            await populateEmployeeDashboard('emp_high');
+                        } else if (hash === 'guest/admin' || hash === 'booking-approvals') {
+                            await populateAdminDashboard();
+                        } else if (hash === 'guest/driver' || hash === 'assigned-trips') {
+                            populateDriverDashboard('driver_kore');
+                        }
+                    }, 100);
                     
                     // Translate select options with data-translate
                     document.querySelectorAll('select option[data-translate]').forEach(option => {
@@ -3882,7 +3973,20 @@
                     bookingData.status = 'PENDING';
                 }
                 
-                const bookingId = `B-${String(Object.keys(MOCK_BOOKINGS).length + 1).padStart(3, '0')}`;
+                // Generate unique booking ID - check for duplicates
+                let bookingId;
+                let attempt = 0;
+                do {
+                    const nextNum = Object.keys(MOCK_BOOKINGS).length + 1 + attempt;
+                    bookingId = `B-${String(nextNum).padStart(3, '0')}`;
+                    attempt++;
+                    // Safety check to prevent infinite loop
+                    if (attempt > 1000) {
+                        bookingId = `B-${Date.now()}`;
+                        break;
+                    }
+                } while (MOCK_BOOKINGS[bookingId]);
+                
                 MOCK_BOOKINGS[bookingId] = {
                     ...bookingData,
                     id: bookingId,
@@ -4004,23 +4108,42 @@
         // Firestore: Update booking (Employee can update their own PENDING, Admin can update any)
         async function updateBookingFirestore(bookingId, updates) {
             try {
+                console.log('📝 updateBookingFirestore called:', { bookingId, updates });
+                
                 if (!isFirebaseConfigured()) {
+                    console.log('⚠️ Firebase not configured, using mock data');
                     if (MOCK_BOOKINGS[bookingId]) {
                         MOCK_BOOKINGS[bookingId] = { ...MOCK_BOOKINGS[bookingId], ...updates };
                         // Save to localStorage
                         saveMockBookings();
+                        console.log('✅ Mock booking updated successfully');
+                    } else {
+                        console.error('❌ Booking not found in MOCK_BOOKINGS:', bookingId);
+                        throw new Error('Booking not found in mock data');
                     }
                     return;
                 }
                 
+                console.log('🔐 Checking authentication...');
                 const user = await getCurrentUser();
-                if (!user) throw new Error('User not authenticated');
+                if (!user) {
+                    console.error('❌ User not authenticated');
+                    throw new Error('User not authenticated');
+                }
+                console.log('✅ User authenticated:', user.uid);
                 
                 const bookingRef = window.firebaseFunctions.doc(window.firebaseDb, 'all_requests', bookingId);
+                console.log('📤 Updating Firestore document:', bookingId);
                 await window.firebaseFunctions.updateDoc(bookingRef, updates);
+                console.log('✅ Firestore document updated successfully');
             } catch (error) {
                 console.error('❌ Error in updateBookingFirestore:', error);
-                showError('Failed to update booking. Please try again.');
+                console.error('Error details:', {
+                    message: error.message,
+                    code: error.code,
+                    stack: error.stack
+                });
+                showError(`Failed to update booking: ${error.message || 'Unknown error'}. Please check console for details.`);
                 throw error;
             }
         }
@@ -4636,13 +4759,29 @@
         }
         
         // Quick Action Functions
-        async function quickApprove(bookingId) {
-            if (confirm('Are you sure you want to approve this booking request?')) {
+        // Quick Action Functions - Make sure they're globally accessible
+        window.quickApprove = async function(bookingId) {
+            console.log('🚀 quickApprove called with bookingId:', bookingId);
+            if (!bookingId) {
+                console.error('❌ No bookingId provided to quickApprove');
+                showError('Error: No booking ID provided.');
+                return;
+            }
+            
+            if (confirm(window.t('confirmApproveBooking'))) {
                 try {
                     // Get booking to check if it needs a driver
                     const booking = getBookingById(bookingId);
                     if (!booking) {
-                        showError('Booking not found.');
+                        console.error('❌ Booking not found:', bookingId);
+                        showError(window.t('bookingNotFound'));
+                        return;
+                    }
+                    
+                    // Check if booking is still pending
+                    if (booking.status !== 'PENDING') {
+                        console.warn('⚠️ Booking is not pending:', booking.status);
+                        showError(window.t('bookingNotPending') || 'This booking is no longer pending and cannot be approved.');
                         return;
                     }
                     
@@ -4662,7 +4801,7 @@
                     const updates = {
                         status: 'APPROVED',
                         approvedAt: new Date().toISOString(),
-                        adminNotes: 'Booking approved by admin'
+                        adminNotes: window.t('bookingApprovedByAdmin')
                     };
                     
                     // Add driver assignment if applicable
@@ -4670,34 +4809,54 @@
                         updates.assignedDriverId = assignedDriverId;
                     }
                     
+                    console.log('📝 Updating booking with:', updates);
                     await updateBookingFirestore(bookingId, updates);
                     
-                    showSuccess(`Booking request has been approved successfully!${assignedDriverId ? ` Driver ${MOCK_USERS[assignedDriverId]?.name || assignedDriverId} has been assigned.` : ''}`);
+                    // Verify the update was successful
+                    const updatedBooking = getBookingById(bookingId);
+                    console.log('✅ Booking updated, new status:', updatedBooking?.status);
+                    
+                    const driverName = assignedDriverId ? MOCK_USERS[assignedDriverId]?.name || assignedDriverId : '';
+                    const successMessage = assignedDriverId 
+                        ? `${window.t('bookingApprovedSuccessfully')} ${window.t('driverLabel')} ${driverName} ${window.t('hasBeenAssigned')}.`
+                        : window.t('bookingApprovedSuccessfully');
+                    showSuccess(successMessage);
                     
                     // Refresh admin dashboard to remove from pending queue
                     await populateAdminDashboard();
                     
-                    // Refresh employee dashboard if it's open
-                    const employeeDashboard = document.getElementById('view-employee-dashboard');
-                    if (employeeDashboard && employeeDashboard.classList.contains('active')) {
-                        await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
-                    }
-                    
-                    // Refresh driver dashboard if it's open and driver was assigned
-                    if (assignedDriverId) {
-                        const driverDashboard = document.getElementById('view-assigned-trips');
-                        if (driverDashboard && driverDashboard.classList.contains('active')) {
-                            await populateDriverDashboard(assignedDriverId);
+                    // Always refresh employee dashboard (regardless of whether it's open)
+                    // Use a small delay to ensure the update is processed
+                    setTimeout(async () => {
+                        if (booking && booking.requesterId) {
+                            console.log('🔄 Refreshing employee dashboard for:', booking.requesterId);
+                            await populateEmployeeDashboard(booking.requesterId);
+                        } else {
+                            // Fallback: refresh for default user
+                            console.log('🔄 Refreshing employee dashboard for default user');
+                            await populateEmployeeDashboard('emp_high');
                         }
+                    }, 100);
+                    
+                    // Refresh driver dashboard if driver was assigned
+                    if (assignedDriverId) {
+                        await populateDriverDashboard(assignedDriverId);
                     }
                     
                     // Close detail view if open
                     closeRequestDetailView();
+                    
+                    console.log('✅ Booking approved successfully');
                 } catch (error) {
-                    console.error('Error approving booking:', error);
-                    showError('Failed to approve booking. Please try again.');
+                    console.error('❌ Error approving booking:', error);
+                    showError(window.t('failedToApproveBooking'));
                 }
             }
+        };
+        
+        // Keep the old function for backward compatibility
+        async function quickApprove(bookingId) {
+            return window.quickApprove(bookingId);
         }
         
         function quickDenyAvailability(bookingId) {
@@ -4712,6 +4871,9 @@
                 showError('Booking not found.');
                 return;
             }
+            
+            // Escape bookingId for use in HTML attributes
+            const safeBookingId = String(bookingId).replace(/'/g, "\\'").replace(/"/g, '&quot;');
             
             const requester = getUserById(booking.requesterId);
             const driver = booking.assignedDriverId ? getUserById(booking.assignedDriverId) : null;
@@ -5017,8 +5179,23 @@
                     
                     <!-- Action Buttons -->
                     <div class="mt-6 flex gap-3 justify-end border-t border-gray-200 pt-4">
-                        <button onclick="closeRequestDetailView(); openDenialModal('${bookingId}', 'custom')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">${window.t('denyRequest')}</button>
-                        <button onclick="closeRequestDetailView(); approveBooking('${bookingId}')" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700">${window.t('approveRequest')}</button>
+                        ${booking.status === 'PENDING' ? `
+                            <button type="button" onclick="handleDenyBooking('${safeBookingId}')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 cursor-pointer">${window.t('denyRequest')}</button>
+                            <button type="button" onclick="handleApproveBooking('${safeBookingId}')" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 cursor-pointer">${window.t('approveRequest')}</button>
+                        ` : booking.status === 'DENIED' ? `
+                            <div class="w-full p-4 bg-red-50 border-2 border-red-300 rounded-lg">
+                                <p class="text-red-800 font-semibold mb-2">${window.t('denied')}</p>
+                                ${booking.adminNotes ? `<p class="text-red-700 text-sm">${sanitizeHTML(booking.adminNotes)}</p>` : ''}
+                            </div>
+                        ` : booking.status === 'APPROVED' || booking.status === 'ACTIVE' ? `
+                            <div class="w-full p-4 bg-green-50 border-2 border-green-300 rounded-lg">
+                                <p class="text-green-800 font-semibold">${window.t('approved')}</p>
+                            </div>
+                        ` : booking.status === 'COMPLETED' ? `
+                            <div class="w-full p-4 bg-gray-50 border-2 border-gray-300 rounded-lg">
+                                <p class="text-gray-800 font-semibold">${window.t('completed')}</p>
+                            </div>
+                        ` : ''}
                     </div>
                 </div>
             `;
@@ -5028,17 +5205,141 @@
                 modal = document.createElement('div');
                 modal.id = 'request-detail-modal';
                 modal.className = 'modal-overlay';
-                modal.innerHTML = `<div class="modal-content max-w-6xl">${modalContent}</div>`;
                 document.body.appendChild(modal);
-                
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        closeRequestDetailView();
-                    }
-                });
             } else {
-                modal.querySelector('.modal-content').innerHTML = modalContent;
+                // Remove any existing click handlers by cloning (removes all event listeners)
+                const newModal = modal.cloneNode(false);
+                newModal.id = 'request-detail-modal';
+                newModal.className = 'modal-overlay';
+                modal.parentNode.replaceChild(newModal, modal);
+                modal = newModal;
             }
+            
+            // Handle clicks on overlay background to close modal
+            modal.addEventListener('click', function(e) {
+                // Only close if clicking directly on the overlay background (not on modal-content)
+                if (e.target === modal) {
+                    closeRequestDetailView();
+                }
+            });
+            
+            // Update modal content
+            const modalContentEl = modal.querySelector('.modal-content');
+            if (modalContentEl) {
+                modalContentEl.innerHTML = modalContent;
+            } else {
+                modal.innerHTML = `<div class="modal-content max-w-6xl">${modalContent}</div>`;
+            }
+            
+            // CRITICAL FIX: Use event delegation on modal-content instead of individual buttons
+            // This works even when content is dynamically replaced
+            const modalContentContainer = modal.querySelector('.modal-content');
+            if (modalContentContainer) {
+                // Store the innerHTML before cloning
+                const contentHTML = modalContentContainer.innerHTML;
+                
+                // Remove any existing delegation listeners by cloning (removes event listeners but keeps content)
+                const newContainer = modalContentContainer.cloneNode(false); // false = don't clone children
+                newContainer.innerHTML = contentHTML; // Restore content
+                modalContentContainer.parentNode.replaceChild(newContainer, modalContentContainer);
+                
+                // Add event delegation listener
+                newContainer.addEventListener('click', function(e) {
+                    const target = e.target;
+                    
+                    // Check if approve button was clicked
+                    if (target.matches('button[onclick*="handleApproveBooking"], button[data-action="approve"]')) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        
+                        // Get bookingId from onclick attribute or data attribute
+                        let bookingId = target.getAttribute('data-booking-id');
+                        if (!bookingId) {
+                            const onclickAttr = target.getAttribute('onclick');
+                            if (onclickAttr) {
+                                const match = onclickAttr.match(/handleApproveBooking\('([^']+)'\)/);
+                                if (match && match[1]) {
+                                    bookingId = match[1];
+                                }
+                            }
+                        }
+                        
+                        console.log('✅ Approve button clicked via delegation, bookingId:', bookingId);
+                        if (bookingId && typeof window.handleApproveBooking === 'function') {
+                            window.handleApproveBooking(bookingId);
+                        } else {
+                            console.error('❌ Missing bookingId or handleApproveBooking function');
+                            alert('Error: Cannot approve booking. bookingId: ' + bookingId);
+                        }
+                        return false;
+                    }
+                    
+                    // Check if deny button was clicked
+                    if (target.matches('button[onclick*="handleDenyBooking"], button[data-action="deny"]')) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        
+                        let bookingId = target.getAttribute('data-booking-id');
+                        if (!bookingId) {
+                            const onclickAttr = target.getAttribute('onclick');
+                            if (onclickAttr) {
+                                const match = onclickAttr.match(/handleDenyBooking\('([^']+)'\)/);
+                                if (match && match[1]) {
+                                    bookingId = match[1];
+                                }
+                            }
+                        }
+                        
+                        if (bookingId && typeof window.handleDenyBooking === 'function') {
+                            window.handleDenyBooking(bookingId);
+                        }
+                        return false;
+                    }
+                }, true); // Use capture phase to catch early
+            }
+            
+            // Also add direct listeners as backup - TEST VERSION
+            setTimeout(function() {
+                console.log('🔍 Looking for approve button...');
+                const approveBtn = modal.querySelector('button[onclick*="handleApproveBooking"]');
+                console.log('Approve button found:', approveBtn);
+                if (approveBtn) {
+                    console.log('Button onclick attribute:', approveBtn.getAttribute('onclick'));
+                    console.log('Button classes:', approveBtn.className);
+                    console.log('Button parent:', approveBtn.parentElement);
+                    
+                    const onclickAttr = approveBtn.getAttribute('onclick');
+                    const match = onclickAttr.match(/handleApproveBooking\('([^']+)'\)/);
+                    if (match && match[1]) {
+                        const bookingId = match[1];
+                        console.log('Extracted bookingId:', bookingId);
+                        
+                        // TEST: Add a simple test listener first
+                        approveBtn.addEventListener('click', function(e) {
+                            console.log('🎯 BUTTON CLICKED! Event:', e);
+                            e.stopPropagation();
+                            e.preventDefault();
+                            alert('Button clicked! BookingId: ' + bookingId);
+                            
+                            // Then call the actual function
+                            if (typeof window.handleApproveBooking === 'function') {
+                                console.log('Calling handleApproveBooking...');
+                                window.handleApproveBooking(bookingId);
+                            } else {
+                                console.error('handleApproveBooking is not a function!');
+                                alert('Error: handleApproveBooking function not found');
+                            }
+                        }, true);
+                        
+                        console.log('✅ Event listener added to approve button');
+                    } else {
+                        console.error('❌ Could not extract bookingId from onclick');
+                    }
+                } else {
+                    console.error('❌ Approve button not found in modal!');
+                    console.log('Modal HTML:', modal.innerHTML.substring(0, 500));
+                }
+            }, 100);
             
             modal.classList.add('open');
         }
@@ -5048,27 +5349,51 @@
             if (modal) modal.classList.remove('open');
         }
         
+        // Wrapper functions for inline onclick handlers - explicitly global
+        window.handleApproveBooking = function(bookingId) {
+            console.log('handleApproveBooking called with bookingId:', bookingId);
+            if (bookingId && typeof approveBooking === 'function') {
+                approveBooking(bookingId);
+            } else {
+                console.error('approveBooking function not found');
+                alert('Error: Approve function not available. Please refresh the page.');
+            }
+        };
+        
+        window.handleDenyBooking = function(bookingId) {
+            console.log('handleDenyBooking called with bookingId:', bookingId);
+            if (bookingId) {
+                closeRequestDetailView();
+                if (typeof openDenialModal === 'function') {
+                    openDenialModal(bookingId, 'custom');
+                } else {
+                    console.error('openDenialModal function not found');
+                    alert('Error: Deny function not available. Please refresh the page.');
+                }
+            }
+        };
+        
         // Templated Denial Responses
         function openDenialModal(bookingId, templateType) {
             const templates = {
                 'availability': {
-                    title: 'Vehicle Unavailable',
-                    message: 'We regret to inform you that the requested vehicle type is not available for the selected date and time. Please consider alternative dates or vehicle types.'
+                    title: window.t('denialTitleAvailability'),
+                    message: window.t('denialTemplateAvailability')
                 },
                 'short-notice': {
-                    title: 'Insufficient Lead Time',
-                    message: 'This request requires a minimum of 2 weeks advance notice. Unfortunately, your request does not meet this requirement. Please resubmit with an earlier date.'
+                    title: window.t('denialTitleShortNotice'),
+                    message: window.t('denialTemplateShortNotice')
                 },
                 'missing-docs': {
-                    title: 'Missing Documentation',
-                    message: 'Your booking request is missing required documentation. Please submit all necessary forms before resubmitting your request.'
+                    title: window.t('denialTitleMissingDocs'),
+                    message: window.t('denialTemplateMissingDocs')
                 },
                 'max-duration': {
-                    title: 'Exceeds Maximum Duration',
-                    message: 'This request exceeds the maximum allowed booking duration. Please adjust the duration or contact the admin for special arrangements.'
+                    title: window.t('denialTitleMaxDuration'),
+                    message: window.t('denialTemplateMaxDuration')
                 },
                 'custom': {
-                    title: 'Custom Denial Reason',
+                    title: window.t('denialTitleCustom'),
                     message: ''
                 }
             };
@@ -5076,26 +5401,26 @@
             const template = templates[templateType] || templates['custom'];
             
             const modalContent = `
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Deny Booking Request</h3>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">${window.t('denyBookingRequest')}</h3>
                 <div class="text-left space-y-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Denial Template</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">${window.t('denialTemplate')}</label>
                         <select id="denial-template-select" onchange="updateDenialTemplate()" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option value="availability" ${templateType === 'availability' ? 'selected' : ''}>Vehicle Unavailable</option>
-                            <option value="short-notice" ${templateType === 'short-notice' ? 'selected' : ''}>Short Notice</option>
-                            <option value="missing-docs" ${templateType === 'missing-docs' ? 'selected' : ''}>Missing Documentation</option>
-                            <option value="max-duration" ${templateType === 'max-duration' ? 'selected' : ''}>Exceeds Max Duration</option>
-                            <option value="custom">Custom Message</option>
+                            <option value="availability" ${templateType === 'availability' ? 'selected' : ''}>${window.t('vehicleUnavailable')}</option>
+                            <option value="short-notice" ${templateType === 'short-notice' ? 'selected' : ''}>${window.t('shortNotice')}</option>
+                            <option value="missing-docs" ${templateType === 'missing-docs' ? 'selected' : ''}>${window.t('missingDocumentation')}</option>
+                            <option value="max-duration" ${templateType === 'max-duration' ? 'selected' : ''}>${window.t('exceedsMaxDuration')}</option>
+                            <option value="custom">${window.t('customMessage')}</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Denial Message</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">${window.t('denialMessage')}</label>
                         <textarea id="denial-message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">${template.message}</textarea>
                     </div>
                 </div>
                 <div class="flex gap-3 mt-6">
-                    <button onclick="closeDenialModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
-                    <button onclick="submitDenial('${bookingId}')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Send Denial</button>
+                    <button onclick="closeDenialModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">${window.t('cancel')}</button>
+                    <button onclick="submitDenial('${bookingId}')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">${window.t('sendDenial')}</button>
                 </div>
             `;
             
@@ -5125,10 +5450,10 @@
             if (!select || !textarea) return;
             
             const templates = {
-                'availability': 'We regret to inform you that the requested vehicle type is not available for the selected date and time. Please consider alternative dates or vehicle types.',
-                'short-notice': 'This request requires a minimum of 2 weeks advance notice. Unfortunately, your request does not meet this requirement. Please resubmit with an earlier date.',
-                'missing-docs': 'Your booking request is missing required documentation. Please submit all necessary forms before resubmitting your request.',
-                'max-duration': 'This request exceeds the maximum allowed booking duration. Please adjust the duration or contact the admin for special arrangements.',
+                'availability': window.t('denialTemplateAvailability'),
+                'short-notice': window.t('denialTemplateShortNotice'),
+                'missing-docs': window.t('denialTemplateMissingDocs'),
+                'max-duration': window.t('denialTemplateMaxDuration'),
                 'custom': ''
             };
             
@@ -5141,11 +5466,11 @@
             const template = document.getElementById('denial-template-select')?.value;
             
             if (!message) {
-                showError('Please provide a denial message.');
+                showError(window.t('pleaseProvideDenialMessage'));
                 return;
             }
             
-            if (confirm('Are you sure you want to deny this booking request?')) {
+            if (confirm(window.t('confirmDenyBooking'))) {
                 try {
                     // Sanitize the denial message
                     const safeMessage = sanitizeHTML(message);
@@ -5154,12 +5479,12 @@
                     const updates = {
                         status: 'DENIED',
                         deniedAt: new Date().toISOString(),
-                        adminNotes: `Denied: ${safeMessage}`
+                        adminNotes: `${window.t('denied')}: ${safeMessage}`
                     };
                     
                     await updateBookingFirestore(bookingId, updates);
                     
-                    showSuccess('Booking request has been denied successfully.');
+                    showSuccess(window.t('bookingDeniedSuccessfully'));
                     
                     // Refresh admin dashboard to remove from pending queue and update statistics
                     await populateAdminDashboard();
@@ -5177,7 +5502,7 @@
                     closeRequestDetailView();
                 } catch (error) {
                     console.error('Error denying booking:', error);
-                    showError('Failed to deny booking. Please try again.');
+                    showError(window.t('failedToDenyBooking'));
                 }
             }
         }
@@ -5188,12 +5513,18 @@
         }
 
         async function approveBooking(bookingId) {
-            if (confirm('Are you sure you want to approve this booking request?')) {
+            if (confirm(window.t('confirmApproveBooking'))) {
                 try {
                     // Get booking to check if it needs a driver
                     const booking = getBookingById(bookingId);
                     if (!booking) {
-                        showError('Booking not found.');
+                        showError(window.t('bookingNotFound'));
+                        return;
+                    }
+                    
+                    // Check if booking is still pending
+                    if (booking.status !== 'PENDING') {
+                        showError(window.t('bookingNotPending') || 'This booking is no longer pending and cannot be approved.');
                         return;
                     }
                     
@@ -5213,7 +5544,7 @@
                     const updates = {
                         status: 'APPROVED',
                         approvedAt: new Date().toISOString(),
-                        adminNotes: 'Booking approved by admin'
+                        adminNotes: window.t('bookingApprovedByAdmin')
                     };
                     
                     // Add driver assignment if applicable
@@ -5223,18 +5554,31 @@
                     
                     await updateBookingFirestore(bookingId, updates);
                     
-                    showSuccess(`Booking request has been approved successfully!${assignedDriverId ? ` Driver ${MOCK_USERS[assignedDriverId]?.name || assignedDriverId} has been assigned.` : ''}`);
+                    // Verify the update was successful
+                    const updatedBooking = getBookingById(bookingId);
+                    console.log('✅ Booking updated, new status:', updatedBooking?.status);
+                    
+                    const driverName = assignedDriverId ? MOCK_USERS[assignedDriverId]?.name || assignedDriverId : '';
+                    const successMessage = assignedDriverId 
+                        ? `${window.t('bookingApprovedSuccessfully')} ${window.t('driverLabel')} ${driverName} ${window.t('hasBeenAssigned')}.`
+                        : window.t('bookingApprovedSuccessfully');
+                    showSuccess(successMessage);
                     
                     // Refresh admin dashboard to remove from pending queue and update statistics
                     await populateAdminDashboard();
                     
-                    // Always refresh employee dashboard (real-time listeners will also handle this)
-                    if (booking && booking.requesterId) {
-                        await populateEmployeeDashboard(booking.requesterId);
-                    } else {
-                        // Fallback: refresh for default user
-                        await populateEmployeeDashboard('emp_high');
-                    }
+                    // Always refresh employee dashboard (regardless of whether it's open)
+                    // Use a small delay to ensure the update is processed
+                    setTimeout(async () => {
+                        if (booking && booking.requesterId) {
+                            console.log('🔄 Refreshing employee dashboard for:', booking.requesterId);
+                            await populateEmployeeDashboard(booking.requesterId);
+                        } else {
+                            // Fallback: refresh for default user
+                            console.log('🔄 Refreshing employee dashboard for default user');
+                            await populateEmployeeDashboard('emp_high');
+                        }
+                    }, 100);
                     
                     // Refresh driver dashboard if driver was assigned
                     if (assignedDriverId) {
@@ -5245,7 +5589,7 @@
                     closeRequestDetailView();
                 } catch (error) {
                     console.error('Error approving booking:', error);
-                    showError('Failed to approve booking. Please try again.');
+                    showError(window.t('failedToApproveBooking'));
                 }
             }
         }
@@ -6420,6 +6764,9 @@ The admin will assign a driver closer to the trip date.
                 // Also hide with display none after transition
                 setTimeout(() => {
                     modal.style.display = 'none';
+                    // Remove from DOM to prevent interaction blocking
+                    modal.style.pointerEvents = 'none';
+                    modal.style.opacity = '0';
                 }, 300);
             }
         }
@@ -6657,17 +7004,24 @@ The admin will assign a driver closer to the trip date.
                     const tripDate = document.getElementById('trip-date');
                     if (!tripDate.value) {
                         document.getElementById('trip-date-error').classList.remove('hidden');
-                        document.getElementById('trip-date-error').textContent = 'Date is required';
+                        document.getElementById('trip-date-error').textContent = window.t('dateRequired');
                         tripDate.classList.add('border-red-500');
                         isValid = false;
                     } else {
+                        // Check if date is unavailable (November 6th or bus unavailable period)
+                        if (tripDate.value === '2025-11-06' || tripDate.classList.contains('unavailable-date')) {
+                            document.getElementById('trip-date-error').classList.remove('hidden');
+                            document.getElementById('trip-date-error').textContent = window.t('dateUnavailable');
+                            tripDate.classList.add('border-red-500');
+                            isValid = false;
+                        }
                         // Check if date is in the past
                         const selectedDate = new Date(tripDate.value);
                         const today = new Date();
                         today.setHours(0, 0, 0, 0);
                         if (selectedDate < today) {
                             document.getElementById('trip-date-error').classList.remove('hidden');
-                            document.getElementById('trip-date-error').textContent = 'Cannot book for a past date';
+                            document.getElementById('trip-date-error').textContent = window.t('cannotBookPastDate');
                             tripDate.classList.add('border-red-500');
                             isValid = false;
                         }
@@ -6677,7 +7031,7 @@ The admin will assign a driver closer to the trip date.
                     const pickupTime = document.getElementById('pickup-time');
                     if (!pickupTime.value) {
                         document.getElementById('pickup-time-error').classList.remove('hidden');
-                        document.getElementById('pickup-time-error').textContent = 'Pickup time is required';
+                        document.getElementById('pickup-time-error').textContent = window.t('pickupTimeError');
                         pickupTime.classList.add('border-red-500');
                         isValid = false;
                     } else if (tripDate.value) {
@@ -6695,7 +7049,7 @@ The admin will assign a driver closer to the trip date.
                             
                             if (selectedDateTime < now) {
                                 document.getElementById('pickup-time-error').classList.remove('hidden');
-                                document.getElementById('pickup-time-error').textContent = 'Cannot book for a past time';
+                                document.getElementById('pickup-time-error').textContent = window.t('cannotBookPastTime');
                                 pickupTime.classList.add('border-red-500');
                                 isValid = false;
                             }
@@ -6829,11 +7183,29 @@ The admin will assign a driver closer to the trip date.
                         const passengersInput = document.getElementById('passengers');
                         const passengers = passengersInput ? parseInt(passengersInput.value, 10) : 0;
                         
-                        // Validate passengers is a valid number
-                        if (isNaN(passengers) || passengers <= 0) {
-                            showError('Invalid number of passengers. Please enter a valid number.');
-                            return;
+                    // Validate passengers is a valid number
+                    if (isNaN(passengers) || passengers <= 0) {
+                        showError(window.t('pleaseEnterValidPassengers'));
+                        return;
+                    }
+                    
+                    // Validate passengers doesn't exceed vehicle capacity
+                    const vehicleCapacities = {
+                        'bus': 50,
+                        'van': 15,
+                        'car': 5
+                    };
+                    const capacity = vehicleCapacities[vehicleType];
+                    if (capacity && passengers > capacity) {
+                        showError(`${window.t('cannotExceedCapacity')} ${capacity} ${window.t('passengers')}`);
+                        document.getElementById('passengers').classList.add('border-red-500');
+                        const errorMsg = document.getElementById('passengers-error');
+                        if (errorMsg) {
+                            errorMsg.textContent = `${window.t('cannotExceedCapacity')} ${capacity} ${window.t('passengers')}`;
+                            errorMsg.classList.remove('hidden');
                         }
+                        return;
+                    }
                         
                         const notesInput = document.getElementById('notes');
                         const notes = notesInput ? notesInput.value.trim() : '';
@@ -6870,9 +7242,12 @@ The admin will assign a driver closer to the trip date.
                         };
                         const mappedDriverOption = driverOptionMap[driverOption] || driverOption;
                         
-                        // Create start time string (ISO format)
-                        const startDateTime = new Date(`${tripDate}T${pickupTime}:00Z`);
-                        const startTimeISO = startDateTime.toISOString();
+                        // Create start time string (ISO format) - Use local timezone, not UTC
+                        // Parse date and time in local timezone, then convert to ISO
+                        const [hours, minutes] = pickupTime.split(':');
+                        const localDate = new Date(tripDate);
+                        localDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+                        const startTimeISO = localDate.toISOString();
                         
                         // Sanitize all text inputs before creating booking
                         const safeTripPurpose = sanitizeHTML(tripPurpose);
@@ -7230,8 +7605,11 @@ The admin will assign a driver closer to the trip date.
                     const checkBox = document.getElementById(checkId);
                     if (checkBox) {
                         checkBox.disabled = false;
+                        // Remove existing listener if any to prevent accumulation
+                        const newCheckBox = checkBox.cloneNode(true);
+                        checkBox.parentNode.replaceChild(newCheckBox, checkBox);
                         // Add event listener to check all checks when any individual check is toggled
-                        checkBox.addEventListener('change', checkAllSafetyChecks);
+                        newCheckBox.addEventListener('change', checkAllSafetyChecks);
                     }
                 });
                 
@@ -7578,21 +7956,33 @@ The admin will assign a driver closer to the trip date.
                     let isValid = true;
                     
                     // Validate Odometer
-                    if (!odometer || parseFloat(odometer) < 0) {
-                        document.getElementById('odometer-error').classList.remove('hidden');
+                    if (!odometer || isNaN(parseFloat(odometer)) || parseFloat(odometer) < 0) {
+                        const odometerError = document.getElementById('odometer-error');
+                        if (odometerError) {
+                            odometerError.textContent = window.t('odometerRequired') || 'Odometer reading is required and must be a valid number.';
+                            odometerError.classList.remove('hidden');
+                        }
                         document.getElementById('final-odometer').classList.add('border-red-500');
                         isValid = false;
                     }
                     
                     // Validate Fuel Level
                     if (!fuelLevel) {
-                        document.getElementById('fuel-level-error').classList.remove('hidden');
+                        const fuelLevelError = document.getElementById('fuel-level-error');
+                        if (fuelLevelError) {
+                            fuelLevelError.textContent = window.t('fuelLevelRequired') || 'Fuel level is required.';
+                            fuelLevelError.classList.remove('hidden');
+                        }
                         isValid = false;
                     }
                     
                     // Validate Vehicle Issues
-                    if (!vehicleIssues) {
-                        document.getElementById('vehicle-issues-error').classList.remove('hidden');
+                    if (!vehicleIssues || vehicleIssues.trim() === '') {
+                        const vehicleIssuesError = document.getElementById('vehicle-issues-error');
+                        if (vehicleIssuesError) {
+                            vehicleIssuesError.textContent = window.t('vehicleIssuesRequired') || 'Vehicle issues/comments are required.';
+                            vehicleIssuesError.classList.remove('hidden');
+                        }
                         document.getElementById('vehicle-issues').classList.add('border-red-500');
                         isValid = false;
                     }
@@ -7761,6 +8151,22 @@ The admin will assign a driver closer to the trip date.
             
             // Render each booking
             bookings.forEach((booking, index) => {
+                // Ensure booking has id property (for consistency with Bug #29)
+                if (!booking.id && booking.requesterId) {
+                    // Try to find id from MOCK_BOOKINGS if available
+                    const bookingEntry = Object.entries(MOCK_BOOKINGS).find(([id, b]) => 
+                        b.requesterId === booking.requesterId && 
+                        b.startTime === booking.startTime &&
+                        b.tripPurpose === booking.tripPurpose
+                    );
+                    if (bookingEntry) {
+                        booking.id = bookingEntry[0];
+                    } else {
+                        // Generate a temporary id if not found
+                        booking.id = `temp-${Date.now()}-${index}`;
+                    }
+                }
+                
                 console.log(`Rendering booking ${index + 1}/${bookings.length}:`, booking.id, booking.status, booking.tripPurpose);
                 const dt = formatDateTime(booking.startTime);
                 const requester = getUserById(booking.requesterId);
@@ -8062,10 +8468,103 @@ The admin will assign a driver closer to the trip date.
                     return new Date(a.startTime) - new Date(b.startTime);
                 });
                 
+                // Use event delegation on the queue container for better reliability
+                // Remove old listener if it exists
+                if (queue._adminQueueClickHandler) {
+                    queue.removeEventListener('click', queue._adminQueueClickHandler);
+                }
+                
+                // Create new handler
+                queue._adminQueueClickHandler = function(e) {
+                    const target = e.target;
+                    
+                    // Check if approve button was clicked (check button or any child element)
+                    const approveButton = target.closest('button.approve-btn, button[onclick*="quickApprove"]');
+                    if (approveButton) {
+                        // Check if the booking is still pending by checking the parent container
+                        const bookingContainer = approveButton.closest('[data-booking-status]');
+                        if (bookingContainer) {
+                            const bookingStatus = bookingContainer.getAttribute('data-booking-status');
+                            if (bookingStatus !== 'PENDING') {
+                                console.warn('⚠️ Cannot approve non-pending booking:', bookingStatus);
+                                showError('This booking is no longer pending and cannot be approved.');
+                                e.preventDefault();
+                                e.stopPropagation();
+                                return false;
+                            }
+                        }
+                        
+                        // Don't prevent default - let the onclick handler work
+                        // Only stop propagation to prevent bubbling
+                        e.stopPropagation();
+                        
+                        // Get bookingId from onclick attribute or data attribute
+                        let bookingId = approveButton.getAttribute('data-booking-id');
+                        if (!bookingId) {
+                            const onclickAttr = approveButton.getAttribute('onclick');
+                            if (onclickAttr) {
+                                const match = onclickAttr.match(/quickApprove\('([^']+)'\)/);
+                                if (match && match[1]) {
+                                    bookingId = match[1];
+                                }
+                            }
+                        }
+                        
+                        console.log('✅ Approve button clicked in queue (delegation), bookingId:', bookingId);
+                        console.log('Function check:', typeof window.quickApprove);
+                        
+                        // Call the function directly as backup (onclick should also work)
+                        if (bookingId && typeof window.quickApprove === 'function') {
+                            window.quickApprove(bookingId);
+                        } else {
+                            console.error('❌ Missing bookingId or quickApprove function');
+                            console.error('bookingId:', bookingId);
+                            console.error('window.quickApprove type:', typeof window.quickApprove);
+                            alert('Error: Cannot approve booking. bookingId: ' + bookingId + ', function exists: ' + (typeof window.quickApprove === 'function'));
+                        }
+                        // Don't return false - let onclick handler also run if it wants
+                    }
+                    
+                    // Check if deny button was clicked
+                    const denyButton = target.closest('button[onclick*="quickDenyAvailability"]');
+                    if (denyButton) {
+                        // Check if the booking is still pending
+                        const bookingContainer = denyButton.closest('[data-booking-status]');
+                        if (bookingContainer) {
+                            const bookingStatus = bookingContainer.getAttribute('data-booking-status');
+                            if (bookingStatus !== 'PENDING') {
+                                console.warn('⚠️ Cannot deny non-pending booking:', bookingStatus);
+                                showError('This booking is no longer pending and cannot be denied.');
+                                e.preventDefault();
+                                e.stopPropagation();
+                                return false;
+                            }
+                        }
+                        
+                        e.stopPropagation();
+                        const onclickAttr = denyButton.getAttribute('onclick');
+                        if (onclickAttr) {
+                            const match = onclickAttr.match(/quickDenyAvailability\('([^']+)'\)/);
+                            if (match && match[1]) {
+                                quickDenyAvailability(match[1]);
+                            }
+                        }
+                    }
+                };
+                
+                // Add the event listener (use capture phase so it runs before onclick)
+                queue.addEventListener('click', queue._adminQueueClickHandler, true);
+                
                 pendingBookings.forEach(booking => {
                     // Add null checks for required properties
                     if (!booking || !booking.startTime || !booking.requesterId) {
                         console.warn('Skipping booking with missing required properties:', booking);
+                        return;
+                    }
+                    
+                    // Double-check: Only show buttons for PENDING bookings
+                    if (booking.status !== 'PENDING') {
+                        console.warn('Skipping non-pending booking in pending queue:', booking.id, booking.status);
                         return;
                     }
                     
@@ -8092,7 +8591,7 @@ The admin will assign a driver closer to the trip date.
                     const safeBookingId = sanitizeHTML(booking.id || 'unknown');
                     
                     const bookingHTML = `
-                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 ${borderColor}" data-urgency="${isUrgent ? 'urgent' : 'normal'}" data-violations="${violations}" data-date="${sanitizeHTML(booking.startTime)}">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 ${borderColor}" data-urgency="${isUrgent ? 'urgent' : 'normal'}" data-violations="${violations}" data-date="${sanitizeHTML(booking.startTime)}" data-booking-status="${booking.status}">
                             <div class="flex justify-between items-start mb-4">
                                 <div class="flex-1">
                                     <div class="flex items-center gap-3 mb-2">
@@ -8106,9 +8605,11 @@ The admin will assign a driver closer to the trip date.
                                 </div>
                             </div>
                             <div class="flex flex-wrap gap-2">
-                                <button onclick="quickApprove('${safeBookingId}')" class="px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm">✓ ${window.t('approve')}</button>
-                                <button onclick="quickDenyAvailability('${safeBookingId}')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm">${window.t('quickDeny')}</button>
-                                <button onclick="openRequestDetailView('${safeBookingId}')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm">${window.t('viewDetails')}</button>
+                                ${booking.status === 'PENDING' ? `
+                                    <button type="button" onclick="if(typeof window.quickApprove === 'function') { window.quickApprove('${safeBookingId}'); } else { alert('quickApprove function not found!'); }" data-booking-id="${safeBookingId}" class="approve-btn px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm cursor-pointer">✓ ${window.t('approve')}</button>
+                                    <button onclick="quickDenyAvailability('${safeBookingId}')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm cursor-pointer">${window.t('quickDeny')}</button>
+                                ` : ''}
+                                <button onclick="openRequestDetailView('${safeBookingId}')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm cursor-pointer">${window.t('viewDetails')}</button>
                             </div>
                         </div>
                     `;
@@ -8232,6 +8733,9 @@ The admin will assign a driver closer to the trip date.
                 
                 // Set up hashchange listener for navigation
                 window.addEventListener('hashchange', () => {
+                    // Stop existing listeners before starting new ones
+                    stopDataListeners();
+                    
                     app.handleRoute();
                     // Re-populate dashboards when navigating
                     setTimeout(async () => {

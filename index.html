@@ -766,54 +766,71 @@
                 </div>
             </div>
             
-            <!-- Quick Stats for Admin Dashboard -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-yellow-500">
-                    <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsPending">Pending</p>
-                    <p class="text-2xl font-bold text-yellow-600" id="admin-stats-pending">0</p>
+            <!-- Primary Actions - High Priority Placement -->
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4" data-translate="primaryActions">Primary Actions</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button id="admin-approvals-btn" onclick="window.location.hash = 'booking-approvals'; return false;" class="bg-isd-gold text-isd-black py-4 px-6 rounded-xl font-bold text-lg hover:bg-yellow-400 shadow-lg transform transition-all duration-200 hover:scale-105" data-translate="viewRequests">
+                        <div class="flex items-center justify-center gap-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span data-translate="viewRequests">View Requests</span>
+                        </div>
+                    </button>
+                    <button id="admin-fleet-btn" onclick="window.location.hash = 'fleet-management'; return false;" class="bg-isd-gold text-isd-black py-4 px-6 rounded-xl font-bold text-lg hover:bg-yellow-400 shadow-lg transform transition-all duration-200 hover:scale-105" data-translate="manageFleet">
+                        <div class="flex items-center justify-center gap-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            <span data-translate="manageFleet">Manage Fleet</span>
+                        </div>
+                    </button>
+                    <button id="admin-users-btn" onclick="window.location.hash = 'user-management'; return false;" class="bg-isd-gold text-isd-black py-4 px-6 rounded-xl font-bold text-lg hover:bg-yellow-400 shadow-lg transform transition-all duration-200 hover:scale-105" data-translate="manageUsers">
+                        <div class="flex items-center justify-center gap-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                            <span data-translate="manageUsers">Manage Users</span>
+                        </div>
+                    </button>
                 </div>
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-green-500">
-                    <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsApproved">Approved</p>
-                    <p class="text-2xl font-bold text-green-600" id="admin-stats-approved">0</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-blue-500">
-                    <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsActive">Active</p>
-                    <p class="text-2xl font-bold text-blue-600" id="admin-stats-active">0</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-red-500">
-                    <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsDenied">Denied</p>
-                    <p class="text-2xl font-bold text-red-600" id="admin-stats-denied">0</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-gray-500">
-                    <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsCompleted">Completed</p>
-                    <p class="text-2xl font-bold text-gray-600" id="admin-stats-completed">0</p>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-orange-500">
-                    <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsCancelled">Cancelled</p>
-                    <p class="text-2xl font-bold text-orange-600" id="admin-stats-cancelled">0</p>
+            </div>
+            
+            <!-- Quick Stats for Admin Dashboard - Secondary Information -->
+            <div class="mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4" data-translate="bookingStatistics">Booking Statistics</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                    <div class="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
+                        <p class="text-xs text-gray-600 mb-1 stats-label" data-translate="statsPending">Pending</p>
+                        <p class="text-xl font-bold text-yellow-600" id="admin-stats-pending">0</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
+                        <p class="text-xs text-gray-600 mb-1 stats-label" data-translate="statsApproved">Approved</p>
+                        <p class="text-xl font-bold text-green-600" id="admin-stats-approved">0</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow border-l-4 border-blue-500">
+                        <p class="text-xs text-gray-600 mb-1 stats-label" data-translate="statsActive">Active</p>
+                        <p class="text-xl font-bold text-blue-600" id="admin-stats-active">0</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow border-l-4 border-red-500">
+                        <p class="text-xs text-gray-600 mb-1 stats-label" data-translate="statsDenied">Denied</p>
+                        <p class="text-xl font-bold text-red-600" id="admin-stats-denied">0</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow border-l-4 border-gray-500">
+                        <p class="text-xs text-gray-600 mb-1 stats-label" data-translate="statsCompleted">Completed</p>
+                        <p class="text-xl font-bold text-gray-600" id="admin-stats-completed">0</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow border-l-4 border-orange-500">
+                        <p class="text-xs text-gray-600 mb-1 stats-label" data-translate="statsCancelled">Cancelled</p>
+                        <p class="text-xl font-bold text-orange-600" id="admin-stats-cancelled">0</p>
+                    </div>
                 </div>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
-                <!-- Main Actions -->
+                <!-- Main Content Area -->
                 <div class="lg:col-span-3 space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-fleet-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="fleetManagement">Fleet Management</h3>
-                            <p id="admin-fleet-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminFleetDesc">View and manage vehicle fleet</p>
-                    <button id="admin-fleet-btn" onclick="window.location.hash = 'fleet-management'; return false;" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="manageFleet">Manage Fleet</button>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-approvals-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="bookingApprovals">Booking Approvals</h3>
-                            <p id="admin-approvals-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminApprovalsDesc">Review and approve booking requests</p>
-                    <button id="admin-approvals-btn" onclick="window.location.hash = 'booking-approvals'; return false;" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="viewRequests">View Requests</button>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 id="admin-users-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="userManagement">User Management</h3>
-                            <p id="admin-users-desc" class="text-gray-600 mb-4 text-sm" data-translate="adminUsersDesc">Manage employees and drivers</p>
-                    <button id="admin-users-btn" onclick="window.location.hash = 'user-management'; return false;" class="w-full bg-isd-gold text-isd-black py-2 px-4 rounded-lg font-semibold hover:bg-yellow-400" data-translate="manageUsers">Manage Users</button>
-                </div>
-            </div>
                     
         </div>
 
@@ -1004,7 +1021,7 @@
                                 </td>
                                 <td class="p-3">SB-001</td>
                                 <td class="p-3" data-translate="schoolBus">School Bus</td>
-                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3">50 <span data-translate="seats">seats</span></td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
@@ -1019,7 +1036,7 @@
                                 </td>
                                 <td class="p-3">SB-002</td>
                                 <td class="p-3" data-translate="schoolBus">School Bus</td>
-                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3">50 <span data-translate="seats">seats</span></td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
@@ -1272,7 +1289,7 @@
                                 </td>
                                 <td class="p-3">SD-001</td>
                                 <td class="p-3">Sedan</td>
-                                <td class="p-3"><span data-translate="seats">seats</span></td>
+                                <td class="p-3">5 <span data-translate="seats">seats</span></td>
                                 <td class="p-3"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold" data-translate="statusAvailable">Available</span></td>
                                 <td class="p-3">
                                     <button onclick="openEditVehicleModalFromRow(this)" class="text-isd-gold hover:underline mr-2" data-translate="edit">Edit</button>
@@ -1509,6 +1526,7 @@
                             <option value="cancelled" data-translate="cancelledRequests">Cancelled</option>
                             <option value="urgent" data-translate="urgent48h">Urgent (48h)</option>
                             <option value="violations" data-translate="policyViolations">Policy Violations</option>
+                            <option value="capacity-exceeded" data-translate="capacityExceeded">Capacity Exceeded</option>
                             <option value="short-notice" data-translate="shortNotice">Short Notice</option>
                             <option value="max-duration" data-translate="exceedsMaxDuration">Exceeds Max Duration</option>
                         </select>
@@ -1682,90 +1700,48 @@
                         </div>
                     </div>
                     
-                    <!-- Start Date -->
+                    <!-- Start Date & Time -->
                     <div class="border-b border-gray-200 pb-4">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="startDate">Start Date <span class="text-red-600">*</span></label>
-                            <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
-                            <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error" data-translate="dateError">Date is required</p>
-                            <!-- Date Availability Message (appears next to date input) -->
-                            <div id="date-availability-message" class="hidden mt-2"></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="startDate">Start Date <span class="text-red-600">*</span></label>
+                                <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
+                                <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error" data-translate="dateError">Date is required</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="startTime">Start Time <span class="text-red-600">*</span></label>
+                                <input type="time" id="pickup-time" name="pickup-time" required step="900" min="06:00" max="20:00" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Select start time">
+                                <p class="text-xs text-gray-500 mt-1" data-translate="timePickerHint">Select time in 15-minute intervals (6:00 AM - 8:00 PM)</p>
+                                <p class="text-red-600 text-sm mt-1 hidden" id="pickup-time-error" data-translate="pickupTimeError">Start time is required</p>
+                            </div>
+                        </div>
+                        <!-- Date Availability Message (appears below date/time inputs) -->
+                        <div id="date-availability-message" class="hidden mt-2"></div>
+                    </div>
+                    
+                    <!-- End Date & Time -->
+                    <div class="border-b border-gray-200 pb-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="endDate">End Date <span class="text-red-600">*</span></label>
+                                <input type="date" id="end-date" name="end-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
+                                <p class="text-red-600 text-sm mt-1 hidden" id="end-date-error" data-translate="endDateError">End date is required</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="endTime">End Time <span class="text-red-600">*</span></label>
+                                <input type="time" id="end-time" name="end-time" required step="900" min="06:00" max="20:00" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Select end time">
+                                <p class="text-xs text-gray-500 mt-1" data-translate="timePickerHint">Select time in 15-minute intervals (6:00 AM - 8:00 PM)</p>
+                                <p class="text-red-600 text-sm mt-1 hidden" id="end-time-error" data-translate="endTimeError">End time is required</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Duration -->
+                    <!-- Availability Preview -->
                     <div class="border-b border-gray-200 pb-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="duration">Duration <span class="text-red-600">*</span></label>
-                        <select id="trip-duration" name="trip-duration" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                            <option value="" data-translate="durationSelect">Select duration</option>
-                                <optgroup label="Hours" data-translate="durationHours">
-                            <option value="1" data-translate="duration1Hour">1 hour</option>
-                            <option value="2" data-translate="duration2Hours">2 hours</option>
-                            <option value="3" data-translate="duration3Hours">3 hours</option>
-                            <option value="4" data-translate="duration4Hours">4 hours</option>
-                            <option value="5" data-translate="duration5Hours">5 hours</option>
-                            <option value="6" data-translate="duration6Hours">6 hours</option>
-                                    <option value="8" data-translate="duration8Hours">8 hours</option>
-                                    <option value="10" data-translate="duration10Hours">10 hours</option>
-                                    <option value="12" data-translate="duration12Hours">12 hours</option>
-                                </optgroup>
-                                <optgroup label="Days" data-translate="durationDays">
-                                    <option value="24" data-translate="duration1Day">1 day</option>
-                                    <option value="48" data-translate="duration2Days">2 days</option>
-                                    <option value="72" data-translate="duration3Days">3 days</option>
-                                    <option value="96" data-translate="duration4Days">4 days</option>
-                                    <option value="120" data-translate="duration5Days">5 days</option>
-                                    <option value="144" data-translate="duration6Days">6 days</option>
-                                    <option value="168" data-translate="duration7Days1Week">7 days (1 week)</option>
-                                </optgroup>
-                        </select>
-                        <p class="text-red-600 text-sm mt-1 hidden" id="trip-duration-error" data-translate="durationError">Duration is required</p>
-                    </div>
-                    </div>
-                    
-                    <!-- Pickup Time (Scroll List with AM/PM) -->
-                    <div class="border-b border-gray-200 pb-4">
-                    <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="pickupTime">Pickup Time <span class="text-red-600">*</span></label>
-                            <select id="pickup-time" name="pickup-time" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
-                                <option value="" data-translate="pickupTimeSelect">Select pickup time</option>
-                                <optgroup label="AM" data-translate="pickupTimeAM">
-                                    <option value="06:00">6:00 AM</option>
-                                    <option value="06:30">6:30 AM</option>
-                                    <option value="07:00">7:00 AM</option>
-                                    <option value="07:30">7:30 AM</option>
-                                    <option value="08:00">8:00 AM</option>
-                                    <option value="08:30">8:30 AM</option>
-                                    <option value="09:00">9:00 AM</option>
-                                    <option value="09:30">9:30 AM</option>
-                                    <option value="10:00">10:00 AM</option>
-                                    <option value="10:30">10:30 AM</option>
-                                    <option value="11:00">11:00 AM</option>
-                                    <option value="11:30">11:30 AM</option>
-                                </optgroup>
-                                <optgroup label="PM" data-translate="pickupTimePM">
-                                    <option value="12:00">12:00 PM</option>
-                                    <option value="12:30">12:30 PM</option>
-                                    <option value="13:00">1:00 PM</option>
-                                    <option value="13:30">1:30 PM</option>
-                                    <option value="14:00">2:00 PM</option>
-                                    <option value="14:30">2:30 PM</option>
-                                    <option value="15:00">3:00 PM</option>
-                                    <option value="15:30">3:30 PM</option>
-                                    <option value="16:00">4:00 PM</option>
-                                    <option value="16:30">4:30 PM</option>
-                                    <option value="17:00">5:00 PM</option>
-                                    <option value="17:30">5:30 PM</option>
-                                    <option value="18:00">6:00 PM</option>
-                                    <option value="18:30">6:30 PM</option>
-                                    <option value="19:00">7:00 PM</option>
-                                    <option value="19:30">7:30 PM</option>
-                                    <option value="20:00">8:00 PM</option>
-                                </optgroup>
-                            </select>
-                            <p class="text-red-600 text-sm mt-1 hidden" id="pickup-time-error" data-translate="pickupTimeError">Pickup time is required</p>
-                    </div>
+                        <div id="availability-preview" class="hidden p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                            <h4 class="text-sm font-semibold text-blue-800 mb-2" data-translate="availabilityPreview">Availability Preview</h4>
+                            <div id="availability-preview-content" class="text-sm text-blue-700"></div>
+                        </div>
                     </div>
                     
                     <!-- Driver Option (Default: School Driver) -->
@@ -1954,7 +1930,7 @@
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-4 border-t-4 border-isd-gold w-full">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800" data-translate="myActiveTrip">My Active Trip</h2>
-                    <button onclick="window.location.hash = 'guest/driver'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm" data-translate="dashboard">← Dashboard</button>
+                    <button onclick="window.location.hash = 'guest/driver'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm" data-translate="backToDashboard">← Back to Dashboard</button>
                 </div>
             </div>
             
@@ -2073,7 +2049,7 @@
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-4 border-t-4 border-isd-gold w-full">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-xl sm:text-2xl font-bold text-gray-800" data-translate="tripFinalization">Trip Finalization</h2>
-                    <button onclick="window.location.hash = 'assigned-trips'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm" data-translate="cancel">← Back</button>
+                    <button onclick="window.location.hash = 'guest/driver'" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-semibold text-sm" data-translate="backToDashboard">← Back to Dashboard</button>
                 </div>
                 <p class="text-gray-600 text-sm" data-translate="completeTripSubmitFinalLog">Complete trip and submit final log</p>
             </div>
@@ -2356,6 +2332,9 @@
                     adminUsersBtn: 'Manage Users',
                     manageUsers: 'Manage Users',
                     backToDashboard: '← Back to Dashboard',
+                    primaryActions: 'Primary Actions',
+                    bookingStatistics: 'Booking Statistics',
+                    decisionManagementHub: 'Centre de Décision et de Gestion',
                     
                     // Employee Dashboard
                     employeeDashboardTitle: 'Guest Employee Dashboard',
@@ -2396,6 +2375,14 @@
                     vehicleTypeCar: 'Sedan / Car (5 seats)',
                     vehicleTypeError: 'Please select a vehicle type',
                     startDate: 'Start Date',
+                    startTime: 'Start Time',
+                    endDate: 'End Date',
+                    endTime: 'End Time',
+                    endDateError: 'End date is required',
+                    endTimeError: 'End time is required',
+                    endTimeSelect: 'Select end time',
+                    timePickerHint: 'Select time in 15-minute intervals (6:00 AM - 8:00 PM)',
+                    availabilityPreview: 'Availability Preview',
                     dateError: 'Date is required',
                     duration: 'Duration',
                     durationSelect: 'Select duration',
@@ -2498,6 +2485,8 @@
                     urgent48h: 'Urgent (48h)',
                     policyViolations: 'Policy Violations',
                     exceedsMaxDuration: 'Exceeds Max Duration',
+                    capacityExceeded: '🚫 Capacity Exceeded',
+                    capacityViolation: 'Capacity Violation',
                     pendingRequests: 'pending requests',
                     
                     // Stats
@@ -2767,10 +2756,12 @@
                     failedToApproveBooking: 'Failed to approve booking. Please try again.',
                     bookingNotPending: 'This booking is no longer pending and cannot be approved.',
                     denialTemplateAvailability: 'We regret to inform you that the requested vehicle type is not available for the selected date and time. Please consider alternative dates or vehicle types.',
+                    denialTemplateCapacityExceeded: 'This request exceeds the maximum passenger capacity for the selected vehicle type. The number of passengers requested exceeds the vehicle\'s capacity. Please select a larger vehicle or reduce the number of passengers.',
                     denialTemplateShortNotice: 'This request requires a minimum of 2 weeks advance notice. Unfortunately, your request does not meet this requirement. Please resubmit with an earlier date.',
                     denialTemplateMissingDocs: 'Your booking request is missing required documentation. Please submit all necessary forms before resubmitting your request.',
                     denialTemplateMaxDuration: 'This request exceeds the maximum allowed booking duration. Please adjust the duration or contact the admin for special arrangements.',
                     denialTitleAvailability: 'Vehicle Unavailable',
+                    denialTitleCapacityExceeded: 'Capacity Exceeded',
                     denialTitleShortNotice: 'Insufficient Lead Time',
                     denialTitleMissingDocs: 'Missing Documentation',
                     denialTitleMaxDuration: 'Exceeds Maximum Duration',
@@ -2970,6 +2961,13 @@
                     employeeMyBookingsBtn: 'Voir les Réservations',
                     newRequest: '+ Nouvelle Demande',
                     
+                    // Admin Dashboard (French)
+                    adminDashboardTitle: 'Tableau de bord Admin Invité',
+                    adminDashboardDesc: 'Bienvenue sur le tableau de bord Administrateur. Vous êtes connecté en tant qu\'administrateur invité.',
+                    decisionManagementHub: 'Centre de Décision et de Gestion',
+                    primaryActions: 'Actions Principales',
+                    bookingStatistics: 'Statistiques de Réservation',
+                    
                     // Driver Dashboard
                     driverDashboardTitle: 'Interface Chauffeur Invité',
                     guestDriverInterface: 'Interface Chauffeur Invité',
@@ -2998,6 +2996,14 @@
                     vehicleTypeCar: 'Berline / Voiture (5 places)',
                     vehicleTypeError: 'Veuillez sélectionner un type de véhicule',
                     startDate: 'Date de Début',
+                    startTime: 'Heure de Début',
+                    endDate: 'Date de Fin',
+                    endTime: 'Heure de Fin',
+                    endDateError: 'La date de fin est requise',
+                    endTimeError: 'L\'heure de fin est requise',
+                    endTimeSelect: 'Sélectionner l\'heure de fin',
+                    timePickerHint: 'Sélectionner l\'heure par intervalles de 15 minutes (6h00 - 20h00)',
+                    availabilityPreview: 'Aperçu de Disponibilité',
                     dateError: 'La date est requise',
                     duration: 'Durée',
                     durationSelect: 'Sélectionner la durée',
@@ -3253,6 +3259,8 @@
                     policyViolations: 'Violations de Politique',
                     statsCancelled: 'Annulées',
                     exceedsMaxDuration: 'Dépasse la Durée Maximale',
+                    capacityExceeded: '🚫 Capacité Dépassée',
+                    capacityViolation: 'Violation de Capacité',
                     pendingRequests: 'demandes en attente',
                     
                     // Booking Details View
@@ -3318,10 +3326,12 @@
                     failedToApproveBooking: 'Échec de l\'approbation de la réservation. Veuillez réessayer.',
                     bookingNotPending: 'Cette réservation n\'est plus en attente et ne peut pas être approuvée.',
                     denialTemplateAvailability: 'Nous regrettons de vous informer que le type de véhicule demandé n\'est pas disponible pour la date et l\'heure sélectionnées. Veuillez envisager d\'autres dates ou types de véhicules.',
+                    denialTemplateCapacityExceeded: 'Cette demande dépasse la capacité maximale de passagers pour le type de véhicule sélectionné. Le nombre de passagers demandé dépasse la capacité du véhicule. Veuillez sélectionner un véhicule plus grand ou réduire le nombre de passagers.',
                     denialTemplateShortNotice: 'Cette demande nécessite un préavis minimum de 2 semaines. Malheureusement, votre demande ne répond pas à cette exigence. Veuillez soumettre à nouveau avec une date antérieure.',
                     denialTemplateMissingDocs: 'Votre demande de réservation manque de documentation requise. Veuillez soumettre tous les formulaires nécessaires avant de soumettre à nouveau votre demande.',
                     denialTemplateMaxDuration: 'Cette demande dépasse la durée maximale autorisée de réservation. Veuillez ajuster la durée ou contacter l\'administrateur pour des arrangements spéciaux.',
                     denialTitleAvailability: 'Véhicule Indisponible',
+                    denialTitleCapacityExceeded: 'Capacité Dépassée',
                     denialTitleShortNotice: 'Délai Insuffisant',
                     denialTitleMissingDocs: 'Documentation Manquante',
                     denialTitleMaxDuration: 'Dépasse la Durée Maximale',
@@ -4905,6 +4915,8 @@
                     show = item.dataset.urgency === 'urgent';
                 } else if (filterValue === 'violations') {
                     show = item.dataset.violations !== 'none';
+                } else if (filterValue === 'capacity-exceeded') {
+                    show = item.dataset.violations === 'capacity-exceeded';
                 } else if (filterValue === 'short-notice') {
                     show = item.dataset.violations === 'short-notice';
                 } else if (filterValue === 'max-duration') {
@@ -4949,15 +4961,68 @@
                         return;
                     }
                     
+                    // Check vehicle maintenance status before assigning driver
+                    const vehicleType = booking.vehicleType || '';
+                    const vehiclesOfType = Object.values(MOCK_VEHICLES).filter(v => v.type === vehicleType);
+                    const availableVehicles = vehiclesOfType.filter(v => {
+                        // Check if vehicle is available and not in maintenance
+                        if (v.status === 'In Maintenance') return false;
+                        
+                        // Check if maintenance is due soon (within 7 days)
+                        if (v.maintenanceDue) {
+                            const maintenanceDate = new Date(v.maintenanceDue);
+                            const today = new Date();
+                            const daysUntilMaintenance = (maintenanceDate - today) / (1000 * 60 * 60 * 24);
+                            if (daysUntilMaintenance <= 7 && daysUntilMaintenance >= 0) {
+                                return false; // Maintenance due soon, don't assign
+                            }
+                        }
+                        
+                        return v.status === 'Available';
+                    });
+                    
+                    // Warn if no vehicles are available due to maintenance
+                    if (availableVehicles.length === 0 && vehiclesOfType.length > 0) {
+                        const maintenanceVehicles = vehiclesOfType.filter(v => v.status === 'In Maintenance');
+                        const maintenanceDueVehicles = vehiclesOfType.filter(v => {
+                            if (v.maintenanceDue) {
+                                const maintenanceDate = new Date(v.maintenanceDue);
+                                const today = new Date();
+                                const daysUntilMaintenance = (maintenanceDate - today) / (1000 * 60 * 60 * 24);
+                                return daysUntilMaintenance <= 7 && daysUntilMaintenance >= 0;
+                            }
+                            return false;
+                        });
+                        
+                        let warningMessage = `⚠️ Warning: All ${vehicleType} vehicles are unavailable due to maintenance. `;
+                        if (maintenanceVehicles.length > 0) {
+                            warningMessage += `${maintenanceVehicles.length} vehicle(s) in maintenance. `;
+                        }
+                        if (maintenanceDueVehicles.length > 0) {
+                            warningMessage += `${maintenanceDueVehicles.length} vehicle(s) with maintenance due soon. `;
+                        }
+                        warningMessage += 'Driver assignment may be delayed.';
+                        console.warn(warningMessage);
+                        // Show warning but allow approval to proceed (admin can override)
+                        showError(warningMessage);
+                    }
+                    
                     // Auto-assign driver if booking requires school driver
                     let assignedDriverId = booking.assignedDriverId;
                     if (!assignedDriverId && booking.driverOption === 'Request Driver') {
-                        // Auto-assign first available driver (in production, would use smart assignment logic)
-                        const availableDrivers = Object.keys(MOCK_USERS).filter(id => MOCK_USERS[id].role === 'Driver');
-                        if (availableDrivers.length > 0) {
-                            // Assign first driver (could be improved with availability checking)
-                            assignedDriverId = availableDrivers[0];
-                            console.log(`🚗 Auto-assigning driver ${assignedDriverId} to booking ${bookingId}`);
+                        // Only assign driver if vehicles are available (not in maintenance)
+                        if (availableVehicles.length > 0) {
+                            // Auto-assign first available driver (in production, would use smart assignment logic)
+                            const availableDrivers = Object.keys(MOCK_USERS).filter(id => MOCK_USERS[id].role === 'Driver');
+                            if (availableDrivers.length > 0) {
+                                // Assign first driver (could be improved with availability checking)
+                                assignedDriverId = availableDrivers[0];
+                                console.log(`🚗 Auto-assigning driver ${assignedDriverId} to booking ${bookingId}`);
+                            }
+                        } else {
+                            console.warn(`⚠️ Cannot assign driver: No available ${vehicleType} vehicles (all in maintenance or maintenance due soon)`);
+                            // Don't assign driver if no vehicles are available
+                            // Admin can still approve, but driver will need to be assigned manually later
                         }
                     }
                     
@@ -5082,6 +5147,23 @@
             const hoursUntilBooking = (new Date(booking.startTime) - CURRENT_DATE) / (1000 * 60 * 60);
             const daysUntilBooking = hoursUntilBooking / 24;
             
+            // Capacity Violation Check (CRITICAL - should auto-deny or flag as critical violation)
+            const vehicleCapacities = {
+                'Bus': 50,
+                'Minibus': 50,
+                'School Bus': 50,
+                'Van': 15,
+                'Passenger Van': 15,
+                'Car': 5,
+                'Sedan': 5,
+                'SUV': 7
+            };
+            const vehicleType = booking.vehicleType || '';
+            const maxCapacity = vehicleCapacities[vehicleType] || 0;
+            if (maxCapacity > 0 && booking.passengers > maxCapacity) {
+                violations.push('Capacity Exceeded');
+            }
+            
             // Short Notice Request (less than 48 hours)
             if (hoursUntilBooking < 48 && hoursUntilBooking >= 0) {
                 violations.push('Short Notice Request');
@@ -5168,6 +5250,12 @@
                                             textColor = 'text-yellow-900';
                                             borderColor = 'border-yellow-400';
                                             translatedText = window.t('shortNotice');
+                                        } else if (v.includes('Capacity Exceeded')) {
+                                            icon = '🚫';
+                                            bgColor = 'bg-red-100';
+                                            textColor = 'text-red-900';
+                                            borderColor = 'border-red-400';
+                                            translatedText = window.t('capacityExceeded');
                                         } else if (v.includes('Exceeds Max Duration')) {
                                             icon = '🚫';
                                             bgColor = 'bg-red-100';
@@ -5563,6 +5651,10 @@
                     title: window.t('denialTitleAvailability'),
                     message: window.t('denialTemplateAvailability')
                 },
+                'capacity-exceeded': {
+                    title: window.t('denialTitleCapacityExceeded'),
+                    message: window.t('denialTemplateCapacityExceeded')
+                },
                 'short-notice': {
                     title: window.t('denialTitleShortNotice'),
                     message: window.t('denialTemplateShortNotice')
@@ -5590,6 +5682,7 @@
                         <label class="block text-sm font-semibold text-gray-700 mb-2">${window.t('denialTemplate')}</label>
                         <select id="denial-template-select" onchange="updateDenialTemplate()" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
                             <option value="availability" ${templateType === 'availability' ? 'selected' : ''}>${window.t('vehicleUnavailable')}</option>
+                            <option value="capacity-exceeded" ${templateType === 'capacity-exceeded' ? 'selected' : ''}>${window.t('capacityExceeded')}</option>
                             <option value="short-notice" ${templateType === 'short-notice' ? 'selected' : ''}>${window.t('shortNotice')}</option>
                             <option value="missing-docs" ${templateType === 'missing-docs' ? 'selected' : ''}>${window.t('missingDocumentation')}</option>
                             <option value="max-duration" ${templateType === 'max-duration' ? 'selected' : ''}>${window.t('exceedsMaxDuration')}</option>
@@ -5634,6 +5727,7 @@
             
             const templates = {
                 'availability': window.t('denialTemplateAvailability'),
+                'capacity-exceeded': window.t('denialTemplateCapacityExceeded'),
                 'short-notice': window.t('denialTemplateShortNotice'),
                 'missing-docs': window.t('denialTemplateMissingDocs'),
                 'max-duration': window.t('denialTemplateMaxDuration'),
@@ -5712,14 +5806,68 @@
                     }
                     
                     // Auto-assign driver if booking requires school driver
+                    // Check vehicle maintenance status before assigning driver
+                    const vehicleType = booking.vehicleType || '';
+                    const vehiclesOfType = Object.values(MOCK_VEHICLES).filter(v => v.type === vehicleType);
+                    const availableVehicles = vehiclesOfType.filter(v => {
+                        // Check if vehicle is available and not in maintenance
+                        if (v.status === 'In Maintenance') return false;
+                        
+                        // Check if maintenance is due soon (within 7 days)
+                        if (v.maintenanceDue) {
+                            const maintenanceDate = new Date(v.maintenanceDue);
+                            const today = new Date();
+                            const daysUntilMaintenance = (maintenanceDate - today) / (1000 * 60 * 60 * 24);
+                            if (daysUntilMaintenance <= 7 && daysUntilMaintenance >= 0) {
+                                return false; // Maintenance due soon, don't assign
+                            }
+                        }
+                        
+                        return v.status === 'Available';
+                    });
+                    
+                    // Warn if no vehicles are available due to maintenance
+                    if (availableVehicles.length === 0 && vehiclesOfType.length > 0) {
+                        const maintenanceVehicles = vehiclesOfType.filter(v => v.status === 'In Maintenance');
+                        const maintenanceDueVehicles = vehiclesOfType.filter(v => {
+                            if (v.maintenanceDue) {
+                                const maintenanceDate = new Date(v.maintenanceDue);
+                                const today = new Date();
+                                const daysUntilMaintenance = (maintenanceDate - today) / (1000 * 60 * 60 * 24);
+                                return daysUntilMaintenance <= 7 && daysUntilMaintenance >= 0;
+                            }
+                            return false;
+                        });
+                        
+                        let warningMessage = `⚠️ Warning: All ${vehicleType} vehicles are unavailable due to maintenance. `;
+                        if (maintenanceVehicles.length > 0) {
+                            warningMessage += `${maintenanceVehicles.length} vehicle(s) in maintenance. `;
+                        }
+                        if (maintenanceDueVehicles.length > 0) {
+                            warningMessage += `${maintenanceDueVehicles.length} vehicle(s) with maintenance due soon. `;
+                        }
+                        warningMessage += 'Driver assignment may be delayed.';
+                        console.warn(warningMessage);
+                        // Show warning but allow approval to proceed (admin can override)
+                        showError(warningMessage);
+                    }
+                    
+                    // Auto-assign driver if booking requires school driver
                     let assignedDriverId = booking.assignedDriverId;
                     if (!assignedDriverId && booking.driverOption === 'Request Driver') {
-                        // Auto-assign first available driver (in production, would use smart assignment logic)
-                        const availableDrivers = Object.keys(MOCK_USERS).filter(id => MOCK_USERS[id].role === 'Driver');
-                        if (availableDrivers.length > 0) {
-                            // Assign first driver (could be improved with availability checking)
-                            assignedDriverId = availableDrivers[0];
-                            console.log(`🚗 Auto-assigning driver ${assignedDriverId} to booking ${bookingId}`);
+                        // Only assign driver if vehicles are available (not in maintenance)
+                        if (availableVehicles.length > 0) {
+                            // Auto-assign first available driver (in production, would use smart assignment logic)
+                            const availableDrivers = Object.keys(MOCK_USERS).filter(id => MOCK_USERS[id].role === 'Driver');
+                            if (availableDrivers.length > 0) {
+                                // Assign first driver (could be improved with availability checking)
+                                assignedDriverId = availableDrivers[0];
+                                console.log(`🚗 Auto-assigning driver ${assignedDriverId} to booking ${bookingId}`);
+                            }
+                        } else {
+                            console.warn(`⚠️ Cannot assign driver: No available ${vehicleType} vehicles (all in maintenance or maintenance due soon)`);
+                            // Don't assign driver if no vehicles are available
+                            // Admin can still approve, but driver will need to be assigned manually later
                         }
                     }
                     
@@ -7104,7 +7252,44 @@ The admin will assign a driver closer to the trip date.
                 });
             }
             
-            // Ensure duration and pickup time fields are enabled and visible
+            // Set minimum date for end date based on start date
+            const endDateInput = document.getElementById('end-date');
+            if (endDateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                endDateInput.setAttribute('min', today);
+                
+                // Update end date minimum when start date changes
+                if (tripDateInput) {
+                    tripDateInput.addEventListener('change', function() {
+                        if (this.value) {
+                            endDateInput.setAttribute('min', this.value);
+                        }
+                    });
+                }
+                
+                // Auto-check availability when end date/time changes
+                endDateInput.addEventListener('change', function() {
+                    updateAvailabilityPreview();
+                });
+            }
+            
+            // Auto-check availability when end time changes
+            const endTimeInput = document.getElementById('end-time');
+            if (endTimeInput) {
+                endTimeInput.addEventListener('change', function() {
+                    updateAvailabilityPreview();
+                });
+            }
+            
+            // Auto-check availability when start time changes
+            const pickupTimeInput = document.getElementById('pickup-time');
+            if (pickupTimeInput) {
+                pickupTimeInput.addEventListener('change', function() {
+                    updateAvailabilityPreview();
+                });
+            }
+            
+            // Ensure duration and pickup time fields are enabled and visible (legacy - may not be needed)
             ensureBookingFormFieldsEnabled();
             
             // Initialize school driver details to be visible by default
@@ -7212,7 +7397,8 @@ The admin will assign a driver closer to the trip date.
         // Function to ensure booking form fields are enabled and visible
         function ensureBookingFormFieldsEnabled() {
             const pickupTimeInput = document.getElementById('pickup-time');
-            const durationInput = document.getElementById('trip-duration');
+            const endDateInput = document.getElementById('end-date');
+            const endTimeInput = document.getElementById('end-time');
             
             if (pickupTimeInput) {
                 // Ensure field is enabled and visible
@@ -7224,14 +7410,73 @@ The admin will assign a driver closer to the trip date.
                 pickupTimeInput.style.pointerEvents = 'auto';
             }
             
-            if (durationInput) {
+            if (endDateInput) {
                 // Ensure field is enabled and visible
-                durationInput.removeAttribute('disabled');
-                durationInput.removeAttribute('readonly');
-                durationInput.style.display = '';
-                durationInput.style.visibility = 'visible';
-                durationInput.style.opacity = '1';
-                durationInput.style.pointerEvents = 'auto';
+                endDateInput.removeAttribute('disabled');
+                endDateInput.removeAttribute('readonly');
+                endDateInput.style.display = '';
+                endDateInput.style.visibility = 'visible';
+                endDateInput.style.opacity = '1';
+                endDateInput.style.pointerEvents = 'auto';
+            }
+            
+            if (endTimeInput) {
+                // Ensure field is enabled and visible
+                endTimeInput.removeAttribute('disabled');
+                endTimeInput.removeAttribute('readonly');
+                endTimeInput.style.display = '';
+                endTimeInput.style.visibility = 'visible';
+                endTimeInput.style.opacity = '1';
+                endTimeInput.style.pointerEvents = 'auto';
+            }
+        }
+        
+        // Update availability preview dynamically
+        function updateAvailabilityPreview() {
+            const tripDate = document.getElementById('trip-date')?.value;
+            const pickupTime = document.getElementById('pickup-time')?.value;
+            const endDate = document.getElementById('end-date')?.value;
+            const endTime = document.getElementById('end-time')?.value;
+            const vehicleType = document.getElementById('vehicle-type')?.value;
+            
+            const preview = document.getElementById('availability-preview');
+            const previewContent = document.getElementById('availability-preview-content');
+            
+            if (!preview || !previewContent) return;
+            
+            // Show preview only if we have all required fields
+            if (tripDate && pickupTime && endDate && endTime && vehicleType) {
+                // Calculate available vehicles
+                const vehicleCapacities = {
+                    'bus': { capacity: 50, count: 8, name: 'Bus' },
+                    'van': { capacity: 15, count: 10, name: 'Van' },
+                    'car': { capacity: 5, count: 14, name: 'Car' }
+                };
+                
+                // Check for conflicts with existing bookings
+                const [startHours, startMinutes] = pickupTime.split(':');
+                const startDateTime = new Date(tripDate);
+                startDateTime.setHours(parseInt(startHours), parseInt(startMinutes), 0, 0);
+                
+                const [endHours, endMinutes] = endTime.split(':');
+                const endDateTime = new Date(endDate);
+                endDateTime.setHours(parseInt(endHours), parseInt(endMinutes), 0, 0);
+                
+                // Count available vehicles (simplified - would check actual bookings)
+                const vehicleInfo = vehicleCapacities[vehicleType];
+                if (vehicleInfo) {
+                    // Simple availability check (can be enhanced with actual booking conflicts)
+                    const availableCount = vehicleInfo.count; // Simplified - would check actual bookings
+                    preview.classList.remove('hidden');
+                    previewContent.innerHTML = `
+                        <p class="font-semibold">${availableCount} ${vehicleInfo.name}${availableCount !== 1 ? 'es' : ''} Available</p>
+                        <p class="text-xs mt-1">Capacity: ${vehicleInfo.capacity} seats per vehicle</p>
+                    `;
+                } else {
+                    preview.classList.add('hidden');
+                }
+            } else {
+                preview.classList.add('hidden');
             }
         }
         
@@ -7479,14 +7724,37 @@ The admin will assign a driver closer to the trip date.
                         }
                         
                         const pickupTime = document.getElementById('pickup-time').value;
+                        const endDate = document.getElementById('end-date')?.value;
+                        const endTime = document.getElementById('end-time')?.value;
                         
-                        // Parse duration as integer - ensure it's a number, not a string
-                        const tripDurationValue = document.getElementById('trip-duration').value;
-                        const tripDuration = parseInt(tripDurationValue, 10); // Explicit radix 10 for base-10 parsing
+                        // Validate end date and time
+                        if (!endDate || !endTime) {
+                            showError(window.t('endDateError') || 'End date and time are required.');
+                            return;
+                        }
+                        
+                        // Calculate duration from start and end dates/times
+                        const [startHours, startMinutes] = pickupTime.split(':');
+                        const startDateTime = new Date(tripDate);
+                        startDateTime.setHours(parseInt(startHours), parseInt(startMinutes), 0, 0);
+                        
+                        const [endHours, endMinutes] = endTime.split(':');
+                        const endDateTime = new Date(endDate);
+                        endDateTime.setHours(parseInt(endHours), parseInt(endMinutes), 0, 0);
+                        
+                        // Validate end date/time is after start date/time
+                        if (endDateTime <= startDateTime) {
+                            showError('End date and time must be after start date and time.');
+                            return;
+                        }
+                        
+                        // Calculate duration in hours
+                        const durationMs = endDateTime - startDateTime;
+                        const tripDuration = Math.round(durationMs / (1000 * 60 * 60)); // Convert to hours
                         
                         // Validate duration is a valid number
                         if (isNaN(tripDuration) || tripDuration <= 0) {
-                            showError('Invalid duration. Please select a valid duration.');
+                            showError('Invalid duration. End time must be after start time.');
                             return;
                         }
                         
@@ -8905,6 +9173,45 @@ The admin will assign a driver closer to the trip date.
                     let violations = 'none';
                     let statusBadge = '';
                     
+                    // Check for violations (compliance flagging)
+                    const bookingViolations = [];
+                    const hoursUntilBooking = (new Date(booking.startTime) - CURRENT_DATE) / (1000 * 60 * 60);
+                    
+                    // Capacity Violation Check (CRITICAL)
+                    const vehicleCapacities = {
+                        'Bus': 50,
+                        'Minibus': 50,
+                        'School Bus': 50,
+                        'Van': 15,
+                        'Passenger Van': 15,
+                        'Car': 5,
+                        'Sedan': 5,
+                        'SUV': 7
+                    };
+                    const vehicleType = booking.vehicleType || '';
+                    const maxCapacity = vehicleCapacities[vehicleType] || 0;
+                    if (maxCapacity > 0 && booking.passengers > maxCapacity) {
+                        bookingViolations.push('capacity-exceeded');
+                    }
+                    
+                    // Short Notice Request (less than 48 hours)
+                    if (hoursUntilBooking < 48 && hoursUntilBooking >= 0) {
+                        bookingViolations.push('short-notice');
+                    }
+                    
+                    // Exceeds Max Duration (more than 7 days or 168 hours)
+                    if (booking.durationHours > 168) {
+                        bookingViolations.push('max-duration');
+                    }
+                    
+                    // Set violations data attribute
+                    if (bookingViolations.length > 0) {
+                        violations = bookingViolations[0]; // Use first violation for data attribute
+                        if (bookingViolations.includes('capacity-exceeded')) {
+                            violations = 'capacity-exceeded'; // Prioritize capacity violation
+                        }
+                    }
+                    
                     // Set status badge and border color based on booking status
                     if (booking.status === 'CANCELLED') {
                         statusBadge = `<span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold">${window.t('cancelled')}</span>`;
@@ -8916,6 +9223,11 @@ The admin will assign a driver closer to the trip date.
                     
                     if (isUrgent && booking.status === 'PENDING') {
                         urgencyBadge = '<span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">URGENT</span>';
+                        borderColor = 'border-red-500';
+                    }
+                    
+                    // Highlight capacity violations with red border
+                    if (violations === 'capacity-exceeded') {
                         borderColor = 'border-red-500';
                     }
                     

@@ -728,7 +728,7 @@
             </div>
             
             <!-- Quick Stats for Admin Dashboard -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
                 <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-yellow-500">
                     <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsPending">Pending</p>
                     <p class="text-2xl font-bold text-yellow-600" id="admin-stats-pending">0</p>
@@ -748,6 +748,10 @@
                 <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-gray-500">
                     <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsCompleted">Completed</p>
                     <p class="text-2xl font-bold text-gray-600" id="admin-stats-completed">0</p>
+                </div>
+                <div class="bg-white p-4 rounded-xl shadow-lg border-l-4 border-orange-500">
+                    <p class="text-sm text-gray-600 mb-1 stats-label" data-translate="statsCancelled">Cancelled</p>
+                    <p class="text-2xl font-bold text-orange-600" id="admin-stats-cancelled">0</p>
                 </div>
             </div>
             
@@ -1462,6 +1466,8 @@
                         <label class="text-sm font-semibold text-gray-700" data-translate="filter">Filter:</label>
                         <select id="queue-filter" onchange="filterQueue()" class="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-isd-gold">
                             <option value="all" data-translate="allRequests">All Requests</option>
+                            <option value="pending" data-translate="pendingRequests">Pending Only</option>
+                            <option value="cancelled" data-translate="cancelledRequests">Cancelled</option>
                             <option value="urgent" data-translate="urgent48h">Urgent (48h)</option>
                             <option value="violations" data-translate="policyViolations">Policy Violations</option>
                             <option value="short-notice" data-translate="shortNotice">Short Notice</option>
@@ -2412,10 +2418,11 @@
                     pending: 'Pending',
                     approved: 'Approved',
                     denied: 'Denied',
+                    cancelled: 'Cancelled',
+                    cancelledAt: 'Cancelled At',
                     active: 'Active',
                     activeTrip: 'Active Trip',
                     completed: 'Completed',
-                    cancelled: 'Cancelled',
                     scheduled: 'Scheduled',
                     
                     // Example Content
@@ -2648,6 +2655,7 @@
                     
                     // Booking Queue
                     pendingRequests: 'Pending Requests',
+                    cancelledRequests: 'Cancelled',
                     queueCount: 'Queue Count',
                     sortBy: 'Sort By',
                     sortUrgency: 'Urgency',
@@ -2655,6 +2663,7 @@
                     filterBy: 'Filter By',
                     filterAll: 'All',
                     filterViolations: 'Policy Violations',
+                    statsCancelled: 'Cancelled',
                     
                     // Vehicle Booking
                     selectVehicleType: 'Select a vehicle type',
@@ -3011,10 +3020,11 @@
                     pending: 'En Attente',
                     approved: 'Approuvé',
                     denied: 'Refusé',
+                    cancelled: 'Annulé',
+                    cancelledAt: 'Annulé le',
                     active: 'Actif',
                     activeTrip: 'Trajet Actif',
                     completed: 'Terminé',
-                    cancelled: 'Annulé',
                     scheduled: 'Programmé',
                     
                     // Example Content
@@ -3199,8 +3209,10 @@
                     dateNewestFirst: 'Date (Plus Récent en Premier)',
                     requesterName: 'Nom du Demandeur',
                     allRequests: 'Toutes les Demandes',
+                    cancelledRequests: 'Annulées',
                     urgent48h: 'Urgent (48h)',
                     policyViolations: 'Violations de Politique',
+                    statsCancelled: 'Annulées',
                     exceedsMaxDuration: 'Dépasse la Durée Maximale',
                     pendingRequests: 'demandes en attente',
                     
@@ -4749,6 +4761,13 @@
         
         function filterQueue() {
             const filterValue = document.getElementById('queue-filter')?.value;
+            
+            // If filter is cancelled or pending, refresh the dashboard to show the correct bookings
+            if (filterValue === 'cancelled' || filterValue === 'pending') {
+                populateAdminDashboard();
+                return;
+            }
+            
             const queue = document.getElementById('pending-queue');
             if (!queue) return;
             
@@ -4985,13 +5004,25 @@
                 <div class="max-w-6xl max-h-[90vh] overflow-y-auto">
                     <div class="sticky top-0 bg-white border-b border-gray-200 p-4 mb-4 z-10">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-2xl font-bold text-gray-800">${data.title}</h3>
+                            <div class="flex items-center gap-3">
+                                <h3 class="text-2xl font-bold text-gray-800">${data.title}</h3>
+                                ${booking.status === 'CANCELLED' ? `<span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-semibold">${window.t('cancelled')}</span>` : ''}
+                                ${booking.status === 'PENDING' ? `<span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold">${window.t('pending')}</span>` : ''}
+                                ${booking.status === 'APPROVED' ? `<span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">${window.t('approved')}</span>` : ''}
+                                ${booking.status === 'DENIED' ? `<span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold">${window.t('denied')}</span>` : ''}
+                                ${booking.status === 'COMPLETED' ? `<span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-semibold">${window.t('completed')}</span>` : ''}
+                            </div>
                             <button onclick="closeRequestDetailView()" class="text-gray-500 hover:text-gray-700">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </button>
                         </div>
+                        ${booking.status === 'CANCELLED' && booking.cancelledAt ? `
+                            <div class="mt-3 p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                                <p class="text-orange-800 text-sm"><strong>${window.t('cancelledAt')}:</strong> ${new Date(booking.cancelledAt).toLocaleString()}</p>
+                            </div>
+                        ` : ''}
                         ${data.violations.length > 0 ? `
                             <div class="mt-3 p-3 bg-red-50 border-2 border-red-400 rounded-lg">
                                 <h4 class="text-sm font-bold text-red-900 mb-2 flex items-center gap-2">
@@ -5209,6 +5240,12 @@
                             <div class="w-full p-4 bg-red-50 border-2 border-red-300 rounded-lg">
                                 <p class="text-red-800 font-semibold mb-2">${window.t('denied')}</p>
                                 ${booking.adminNotes ? `<p class="text-red-700 text-sm">${sanitizeHTML(booking.adminNotes)}</p>` : ''}
+                            </div>
+                        ` : booking.status === 'CANCELLED' ? `
+                            <div class="w-full p-4 bg-orange-50 border-2 border-orange-300 rounded-lg">
+                                <p class="text-orange-800 font-semibold mb-2">${window.t('cancelled')}</p>
+                                ${booking.cancelledAt ? `<p class="text-orange-700 text-sm mb-2">${window.t('cancelledAt')}: ${new Date(booking.cancelledAt).toLocaleString()}</p>` : ''}
+                                ${booking.adminNotes ? `<p class="text-orange-700 text-sm">${sanitizeHTML(booking.adminNotes)}</p>` : ''}
                             </div>
                         ` : booking.status === 'APPROVED' || booking.status === 'ACTIVE' ? `
                             <div class="w-full p-4 bg-green-50 border-2 border-green-300 rounded-lg">
@@ -5733,6 +5770,34 @@
         });
 
         // Check date availability and disable unavailable dates
+        // Helper function to select suggested date
+        function selectSuggestedDate(dateValue) {
+            const dateInput = document.getElementById('trip-date');
+            if (dateInput) {
+                dateInput.value = dateValue;
+                dateInput.classList.remove('unavailable-date');
+                dateInput.removeAttribute('disabled');
+                dateInput.removeAttribute('readonly');
+                
+                // Hide the date availability message
+                const dateAvailabilityMessage = document.getElementById('date-availability-message');
+                if (dateAvailabilityMessage) {
+                    dateAvailabilityMessage.classList.add('hidden');
+                }
+                
+                // Trigger change event to update form state
+                dateInput.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                // Check availability for the new date
+                if (typeof checkDateAvailability === 'function') {
+                    checkDateAvailability();
+                }
+                if (typeof autoCheckAvailability === 'function') {
+                    autoCheckAvailability();
+                }
+            }
+        }
+        
         function checkDateAvailability() {
             const tripDateInput = document.getElementById('trip-date');
             if (!tripDateInput) return;
@@ -5815,7 +5880,7 @@
                             <div class="flex-1">
                                 <p class="text-sm text-blue-800 font-semibold mb-1">${window.t('dateUnavailableSuggested')}</p>
                                 <p class="text-sm text-blue-700 font-medium mb-2"><strong>${suggestedDateFormatted}</strong></p>
-                                <button type="button" onclick="const dateInput = document.getElementById('trip-date'); dateInput.value='${suggestedDate}'; dateInput.classList.remove('unavailable-date'); dateInput.removeAttribute('disabled'); dateInput.removeAttribute('readonly'); document.getElementById('date-availability-message').classList.add('hidden'); autoCheckAvailability();" class="px-3 py-1.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 text-sm">${window.t('selectDate')} ${suggestedDateFormatted}</button>
+                                <button type="button" onclick="selectSuggestedDate('${suggestedDate}')" class="px-3 py-1.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 text-sm">${window.t('selectDate')} ${suggestedDateFormatted}</button>
                             </div>
                         </div>
                     `;
@@ -6010,7 +6075,7 @@
                                     <div class="flex-1">
                                         <p class="text-sm text-blue-800 font-semibold mb-1">${window.t('allVehiclesUnavailableDate')}</p>
                                         <p class="text-sm text-blue-700 font-medium mb-2"><strong>${suggestedDateFormatted}</strong></p>
-                                        <button type="button" onclick="const dateInput = document.getElementById('trip-date'); dateInput.value='${suggestedDate}'; dateInput.classList.remove('unavailable-date'); dateInput.removeAttribute('disabled'); dateInput.removeAttribute('readonly'); document.getElementById('date-availability-message').classList.add('hidden'); checkDateAvailability(); autoCheckAvailability();" class="px-3 py-1.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 text-sm">${window.t('selectDate')} ${suggestedDateFormatted}</button>
+                                        <button type="button" onclick="selectSuggestedDate('${suggestedDate}')" class="px-3 py-1.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 text-sm">${window.t('selectDate')} ${suggestedDateFormatted}</button>
                                     </div>
                                 </div>
                             `;
@@ -6517,6 +6582,79 @@
             }
         }
         
+        // Show cancellation confirmation modal
+        function showCancellationModal(bookingId, currentStatus, onConfirm) {
+            const modal = document.createElement('div');
+            modal.id = 'cancellation-confirmation-modal';
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 500px; max-height: 90vh; overflow-y: auto;">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <svg class="w-16 h-16 text-red-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Cancel Request</h3>
+                        <div class="text-left space-y-3 mb-6">
+                            <p class="text-gray-700"><strong>Booking ID:</strong> ${sanitizeHTML(bookingId)}</p>
+                            <p class="text-gray-700"><strong>Current Status:</strong> ${sanitizeHTML(currentStatus)}</p>
+                            <p class="text-gray-700 mt-4">Are you sure you want to cancel this booking request?</p>
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4">
+                                <p class="text-sm text-yellow-800 font-semibold mb-2">This action will:</p>
+                                <ul class="text-sm text-yellow-700 space-y-1 list-disc list-inside">
+                                    <li>Send an immediate notification to the Admin</li>
+                                    <li>If a driver is assigned, notify them to free up the vehicle</li>
+                                    <li>Cancel the booking permanently</li>
+                                </ul>
+                            </div>
+                            <p class="text-red-600 font-semibold mt-4">⚠️ This action cannot be undone.</p>
+                        </div>
+                        <div class="flex gap-3 justify-center">
+                            <button type="button" onclick="closeCancellationModal()" class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300">Cancel</button>
+                            <button type="button" onclick="confirmCancellation()" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">Confirm Cancellation</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Store callback and booking info
+            modal._cancellationCallback = onConfirm;
+            modal._bookingId = bookingId;
+            
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('open'), 10);
+            
+            // Close on overlay click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeCancellationModal();
+                }
+            });
+        }
+        
+        // Close cancellation modal
+        function closeCancellationModal() {
+            const modal = document.getElementById('cancellation-confirmation-modal');
+            if (modal) {
+                modal.classList.remove('open');
+                setTimeout(() => {
+                    if (modal.parentNode) {
+                        modal.remove();
+                    }
+                }, 300);
+            }
+        }
+        
+        // Confirm cancellation
+        function confirmCancellation() {
+            const modal = document.getElementById('cancellation-confirmation-modal');
+            if (modal && modal._cancellationCallback) {
+                closeCancellationModal();
+                modal._cancellationCallback();
+            }
+        }
+        
         // Post-Submission Management: Cancel Request (for Pending or Approved bookings)
         async function cancelBooking(bookingId, currentStatus) {
             // Check if booking is in Pending or Approved status
@@ -6525,9 +6663,8 @@
                 return;
             }
             
-            const confirmed = confirm(`Cancel Request: ${bookingId}\n\nCurrent Status: ${currentStatus}\n\nAre you sure you want to cancel this booking request?\n\nThis action will:\n- Send an immediate notification to the Admin\n- If a driver is assigned, notify them to free up the vehicle\n- Cancel the booking permanently\n\nThis action cannot be undone.`);
-            
-            if (confirmed) {
+            // Show custom cancellation confirmation modal
+            showCancellationModal(bookingId, currentStatus, async () => {
                 try {
                     // Update booking status to CANCELLED in Firebase
                     const updates = {
@@ -6551,19 +6688,13 @@
                     // Refresh all dashboards
                     await populateEmployeeDashboard(appState.currentUserId || 'emp_high');
                     
-                    // Refresh admin dashboard if open
-                    const adminDashboard = document.getElementById('view-admin-dashboard');
-                    if (adminDashboard && adminDashboard.classList.contains('active')) {
-                        await populateAdminDashboard();
-                    }
+                    // Always refresh admin dashboard (regardless of whether it's open)
+                    await populateAdminDashboard();
                     
-                    // Refresh driver dashboard if open and driver was assigned
+                    // Refresh driver dashboard if driver was assigned
                     const booking = getBookingById(bookingId);
                     if (booking && booking.assignedDriverId) {
-                        const driverDashboard = document.getElementById('view-assigned-trips');
-                        if (driverDashboard && driverDashboard.classList.contains('active')) {
-                            await populateDriverDashboard(booking.assignedDriverId);
-                        }
+                        await populateDriverDashboard(booking.assignedDriverId);
                     }
                     
                 } catch (error) {
@@ -6577,9 +6708,9 @@
                         errorMessage += '\n\nError: ' + error.message;
                     }
                     
-                    alert(errorMessage);
+                    showError(errorMessage);
                 }
-            }
+            });
         }
         
         // Post-Submission Management: View Driver Status (for Approved bookings with school driver)
@@ -8437,6 +8568,7 @@ The admin will assign a driver closer to the trip date.
                 const activeCount = allBookings.filter(b => b.status === 'ACTIVE').length;
                 const deniedCount = allBookings.filter(b => b.status === 'DENIED').length;
                 const completedCount = allBookings.filter(b => b.status === 'COMPLETED').length;
+                const cancelledCount = allBookings.filter(b => b.status === 'CANCELLED').length;
                 
                 // Update statistics cards (Admin Dashboard has separate IDs)
                 const adminStatsPending = document.getElementById('admin-stats-pending');
@@ -8444,12 +8576,14 @@ The admin will assign a driver closer to the trip date.
                 const adminStatsActive = document.getElementById('admin-stats-active');
                 const adminStatsDenied = document.getElementById('admin-stats-denied');
                 const adminStatsCompleted = document.getElementById('admin-stats-completed');
+                const adminStatsCancelled = document.getElementById('admin-stats-cancelled');
                 
                 if (adminStatsPending) adminStatsPending.textContent = pendingCount;
                 if (adminStatsApproved) adminStatsApproved.textContent = approvedCount;
                 if (adminStatsActive) adminStatsActive.textContent = activeCount;
                 if (adminStatsDenied) adminStatsDenied.textContent = deniedCount;
                 if (adminStatsCompleted) adminStatsCompleted.textContent = completedCount;
+                if (adminStatsCancelled) adminStatsCancelled.textContent = cancelledCount;
                 
                 // Also update Employee Dashboard stats if they exist (for consistency)
                 const statsPending = document.getElementById('stats-pending');
@@ -8483,12 +8617,32 @@ The admin will assign a driver closer to the trip date.
                     queue.innerHTML = '';
                 }
                 
-                // Sort pending bookings by urgency (most urgent first)
-                pendingBookings.sort((a, b) => {
+                // Check if filter is set to show cancelled bookings
+                const filterSelect = document.getElementById('queue-filter');
+                const currentFilter = filterSelect ? filterSelect.value : 'pending';
+                
+                // Determine which bookings to display based on filter
+                let bookingsToDisplay = [];
+                if (currentFilter === 'cancelled') {
+                    bookingsToDisplay = allBookings.filter(b => b.status === 'CANCELLED');
+                } else if (currentFilter === 'pending') {
+                    bookingsToDisplay = pendingBookings;
+                } else {
+                    // For other filters, show pending by default
+                    bookingsToDisplay = pendingBookings;
+                }
+                
+                // Update queue count based on what's being displayed
+                if (queueCount) {
+                    queueCount.textContent = bookingsToDisplay.length;
+                }
+                
+                // Sort bookings by urgency (most urgent first) or date
+                bookingsToDisplay.sort((a, b) => {
                     const aUrgent = isUrgentBooking(a.startTime) ? 0 : 1;
                     const bUrgent = isUrgentBooking(b.startTime) ? 0 : 1;
                     if (aUrgent !== bUrgent) return aUrgent - bUrgent;
-                    return new Date(a.startTime) - new Date(b.startTime);
+                    return new Date(b.startTime) - new Date(a.startTime); // Newest first for cancelled
                 });
                 
                 // Use event delegation on the queue container for better reliability
@@ -8578,16 +8732,10 @@ The admin will assign a driver closer to the trip date.
                 // Add the event listener (use capture phase so it runs before onclick)
                 queue.addEventListener('click', queue._adminQueueClickHandler, true);
                 
-                pendingBookings.forEach(booking => {
+                bookingsToDisplay.forEach(booking => {
                     // Add null checks for required properties
                     if (!booking || !booking.startTime || !booking.requesterId) {
                         console.warn('Skipping booking with missing required properties:', booking);
-                        return;
-                    }
-                    
-                    // Double-check: Only show buttons for PENDING bookings
-                    if (booking.status !== 'PENDING') {
-                        console.warn('Skipping non-pending booking in pending queue:', booking.id, booking.status);
                         return;
                     }
                     
@@ -8598,8 +8746,18 @@ The admin will assign a driver closer to the trip date.
                     let urgencyBadge = '';
                     let borderColor = 'border-yellow-500';
                     let violations = 'none';
+                    let statusBadge = '';
                     
-                    if (isUrgent) {
+                    // Set status badge and border color based on booking status
+                    if (booking.status === 'CANCELLED') {
+                        statusBadge = `<span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold">${window.t('cancelled')}</span>`;
+                        borderColor = 'border-orange-500';
+                    } else if (booking.status === 'PENDING') {
+                        statusBadge = `<span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">${window.t('pending')}</span>`;
+                        borderColor = 'border-yellow-500';
+                    }
+                    
+                    if (isUrgent && booking.status === 'PENDING') {
                         urgencyBadge = '<span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">URGENT</span>';
                         borderColor = 'border-red-500';
                     }
@@ -8620,11 +8778,14 @@ The admin will assign a driver closer to the trip date.
                                     <div class="flex items-center gap-3 mb-2">
                                         <h3 class="text-lg font-bold text-gray-800">${safePurpose}</h3>
                                         ${urgencyBadge}
-                                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">${window.t('pending')}</span>
+                                        ${statusBadge}
                                     </div>
                                     <p class="text-gray-600 text-sm mb-1">${window.t('requestedBy')} <span class="font-semibold">${safeRequesterName}</span></p>
                                     <p class="text-gray-600 text-sm mb-1">${window.t('dateLabel')} <span class="font-semibold">${safeDate}</span> | ${window.t('timeLabel')} <span class="font-semibold">${safeTime}</span></p>
                                     <p class="text-gray-600 text-sm mb-1">${window.t('vehicleLabel')} <span class="font-semibold">${safeVehicle}</span> | ${window.t('passengersLabel')} <span class="font-semibold">${safePassengers}</span></p>
+                                    ${booking.status === 'CANCELLED' && booking.cancelledAt ? `
+                                        <p class="text-gray-500 text-xs mt-2">${window.t('cancelled')}: ${new Date(booking.cancelledAt).toLocaleString()}</p>
+                                    ` : ''}
                                 </div>
                             </div>
                             <div class="flex flex-wrap gap-2">

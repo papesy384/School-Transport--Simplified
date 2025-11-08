@@ -156,6 +156,67 @@
             transition: all 0.2s ease-in-out;
         }
 
+        .role-card {
+            border-radius: 18px;
+            border: 1px solid rgba(253, 193, 43, 0.28);
+            background: rgba(15, 23, 42, 0.92);
+            color: #fff;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            min-height: 260px;
+            text-align: left;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(253, 193, 43, 0.18), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .role-card.active,
+        .role-card:hover,
+        .role-card:focus-visible {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--color-isd-gold);
+            box-shadow: 0 22px 45px rgba(253, 193, 43, 0.18);
+            background: rgba(15, 23, 42, 0.98);
+        }
+
+        .role-card.active::after,
+        .role-card:hover::after,
+        .role-card:focus-visible::after {
+            opacity: 1;
+        }
+
+        .role-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .role-card p {
+            color: rgba(226, 232, 240, 0.85);
+            line-height: 1.45;
+        }
+
+        .role-card span.role-cta {
+            margin-top: auto;
+            font-weight: 600;
+            color: var(--color-isd-gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
         /* Custom Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -630,10 +691,12 @@
                 
                 <!-- User Categories -->
                 <div class="flex items-center space-x-2 sm:space-x-4 flex-wrap justify-center sm:justify-end">
-                    <a href="#guest/admin" id="btn-admin" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="admin">Admin</a>
-                    <a href="#guest/employee" id="btn-employee" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="employee">Employee</a>
-                    <a href="#guest/driver" id="btn-driver" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="driver">Driver</a>
+                    <a href="#" id="btn-admin" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="admin" data-translate="admin">Admin</a>
+                    <a href="#" id="btn-employee" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="employee" data-translate="employee">Employee</a>
+                    <a href="#" id="btn-driver" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="driver" data-translate="driver">Driver</a>
                 </div>
+                
+                <button id="logout-btn" class="hidden text-sm text-isd-gold hover:text-white font-semibold transition-colors px-3 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="logout">Log out</button>
                 
                 <!-- Language Switcher -->
                 <div id="language-switcher" class="text-sm font-semibold flex items-center gap-1 min-h-[44px]">
@@ -644,6 +707,53 @@
             </div>
         </div>
     </header>
+
+    <!-- Role Selection Overlay -->
+    <div id="role-selection-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[12000] hidden">
+        <div class="bg-white/95 rounded-2xl shadow-2xl w-full max-w-4xl mx-4 p-8 md:p-12 relative overflow-hidden border border-isd-gold/30">
+            <button type="button" id="close-role-overlay" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition-colors" aria-label="Close role selection">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="text-center mb-10">
+                <p class="text-xs uppercase tracking-[0.35em] text-isd-gold font-semibold mb-3" data-translate="selectRoleLabel">Role Access</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4" data-translate="selectRoleTitle">Choose your workspace</h2>
+                <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto" data-translate="selectRoleSubtitle">Select a persona to explore the School Transport Hub with role-tailored dashboards and flows.</p>
+            </div>
+            <div id="role-overlay-alert" class="hidden mb-8 bg-yellow-50 border border-yellow-200 text-yellow-800 rounded-xl p-4 text-sm font-medium flex items-start gap-3">
+                <span class="text-lg" aria-hidden="true">⚠️</span>
+                <span>
+                    <strong class="block text-base mb-1" data-translate="pendingRoleTitle">Access required</strong>
+                    <span data-translate="pendingRoleMessage">Select a role to access this workspace.</span>
+                </span>
+            </div>
+            <div id="role-selection-cards" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button type="button" class="role-card focus:outline-none focus-visible:ring-4 focus-visible:ring-isd-gold/40" data-role-card data-role="admin">
+                    <span class="text-4xl" aria-hidden="true">🛠️</span>
+                    <h3 data-translate="roleAdminTitle">Administrator</h3>
+                    <p data-translate="roleAdminSubtitle">Review, approve, and enforce transportation policies with real-time fleet visibility.</p>
+                    <span class="role-cta" data-translate="enterWorkspace">Enter workspace →</span>
+                </button>
+                <button type="button" class="role-card focus:outline-none focus-visible:ring-4 focus-visible:ring-isd-gold/40" data-role-card data-role="employee">
+                    <span class="text-4xl" aria-hidden="true">🧑‍💼</span>
+                    <h3 data-translate="roleEmployeeTitle">Employee</h3>
+                    <p data-translate="roleEmployeeSubtitle">Create booking requests, monitor approvals, and stay ahead of trip logistics.</p>
+                    <span class="role-cta" data-translate="enterWorkspace">Enter workspace →</span>
+                </button>
+                <button type="button" class="role-card focus:outline-none focus-visible:ring-4 focus-visible:ring-isd-gold/40" data-role-card data-role="driver">
+                    <span class="text-4xl" aria-hidden="true">🚌</span>
+                    <h3 data-translate="roleDriverTitle">Driver</h3>
+                    <p data-translate="roleDriverSubtitle">Access assignments, update trip milestones, and finalise logs in one streamlined view.</p>
+                    <span class="role-cta" data-translate="enterWorkspace">Enter workspace →</span>
+                </button>
+            </div>
+            <div class="mt-10 flex flex-wrap items-center justify-between gap-4">
+                <button type="button" id="role-overlay-cancel" class="px-5 py-3 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition" data-translate="continueExploring">Continue exploring</button>
+                <p class="text-sm text-gray-500" data-translate="roleSelectionHint">You can switch roles anytime from the header navigation.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content Section -->
     <main class="flex-grow container mx-auto p-2 sm:p-4 md:p-6 lg:p-8 max-w-7xl w-full" style="padding-bottom: calc(1rem + env(safe-area-inset-bottom));">
@@ -2311,6 +2421,42 @@
                     appName: 'ISD Car Booking',
                     langEn: 'EN',
                     langFr: 'FR',
+                    logout: 'Se déconnecter',
+                    
+                    // Role Selection Overlay
+                    selectRoleLabel: 'Accès Rôle',
+                    selectRoleTitle: 'Choisissez votre espace de travail',
+                    selectRoleSubtitle: 'Sélectionnez un profil pour explorer la plateforme avec des parcours adaptés à chaque rôle.',
+                    roleAdminTitle: 'Administrateur',
+                    roleAdminSubtitle: 'Examiner, approuver et appliquer les politiques de transport avec une visibilité en temps réel sur la flotte.',
+                    roleEmployeeTitle: 'Employé',
+                    roleEmployeeSubtitle: 'Créer des demandes de réservation, suivre les approbations et anticiper la logistique des trajets.',
+                    roleDriverTitle: 'Chauffeur',
+                    roleDriverSubtitle: 'Accéder aux missions, mettre à jour les étapes et finaliser les journaux via une vue unifiée.',
+                    enterWorkspace: 'Accéder à l\'espace →',
+                    continueExploring: 'Continuer à explorer',
+                    roleSelectionHint: 'Vous pouvez changer de rôle à tout moment depuis la navigation.',
+                    pendingRoleTitle: 'Accès requis',
+                    pendingRoleMessage: 'Sélectionnez un rôle pour accéder à cet espace de travail.',
+                    pendingRoleButton: 'Choisir un rôle',
+                    logout: 'Log out',
+                    
+                    // Role Selection Overlay
+                    selectRoleLabel: 'Role Access',
+                    selectRoleTitle: 'Choose your workspace',
+                    selectRoleSubtitle: 'Select a persona to explore the School Transport Hub with role-tailored dashboards and flows.',
+                    roleAdminTitle: 'Administrator',
+                    roleAdminSubtitle: 'Review, approve, and enforce transportation policies with real-time fleet visibility.',
+                    roleEmployeeTitle: 'Employee',
+                    roleEmployeeSubtitle: 'Create booking requests, monitor approvals, and stay ahead of trip logistics.',
+                    roleDriverTitle: 'Driver',
+                    roleDriverSubtitle: 'Access assignments, update trip milestones, and finalise logs in one streamlined view.',
+                    enterWorkspace: 'Enter workspace →',
+                    continueExploring: 'Continue exploring',
+                    roleSelectionHint: 'You can switch roles anytime from the header navigation.',
+                    pendingRoleTitle: 'Access required',
+                    pendingRoleMessage: 'Select a role to access this workspace.',
+                    pendingRoleButton: 'Choose role',
                     
                     // Guest Mode
                     guestMode: 'GUEST MODE',
@@ -3597,6 +3743,25 @@
                 try {
                     const hash = window.location.hash.slice(1) || 'home';
                     const homeLink = document.getElementById('home-link');
+                    const requiredRole = getRequiredRoleForHash(hash);
+
+                    if (requiredRole && (!appState.isAuthenticated || appState.currentRole !== requiredRole)) {
+                        appState.pendingRole = requiredRole;
+                        showRoleOverlay(requiredRole, true);
+                        
+                        document.querySelectorAll('.view-section').forEach(view => {
+                            view.classList.remove('active');
+                        });
+                        
+                        const viewHome = document.getElementById('view-home');
+                        if (viewHome) viewHome.classList.add('active');
+                        if (homeLink) homeLink.classList.add('hidden');
+
+                        if (hash !== 'home') {
+                            window.history.replaceState(null, '', '#home');
+                        }
+                        return;
+                    }
                     
                     // Hide all views
                     document.querySelectorAll('.view-section').forEach(view => {
@@ -4054,17 +4219,160 @@
         const appState = {
             currentRole: null, // 'employee', 'admin', 'driver', or null
             currentUserId: null, // Current authenticated user ID
-            isAuthenticated: false
+            isAuthenticated: false,
+            pendingRole: null
         };
         
         // Helper function to set current role
         function setCurrentRole(role) {
             appState.currentRole = role;
+            updateRoleNavState();
         }
         
         // Helper function to get current role
         function getCurrentRole() {
             return appState.currentRole;
+        }
+
+        /**
+         * Update navigation state to reflect current role/authentication
+         */
+        function updateRoleNavState() {
+            const roleLinks = document.querySelectorAll('[data-role-link]');
+            roleLinks.forEach(link => {
+                const linkRole = link.getAttribute('data-role-link');
+                const isActive = appState.isAuthenticated && appState.currentRole === linkRole;
+                link.classList.toggle('text-white', isActive);
+                link.classList.toggle('text-isd-gold', !isActive);
+                link.classList.toggle('border-b', isActive);
+                link.classList.toggle('border-isd-gold', isActive);
+            });
+
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                if (appState.isAuthenticated) {
+                    logoutBtn.classList.remove('hidden');
+                } else {
+                    logoutBtn.classList.add('hidden');
+                }
+            }
+        }
+
+        const ROUTE_ROLE_MAP = Object.freeze({
+            'booking-approvals': 'admin',
+            'fleet-management': 'admin',
+            'user-management': 'admin',
+            'new-booking': 'employee',
+            'my-bookings': 'employee',
+            'assigned-trips': 'driver',
+            'update-status': 'driver',
+            'trip-finalization': 'driver'
+        });
+
+        function getRequiredRoleForHash(hash) {
+            if (!hash) return null;
+            if (hash.startsWith('guest/')) {
+                const role = hash.split('/')[1];
+                if (role === 'admin' || role === 'employee' || role === 'driver') {
+                    return role;
+                }
+            }
+            return ROUTE_ROLE_MAP[hash] || null;
+        }
+
+        function highlightRoleCard(role) {
+            const cards = document.querySelectorAll('[data-role-card]');
+            cards.forEach(card => {
+                const cardRole = card.getAttribute('data-role');
+                const isActive = role && cardRole === role;
+                card.classList.toggle('active', isActive);
+                card.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+        }
+
+        function showRoleOverlay(targetRole = null, locked = false) {
+            const overlay = document.getElementById('role-selection-overlay');
+            const cancelBtn = document.getElementById('role-overlay-cancel');
+            const closeBtn = document.getElementById('close-role-overlay');
+            const alertBox = document.getElementById('role-overlay-alert');
+            if (!overlay) return;
+
+            overlay.classList.remove('hidden');
+            overlay.classList.add('flex');
+            overlay.dataset.locked = locked ? 'true' : 'false';
+            document.body.classList.add('overflow-hidden');
+            highlightRoleCard(targetRole);
+
+            if (cancelBtn) {
+                cancelBtn.classList.toggle('hidden', locked);
+            }
+            if (closeBtn) {
+                closeBtn.classList.toggle('hidden', locked);
+            }
+            if (alertBox) {
+                alertBox.classList.toggle('hidden', !locked);
+            }
+        }
+
+        function hideRoleOverlay(force = false) {
+            const overlay = document.getElementById('role-selection-overlay');
+            const alertBox = document.getElementById('role-overlay-alert');
+            if (!overlay) return;
+            if (overlay.dataset.locked === 'true' && !force) return;
+
+            overlay.classList.add('hidden');
+            overlay.classList.remove('flex');
+            overlay.dataset.locked = 'false';
+            document.body.classList.remove('overflow-hidden');
+            highlightRoleCard(null);
+            appState.pendingRole = null;
+            if (alertBox) {
+                alertBox.classList.add('hidden');
+            }
+        }
+
+        function requestRoleAccess(role) {
+            if (!role) return;
+            if (appState.isAuthenticated && appState.currentRole === role) {
+                window.location.hash = `guest/${role}`;
+                if (typeof app?.handleRoute === 'function') {
+                    app.handleRoute();
+                }
+                return;
+            }
+            appState.pendingRole = role;
+            showRoleOverlay(role, false);
+        }
+
+        function completeRoleSelection(role) {
+            if (!role) return;
+            appState.isAuthenticated = true;
+            appState.pendingRole = null;
+            hideRoleOverlay(true);
+            setCurrentRole(role);
+            window.location.hash = `guest/${role}`;
+            if (typeof app?.handleRoute === 'function') {
+                app.handleRoute();
+            }
+        }
+
+        function logoutUser() {
+            appState.isAuthenticated = false;
+            appState.currentRole = null;
+            appState.pendingRole = null;
+            updateRoleNavState();
+            hideRoleOverlay(true);
+            window.location.hash = 'home';
+            if (typeof app?.handleRoute === 'function') {
+                app.handleRoute();
+            }
+            showRoleOverlay(null, false);
+        }
+
+        function roleOverlayKeyHandler(event) {
+            if (event.key === 'Escape') {
+                hideRoleOverlay();
+            }
         }
         
         // ============================================
@@ -7237,6 +7545,39 @@ The admin will assign a driver closer to the trip date.
                 app.setLanguage(initialLanguage);
                 console.log(`✅ Language initialized to: ${initialLanguage}`);
             }
+            
+            updateRoleNavState();
+
+            const roleLinks = document.querySelectorAll('[data-role-link]');
+            roleLinks.forEach(link => {
+                const role = link.getAttribute('data-role-link');
+                safeAddEventListener(link, 'click', (event) => {
+                    event.preventDefault();
+                    requestRoleAccess(role);
+                }, `role-link-${role}`);
+            });
+
+            const roleCards = document.querySelectorAll('[data-role-card]');
+            roleCards.forEach(card => {
+                const role = card.getAttribute('data-role');
+                safeAddEventListener(card, 'click', () => {
+                    completeRoleSelection(role);
+                }, `role-card-${role}`);
+            });
+
+            const closeRoleOverlayBtn = document.getElementById('close-role-overlay');
+            safeAddEventListener(closeRoleOverlayBtn, 'click', () => hideRoleOverlay(), 'close-role-overlay');
+
+            const cancelRoleOverlayBtn = document.getElementById('role-overlay-cancel');
+            safeAddEventListener(cancelRoleOverlayBtn, 'click', () => hideRoleOverlay(), 'cancel-role-overlay');
+
+            const logoutBtn = document.getElementById('logout-btn');
+            safeAddEventListener(logoutBtn, 'click', (event) => {
+                event.preventDefault();
+                logoutUser();
+            }, 'logout-btn');
+
+            safeAddEventListener(document, 'keydown', roleOverlayKeyHandler, 'role-overlay-escape');
             
             // Set minimum date to today for booking form
             const tripDateInput = document.getElementById('trip-date');

@@ -196,7 +196,6 @@
         .role-card:focus-visible::after {
             opacity: 1;
         }
-
         .role-card h3 {
             font-size: 1.35rem;
             font-weight: 700;
@@ -345,12 +344,10 @@
             table {
                 font-size: 14px;
             }
-            
             /* Stack elements on mobile */
             .flex-row {
                 flex-direction: column;
             }
-            
             /* Better header on mobile */
             header {
                 padding: 0.75rem 1rem;
@@ -391,7 +388,6 @@
         * {
             -webkit-overflow-scrolling: touch;
         }
-        
         /* Prevent text selection on mobile buttons */
         button, .role-button {
             -webkit-user-select: none;
@@ -399,7 +395,6 @@
             -ms-user-select: none;
             user-select: none;
         }
-        
         /* Better form inputs on mobile */
         input, select, textarea {
             -webkit-appearance: none;
@@ -591,7 +586,6 @@
         #view-assigned-trips button.bg-orange-500:hover {
             background-color: #ea580c !important;
         }
-        
         #view-assigned-trips button.bg-gray-700 {
             background-color: #374151 !important; /* Lighter gray for dark mode visibility */
             color: #ffffff !important;
@@ -601,7 +595,6 @@
         #view-assigned-trips button.bg-gray-700:hover {
             background-color: #4b5563 !important;
         }
-        
         /* Disabled buttons in dark mode */
         #view-assigned-trips button:disabled {
             background-color: #4b5563 !important;
@@ -691,9 +684,9 @@
                 
                 <!-- User Categories -->
                 <div class="flex items-center space-x-2 sm:space-x-4 flex-wrap justify-center sm:justify-end">
-                    <a href="#" id="btn-admin" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="admin" data-translate="admin">Admin</a>
-                    <a href="#" id="btn-employee" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="employee" data-translate="employee">Employee</a>
-                    <a href="#" id="btn-driver" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="driver" data-translate="driver">Driver</a>
+                    <a href="#" id="btn-admin" onclick="if(typeof requestRoleAccess==='function'){requestRoleAccess('admin');return false;}" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="admin" data-translate="admin">Admin</a>
+                    <a href="#" id="btn-employee" onclick="if(typeof requestRoleAccess==='function'){requestRoleAccess('employee');return false;}" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="employee" data-translate="employee">Employee</a>
+                    <a href="#" id="btn-driver" onclick="if(typeof requestRoleAccess==='function'){requestRoleAccess('driver');return false;}" class="text-sm text-isd-gold hover:text-white font-medium transition-colors px-2 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center border-b border-transparent" data-role-link="driver" data-translate="driver">Driver</a>
                 </div>
                 
                 <button id="logout-btn" class="hidden text-sm text-isd-gold hover:text-white font-semibold transition-colors px-3 py-1 min-h-[44px] min-w-[44px] flex items-center justify-center" data-translate="logout">Log out</button>
@@ -754,7 +747,6 @@
             </div>
         </div>
     </div>
-
     <!-- Main Content Section -->
     <main class="flex-grow container mx-auto p-2 sm:p-4 md:p-6 lg:p-8 max-w-7xl w-full" style="padding-bottom: calc(1rem + env(safe-area-inset-bottom));">
         
@@ -886,7 +878,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             <span data-translate="viewRequests">View Requests</span>
-                        </div>
+                </div>
                     </button>
                     <button id="admin-fleet-btn" onclick="window.location.hash = 'fleet-management'; return false;" class="bg-isd-gold text-isd-black py-4 px-6 rounded-xl font-bold text-lg hover:bg-yellow-400 shadow-lg transform transition-all duration-200 hover:scale-105" data-translate="manageFleet">
                         <div class="flex items-center justify-center gap-2">
@@ -894,7 +886,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                             <span data-translate="manageFleet">Manage Fleet</span>
-                        </div>
+                </div>
                     </button>
                     <button id="admin-users-btn" onclick="window.location.hash = 'user-management'; return false;" class="bg-isd-gold text-isd-black py-4 px-6 rounded-xl font-bold text-lg hover:bg-yellow-400 shadow-lg transform transition-all duration-200 hover:scale-105" data-translate="manageUsers">
                         <div class="flex items-center justify-center gap-2">
@@ -902,11 +894,11 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                             </svg>
                             <span data-translate="manageUsers">Manage Users</span>
-                        </div>
-                    </button>
                 </div>
+                    </button>
             </div>
-            
+        </div>
+
             <!-- Quick Stats for Admin Dashboard - Secondary Information -->
             <div class="mb-6">
                 <h3 class="text-lg font-bold text-gray-800 mb-4" data-translate="bookingStatistics">Booking Statistics</h3>
@@ -914,7 +906,7 @@
                     <div class="bg-white p-3 rounded-lg shadow border-l-4 border-yellow-500">
                         <p class="text-xs text-gray-600 mb-1 stats-label" data-translate="statsPending">Pending</p>
                         <p class="text-xl font-bold text-yellow-600" id="admin-stats-pending">0</p>
-                    </div>
+                </div>
                     <div class="bg-white p-3 rounded-lg shadow border-l-4 border-green-500">
                         <p class="text-xs text-gray-600 mb-1 stats-label" data-translate="statsApproved">Approved</p>
                         <p class="text-xl font-bold text-green-600" id="admin-stats-approved">0</p>
@@ -941,12 +933,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
                 <!-- Main Content Area -->
                 <div class="lg:col-span-3 space-y-6">
-                    
-        </div>
+                </div>
 
                 <!-- Resource Health Monitoring Widget (Sidebar) -->
                 <div class="lg:col-span-1 space-y-6">
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
                         <h3 class="text-lg font-bold text-gray-800 mb-4" data-translate="resourceHealth">Resource Health</h3>
                         
                         <!-- Driver Status -->
@@ -986,7 +977,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Guest Employee Dashboard View (Request Dashboard) -->
         <div id="view-guest-employee" class="view-section w-full">
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
@@ -1053,7 +1043,7 @@
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <h3 id="driver-status-title" class="text-xl font-bold mb-3 text-gray-800" data-translate="updateStatus">Update Status</h3>
                     <p id="driver-status-desc" class="text-gray-600 mb-4" data-translate="driverStatusDesc">Update trip status and location</p>
-                    <button id="driver-status-btn" onclick="window.location.hash = 'update-status'; return false;" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600" data-translate="updateStatus">Update Status</button>
+                    <button id="driver-status-btn" onclick="window.location.hash = 'assigned-trips'; return false;" class="w-full bg-gray-700 text-white py-2 px-4 rounded-lg font-semibold hover:bg-gray-600" data-translate="updateStatus">Update Status</button>
                 </div>
             </div>
         </div>
@@ -1109,7 +1099,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <!-- Vehicle Details Table -->
                 <div class="overflow-x-auto -mx-2 sm:mx-0" style="-webkit-overflow-scrolling: touch;">
                     <table class="w-full text-left min-w-[600px]">
@@ -1646,7 +1635,6 @@
                     </div>
                 </div>
             </div>
-            
             <div id="pending-queue" class="space-y-4">
                 <!-- Urgent Request (within 48 hours) -->
                 <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500" data-urgency="urgent" data-violations="none" data-date="2025-03-15T09:00">
@@ -1812,19 +1800,19 @@
                     
                     <!-- Start Date & Time -->
                     <div class="border-b border-gray-200 pb-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="startDate">Start Date <span class="text-red-600">*</span></label>
-                                <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
+                            <input type="date" id="trip-date" name="trip-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
                                 <p class="text-red-600 text-sm mt-1 hidden" id="trip-date-error" data-translate="dateError">Date is required</p>
-                            </div>
-                            <div>
+                        </div>
+                        <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="startTime">Start Time <span class="text-red-600">*</span></label>
                                 <input type="time" id="pickup-time" name="pickup-time" required step="900" min="06:00" max="20:00" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Select start time">
                                 <p class="text-xs text-gray-500 mt-1" data-translate="timePickerHint">Select time in 15-minute intervals (6:00 AM - 8:00 PM)</p>
                                 <p class="text-red-600 text-sm mt-1 hidden" id="pickup-time-error" data-translate="pickupTimeError">Start time is required</p>
-                            </div>
                         </div>
+                    </div>
                         <!-- Date Availability Message (appears below date/time inputs) -->
                         <div id="date-availability-message" class="hidden mt-2"></div>
                     </div>
@@ -1832,7 +1820,7 @@
                     <!-- End Date & Time -->
                     <div class="border-b border-gray-200 pb-4">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
+                    <div>
                                 <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="endDate">End Date <span class="text-red-600">*</span></label>
                                 <input type="date" id="end-date" name="end-date" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" min="">
                                 <p class="text-red-600 text-sm mt-1 hidden" id="end-date-error" data-translate="endDateError">End date is required</p>
@@ -1845,7 +1833,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <!-- Availability Preview -->
                     <div class="border-b border-gray-200 pb-4">
                         <div id="availability-preview" class="hidden p-4 bg-blue-50 border border-blue-200 rounded-lg">
@@ -1955,7 +1942,6 @@
                 </form>
             </div>
         </div>
-
         <!-- My Bookings View -->
         <div id="view-my-bookings" class="view-section w-full">
             <div class="bg-white p-6 sm:p-8 lg:p-10 rounded-xl shadow-lg mb-6 border-t-8 border-isd-gold w-full">
@@ -2034,7 +2020,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Assigned Trips View (My Trips - Active Trip Screen) -->
         <div id="view-assigned-trips" class="view-section w-full">
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-4 border-t-4 border-isd-gold w-full">
@@ -2149,11 +2134,48 @@
                             ✅ Trip Complete
                         </button>
                         <p class="text-xs text-gray-600 mt-1" data-translate="completeTripSubmitLog">Complete trip and submit log</p>
-                    </div>
                 </div>
             </div>
         </div>
 
+            <!-- Manual Update Status Form -->
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6 border border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800 mb-4" data-translate="updateStatus">Update Trip Status</h3>
+                <p id="no-trips-message" class="text-sm text-gray-600 mb-4 hidden" data-translate="noTripsAvailable">No assigned trips available to update.</p>
+                <form id="update-status-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="selectTrip">Select Trip <span class="text-red-600">*</span></label>
+                        <select id="trip-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Choose a trip</option>
+                        </select>
+                        <p id="trip-select-error" class="text-red-600 text-sm mt-1 hidden" data-translate="tripSelectError">Please select a trip</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="currentStatus">Current Status <span class="text-red-600">*</span></label>
+                        <select id="status-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Select status</option>
+                            <option value="statusEnRoute" data-translate="statusEnRoute">En Route</option>
+                            <option value="statusArrivedPickup" data-translate="statusArrivedPickup">Arrived at Pickup</option>
+                            <option value="statusDriving" data-translate="statusDriving">Driving</option>
+                            <option value="statusArrivedDestination" data-translate="statusArrivedDestination">Arrived at Destination</option>
+                            <option value="statusCompleted" data-translate="statusCompleted">Trip Completed</option>
+                        </select>
+                        <p id="status-select-error" class="text-red-600 text-sm mt-1 hidden" data-translate="statusSelectError">Please select a status</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="currentLocation">Current Location</label>
+                        <input type="text" id="current-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Enter current location" data-placeholder-key="currentLocationPlaceholder">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="statusNotes">Status Notes</label>
+                        <textarea id="status-notes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any additional notes..." data-placeholder-key="statusNotesPlaceholder"></textarea>
+                    </div>
+                    <div class="flex items-center justify-end gap-3 pt-2 border-t border-gray-200">
+                        <button type="submit" id="update-status-submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed" data-translate="updateStatusSubmit">Update Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- Trip Finalization/Log Screen -->
         <div id="view-trip-finalization" class="view-section w-full">
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg mb-4 border-t-4 border-isd-gold w-full">
@@ -2269,7 +2291,6 @@
             <span>&copy; 2025 ISD Car Booking for ISD</span>
         </div>
     </footer>
-
     <!-- Edit Vehicle Modal -->
     <div id="edit-vehicle-modal" class="modal-overlay">
         <div class="modal-content">
@@ -2317,7 +2338,6 @@
             </form>
         </div>
     </div>
-
     <!-- Add Vehicle Modal -->
     <div id="add-vehicle-modal" class="modal-overlay">
         <div class="modal-content">
@@ -2402,9 +2422,9 @@
 
     <!-- Load Testing Script (Development Only) -->
     <script src="load-test.js"></script>
-
     <!-- JavaScript for Basic Interactions (Language Toggle) -->
     <script>
+        console.log('main script executing');
         // Wait for DOM to be ready
         
         // Define app scope
@@ -2509,7 +2529,6 @@
                     driverStatusBtn: 'Update Status',
                     myActiveTrip: 'My Active Trip',
                     dashboard: 'Dashboard',
-                    
                     // Booking Form
                     tripPurpose: 'Trip Purpose',
                     tripPurposePlaceholder: 'e.g., Field trip to museum, School business, Airport transfer',
@@ -2596,7 +2615,6 @@
                     activeTrip: 'Active Trip',
                     completed: 'Completed',
                     scheduled: 'Scheduled',
-                    
                     // Example Content
                     museumFieldTrip: 'Museum Field Trip',
                     sportsEvent: 'Sports Event',
@@ -2611,7 +2629,6 @@
                     mainSchoolGate: 'Main School Gate',
                     routeIsdMuseumIsd: 'ISD → Museum → ISD',
                     bus: 'Bus',
-                    
                     // Booking Actions
                     viewDetails: 'View Details',
                     modifyRequest: 'Modify Request',
@@ -2619,7 +2636,6 @@
                     approve: 'Approve',
                     deny: 'Deny',
                     quickDeny: 'Quick Deny (Availability)',
-                    
                     // Booking Approvals Queue
                     bookingApprovalsQueue: 'Booking Approvals Queue',
                     sort: 'Sort:',
@@ -2688,9 +2704,14 @@
                     startDriving: '🚙 Start Driving',
                     arrivedDestination: '🏁 Arrived at Destination',
                     tripComplete: '✅ Trip Complete',
-                    runningLate: '⏱️ Running 10 Mins Late',
-                    delayNotificationSent: '⏱️ Notification Sent!',
-                    delayNotificationDesc: 'Tap to instantly notify employee and admin',
+                    runningLate: '⏱️ En Retard de 10 Minutes',
+                    delayNotificationSent: '⏱️ Notification Envoyée!',
+                    delayNotificationDesc: 'Appuyer pour notifier instantanément l\'employé et l\'administrateur',
+                    statusEnRoute: 'En route',
+                    statusArrivedPickup: 'Arrivé au point de prise en charge',
+                    statusDriving: 'En cours de trajet',
+                    statusArrivedDestination: 'Arrivé à destination',
+                    statusCompleted: 'Trajet terminé',
                     
                     // Safety Checks
                     safetyCheck: 'Vehicle Safety Check',
@@ -2701,7 +2722,6 @@
                     checkFuel: 'Fuel',
                     checkMirrors: 'Mirrors',
                     checkFirstAid: 'First Aid Kit',
-                    
                     // Trip Finalization
                     tripFinalization: 'Trip Finalization',
                     finalOdometer: 'Final Odometer Reading',
@@ -2779,7 +2799,6 @@
                     roleEmployee: 'Employee',
                     roleDriver: 'Driver',
                     addDriver: '+ Add Driver',
-                    
                     // Common
                     date: 'Date',
                     time: 'Time',
@@ -2882,7 +2901,6 @@
                     shortNotice: '⚠️ Short Notice Request',
                     exceedsMaxDuration: '🚫 Exceeds Max Duration',
                     weekendBooking: '📅 Weekend Booking',
-                    
                     // Denial Modal
                     denyBookingRequest: 'Deny Booking Request',
                     denialTemplate: 'Denial Template',
@@ -2952,7 +2970,6 @@
                     passengersLabel: 'Passengers:',
                     pickupLocationLabel: 'Pickup Location:',
                     routeLabel: 'Route:',
-                    
                     // Safety Checklist
                     preDepartureSafetyChecklist: 'Pre-Departure Safety Checklist',
                     completeAllChecks: 'Complete all checks before starting drive (Available after arriving at pickup)',
@@ -2962,7 +2979,6 @@
                     fuelLevelAdequate: 'Fuel level adequate',
                     mirrorsAdjusted: 'Mirrors adjusted',
                     firstAidKitPresent: 'First aid kit present',
-                    
                     // Button Helper Text
                     departingFromGarage: 'Departing from garage/depot',
                     arrivedAtPickupLocation: 'Arrived at pickup location',
@@ -2970,14 +2986,11 @@
                     arrivedAtDestinationText: 'Arrived at destination',
                     completeTripSubmitLog: 'Complete trip and submit log',
                     completeTripSubmitFinalLog: 'Complete trip and submit final log',
-                    
                     // Trip Finalization
                     requiredTripMetrics: 'Required Trip Metrics',
-                    
                     // Resource Health
                     resourceHealth: 'Resource Health',
                     driverStatusLabel: 'Driver Status',
-                    
                     // Admin Dashboard
                     adminDashboard: 'Admin Dashboard',
                     decisionManagementHub: 'Decision and Management Hub',
@@ -3038,6 +3051,10 @@
                     realTimeDashboardUpdates: 'Real-time Dashboard Updates',
                     noNeedCheckEmail: 'No need to check your email repeatedly - the dashboard will show all updates automatically!',
                     bookingAppearsInDashboard: 'Your booking will appear in "My Bookings" with live status updates. The dashboard refreshes automatically when your booking is approved, denied, or cancelled.',
+                    tripSelectError: 'Please select a trip',
+                    statusSelectError: 'Please select a status',
+                    noTripsAvailable: 'No assigned trips available to update.',
+                    updateStatusSubmit: 'Update Status',
                     
                     // Availability Messages
                     checkingAvailability: 'Checking availability...',
@@ -3250,7 +3267,6 @@
                     statsActive: 'Actif',
                     statsDenied: 'Refusé',
                     statsCompleted: 'Terminé',
-                    
                     // Fleet Management
                     fleetManagement: 'Gestion de la Flotte',
                     fleetManagementDesc: 'Voir et gérer votre flotte de véhicules',
@@ -3293,7 +3309,6 @@
                     sedan: 'Berline',
                     sedanDesc: '5 places • Idéal pour les déplacements du personnel',
                     available: 'Disponible',
-                    
                     // Driver Trip Status
                     tripStatusUpdates: 'Mises à jour du Statut du Trajet',
                     startTrip: '🚗 Démarrer le Trajet',
@@ -3304,7 +3319,11 @@
                     runningLate: '⏱️ En Retard de 10 Minutes',
                     delayNotificationSent: '⏱️ Notification Envoyée!',
                     delayNotificationDesc: 'Appuyer pour notifier instantanément l\'employé et l\'administrateur',
-                    
+                    statusEnRoute: 'En route',
+                    statusArrivedPickup: 'Arrivé au point de prise en charge',
+                    statusDriving: 'En cours de trajet',
+                    statusArrivedDestination: 'Arrivé à destination',
+                    statusCompleted: 'Trajet terminé',
                     // Driver Trip Details Labels
                     dateLabel: 'Date:',
                     timeLabel: 'Heure:',
@@ -3319,7 +3338,6 @@
                     pastTrip: 'Trajet Passé',
                     pickupLocationLabel: 'Lieu de Prise en Charge:',
                     routeLabel: 'Route:',
-                    
                     // Safety Checks
                     safetyCheck: 'Vérification de Sécurité du Véhicule',
                     safetyCheckConfirmed: 'Toutes les Vérifications de Sécurité Confirmées',
@@ -3357,7 +3375,6 @@
                     currentLocationPlaceholder: 'Entrer la localisation actuelle',
                     statusNotes: 'Notes sur le Statut',
                     statusNotesPlaceholder: 'Toute note supplémentaire...',
-                    
                     // Messages
                     submittedAgo: 'Soumis il y a {hours} heures',
                     waitingForAdmin: 'En attente de l\'action de l\'administrateur',
@@ -3438,7 +3455,6 @@
                     policyViolationFlags: 'Drapeaux de Violation de Politique',
                     dateTimeLabel: 'Date et Heure',
                     at: 'à',
-                    
                     // Vehicle Capacity Messages
                     vehicleCapacity: 'Capacité du véhicule:',
                     cannotExceedCapacity: 'Ne peut pas dépasser la capacité du véhicule de',
@@ -3540,7 +3556,6 @@
                     element.textContent = data[key];
                 }
             },
-
             // Function to update text based on language
             setLanguage(lang) {
                 try {
@@ -3609,7 +3624,6 @@
                     translate('admin-users-title', 'adminUsersTitle');
                     translate('admin-users-desc', 'adminUsersDesc');
                     translate('admin-users-btn', 'adminUsersBtn');
-
                 // Employee Dashboard
                     translate('dashboard-employee-title', 'employeeDashboardTitle');
                     translate('dashboard-employee-desc', 'employeeDashboardDesc');
@@ -3665,10 +3679,8 @@
                         else if (stat === 'Denied') el.textContent = data.statsDenied;
                         else if (stat === 'Completed') el.textContent = data.statsCompleted;
                     });
-                    
                     // Translate all elements with data-translate attribute
                     translateAll();
-                    
                     // Translate placeholders with data-placeholder-key
                     document.querySelectorAll('[data-placeholder-key]').forEach(el => {
                         const placeholderKey = el.getAttribute('data-placeholder-key');
@@ -3676,7 +3688,6 @@
                             el.placeholder = data[placeholderKey];
                         }
                     });
-                    
                     // Refresh dynamic content after language change
                     // Re-populate dashboards to update dynamic content
                     setTimeout(async () => {
@@ -3726,7 +3737,7 @@
                         localStorage.setItem('appLanguage', lang);
                     } catch (e) {
                         console.warn('Could not save language preference to localStorage:', e);
-                    }
+                }
                 } catch (error) {
                     console.error('Error in setLanguage:', error);
                 }
@@ -3737,22 +3748,21 @@
                 const lang = window.currentLanguage || 'en';
                 return this.content[lang]?.[key] || key;
             },
-
             // Function to handle routing based on hash
             handleRoute() {
                 try {
                     const hash = window.location.hash.slice(1) || 'home';
                     const homeLink = document.getElementById('home-link');
                     const requiredRole = getRequiredRoleForHash(hash);
-
+                    
                     if (requiredRole && (!appState.isAuthenticated || appState.currentRole !== requiredRole)) {
                         appState.pendingRole = requiredRole;
                         showRoleOverlay(requiredRole, true);
                         
-                        document.querySelectorAll('.view-section').forEach(view => {
-                            view.classList.remove('active');
-                        });
-                        
+                    document.querySelectorAll('.view-section').forEach(view => {
+                        view.classList.remove('active');
+                    });
+                    
                         const viewHome = document.getElementById('view-home');
                         if (viewHome) viewHome.classList.add('active');
                         if (homeLink) homeLink.classList.add('hidden');
@@ -3767,7 +3777,6 @@
                     document.querySelectorAll('.view-section').forEach(view => {
                         view.classList.remove('active');
                     });
-                    
                     // Show appropriate view based on hash
                     if (hash === 'home' || hash === '') {
                         const viewHome = document.getElementById('view-home');
@@ -3843,7 +3852,7 @@
                             }, 50);
                         }
                     } else if (hash === 'fleet-management' || hash === 'booking-approvals' || hash === 'user-management' || 
-                               hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'update-status' || hash === 'trip-finalization') {
+                               hash === 'new-booking' || hash === 'my-bookings' || hash === 'assigned-trips' || hash === 'trip-finalization') {
                         // Handle feature views
                         let viewId = `view-${hash}`;
                         if (hash === 'trip-finalization') {
@@ -3886,7 +3895,7 @@
             },
 
         };
-        
+
         // Make app.setLanguage globally accessible
         window.setLanguage = function(lang) {
             if (typeof app !== 'undefined' && app.setLanguage) {
@@ -3939,7 +3948,6 @@
                 "name": "Maria Lee"
             }
         };
-        
         const MOCK_VEHICLES = {
             "vh_m_001": {
                 "type": "Minibus",
@@ -3963,7 +3971,6 @@
                 "maintenanceDue": "2025-11-15"
             }
         };
-        
         // Current simulated date: 2025-11-05
         const CURRENT_DATE = new Date('2025-11-05');
         
@@ -4019,7 +4026,6 @@
                 console.error('Error setting text:', error);
             }
         }
-        
         /**
          * Error handler wrapper for async functions
          * @param {Function} fn - Async function to wrap
@@ -4139,8 +4145,7 @@
         
         /**
          * Event listener cleanup tracker
-         */
-        const eventListeners = new Map();
+         */        const eventListeners = new Map();
         
         /**
          * Safely add event listener with cleanup tracking
@@ -4161,7 +4166,6 @@
                 console.error('Error adding event listener:', error);
             }
         }
-        
         /**
          * Clean up all event listeners for a given key
          * @param {string} key - Key to clean up
@@ -4265,7 +4269,6 @@
             'new-booking': 'employee',
             'my-bookings': 'employee',
             'assigned-trips': 'driver',
-            'update-status': 'driver',
             'trip-finalization': 'driver'
         });
 
@@ -4289,13 +4292,14 @@
                 card.setAttribute('aria-pressed', isActive ? 'true' : 'false');
             });
         }
-
         function showRoleOverlay(targetRole = null, locked = false) {
             const overlay = document.getElementById('role-selection-overlay');
             const cancelBtn = document.getElementById('role-overlay-cancel');
             const closeBtn = document.getElementById('close-role-overlay');
             const alertBox = document.getElementById('role-overlay-alert');
             if (!overlay) return;
+
+            console.log('showRoleOverlay called', { targetRole, locked });
 
             overlay.classList.remove('hidden');
             overlay.classList.add('flex');
@@ -4313,12 +4317,13 @@
                 alertBox.classList.toggle('hidden', !locked);
             }
         }
-
         function hideRoleOverlay(force = false) {
             const overlay = document.getElementById('role-selection-overlay');
             const alertBox = document.getElementById('role-overlay-alert');
             if (!overlay) return;
             if (overlay.dataset.locked === 'true' && !force) return;
+
+            console.log('hideRoleOverlay called', { force });
 
             overlay.classList.add('hidden');
             overlay.classList.remove('flex');
@@ -4332,6 +4337,7 @@
         }
 
         function requestRoleAccess(role) {
+            console.log('requestRoleAccess', { role, isAuthenticated: appState.isAuthenticated, currentRole: appState.currentRole });
             if (!role) return;
             if (appState.isAuthenticated && appState.currentRole === role) {
                 window.location.hash = `guest/${role}`;
@@ -4343,7 +4349,6 @@
             appState.pendingRole = role;
             showRoleOverlay(role, false);
         }
-
         function completeRoleSelection(role) {
             if (!role) return;
             appState.isAuthenticated = true;
@@ -4355,7 +4360,6 @@
                 app.handleRoute();
             }
         }
-
         function logoutUser() {
             appState.isAuthenticated = false;
             appState.currentRole = null;
@@ -4368,13 +4372,11 @@
             }
             showRoleOverlay(null, false);
         }
-
         function roleOverlayKeyHandler(event) {
             if (event.key === 'Escape') {
                 hideRoleOverlay();
             }
         }
-        
         // ============================================
         // FIREBASE HELPER FUNCTIONS
         // ============================================
@@ -4537,7 +4539,6 @@
                 return getBookingsByRequester(userId);
             }
         }
-        
         // Firestore: Get bookings by status (Admin can read all)
         async function getBookingsByStatusFirestore(status) {
             try {
@@ -4634,7 +4635,6 @@
                 throw error;
             }
         }
-        
         // Firestore: Get single booking by ID
         async function getBookingByIdFirestore(bookingId) {
             try {
@@ -4655,7 +4655,6 @@
                 return getBookingById(bookingId);
             }
         }
-        
         // Set up real-time listener for bookings (optional)
         function setupBookingsListener(callback) {
             if (!isFirebaseConfigured()) return;
@@ -4677,7 +4676,6 @@
                 callback(bookings);
             });
         }
-        
         // Start data listeners for real-time updates (role-specific scoping)
         function startDataListeners() {
             if (!isFirebaseConfigured()) return null;
@@ -4724,7 +4722,6 @@
                 listeners.push({ type: 'employee_bookings', unsubscribe });
                 console.log(`startDataListeners: Employee listener set up for userId: ${user.uid}`);
             }
-            
             // Driver role: Listen to assigned trips only
             if (currentRole === 'driver') {
                 const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
@@ -4979,7 +4976,6 @@
                 console.error('Failed to save bookings to localStorage:', error);
             }
         }
-        
         // Initialize MOCK_BOOKINGS from localStorage
         const MOCK_BOOKINGS = loadMockBookings();
         console.log('📦 Loaded bookings from localStorage:', Object.keys(MOCK_BOOKINGS).length, 'bookings');
@@ -5009,7 +5005,6 @@
                 dateTime: date.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true })
             };
         }
-        
         // Helper function to check if booking is urgent (within 48 hours)
         function isUrgentBooking(startTime) {
             const bookingDate = new Date(startTime);
@@ -5030,7 +5025,6 @@
                 .filter(([id, booking]) => booking.requesterId === requesterId)
                 .map(([id, booking]) => ({ id, ...booking }));
         }
-
         // Helper function to open edit modal from table row
         function openEditVehicleModalFromRow(button) {
             const row = button.closest('tr');
@@ -5044,7 +5038,7 @@
             
             openEditVehicleModal(vehicleId, type, capacity, status, currentImageUrl);
         }
-        
+
         // Delete Vehicle from Row - Extract vehicle ID dynamically
         function deleteVehicleFromRow(button) {
             const row = button.closest('tr');
@@ -5055,7 +5049,6 @@
                 showError('Could not find vehicle ID.');
             }
         }
-
         // Edit Vehicle Functions
         function openEditVehicleModal(vehicleId, type, capacity, status, currentImageUrl = '') {
             document.getElementById('edit-vehicle-id').value = vehicleId;
@@ -5108,7 +5101,6 @@
                 modal.classList.remove('open');
             }
         };
-        
         // Make vehicle edit/delete functions globally accessible
         window.openEditVehicleModalFromRow = function(button) {
             const row = button.closest('tr');
@@ -5263,7 +5255,6 @@
             
             document.getElementById('queue-count').textContent = visibleCount;
         }
-        
         // Quick Action Functions
         // Quick Action Functions - Make sure they're globally accessible
         window.quickApprove = async function(bookingId) {
@@ -5310,7 +5301,6 @@
                         
                         return v.status === 'Available';
                     });
-                    
                     // Warn if no vehicles are available due to maintenance
                     if (availableVehicles.length === 0 && vehiclesOfType.length > 0) {
                         const maintenanceVehicles = vehiclesOfType.filter(v => v.status === 'In Maintenance');
@@ -5362,66 +5352,24 @@
                         approvedAt: new Date().toISOString(),
                         adminNotes: window.t('bookingApprovedByAdmin')
                     };
-                    
-                    // Add driver assignment if applicable
-                    if (assignedDriverId) {
-                        updates.assignedDriverId = assignedDriverId;
-                    }
-                    
-                    console.log('📝 Updating booking with:', updates);
                     await updateBookingFirestore(bookingId, updates);
+
+                    showSuccess(window.t('bookingApprovedSuccessfully'));
                     
-                    // Verify the update was successful
-                    const updatedBooking = getBookingById(bookingId);
-                    console.log('✅ Booking updated, new status:', updatedBooking?.status);
-                    
-                    const driverName = assignedDriverId ? MOCK_USERS[assignedDriverId]?.name || assignedDriverId : '';
-                    const successMessage = assignedDriverId 
-                        ? `${window.t('bookingApprovedSuccessfully')} ${window.t('driverLabel')} ${driverName} ${window.t('hasBeenAssigned')}.`
-                        : window.t('bookingApprovedSuccessfully');
-                    showSuccess(successMessage);
-                    
-                    // Refresh admin dashboard to remove from pending queue
-                    await populateAdminDashboard();
-                    
-                    // Always refresh employee dashboard (regardless of whether it's open)
-                    // Use a small delay to ensure the update is processed
-                    setTimeout(async () => {
-                        if (booking && booking.requesterId) {
-                            console.log('🔄 Refreshing employee dashboard for:', booking.requesterId);
-                            await populateEmployeeDashboard(booking.requesterId);
-                        } else {
-                            // Fallback: refresh for default user
-                            console.log('🔄 Refreshing employee dashboard for default user');
-                            await populateEmployeeDashboard('emp_high');
-                        }
-                    }, 100);
-                    
-                    // Refresh driver dashboard if driver was assigned
-                    if (assignedDriverId) {
-                        await populateDriverDashboard(assignedDriverId);
-                    }
-                    
-                    // Close detail view if open
-                    closeRequestDetailView();
-                    
-                    console.log('✅ Booking approved successfully');
+                    // Refresh dashboards
                 } catch (error) {
-                    console.error('❌ Error approving booking:', error);
-                    showError(window.t('failedToApproveBooking'));
+                    console.error('❌ Error updating trip status:', error);
+                    showError(window.t('failedToUpdateTripStatus'));
                 }
             }
         };
-        
         // Keep the old function for backward compatibility
         async function quickApprove(bookingId) {
             return window.quickApprove(bookingId);
         }
-        
         function quickDenyAvailability(bookingId) {
             openDenialModal(bookingId, 'availability');
         }
-        
         // Enhanced Request Detail View - uses MOCK_BOOKINGS data
         // Make booking functions globally accessible
         window.openRequestDetailView = function(bookingId) {
@@ -5606,201 +5554,54 @@
                             </div>
                         ` : ''}
                     </div>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <!-- Main Content -->
-                        <div class="lg:col-span-2 space-y-6">
-                            <!-- Request Details -->
-                            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                                <h4 class="text-lg font-bold text-gray-800 mb-4">${window.t('requestDetails')}</h4>
-                                <div class="grid grid-cols-2 gap-4 text-sm">
-                                    <div>
-                                        <p class="text-gray-600">${window.t('dateTimeLabel')}</p>
-                                        <p class="font-semibold text-gray-800">${data.date} ${window.t('at')} ${data.time}</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-600">${window.t('duration')}</p>
-                                        <p class="font-semibold text-gray-800">${data.duration}</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-600">${window.t('vehicleType')}</p>
-                                        <p class="font-semibold text-gray-800">${data.vehicle}</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-gray-600">${window.t('passengersLabel')}</p>
-                                        <p class="font-semibold text-gray-800">${data.passengers}</p>
-                                    </div>
-                                    <div class="col-span-2">
-                                        <p class="text-gray-600">${window.t('tripPurposeLabel')}</p>
-                                        <p class="font-semibold text-gray-800">${data.purpose}</p>
-                                    </div>
-                                    ${data.driverOption === 'School Driver' ? `
-                                        <div>
-                                            <p class="text-gray-600">${window.t('pickupLocation')}</p>
-                                            <p class="font-semibold text-gray-800">${data.pickupLocation}</p>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-600">${window.t('pickupTime')}</p>
-                                            <p class="font-semibold text-gray-800">${data.pickupTime}</p>
-                                        </div>
-                                    ` : ''}
-                                </div>
-                            </div>
-                            
-                            <!-- Availability Panel with Timeline -->
-                            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                                <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                                    <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    ${window.t('availabilityConflictsTimeline')}
-                                </h4>
-                                
-                                <!-- Timeline View -->
-                                <div class="mb-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-                                    <div class="space-y-3">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-3 h-3 rounded-full ${data.conflicts.length > 0 ? 'bg-red-500' : 'bg-green-500'}"></div>
-                                            <div class="flex-1">
-                                                <p class="text-sm font-semibold text-gray-800">${window.t('requestedTimeSlot')}</p>
-                                                <p class="text-xs text-gray-600">${data.date} ${window.t('at')} ${data.time} (${data.duration})</p>
-                                            </div>
-                                        </div>
-                                        ${data.conflicts.map((c, idx) => `
-                                            <div class="flex items-center gap-3 ml-4">
-                                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                                                <div class="flex-1">
-                                                    <p class="text-sm font-semibold text-red-800">${window.t('conflict')} ${idx + 1}</p>
-                                                    <p class="text-xs text-red-600">${c.date} ${c.time} - ${c.vehicle}</p>
-                                                    <p class="text-xs text-red-500">${c.booking}</p>
-                                                </div>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                                
-                                ${data.conflicts.length > 0 ? `
-                                    <div class="mb-4 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
-                                        <p class="text-sm font-bold text-red-900 mb-2 flex items-center gap-2">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            ${window.t('conflictingBookingsDetected')}
-                                        </p>
-                                        <div class="space-y-2">
-                                            ${data.conflicts.map(c => `
-                                                <div class="text-sm text-red-800 bg-white p-2 rounded border border-red-200">
-                                                    <span class="font-semibold">${c.date} ${c.time}</span> - ${c.vehicle}<br>
-                                                    <span class="text-xs text-red-600">${c.booking}</span>
-                                                </div>
-                                            `).join('')}
-                                        </div>
-                                    </div>
-                                ` : `
-                                    <div class="mb-4 p-4 bg-green-50 border-2 border-green-300 rounded-lg">
-                                        <p class="text-sm font-bold text-green-900 flex items-center gap-2">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            ✓ ${window.t('noConflictsDetected')}
-                                        </p>
-                                    </div>
-                                `}
-                                
-                                <div class="p-4 bg-blue-50 border-2 border-blue-300 rounded-lg">
-                                    <p class="text-sm font-bold text-blue-900 mb-3 flex items-center gap-2">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
-                                            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"></path>
-                                        </svg>
-                                        ${window.t('alternativeVehiclesAvailable')}
-                                    </p>
-                                    <div class="space-y-2">
-                                        ${data.alternatives.map(a => `
-                                            <div class="bg-white p-2 rounded border border-blue-200">
-                                                <p class="text-sm font-semibold text-blue-800">✓ ${a}</p>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Requester Reliability Snapshot (Sidebar) -->
-                        <div class="lg:col-span-1">
-                            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 sticky top-4">
-                                <h4 class="text-lg font-bold text-gray-800 mb-4">${window.t('requesterProfile')}</h4>
-                                <div class="space-y-4">
-                                    <div>
-                                        <p class="text-xs text-gray-600 mb-1">${window.t('nameDepartment')}</p>
-                                        <p class="font-semibold text-gray-800">${data.requester}</p>
-                                        <p class="text-sm text-gray-600">${data.department}</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-xs text-gray-600 mb-1">${window.t('contact')}</p>
-                                        <p class="text-sm text-gray-800">${data.email}</p>
-                                        <p class="text-sm text-gray-800">${data.phone}</p>
-                                    </div>
-                                    <div class="pt-4 border-t border-gray-200">
-                                        <p class="text-xs text-gray-600 mb-2">${window.t('bookingStatisticsLast90Days')}</p>
-                                        <div class="space-y-2">
-                                            <div class="flex justify-between">
-                                                <span class="text-sm text-gray-700">${window.t('totalBookings')}</span>
-                                                <span class="font-semibold text-gray-800">${data.totalBookings90Days}</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-sm text-gray-700">${window.t('canceled')}</span>
-                                                <span class="font-semibold text-gray-600">${data.canceledBookings}</span>
-                                            </div>
-                                            <div class="flex justify-between">
-                                                <span class="text-sm text-gray-700">${window.t('denied')}</span>
-                                                <span class="font-semibold text-gray-600">${data.deniedBookings}</span>
-                                            </div>
-                                            <div class="mt-2 pt-2 border-t border-gray-200">
-                                                <div class="flex justify-between items-center">
-                                                    <span class="text-sm font-semibold text-gray-700">${window.t('cancellationRate')}</span>
-                                                    <span class="font-bold ${data.canceledBookings === 0 ? 'text-green-600' : data.canceledBookings < 2 ? 'text-yellow-600' : 'text-red-600'}">
-                                                        ${data.totalBookings90Days > 0 ? Math.round((data.canceledBookings / data.totalBookings90Days) * 100) : 0}%
-                                                    </span>
-                                                </div>
-                                                <p class="text-xs text-gray-500 mt-1">${data.canceledBookings} ${window.t('canceledOutOf')} ${data.totalBookings90Days} ${window.t('bookings')}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Action Buttons -->
-                    <div class="mt-6 flex gap-3 justify-end border-t border-gray-200 pt-4">
-                        ${booking.status === 'PENDING' ? `
-                            <button type="button" onclick="handleDenyBooking('${safeBookingId}')" class="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 cursor-pointer">${window.t('denyRequest')}</button>
-                            <button type="button" onclick="handleApproveBooking('${safeBookingId}')" class="px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 cursor-pointer">${window.t('approveRequest')}</button>
-                        ` : booking.status === 'DENIED' ? `
-                            <div class="w-full p-4 bg-red-50 border-2 border-red-300 rounded-lg">
-                                <p class="text-red-800 font-semibold mb-2">${window.t('denied')}</p>
-                                ${booking.adminNotes ? `<p class="text-red-700 text-sm">${sanitizeHTML(booking.adminNotes)}</p>` : ''}
-                            </div>
-                        ` : booking.status === 'CANCELLED' ? `
-                            <div class="w-full p-4 bg-orange-50 border-2 border-orange-300 rounded-lg">
-                                <p class="text-orange-800 font-semibold mb-2">${window.t('cancelled')}</p>
-                                ${booking.cancelledAt ? `<p class="text-orange-700 text-sm mb-2">${window.t('cancelledAt')}: ${new Date(booking.cancelledAt).toLocaleString()}</p>` : ''}
-                                ${booking.adminNotes ? `<p class="text-orange-700 text-sm">${sanitizeHTML(booking.adminNotes)}</p>` : ''}
-                            </div>
-                        ` : booking.status === 'APPROVED' || booking.status === 'ACTIVE' ? `
-                            <div class="w-full p-4 bg-green-50 border-2 border-green-300 rounded-lg">
-                                <p class="text-green-800 font-semibold">${window.t('approved')}</p>
-                            </div>
-                        ` : booking.status === 'COMPLETED' ? `
-                            <div class="w-full p-4 bg-gray-50 border-2 border-gray-300 rounded-lg">
-                                <p class="text-gray-800 font-semibold">${window.t('completed')}</p>
-                            </div>
-                        ` : ''}
+                    <div class="border-l-4 border-gray-300 pl-4">
+                        <button id="trip-complete-btn" onclick="openTripFinalization()" class="w-full py-5 px-8 bg-gray-700 text-white rounded-xl font-bold text-xl shadow-lg hover:bg-gray-800 active:scale-95 transition-transform border-2 border-gray-600 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50" disabled data-translate="tripComplete">
+                            ✅ Trip Complete
+                        </button>
+                        <p class="text-xs text-gray-600 mt-1" data-translate="completeTripSubmitLog">Complete trip and submit log</p>
                     </div>
                 </div>
-            `;
-            
+            </div>
+            <!-- Manual Update Status Form -->
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-6 border border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800 mb-4" data-translate="updateStatus">Update Trip Status</h3>
+                <p id="no-trips-message" class="text-sm text-gray-600 mb-4 hidden" data-translate="noTripsAvailable">No assigned trips available to update.</p>
+                <form id="update-status-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="selectTrip">Select Trip <span class="text-red-600">*</span></label>
+                        <select id="trip-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Choose a trip</option>
+                        </select>
+                        <p id="trip-select-error" class="text-red-600 text-sm mt-1 hidden" data-translate="tripSelectError">Please select a trip</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="currentStatus">Current Status <span class="text-red-600">*</span></label>
+                        <select id="status-select" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold">
+                            <option value="">Select status</option>
+                            <option value="statusEnRoute" data-translate="statusEnRoute">En Route</option>
+                            <option value="statusArrivedPickup" data-translate="statusArrivedPickup">Arrived at Pickup</option>
+                            <option value="statusDriving" data-translate="statusDriving">Driving</option>
+                            <option value="statusArrivedDestination" data-translate="statusArrivedDestination">Arrived at Destination</option>
+                            <option value="statusCompleted" data-translate="statusCompleted">Trip Completed</option>
+                        </select>
+                        <p id="status-select-error" class="text-red-600 text-sm mt-1 hidden" data-translate="statusSelectError">Please select a status</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="currentLocation">Current Location</label>
+                        <input type="text" id="current-location" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Enter current location" data-placeholder-key="currentLocationPlaceholder">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2" data-translate="statusNotes">Status Notes</label>
+                        <textarea id="status-notes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-isd-gold" placeholder="Any additional notes..." data-placeholder-key="statusNotesPlaceholder"></textarea>
+                    </div>
+                    <div class="flex items-center justify-end gap-3 pt-2 border-t border-gray-200">
+                        <button type="submit" id="update-status-submit" class="px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400 disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed" data-translate="updateStatusSubmit">Update Status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Trip Finalization/Log Screen -->
             let modal = document.getElementById('request-detail-modal');
             if (!modal) {
                 modal = document.createElement('div');
@@ -5831,7 +5632,6 @@
             } else {
                 modal.innerHTML = `<div class="modal-content max-w-6xl">${modalContent}</div>`;
             }
-            
             // CRITICAL FIX: Use event delegation on modal-content instead of individual buttons
             // This works even when content is dynamically replaced
             const modalContentContainer = modal.querySelector('.modal-content');
@@ -5898,7 +5698,6 @@
                     }
                 }, true); // Use capture phase to catch early
             }
-            
             // Also add direct listeners as backup - TEST VERSION
             setTimeout(function() {
                 console.log('🔍 Looking for approve button...');
@@ -5960,7 +5759,6 @@
                 alert('Error: Approve function not available. Please refresh the page.');
             }
         };
-        
         window.handleDenyBooking = function(bookingId) {
             console.log('handleDenyBooking called with bookingId:', bookingId);
             if (bookingId) {
@@ -5973,7 +5771,6 @@
                 }
             }
         };
-        
         // Templated Denial Responses
         function openDenialModal(bookingId, templateType) {
             const templates = {
@@ -6118,7 +5915,6 @@
             const modal = document.getElementById('denial-modal');
             if (modal) modal.classList.remove('open');
         }
-
         async function approveBooking(bookingId) {
             if (confirm(window.t('confirmApproveBooking'))) {
                 try {
@@ -6155,7 +5951,6 @@
                         
                         return v.status === 'Available';
                     });
-                    
                     // Warn if no vehicles are available due to maintenance
                     if (availableVehicles.length === 0 && vehiclesOfType.length > 0) {
                         const maintenanceVehicles = vehiclesOfType.filter(v => v.status === 'In Maintenance');
@@ -6181,7 +5976,6 @@
                         // Show warning but allow approval to proceed (admin can override)
                         showError(warningMessage);
                     }
-                    
                     // Auto-assign driver if booking requires school driver
                     let assignedDriverId = booking.assignedDriverId;
                     if (!assignedDriverId && booking.driverOption === 'Request Driver') {
@@ -6254,7 +6048,6 @@
                 }
             }
         }
-
         function rejectBooking(bookingId) {
             openDenialModal(bookingId, 'custom');
         }
@@ -6275,7 +6068,6 @@
         function closeEditUserModal() {
             document.getElementById('edit-user-modal').classList.remove('open');
         }
-
         // Handle edit form submissions
         document.addEventListener('DOMContentLoaded', function() {
             // Add image preview handler for vehicle image upload
@@ -6349,7 +6141,6 @@
                     // For now, just show success
                 });
             }
-
             // Close modals when clicking outside
             const editVehicleModal = document.getElementById('edit-vehicle-modal');
             if (editVehicleModal) {
@@ -6466,7 +6257,6 @@
                     nov7.setDate(nov7.getDate() + 1);
                     suggestedDate = nov7.toISOString().split('T')[0];
                 }
-                
                 // Show suggestion for nearest available date next to the date input
                 const dateAvailabilityMessage = document.getElementById('date-availability-message');
                 if (dateAvailabilityMessage && suggestedDate) {
@@ -6538,7 +6328,6 @@
                     dateAvailabilityMessage.classList.add('hidden');
                 }
             }
-            
             // Check if the selected date has no available vehicles
             // Get all bookings for the selected date
             if (selectedDate) {
@@ -6592,7 +6381,6 @@
                 if (isInBusUnavailablePeriod && availableVehicleTypes.has('bus')) {
                     bookedVehicleTypes.add('bus');
                 }
-                
                 // Check if all available vehicle types are booked
                 const allVehiclesBooked = availableVehicleTypes.size > 0 && 
                     Array.from(availableVehicleTypes).every(type => bookedVehicleTypes.has(type));
@@ -6660,7 +6448,6 @@
                             break;
                         }
                     }
-                    
                     // Show suggestion for nearest available date
                     const dateAvailabilityMessage = document.getElementById('date-availability-message');
                     if (dateAvailabilityMessage) {
@@ -6733,7 +6520,6 @@
                 }
             }
         }
-        
         // Auto-check availability when date and vehicle type are selected
         function autoCheckAvailability() {
             const vehicleType = document.getElementById('vehicle-type')?.value;
@@ -6823,7 +6609,6 @@
                     <span class="text-blue-800 font-semibold">${window.t('checkingAvailability')}</span>
                 </div>
             `;
-            
             // Check availability against mock bookings
             setTimeout(() => {
                 // Special case: November 6th, 2025 - all vehicles are unavailable
@@ -6836,7 +6621,6 @@
                 const busUnavailableEnd = new Date('2025-12-15');
                 busUnavailableStart.setHours(0, 0, 0, 0);
                 busUnavailableEnd.setHours(23, 59, 59, 999);
-                
                 const isBusType = vehicleType === 'bus';
                 const isInBusUnavailablePeriod = selectedDateObj && selectedDateObj >= busUnavailableStart && selectedDateObj <= busUnavailableEnd;
                 
@@ -6929,7 +6713,6 @@
                     
                     isAvailable = !hasConflict;
                 }
-                
                 if (isAvailable) {
                     availabilityStatus.className = 'p-4 bg-green-50 border border-green-200 rounded-lg';
                     availabilityStatus.innerHTML = `
@@ -7020,7 +6803,6 @@
             const displayHour = hour % 12 || 12;
             return `${displayHour}:${minutes} ${ampm}`;
         }
-        
         // Driver option handler
         function handleDriverOption() {
             const driverOption = document.getElementById('driver-option')?.value;
@@ -7085,7 +6867,6 @@
                 if (authNotAuthorized) authNotAuthorized.classList.remove('hidden');
             }
         }
-        
         // Generate booking summary for review
         function generateBookingSummary() {
             const summaryDiv = document.getElementById('booking-summary');
@@ -7182,7 +6963,6 @@
                 window.location.hash = 'new-booking';
             }
         }
-        
         // Show cancellation confirmation modal
         function showCancellationModal(bookingId, currentStatus, onConfirm) {
             const modal = document.createElement('div');
@@ -7256,7 +7036,6 @@
                 modal._cancellationCallback();
             }
         };
-        
         // Post-Submission Management: Cancel Request (for Pending or Approved bookings)
         window.cancelBooking = async function(bookingId, currentStatus) {
             // Check if booking is in Pending or Approved status
@@ -7314,143 +7093,6 @@
                 }
             });
         }
-        
-        // Post-Submission Management: View Driver Status (for Approved bookings with school driver)
-        function viewDriverStatus(bookingId) {
-            let driverStatus = '';
-            let driverName = '';
-            let statusDetails = '';
-            
-            if (bookingId === 'museum-field-trip') {
-                driverName = 'John Smith';
-                driverStatus = 'En Route';
-                statusDetails = `
-Driver: John Smith
-Status: En Route
-Current Location: 2.5 km from pickup location
-Estimated Arrival: 8:55 AM (5 minutes)
-Vehicle: Bus VH-001
-Contact: +1 (555) 123-4567
-
-Last Updated: 8:50 AM
-Next Update: Real-time GPS tracking active
-                `;
-            } else if (bookingId === 'science-museum') {
-                driverName = 'Sarah Johnson';
-                driverStatus = 'Arrived';
-                statusDetails = `
-Driver: Sarah Johnson
-Status: Arrived
-Location: Main School Gate
-Arrival Time: 10:00 AM
-Vehicle: Bus VH-003
-Contact: +1 (555) 987-6543
-
-Current Activity: Passengers boarding
-Estimated Departure: 10:15 AM
-                `;
-            } else {
-                driverStatus = 'Assigned';
-                statusDetails = `
-Driver: Not yet assigned
-Status: Assigned (awaiting driver assignment)
-Vehicle: To be assigned
-
-The admin will assign a driver closer to the trip date.
-                `;
-            }
-            
-            const modalContent = `
-                <h3 class="text-xl font-bold mb-4 text-gray-800">${window.t('driverStatusTitle')} ${bookingId}</h3>
-                <div class="text-left space-y-3">
-                    <div class="p-4 bg-gray-50 rounded-lg">
-                        <pre class="text-sm text-gray-700 whitespace-pre-wrap">${statusDetails}</pre>
-                    </div>
-                    <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                        <p class="text-sm text-blue-800 font-semibold mb-1">${window.t('realTimeStatusUpdates')}</p>
-                        <p class="text-xs text-blue-700">${window.t('driverStatusUpdatesDesc')}</p>
-                    </div>
-                </div>
-                <button onclick="document.getElementById('driver-status-modal').classList.remove('open')" class="mt-4 px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400" data-translate="close">Close</button>
-            `;
-            
-            let modal = document.getElementById('driver-status-modal');
-            if (!modal) {
-                modal = document.createElement('div');
-                modal.id = 'driver-status-modal';
-                modal.className = 'modal-overlay';
-                modal.innerHTML = `<div class="modal-content">${modalContent}</div>`;
-                document.body.appendChild(modal);
-                
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        modal.classList.remove('open');
-                    }
-                });
-            } else {
-                modal.querySelector('.modal-content').innerHTML = modalContent;
-            }
-            
-            modal.classList.add('open');
-        }
-        
-        // Trip policy modal
-        function showTripPolicy() {
-            const policyContent = `
-                <h3 class="text-xl font-bold mb-4 text-gray-800">${window.t('tripPolicyTitle')}</h3>
-                <div class="text-left space-y-4 text-sm">
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-2">${window.t('requiredDocumentation')}</h4>
-                        <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li>${window.t('completedTripRequestForm')}</li>
-                            <li>${window.t('parentalConsentForms')}</li>
-                            <li>${window.t('emergencyContactInfo')}</li>
-                            <li>${window.t('medicalInfoParticipants')}</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-2">${window.t('bookingGuidelines')}</h4>
-                        <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li>${window.t('bookAtLeast2Weeks')}</li>
-                            <li>${window.t('maximumCapacityRespected')}</li>
-                            <li>${window.t('cancellation48Hours')}</li>
-                            <li>${window.t('selfDriveAuthorizationRequired')}</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-2">${window.t('safetyRequirements')}</h4>
-                        <ul class="list-disc list-inside space-y-1 text-gray-700">
-                            <li>${window.t('allPassengersWearSeatbelts')}</li>
-                            <li>${window.t('firstAidKitMustBePresent')}</li>
-                            <li>${window.t('emergencyContactNumbersAccessible')}</li>
-                        </ul>
-                    </div>
-                </div>
-                <button onclick="document.getElementById('trip-policy-modal').classList.remove('open')" class="mt-6 px-6 py-2 bg-isd-gold text-isd-black rounded-lg font-semibold hover:bg-yellow-400" data-translate="close">Close</button>
-            `;
-            
-            // Create or update modal
-            let modal = document.getElementById('trip-policy-modal');
-            if (!modal) {
-                modal = document.createElement('div');
-                modal.id = 'trip-policy-modal';
-                modal.className = 'modal-overlay';
-                modal.innerHTML = `<div class="modal-content">${policyContent}</div>`;
-                document.body.appendChild(modal);
-                
-                // Close on outside click
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        modal.classList.remove('open');
-                    }
-                });
-            } else {
-                modal.querySelector('.modal-content').innerHTML = policyContent;
-            }
-            
-            modal.classList.add('open');
-        }
-        
         // Show scrollable booking success modal
         function showBookingSuccessModal() {
             const modalContent = `
@@ -7511,7 +7153,6 @@ The admin will assign a driver closer to the trip date.
             
             console.log('✅ Booking success modal displayed');
         }
-        
         // Close booking success modal
         window.closeBookingSuccessModal = function() {
             const modal = document.getElementById('booking-success-modal');
@@ -7529,6 +7170,11 @@ The admin will assign a driver closer to the trip date.
 
         // Initialize when DOM is ready
         function initializeApp() {
+            // Reset session state on fresh load to enforce role gating
+            appState.isAuthenticated = false;
+            appState.currentRole = null;
+            appState.pendingRole = null;
+            
             // Initialize language from localStorage or default to 'en'
             let initialLanguage = 'en';
             try {
@@ -7557,7 +7203,7 @@ The admin will assign a driver closer to the trip date.
                 }, `role-link-${role}`);
             });
 
-            const roleCards = document.querySelectorAll('[data-role-card]');
+            const roleCards = document.querySelectorAll('[data-role]');
             roleCards.forEach(card => {
                 const role = card.getAttribute('data-role');
                 safeAddEventListener(card, 'click', () => {
@@ -7576,8 +7222,11 @@ The admin will assign a driver closer to the trip date.
                 event.preventDefault();
                 logoutUser();
             }, 'logout-btn');
-
             safeAddEventListener(document, 'keydown', roleOverlayKeyHandler, 'role-overlay-escape');
+            
+            if (!appState.isAuthenticated) {
+                showRoleOverlay(null, false);
+            }
             
             // Set minimum date to today for booking form
             const tripDateInput = document.getElementById('trip-date');
@@ -7652,7 +7301,6 @@ The admin will assign a driver closer to the trip date.
                     updateAvailabilityPreview();
                 });
             }
-            
             // Auto-check availability when end time changes
             const endTimeInput = document.getElementById('end-time');
             if (endTimeInput) {
@@ -7668,7 +7316,6 @@ The admin will assign a driver closer to the trip date.
                     updateAvailabilityPreview();
                 });
             }
-            
             // Ensure duration and pickup time fields are enabled and visible (legacy - may not be needed)
             ensureBookingFormFieldsEnabled();
             
@@ -7677,7 +7324,6 @@ The admin will assign a driver closer to the trip date.
             if (driverOptionInput && driverOptionInput.value === 'school-driver') {
                 handleDriverOption();
             }
-            
             // Add passenger capacity validation based on vehicle type
             const vehicleTypeInput = document.getElementById('vehicle-type');
             const passengersInput = document.getElementById('passengers');
@@ -7732,7 +7378,6 @@ The admin will assign a driver closer to the trip date.
                 // Initialize capacity info on page load
                 updatePassengerCapacity();
             }
-            
             // Vehicle type change handler (additional event listener for authorization check)
             if (vehicleTypeInput) {
                 vehicleTypeInput.addEventListener('change', () => {
@@ -7746,940 +7391,16 @@ The admin will assign a driver closer to the trip date.
                     autoCheckAvailability();
                 });
             }
-            
             // Driver option change handler (additional event listener)
             if (driverOptionInput) {
                 driverOptionInput.addEventListener('change', handleDriverOption);
             }
-            
-            // Pickup location change handler
-            const pickupLocationInput = document.getElementById('pickup-location');
-            if (pickupLocationInput) {
-                pickupLocationInput.addEventListener('input', updateAvailabilityButtonState);
-            }
-            
-            // Pickup time change handler (additional event listener for availability button state)
-            if (pickupTimeInput) {
-                pickupTimeInput.addEventListener('change', updateAvailabilityButtonState);
-            }
-            
-            // Form field change handlers for availability button
-            const tripPurposeInput = document.getElementById('trip-purpose');
-            if (tripPurposeInput) {
-                tripPurposeInput.addEventListener('input', updateAvailabilityButtonState);
-            }
-            
-            // Passengers change handler (additional event listener for availability button state)
-            if (passengersInput) {
-                passengersInput.addEventListener('input', updateAvailabilityButtonState);
-            }
-            
-        // Function to ensure booking form fields are enabled and visible
-        function ensureBookingFormFieldsEnabled() {
-            const pickupTimeInput = document.getElementById('pickup-time');
-            const endDateInput = document.getElementById('end-date');
-            const endTimeInput = document.getElementById('end-time');
-            
-            if (pickupTimeInput) {
-                // Ensure field is enabled and visible
-                pickupTimeInput.removeAttribute('disabled');
-                pickupTimeInput.removeAttribute('readonly');
-                pickupTimeInput.style.display = '';
-                pickupTimeInput.style.visibility = 'visible';
-                pickupTimeInput.style.opacity = '1';
-                pickupTimeInput.style.pointerEvents = 'auto';
-            }
-            
-            if (endDateInput) {
-                // Ensure field is enabled and visible
-                endDateInput.removeAttribute('disabled');
-                endDateInput.removeAttribute('readonly');
-                endDateInput.style.display = '';
-                endDateInput.style.visibility = 'visible';
-                endDateInput.style.opacity = '1';
-                endDateInput.style.pointerEvents = 'auto';
-            }
-            
-            if (endTimeInput) {
-                // Ensure field is enabled and visible
-                endTimeInput.removeAttribute('disabled');
-                endTimeInput.removeAttribute('readonly');
-                endTimeInput.style.display = '';
-                endTimeInput.style.visibility = 'visible';
-                endTimeInput.style.opacity = '1';
-                endTimeInput.style.pointerEvents = 'auto';
-            }
-        }
-        
-        // Update availability preview dynamically
-        function updateAvailabilityPreview() {
-            const tripDate = document.getElementById('trip-date')?.value;
-            const pickupTime = document.getElementById('pickup-time')?.value;
-            const endDate = document.getElementById('end-date')?.value;
-            const endTime = document.getElementById('end-time')?.value;
-            const vehicleType = document.getElementById('vehicle-type')?.value;
-            
-            const preview = document.getElementById('availability-preview');
-            const previewContent = document.getElementById('availability-preview-content');
-            
-            if (!preview || !previewContent) return;
-            
-            // Show preview only if we have all required fields
-            if (tripDate && pickupTime && endDate && endTime && vehicleType) {
-                // Calculate available vehicles
-                const vehicleCapacities = {
-                    'bus': { capacity: 50, count: 8, name: 'Bus' },
-                    'van': { capacity: 15, count: 10, name: 'Van' },
-                    'car': { capacity: 5, count: 14, name: 'Car' }
-                };
-                
-                // Check for conflicts with existing bookings
-                const [startHours, startMinutes] = pickupTime.split(':');
-                const startDateTime = new Date(tripDate);
-                startDateTime.setHours(parseInt(startHours), parseInt(startMinutes), 0, 0);
-                
-                const [endHours, endMinutes] = endTime.split(':');
-                const endDateTime = new Date(endDate);
-                endDateTime.setHours(parseInt(endHours), parseInt(endMinutes), 0, 0);
-                
-                // Count available vehicles (simplified - would check actual bookings)
-                const vehicleInfo = vehicleCapacities[vehicleType];
-                if (vehicleInfo) {
-                    // Simple availability check (can be enhanced with actual booking conflicts)
-                    const availableCount = vehicleInfo.count; // Simplified - would check actual bookings
-                    preview.classList.remove('hidden');
-                    previewContent.innerHTML = `
-                        <p class="font-semibold">${availableCount} ${vehicleInfo.name}${availableCount !== 1 ? 'es' : ''} Available</p>
-                        <p class="text-xs mt-1">Capacity: ${vehicleInfo.capacity} seats per vehicle</p>
-                    `;
-                } else {
-                    preview.classList.add('hidden');
-                }
-            } else {
-                preview.classList.add('hidden');
-            }
-        }
-        
-            // Availability check button
-            const checkAvailabilityBtn = document.getElementById('check-availability-btn');
-            if (checkAvailabilityBtn) {
-                checkAvailabilityBtn.addEventListener('click', checkAvailability);
-            }
-            
-            // Review booking button
-            const reviewBtn = document.getElementById('review-booking-btn');
-            if (reviewBtn) {
-                reviewBtn.addEventListener('click', () => {
-                    generateBookingSummary();
-                    document.getElementById('booking-summary')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                });
-            }
-            
-            // Event Listeners for Language - Make globally accessible
-            const langEn = document.getElementById('lang-en');
-            const langFr = document.getElementById('lang-fr');
-            if (langEn) {
-                // Remove existing listeners to prevent duplicates
-                langEn.replaceWith(langEn.cloneNode(true));
-                const newLangEn = document.getElementById('lang-en');
-                newLangEn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (typeof app !== 'undefined' && app.setLanguage) {
-                        app.setLanguage('en');
-                    } else if (typeof window.setLanguage === 'function') {
-                        window.setLanguage('en');
-                    } else {
-                        console.error('Language switching not available');
-                    }
-                });
-            }
-            if (langFr) {
-                // Remove existing listeners to prevent duplicates
-                langFr.replaceWith(langFr.cloneNode(true));
-                const newLangFr = document.getElementById('lang-fr');
-                newLangFr.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (typeof app !== 'undefined' && app.setLanguage) {
-                        app.setLanguage('fr');
-                    } else if (typeof window.setLanguage === 'function') {
-                        window.setLanguage('fr');
-                    } else {
-                        console.error('Language switching not available');
-                    }
-                });
-            }
-            
-            // Form validation for New Booking
-            const newBookingForm = document.getElementById('new-booking-form');
-            if (newBookingForm) {
-                newBookingForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    
-                    // Clear previous errors
-                    document.querySelectorAll('[id$="-error"]').forEach(el => {
-                        el.classList.add('hidden');
-                    });
-                    // Clear red borders from all form inputs
-                    document.querySelectorAll('#new-booking-form input, #new-booking-form select, #new-booking-form textarea').forEach(input => {
-                        input.classList.remove('border-red-500');
-                    });
-                    
-                    let isValid = true;
-                    
-                    // Validate Trip Purpose
-                    const tripPurpose = document.getElementById('trip-purpose');
-                    if (!tripPurpose.value.trim()) {
-                        document.getElementById('trip-purpose-error').classList.remove('hidden');
-                        tripPurpose.classList.add('border-red-500');
-                        isValid = false;
-                    }
-                    
-                    // Validate Date
-                    const tripDate = document.getElementById('trip-date');
-                    if (!tripDate.value) {
-                        document.getElementById('trip-date-error').classList.remove('hidden');
-                        document.getElementById('trip-date-error').textContent = window.t('dateRequired');
-                        tripDate.classList.add('border-red-500');
-                        isValid = false;
-                    } else {
-                        // Check if date is unavailable (November 6th or bus unavailable period)
-                        if (tripDate.value === '2025-11-06' || tripDate.classList.contains('unavailable-date')) {
-                            document.getElementById('trip-date-error').classList.remove('hidden');
-                            document.getElementById('trip-date-error').textContent = window.t('dateUnavailable');
-                            tripDate.classList.add('border-red-500');
-                            isValid = false;
-                        }
-                        // Check if date is in the past
-                        const selectedDate = new Date(tripDate.value);
-                        const today = new Date();
-                        today.setHours(0, 0, 0, 0);
-                        if (selectedDate < today) {
-                            document.getElementById('trip-date-error').classList.remove('hidden');
-                            document.getElementById('trip-date-error').textContent = window.t('cannotBookPastDate');
-                            tripDate.classList.add('border-red-500');
-                            isValid = false;
-                        }
-                    }
-                    
-                    // Validate Pickup Time
-                    const pickupTime = document.getElementById('pickup-time');
-                    if (!pickupTime.value) {
-                        document.getElementById('pickup-time-error').classList.remove('hidden');
-                        document.getElementById('pickup-time-error').textContent = window.t('pickupTimeError');
-                        pickupTime.classList.add('border-red-500');
-                        isValid = false;
-                    } else if (tripDate.value) {
-                        // Check if date and time combination is in the past
-                        const selectedDate = new Date(tripDate.value);
-                        const today = new Date();
-                        today.setHours(0, 0, 0, 0);
-                        
-                        if (selectedDate.getTime() === today.getTime()) {
-                            // Same day, check time
-                            const [hours, minutes] = pickupTime.value.split(':');
-                            const selectedDateTime = new Date();
-                            selectedDateTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
-                            const now = new Date();
-                            
-                            if (selectedDateTime < now) {
-                                document.getElementById('pickup-time-error').classList.remove('hidden');
-                                document.getElementById('pickup-time-error').textContent = window.t('cannotBookPastTime');
-                                pickupTime.classList.add('border-red-500');
-                                isValid = false;
-                            }
-                        }
-                    }
-                    
-                    // Validate Passengers
-                    const passengers = document.getElementById('passengers');
-                    if (!passengers.value || parseInt(passengers.value) < 1) {
-                        document.getElementById('passengers-error').classList.remove('hidden');
-                        passengers.classList.add('border-red-500');
-                        isValid = false;
-                    }
-                    
-                    // Validate Duration
-                    const tripDuration = document.getElementById('trip-duration');
-                    if (!tripDuration.value) {
-                        document.getElementById('trip-duration-error').classList.remove('hidden');
-                        tripDuration.classList.add('border-red-500');
-                        isValid = false;
-                    } else {
-                        // Validate that duration is a valid number
-                        const durationValue = parseInt(tripDuration.value, 10);
-                        if (isNaN(durationValue) || durationValue <= 0) {
-                            document.getElementById('trip-duration-error').classList.remove('hidden');
-                            document.getElementById('trip-duration-error').textContent = 'Duration must be a valid number';
-                        tripDuration.classList.add('border-red-500');
-                        isValid = false;
-                        }
-                    }
-                    
-                    // Validate Vehicle Type
-                    const vehicleType = document.getElementById('vehicle-type');
-                    if (!vehicleType.value) {
-                        document.getElementById('vehicle-type-error').classList.remove('hidden');
-                        vehicleType.classList.add('border-red-500');
-                        isValid = false;
-                    }
-                    
-                    // Validate Driver Option
-                    const driverOption = document.getElementById('driver-option');
-                    if (driverOption && !driverOption.value) {
-                        if (!document.getElementById('driver-option-error')) {
-                            const errorMsg = document.createElement('p');
-                            errorMsg.id = 'driver-option-error';
-                            errorMsg.className = 'text-red-600 text-sm mt-1';
-                            errorMsg.textContent = 'Please select a driver option';
-                            driverOption.parentElement.appendChild(errorMsg);
-                        }
-                        document.getElementById('driver-option-error').classList.remove('hidden');
-                        driverOption.classList.add('border-red-500');
-                        isValid = false;
-                    } else if (driverOption && driverOption.value === 'school-driver') {
-                        // Validate pickup location and time for school driver
-                        const pickupLocation = document.getElementById('pickup-location');
-                        const pickupTime = document.getElementById('pickup-time');
-                        
-                        if (!pickupLocation || !pickupLocation.value.trim()) {
-                            const errorEl = document.getElementById('pickup-location-error');
-                            if (errorEl) errorEl.classList.remove('hidden');
-                            if (pickupLocation) pickupLocation.classList.add('border-red-500');
-                            isValid = false;
-                        }
-                        
-                        if (!pickupTime || !pickupTime.value) {
-                            const errorEl = document.getElementById('pickup-time-error');
-                            if (errorEl) errorEl.classList.remove('hidden');
-                            if (pickupTime) pickupTime.classList.add('border-red-500');
-                            isValid = false;
-                        }
-                    } else if (driverOption && driverOption.value === 'self-drive') {
-                        // Check authorization status if self-drive is selected
-                        const authStatus = document.getElementById('driver-authorization-status');
-                        const authNotAuthorized = document.getElementById('authorization-not-authorized');
-                        if (authStatus && !authStatus.classList.contains('hidden') && 
-                            authNotAuthorized && !authNotAuthorized.classList.contains('hidden')) {
-                            showError('You are not authorized for self-drive with the selected vehicle type. Please select "Request a School Driver" or choose a different vehicle type.');
-                            isValid = false;
-                        }
-                    }
-                    
-                    // Availability is automatically checked by the system
-                    // No need to validate button click - check availability status directly
-                    const availabilityStatus = document.getElementById('availability-status');
-                    const submitBtn = document.getElementById('submit-booking-btn');
-                    if (submitBtn && submitBtn.disabled) {
-                        // Check if we have November 6th (which should be cleared by checkDateAvailability)
-                        const tripDate = document.getElementById('trip-date')?.value;
-                        if (tripDate === '2025-11-06') {
-                            // This shouldn't happen as checkDateAvailability clears it, but just in case
-                            showError('November 6th, 2025 is unavailable. Please select the suggested date or another available date.');
-                        } else if (availabilityStatus && !availabilityStatus.classList.contains('bg-green-50')) {
-                            showError('Please ensure vehicle availability is confirmed before submitting. The system will check availability automatically when all fields are filled.');
-                        }
-                        isValid = false;
-                    }
-                    
-                    if (isValid) {
-                        // Collect form data with input validation
-                        const tripPurposeInput = document.getElementById('trip-purpose');
-                        const tripPurpose = tripPurposeInput ? tripPurposeInput.value.trim() : '';
-                        
-                        // Validate trip purpose input
-                        if (!validateInput(tripPurpose, 'text')) {
-                            showError('Trip purpose is required and must be less than 1000 characters.');
-                            return;
-                        }
-                        
-                        const vehicleType = document.getElementById('vehicle-type').value;
-                        const tripDate = document.getElementById('trip-date').value;
-                        
-                        // Validate date input
-                        if (!validateInput(tripDate, 'date')) {
-                            showError('Please select a valid date.');
-                            return;
-                        }
-                        
-                        const pickupTime = document.getElementById('pickup-time').value;
-                        const endDate = document.getElementById('end-date')?.value;
-                        const endTime = document.getElementById('end-time')?.value;
-                        
-                        // Validate end date and time
-                        if (!endDate || !endTime) {
-                            showError(window.t('endDateError') || 'End date and time are required.');
-                            return;
-                        }
-                        
-                        // Calculate duration from start and end dates/times
-                        const [startHours, startMinutes] = pickupTime.split(':');
-                        const startDateTime = new Date(tripDate);
-                        startDateTime.setHours(parseInt(startHours), parseInt(startMinutes), 0, 0);
-                        
-                        const [endHours, endMinutes] = endTime.split(':');
-                        const endDateTime = new Date(endDate);
-                        endDateTime.setHours(parseInt(endHours), parseInt(endMinutes), 0, 0);
-                        
-                        // Validate end date/time is after start date/time
-                        if (endDateTime <= startDateTime) {
-                            showError('End date and time must be after start date and time.');
-                            return;
-                        }
-                        
-                        // Calculate duration in hours
-                        const durationMs = endDateTime - startDateTime;
-                        const tripDuration = Math.round(durationMs / (1000 * 60 * 60)); // Convert to hours
-                        
-                        // Validate duration is a valid number
-                        if (isNaN(tripDuration) || tripDuration <= 0) {
-                            showError('Invalid duration. End time must be after start time.');
-                            return;
-                        }
-                        
-                        const driverOption = document.getElementById('driver-option').value;
-                        const passengersInput = document.getElementById('passengers');
-                        const passengers = passengersInput ? parseInt(passengersInput.value, 10) : 0;
-                        
-                    // Validate passengers is a valid number
-                    if (isNaN(passengers) || passengers <= 0) {
-                        showError(window.t('pleaseEnterValidPassengers'));
-                        return;
-                    }
-                    
-                    // Validate passengers doesn't exceed vehicle capacity
-                    const vehicleCapacities = {
-                        'bus': 50,
-                        'van': 15,
-                        'car': 5
-                    };
-                    const capacity = vehicleCapacities[vehicleType];
-                    if (capacity && passengers > capacity) {
-                        showError(`${window.t('cannotExceedCapacity')} ${capacity} ${window.t('passengers')}`);
-                        document.getElementById('passengers').classList.add('border-red-500');
-                        const errorMsg = document.getElementById('passengers-error');
-                        if (errorMsg) {
-                            errorMsg.textContent = `${window.t('cannotExceedCapacity')} ${capacity} ${window.t('passengers')}`;
-                            errorMsg.classList.remove('hidden');
-                        }
-                        return;
-                    }
-                        
-                        const notesInput = document.getElementById('notes');
-                        const notes = notesInput ? notesInput.value.trim() : '';
-                        
-                        // Validate notes input length if provided
-                        if (notes && !validateInput(notes, 'text')) {
-                            showError('Notes must be less than 1000 characters.');
-                            return;
-                        }
-                        
-                        const pickupLocationInput = document.getElementById('pickup-location');
-                        const pickupLocation = pickupLocationInput ? pickupLocationInput.value.trim() : '';
-                        
-                        // Validate pickup location if school driver
-                        if (driverOption === 'school-driver' && pickupLocation) {
-                            if (!validateInput(pickupLocation, 'text')) {
-                                showError('Pickup location must be less than 1000 characters.');
-                                return;
-                            }
-                        }
-                        
-                        // Map vehicle type to booking format
-                        const vehicleTypeMap = {
-                            'bus': 'Minibus',
-                            'van': 'Passenger Van',
-                            'car': 'Sedan'
-                        };
-                        const mappedVehicleType = vehicleTypeMap[vehicleType] || vehicleType;
-                        
-                        // Map driver option to booking format
-                        const driverOptionMap = {
-                            'school-driver': 'Request Driver',
-                            'self-drive': 'Self-Drive'
-                        };
-                        const mappedDriverOption = driverOptionMap[driverOption] || driverOption;
-                        
-                        // Create start time string (ISO format) - Use local timezone, not UTC
-                        // Parse date and time in local timezone, then convert to ISO
-                        const [hours, minutes] = pickupTime.split(':');
-                        const localDate = new Date(tripDate);
-                        localDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
-                        const startTimeISO = localDate.toISOString();
-                        
-                        // Sanitize all text inputs before creating booking
-                        const safeTripPurpose = sanitizeHTML(tripPurpose);
-                        const safePickupLocation = pickupLocation ? sanitizeHTML(pickupLocation) : '';
-                        const safeNotes = notes ? sanitizeHTML(notes) : '';
-                        
-                        // Create booking object
-                        // Ensure all numeric fields are explicitly numbers (not strings) for Firebase
-                        const newBooking = {
-                            vehicleType: mappedVehicleType,
-                            startTime: startTimeISO,
-                            durationHours: Number(tripDuration), // Explicitly convert to number type
-                            driverOption: mappedDriverOption,
-                            adminNotes: '',
-                            passengers: Number(passengers), // Explicitly convert to number type
-                            tripPurpose: safeTripPurpose, // Sanitized
-                            requesterId: 'emp_high' // Set requesterId for guest mode (default to emp_high)
-                        };
-                        
-                        // Add pickup location if school driver (already sanitized)
-                        if (driverOption === 'school-driver' && safePickupLocation) {
-                            newBooking.pickupLocation = safePickupLocation;
-                        }
-                        
-                        // Add notes if provided (already sanitized)
-                        if (safeNotes) {
-                            newBooking.notes = safeNotes;
-                        }
-                        
-                        // Create booking in Firestore (or mock data if Firebase not configured)
-                        try {
-                            const bookingId = await createBooking(newBooking);
-                            console.log('New booking created:', bookingId, newBooking);
-                            
-                            // Show success message
-                            showSuccess('Booking request submitted successfully!');
-                            
-                            // Reset form first
-                            newBookingForm.reset();
-                            
-                            // Show scrollable success modal
-                            showBookingSuccessModal();
-                            
-                            // Immediately refresh dashboard BEFORE navigation to ensure booking appears
-                            console.log('🔄 Immediate refresh - Refreshing dashboard after booking submission');
-                            console.log('   Current MOCK_BOOKINGS count:', Object.keys(MOCK_BOOKINGS).length);
-                            await populateEmployeeDashboard('emp_high');
-                            
-                            // Don't auto-navigate - let user click "Go to Dashboard" button
-                            // The modal will handle navigation when user clicks the button
-                            
-                            // Additional refreshes after navigation to ensure it's visible
-                            setTimeout(async () => {
-                                console.log('🔄 Post-navigation refresh - Refreshing dashboard');
-                                await populateEmployeeDashboard('emp_high');
-                            }, 500);
-                            
-                            setTimeout(async () => {
-                                console.log('🔄 Final refresh - Ensuring booking is visible');
-                                await populateEmployeeDashboard('emp_high');
-                            }, 1000);
-                        } catch (error) {
-                            console.error('Error creating booking:', error);
-                            
-                            // Enhanced error handling for Firebase permission issues
-                            let errorMessage = 'Failed to create booking. Please try again.';
-                            
-                            if (error.code === 'permission-denied') {
-                                errorMessage = 'Permission Denied: You do not have permission to create bookings. Please check your authentication and role.\n\n' +
-                                    'Console Error Code: ' + error.code + '\n' +
-                                    'Check Network Tab for 403 Forbidden response.';
-                                console.error('Firebase Permission Denied - Check security rules:', error);
-                            } else if (error.code === 'unauthenticated') {
-                                errorMessage = 'Authentication Error: You are not logged in. Please refresh the page and try again.';
-                                console.error('Firebase Unauthenticated Error:', error);
-                            } else if (error.message) {
-                                errorMessage += '\n\nError: ' + error.message;
-                            }
-                            
-                            showError(errorMessage);
-                        }
-                    }
-                });
-            }
-            
-            // Handle admin/employee/driver header link clicks
-            const btnAdmin = document.getElementById('btn-admin');
-            const btnEmployee = document.getElementById('btn-employee');
-            const btnDriver = document.getElementById('btn-driver');
-            
-            if (btnAdmin) {
-                btnAdmin.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    // Show admin login form - for now, navigate to guest admin for demo
-                    window.location.hash = 'guest/admin';
-                });
-            }
-            
-            if (btnEmployee) {
-                btnEmployee.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    // Show employee login form - for now, navigate to guest employee for demo
-                    window.location.hash = 'guest/employee';
-                });
-            }
-            
-            if (btnDriver) {
-                btnDriver.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    // Show driver login form - for now, navigate to guest driver for demo
-                    window.location.hash = 'guest/driver';
-                });
-            }
-            
-            // Hash change listener for routing (moved to initApp to avoid duplicates)
-            
-            // Prevent default navigation on header links
-            const headerTitleLink = document.getElementById('header-title-link');
-            const homeLink = document.getElementById('home-link');
-            
-            if (headerTitleLink) {
-                headerTitleLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.location.hash = 'home';
-                });
-            }
-            
             if (homeLink) {
                 homeLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     window.location.hash = 'home';
                 });
             }
-            
-            // Admin Dashboard Button Listeners
-            const adminFleetBtn = document.getElementById('admin-fleet-btn');
-            const adminApprovalsBtn = document.getElementById('admin-approvals-btn');
-            const adminUsersBtn = document.getElementById('admin-users-btn');
-            
-            if (adminFleetBtn) {
-                adminFleetBtn.addEventListener('click', () => {
-                    window.location.hash = 'fleet-management';
-                });
-            }
-            
-            if (adminApprovalsBtn) {
-                adminApprovalsBtn.addEventListener('click', () => {
-                    window.location.hash = 'booking-approvals';
-                });
-            }
-            
-            if (adminUsersBtn) {
-                adminUsersBtn.addEventListener('click', () => {
-                    window.location.hash = 'user-management';
-                });
-            }
-            
-            // Employee Dashboard Button Listeners
-            const employeeBookingBtn = document.getElementById('employee-booking-btn');
-            const employeeMyBookingsBtn = document.getElementById('employee-mybookings-btn');
-            
-            if (employeeBookingBtn) {
-                employeeBookingBtn.addEventListener('click', () => {
-                    window.location.hash = 'new-booking';
-                });
-            }
-            
-            if (employeeMyBookingsBtn) {
-                employeeMyBookingsBtn.addEventListener('click', () => {
-                    window.location.hash = 'my-bookings';
-                });
-            }
-            
-            // Driver Dashboard Button Listeners
-            const driverTripsBtn = document.getElementById('driver-trips-btn');
-            const driverStatusBtn = document.getElementById('driver-status-btn');
-            
-            if (driverTripsBtn) {
-                driverTripsBtn.addEventListener('click', () => {
-                    window.location.hash = 'assigned-trips';
-                });
-            }
-            
-            if (driverStatusBtn) {
-                driverStatusBtn.addEventListener('click', () => {
-                    window.location.hash = 'update-status';
-                });
-            }
-            
-            // Add Vehicle Button Handler
-            const addVehicleBtn = document.getElementById('add-vehicle-btn');
-            if (addVehicleBtn) {
-                addVehicleBtn.addEventListener('click', () => {
-                    openAddVehicleModal();
-                });
-            }
-            
-            // Add Vehicle Image Preview Handler
-            const addVehicleImageInput = document.getElementById('add-vehicle-image');
-            const addVehicleImagePreview = document.getElementById('add-vehicle-image-preview');
-            if (addVehicleImageInput && addVehicleImagePreview) {
-                addVehicleImageInput.addEventListener('change', function(e) {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            addVehicleImagePreview.src = e.target.result;
-                            addVehicleImagePreview.classList.remove('hidden');
-                        };
-                        reader.readAsDataURL(file);
-                    } else {
-                        addVehicleImagePreview.src = '';
-                        addVehicleImagePreview.classList.add('hidden');
-                    }
-                });
-            }
-            
-            // Add Vehicle Form Handler
-            const addVehicleForm = document.getElementById('add-vehicle-form');
-            if (addVehicleForm) {
-                addVehicleForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    
-                    try {
-                        const vehicleId = document.getElementById('add-vehicle-id').value.trim();
-                        const vehicleType = document.getElementById('add-vehicle-type').value;
-                        const capacity = document.getElementById('add-vehicle-capacity').value.trim();
-                        const status = document.getElementById('add-vehicle-status').value;
-                        const location = document.getElementById('add-vehicle-location').value.trim();
-                        const imageFile = document.getElementById('add-vehicle-image').files[0];
-                        
-                        // Validate required fields
-                        if (!vehicleId || !vehicleType || !capacity || !status) {
-                            showError('Please fill in all required fields (Vehicle ID, Type, Capacity, and Status).');
-                            return;
-                        }
-                        
-                        // In production, this would save to Firebase
-                        // For now, we'll add it to MOCK_VEHICLES (if it exists as a mutable object)
-                        // Since MOCK_VEHICLES is a const, we'll just show success
-                        // In a real app, this would be:
-                        // await addVehicleToFirestore({ vehicleId, vehicleType, capacity, status, location, imageFile });
-                        
-                        console.log('Adding vehicle:', { vehicleId, vehicleType, capacity, status, location, hasImage: !!imageFile });
-                        
-                        showSuccess(`Vehicle ${vehicleId} has been added successfully! Type: ${vehicleType}, Capacity: ${capacity}, Status: ${status}`);
-                        
-                        closeAddVehicleModal();
-                        
-                        // In production, would refresh the vehicle list
-                        // For now, just show success message
-                    } catch (error) {
-                        console.error('Error adding vehicle:', error);
-                        showError('Failed to add vehicle. Please try again.');
-                    }
-                });
-            }
-            
-            // Close Add Vehicle Modal when clicking outside
-            const addVehicleModal = document.getElementById('add-vehicle-modal');
-            if (addVehicleModal) {
-                addVehicleModal.addEventListener('click', function(e) {
-                    if (e.target === addVehicleModal) {
-                        closeAddVehicleModal();
-                    }
-                });
-            }
-            
-            // Update Status Form Handler
-        // Driver Trip Status Management Functions
-        let tripStatusSequence = {
-            'museum-trip': {
-                currentStep: 0,
-                steps: ['start-trip', 'arrived-pickup', 'start-driving', 'arrived-destination', 'trip-complete']
-            }
-        };
-        
-        // Update Trip Status (Sequential Workflow)
-        async function updateTripStatus(statusType) {
-            try {
-                const tripCard = document.getElementById('active-trip-card');
-                const tripId = tripCard?.dataset.tripId;
-                if (!tripId) {
-                    showError('Trip ID not found.');
-                    return;
-                }
-                const statusBadge = document.getElementById('trip-status-badge');
-            
-            // Update status sequence
-            if (!tripStatusSequence[tripId]) {
-                tripStatusSequence[tripId] = { currentStep: 0, steps: [] };
-            }
-            
-            const statusMap = {
-                'start-trip': { step: 0, status: 'En Route', badge: 'bg-green-100 text-green-800', nextButton: 'arrived-pickup-btn', message: 'Trip started! Departing from garage/depot.' },
-                'arrived-pickup': { step: 1, status: 'Arrived at Pickup', badge: 'bg-blue-100 text-blue-800', nextButton: null, message: 'Arrived at pickup location. Please complete safety check before starting drive.' },
-                'start-driving': { step: 2, status: 'Driving', badge: 'bg-purple-100 text-purple-800', nextButton: 'arrived-destination-btn', message: 'Driving started! Trip is underway.' },
-                'arrived-destination': { step: 3, status: 'Arrived at Destination', badge: 'bg-indigo-100 text-indigo-800', nextButton: 'trip-complete-btn', message: 'Arrived at destination.' },
-                'trip-complete': { step: 4, status: 'Completed', badge: 'bg-gray-100 text-gray-800', nextButton: null, message: 'Trip completed!' }
-            };
-            
-            const statusInfo = statusMap[statusType];
-            if (!statusInfo) return;
-            
-            // Update status badge
-            if (statusBadge) {
-                statusBadge.textContent = statusInfo.status;
-                statusBadge.className = `px-3 py-1 ${statusInfo.badge} rounded-full text-sm font-semibold`;
-            }
-            
-            // Disable current button and enable next button
-            const buttonIdMap = {
-                'start-trip': 'start-trip-btn',
-                'arrived-pickup': 'arrived-pickup-btn',
-                'start-driving': 'start-driving-btn',
-                'arrived-destination': 'arrived-destination-btn',
-                'trip-complete': 'trip-complete-btn'
-            };
-            
-            const currentBtnId = buttonIdMap[statusType];
-            const currentBtn = currentBtnId ? document.getElementById(currentBtnId) : null;
-            
-            if (currentBtn) {
-                currentBtn.disabled = true;
-                currentBtn.classList.add('opacity-50');
-            }
-            
-            if (statusInfo.nextButton) {
-                const nextBtn = document.getElementById(statusInfo.nextButton);
-                if (nextBtn) {
-                    nextBtn.disabled = false;
-                    nextBtn.classList.remove('opacity-50');
-                }
-            }
-            
-            // Special handling: When "Arrived at Pickup" is clicked, enable safety check
-            if (statusType === 'arrived-pickup') {
-                // Safety check section becomes visible/enabled
-                const safetyCheckSection = document.getElementById('safety-check-section');
-                if (safetyCheckSection) {
-                    safetyCheckSection.classList.remove('opacity-50');
-                }
-                
-                // Enable all individual safety check checkboxes
-                const checkBoxes = [
-                    'check-tires',
-                    'check-lights',
-                    'check-brakes',
-                    'check-fuel',
-                    'check-mirrors',
-                    'check-first-aid'
-                ];
-                
-                checkBoxes.forEach(checkId => {
-                    const checkBox = document.getElementById(checkId);
-                    if (checkBox) {
-                        checkBox.disabled = false;
-                        // Remove existing listener if any to prevent accumulation
-                        const newCheckBox = checkBox.cloneNode(true);
-                        checkBox.parentNode.replaceChild(newCheckBox, checkBox);
-                        // Add event listener to check all checks when any individual check is toggled
-                        newCheckBox.addEventListener('change', checkAllSafetyChecks);
-                    }
-                });
-                
-                // Initialize check for all safety checks
-                checkAllSafetyChecks();
-            }
-            
-            // Special handling: When "Start Driving" is clicked, enable "Arrived at Destination"
-            if (statusType === 'start-driving') {
-                const arrivedDestinationBtn = document.getElementById('arrived-destination-btn');
-                if (arrivedDestinationBtn) {
-                    arrivedDestinationBtn.disabled = false;
-                    arrivedDestinationBtn.classList.remove('opacity-50');
-                }
-            }
-            
-            // Special handling: When "Arrived at Destination" is clicked, enable "Trip Complete"
-            if (statusType === 'arrived-destination') {
-                const tripCompleteBtn = document.getElementById('trip-complete-btn');
-                if (tripCompleteBtn) {
-                    tripCompleteBtn.disabled = false;
-                    tripCompleteBtn.classList.remove('opacity-50');
-                }
-            }
-            
-            // Update trip card status
-            if (tripCard) {
-                tripCard.dataset.status = statusInfo.status.toLowerCase().replace(/\s+/g, '-');
-            }
-            
-            // Update booking in database with new status
-            const tripStatusMap = {
-                'start-trip': { status: 'ACTIVE', driverStatus: 'En Route' },
-                'arrived-pickup': { status: 'ACTIVE', driverStatus: 'Arrived at Pickup' },
-                'start-driving': { status: 'ACTIVE', driverStatus: 'Driving' },
-                'arrived-destination': { status: 'ACTIVE', driverStatus: 'Arrived at Destination' },
-                'trip-complete': { status: 'COMPLETED', driverStatus: 'Completed' }
-            };
-            
-            const statusUpdate = tripStatusMap[statusType];
-            if (statusUpdate) {
-                const updates = {
-                    driverStatus: statusUpdate.driverStatus,
-                    status: statusUpdate.status,
-                    lastDriverUpdate: new Date().toISOString()
-                };
-                
-                // Only update to COMPLETED if trip is actually complete
-                if (statusType === 'trip-complete') {
-                    updates.status = 'COMPLETED';
-                    updates.completedAt = new Date().toISOString();
-                }
-                
-                try {
-                    await updateBookingFirestore(tripId, updates);
-                    
-                    // Refresh driver dashboard
-                    const driverId = appState.currentUserId || 'driver_kore';
-                    await populateDriverDashboard(driverId);
-                    
-                    // Refresh employee dashboard to show updated status
-                    const booking = getBookingById(tripId);
-                    if (booking && booking.requesterId) {
-                        const employeeDashboard = document.getElementById('view-employee-dashboard');
-                        if (employeeDashboard && employeeDashboard.classList.contains('active')) {
-                            await populateEmployeeDashboard(booking.requesterId);
-                        }
-                    }
-                    
-                    showSuccess(`Status updated: ${statusInfo.status}`);
-                } catch (error) {
-                    console.error('Error updating trip status:', error);
-                    showError('Failed to update trip status. Please try again.');
-                }
-            } else {
-                showSuccess(`Status updated: ${statusInfo.status}`);
-            }
-            } catch (error) {
-                console.error('Error in updateTripStatus:', error);
-                showError('Failed to update trip status. Please try again.');
-            }
-        }
-        
-        // Check if all individual safety checks are completed
-        function checkAllSafetyChecks() {
-            const checks = [
-                document.getElementById('check-tires'),
-                document.getElementById('check-lights'),
-                document.getElementById('check-brakes'),
-                document.getElementById('check-fuel'),
-                document.getElementById('check-mirrors'),
-                document.getElementById('check-first-aid')
-            ];
-            
-            const allChecked = checks.every(check => check && check.checked);
-            const safetyCheckConfirmed = document.getElementById('safety-check-confirmed');
-            
-            // Enable "All Safety Checks Confirmed" only if all individual checks are completed
-            if (safetyCheckConfirmed) {
-                if (allChecked) {
-                    safetyCheckConfirmed.disabled = false;
-                } else {
-                    safetyCheckConfirmed.disabled = true;
-                    safetyCheckConfirmed.checked = false;
-                }
-            }
-            
-            // Update Start Driving button state
-            toggleStartDrivingButton();
-        }
-        
         // Toggle Start Driving Button (Safety Gate)
         function toggleStartDrivingButton() {
             const safetyCheck = document.getElementById('safety-check-confirmed');
@@ -8696,7 +7417,6 @@ The admin will assign a driver closer to the trip date.
                 }
             }
         }
-        
         // Single-Tap Delay Notification
         async function sendDelayNotification() {
             try {
@@ -8724,7 +7444,7 @@ The admin will assign a driver closer to the trip date.
                 await updateBookingFirestore(tripId, updates);
                 
                 // Update button state
-                delayBtn.textContent = '⏱️ Notification Sent!';
+                delayBtn.textContent = '⏱️ Notification Envoyée!';
                 delayBtn.classList.add('bg-green-500', 'hover:bg-green-600');
                 delayBtn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
                 
@@ -8746,7 +7466,7 @@ The admin will assign a driver closer to the trip date.
                 // Re-enable button after 3 seconds
                 setTimeout(() => {
                     delayBtn.disabled = false;
-                    delayBtn.textContent = '⏱️ Running 10 Mins Late';
+                    delayBtn.textContent = '⏱️ En Retard de 10 Minutes';
                     delayBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
                     delayBtn.classList.add('bg-orange-500', 'hover:bg-orange-600');
                 }, 3000);
@@ -8757,7 +7477,7 @@ The admin will assign a driver closer to the trip date.
                 const delayBtn = document.getElementById('delay-notification-btn');
                 if (delayBtn) {
                     delayBtn.disabled = false;
-                    delayBtn.textContent = '⏱️ Running 10 Mins Late';
+                    delayBtn.textContent = '⏱️ En Retard de 10 Minutes';
                 }
             }
         }
@@ -8794,7 +7514,6 @@ The admin will assign a driver closer to the trip date.
                 startTripBtn.classList.remove('opacity-50');
             }
         }
-
             const updateStatusForm = document.getElementById('update-status-form');
             if (updateStatusForm) {
                 updateStatusForm.addEventListener('submit', async (e) => {
@@ -8821,18 +7540,21 @@ The admin will assign a driver closer to the trip date.
                     
                     // Validate Status Select
                     const statusSelect = document.getElementById('status-select');
-                    if (!statusSelect.value) {
+                    const statusKey = statusSelect.value;
+                    if (!statusKey) {
                         document.getElementById('status-select-error').classList.remove('hidden');
                         statusSelect.classList.add('border-red-500');
-                        isValid = false;
+                            isValid = false;
                     }
                     
                     if (isValid) {
                         try {
                             const tripId = tripSelect.value;
-                            const status = statusSelect.value;
-                            const location = document.getElementById('current-location').value;
-                            const notes = document.getElementById('status-notes')?.value.trim() || '';
+                            const status = window.t(statusKey) || statusKey;
+                            const locationInput = document.getElementById('current-location');
+                            const notesInput = document.getElementById('status-notes');
+                            const location = locationInput ? locationInput.value.trim() : '';
+                            const notes = notesInput ? notesInput.value.trim() : '';
                             
                             // Update booking with status
                             const updates = {
@@ -8868,7 +7590,6 @@ The admin will assign a driver closer to the trip date.
                     }
                 });
             }
-            
             // Trip Finalization Form Handler
             const tripFinalizationForm = document.getElementById('trip-finalization-form');
             if (tripFinalizationForm) {
@@ -8895,7 +7616,6 @@ The admin will assign a driver closer to the trip date.
                         validateTripFinalization();
                     });
                 });
-                
                 // Form submission
                 tripFinalizationForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
@@ -8945,7 +7665,6 @@ The admin will assign a driver closer to the trip date.
                         document.getElementById('vehicle-issues').classList.add('border-red-500');
                         isValid = false;
                     }
-                    
                     if (isValid) {
                         try {
                             const tripCard = document.getElementById('active-trip-card');
@@ -9003,7 +7722,7 @@ The admin will assign a driver closer to the trip date.
                             }
                             
                             // Navigate back to driver dashboard
-                            window.location.hash = 'guest/driver';
+                    window.location.hash = 'guest/driver';
                         } catch (error) {
                             console.error('Error finalizing trip:', error);
                             showError('Failed to finalize trip. Please try again.');
@@ -9022,7 +7741,6 @@ The admin will assign a driver closer to the trip date.
         } else {
             initializeApp();
         }
-        
         // Function to populate Employee Dashboard with bookings from Firestore or mock data
         async function populateEmployeeDashboard(userId) {
             try {
@@ -9101,7 +7819,6 @@ The admin will assign a driver closer to the trip date.
             if (bookingsList) {
                 bookingsList.innerHTML = '';
             }
-            
             // Sort bookings: Active > Approved > Pending > Denied > Completed
             const statusOrder = { 'ACTIVE': 0, 'APPROVED': 1, 'PENDING': 2, 'DENIED': 3, 'COMPLETED': 4 };
             bookings.sort((a, b) => (statusOrder[a.status] || 99) - (statusOrder[b.status] || 99));
@@ -9217,7 +7934,6 @@ The admin will assign a driver closer to the trip date.
                         </div>
                     `;
                 }
-                
                 if (booking.status === 'PENDING') {
                     // Calculate time since submission
                     let timeSinceSubmission = '';
@@ -9257,7 +7973,7 @@ The admin will assign a driver closer to the trip date.
                         <div class="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                             <div class="flex items-center gap-2 mb-1">
                                 <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0 1 1 0 002 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                 </svg>
                                 <p class="text-yellow-800 text-xs font-semibold">${window.t('waitingForAdminAction')}</p>
                             </div>
@@ -9329,334 +8045,6 @@ The admin will assign a driver closer to the trip date.
                 showError('Failed to load bookings. Please refresh the page.');
             }
         }
-        
-        // Function to populate Admin Dashboard with pending bookings from Firestore or mock data
-        async function populateAdminDashboard() {
-            try {
-                // Fetch ALL bookings to calculate statistics (not just pending)
-                let allBookings = [];
-                let pendingBookings = [];
-                
-                try {
-                    if (isFirebaseConfigured() && window.firebaseAuth && window.firebaseAuth.currentUser) {
-                        // Fetch all bookings from Firebase
-                        const bookingsRef = window.firebaseFunctions.collection(window.firebaseDb, 'all_requests');
-                        const q = window.firebaseFunctions.query(
-                            bookingsRef,
-                            window.firebaseFunctions.orderBy('startTime', 'desc')
-                        );
-                        const querySnapshot = await window.firebaseFunctions.getDocs(q);
-                        querySnapshot.forEach((doc) => {
-                            const booking = { id: doc.id, ...doc.data() };
-                            allBookings.push(booking);
-                            if (booking.status === 'PENDING') {
-                                pendingBookings.push(booking);
-                            }
-                        });
-                    } else {
-                        // Use mock data - get all bookings
-                        allBookings = Object.entries(MOCK_BOOKINGS)
-                            .map(([id, booking]) => ({ id, ...booking }));
-                        pendingBookings = allBookings.filter(b => b.status === 'PENDING');
-                    }
-                } catch (error) {
-                    console.warn('Firestore not available, using mock data:', error);
-                    // Fallback to mock data
-                    allBookings = Object.entries(MOCK_BOOKINGS)
-                        .map(([id, booking]) => ({ id, ...booking }));
-                    pendingBookings = allBookings.filter(b => b.status === 'PENDING');
-                }
-                
-                // Calculate statistics from ALL bookings
-                const pendingCount = allBookings.filter(b => b.status === 'PENDING').length;
-                const approvedCount = allBookings.filter(b => b.status === 'APPROVED').length;
-                const activeCount = allBookings.filter(b => b.status === 'ACTIVE').length;
-                const deniedCount = allBookings.filter(b => b.status === 'DENIED').length;
-                const completedCount = allBookings.filter(b => b.status === 'COMPLETED').length;
-                const cancelledCount = allBookings.filter(b => b.status === 'CANCELLED').length;
-                
-                // Update statistics cards (Admin Dashboard has separate IDs)
-                const adminStatsPending = document.getElementById('admin-stats-pending');
-                const adminStatsApproved = document.getElementById('admin-stats-approved');
-                const adminStatsActive = document.getElementById('admin-stats-active');
-                const adminStatsDenied = document.getElementById('admin-stats-denied');
-                const adminStatsCompleted = document.getElementById('admin-stats-completed');
-                const adminStatsCancelled = document.getElementById('admin-stats-cancelled');
-                
-                if (adminStatsPending) adminStatsPending.textContent = pendingCount;
-                if (adminStatsApproved) adminStatsApproved.textContent = approvedCount;
-                if (adminStatsActive) adminStatsActive.textContent = activeCount;
-                if (adminStatsDenied) adminStatsDenied.textContent = deniedCount;
-                if (adminStatsCompleted) adminStatsCompleted.textContent = completedCount;
-                if (adminStatsCancelled) adminStatsCancelled.textContent = cancelledCount;
-                
-                // Also update Employee Dashboard stats if they exist (for consistency)
-                const statsPending = document.getElementById('stats-pending');
-                const statsApproved = document.getElementById('stats-approved');
-                const statsActive = document.getElementById('stats-active');
-                const statsDenied = document.getElementById('stats-denied');
-                const statsCompleted = document.getElementById('stats-completed');
-                
-                if (statsPending) statsPending.textContent = pendingCount;
-                if (statsApproved) statsApproved.textContent = approvedCount;
-                if (statsActive) statsActive.textContent = activeCount;
-                if (statsDenied) statsDenied.textContent = deniedCount;
-                if (statsCompleted) statsCompleted.textContent = completedCount;
-                
-                console.log('📊 Admin Dashboard Statistics:', { pendingCount, approvedCount, activeCount, deniedCount, completedCount });
-                
-                const queue = document.getElementById('pending-queue');
-                if (!queue) {
-                    console.warn('Admin dashboard: pending-queue element not found');
-                    return;
-                }
-                
-                // Update pending queue count
-                const queueCount = document.getElementById('queue-count');
-                if (queueCount) {
-                    queueCount.textContent = pendingBookings.length;
-                }
-            
-                // Clear existing queue
-                if (queue) {
-                    queue.innerHTML = '';
-                }
-                
-                // Check if filter is set to show cancelled bookings
-                const filterSelect = document.getElementById('queue-filter');
-                const currentFilter = filterSelect ? filterSelect.value : 'pending';
-                
-                // Determine which bookings to display based on filter
-                let bookingsToDisplay = [];
-                if (currentFilter === 'cancelled') {
-                    bookingsToDisplay = allBookings.filter(b => b.status === 'CANCELLED');
-                } else if (currentFilter === 'pending') {
-                    bookingsToDisplay = pendingBookings;
-                } else {
-                    // For other filters, show pending by default
-                    bookingsToDisplay = pendingBookings;
-                }
-                
-                // Update queue count based on what's being displayed
-                if (queueCount) {
-                    queueCount.textContent = bookingsToDisplay.length;
-                }
-                
-                // Sort bookings by urgency (most urgent first) or date
-                bookingsToDisplay.sort((a, b) => {
-                    const aUrgent = isUrgentBooking(a.startTime) ? 0 : 1;
-                    const bUrgent = isUrgentBooking(b.startTime) ? 0 : 1;
-                    if (aUrgent !== bUrgent) return aUrgent - bUrgent;
-                    return new Date(b.startTime) - new Date(a.startTime); // Newest first for cancelled
-                });
-                
-                // Use event delegation on the queue container for better reliability
-                // Remove old listener if it exists
-                if (queue._adminQueueClickHandler) {
-                    queue.removeEventListener('click', queue._adminQueueClickHandler);
-                }
-                
-                // Create new handler
-                queue._adminQueueClickHandler = function(e) {
-                    const target = e.target;
-                    
-                    // Check if approve button was clicked (check button or any child element)
-                    const approveButton = target.closest('button.approve-btn, button[onclick*="quickApprove"]');
-                    if (approveButton) {
-                        // Check if the booking is still pending by checking the parent container
-                        const bookingContainer = approveButton.closest('[data-booking-status]');
-                        if (bookingContainer) {
-                            const bookingStatus = bookingContainer.getAttribute('data-booking-status');
-                            if (bookingStatus !== 'PENDING') {
-                                console.warn('⚠️ Cannot approve non-pending booking:', bookingStatus);
-                                showError('This booking is no longer pending and cannot be approved.');
-                                e.preventDefault();
-                                e.stopPropagation();
-                                return false;
-                            }
-                        }
-                        
-                        // Don't prevent default - let the onclick handler work
-                        // Only stop propagation to prevent bubbling
-                        e.stopPropagation();
-                        
-                        // Get bookingId from onclick attribute or data attribute
-                        let bookingId = approveButton.getAttribute('data-booking-id');
-                        if (!bookingId) {
-                            const onclickAttr = approveButton.getAttribute('onclick');
-                            if (onclickAttr) {
-                                const match = onclickAttr.match(/quickApprove\('([^']+)'\)/);
-                                if (match && match[1]) {
-                                    bookingId = match[1];
-                                }
-                            }
-                        }
-                        
-                        console.log('✅ Approve button clicked in queue (delegation), bookingId:', bookingId);
-                        console.log('Function check:', typeof window.quickApprove);
-                        
-                        // Call the function directly as backup (onclick should also work)
-                        if (bookingId && typeof window.quickApprove === 'function') {
-                            window.quickApprove(bookingId);
-                        } else {
-                            console.error('❌ Missing bookingId or quickApprove function');
-                            console.error('bookingId:', bookingId);
-                            console.error('window.quickApprove type:', typeof window.quickApprove);
-                            alert('Error: Cannot approve booking. bookingId: ' + bookingId + ', function exists: ' + (typeof window.quickApprove === 'function'));
-                        }
-                        // Don't return false - let onclick handler also run if it wants
-                    }
-                    
-                    // Check if deny button was clicked
-                    const denyButton = target.closest('button[onclick*="quickDenyAvailability"]');
-                    if (denyButton) {
-                        // Check if the booking is still pending
-                        const bookingContainer = denyButton.closest('[data-booking-status]');
-                        if (bookingContainer) {
-                            const bookingStatus = bookingContainer.getAttribute('data-booking-status');
-                            if (bookingStatus !== 'PENDING') {
-                                console.warn('⚠️ Cannot deny non-pending booking:', bookingStatus);
-                                showError('This booking is no longer pending and cannot be denied.');
-                                e.preventDefault();
-                                e.stopPropagation();
-                                return false;
-                            }
-                        }
-                        
-                        e.stopPropagation();
-                        const onclickAttr = denyButton.getAttribute('onclick');
-                        if (onclickAttr) {
-                            const match = onclickAttr.match(/quickDenyAvailability\('([^']+)'\)/);
-                            if (match && match[1]) {
-                                quickDenyAvailability(match[1]);
-                            }
-                        }
-                    }
-                };
-                
-                // Add the event listener (use capture phase so it runs before onclick)
-                queue.addEventListener('click', queue._adminQueueClickHandler, true);
-                
-                bookingsToDisplay.forEach(booking => {
-                    // Add null checks for required properties
-                    if (!booking || !booking.startTime || !booking.requesterId) {
-                        console.warn('Skipping booking with missing required properties:', booking);
-                        return;
-                    }
-                    
-                    const dt = formatDateTime(booking.startTime);
-                    const requester = getUserById(booking.requesterId);
-                    const isUrgent = isUrgentBooking(booking.startTime);
-                    
-                    let urgencyBadge = '';
-                    let borderColor = 'border-yellow-500';
-                    let violations = 'none';
-                    let statusBadge = '';
-                    
-                    // Check for violations (compliance flagging)
-                    const bookingViolations = [];
-                    const hoursUntilBooking = (new Date(booking.startTime) - CURRENT_DATE) / (1000 * 60 * 60);
-                    
-                    // Capacity Violation Check (CRITICAL)
-                    const vehicleCapacities = {
-                        'Bus': 50,
-                        'Minibus': 50,
-                        'School Bus': 50,
-                        'Van': 15,
-                        'Passenger Van': 15,
-                        'Car': 5,
-                        'Sedan': 5,
-                        'SUV': 7
-                    };
-                    const vehicleType = booking.vehicleType || '';
-                    const maxCapacity = vehicleCapacities[vehicleType] || 0;
-                    if (maxCapacity > 0 && booking.passengers > maxCapacity) {
-                        bookingViolations.push('capacity-exceeded');
-                    }
-                    
-                    // Short Notice Request (less than 48 hours)
-                    if (hoursUntilBooking < 48 && hoursUntilBooking >= 0) {
-                        bookingViolations.push('short-notice');
-                    }
-                    
-                    // Exceeds Max Duration (more than 7 days or 168 hours)
-                    if (booking.durationHours > 168) {
-                        bookingViolations.push('max-duration');
-                    }
-                    
-                    // Set violations data attribute
-                    if (bookingViolations.length > 0) {
-                        violations = bookingViolations[0]; // Use first violation for data attribute
-                        if (bookingViolations.includes('capacity-exceeded')) {
-                            violations = 'capacity-exceeded'; // Prioritize capacity violation
-                        }
-                    }
-                    
-                    // Set status badge and border color based on booking status
-                    if (booking.status === 'CANCELLED') {
-                        statusBadge = `<span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-semibold">${window.t('cancelled')}</span>`;
-                        borderColor = 'border-orange-500';
-                    } else if (booking.status === 'PENDING') {
-                        statusBadge = `<span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-semibold">${window.t('pending')}</span>`;
-                        borderColor = 'border-yellow-500';
-                    }
-                    
-                    if (isUrgent && booking.status === 'PENDING') {
-                        urgencyBadge = '<span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-semibold shadow-sm animate-pulse">URGENT</span>';
-                        borderColor = 'border-red-500';
-                    }
-                    
-                    // Highlight capacity violations with red border
-                    if (violations === 'capacity-exceeded') {
-                        borderColor = 'border-red-500';
-                    }
-                    
-                    // Sanitize user-generated content with null checks
-                    const safePurpose = sanitizeHTML(booking.tripPurpose || 'Trip');
-                    const safeRequesterName = requester ? sanitizeHTML(requester.name) : 'Unknown';
-                    const safeDate = sanitizeHTML(dt.dateShort);
-                    const safeTime = sanitizeHTML(dt.time);
-                    const safeVehicle = sanitizeHTML(booking.vehicleType || 'N/A');
-                    const safePassengers = String(booking.passengers || 0);
-                    const safeBookingId = sanitizeHTML(booking.id || 'unknown');
-                    
-                    const bookingHTML = `
-                        <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 ${borderColor}" data-urgency="${isUrgent ? 'urgent' : 'normal'}" data-violations="${violations}" data-date="${sanitizeHTML(booking.startTime)}" data-booking-status="${booking.status}">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-3 mb-2">
-                                        <h3 class="text-lg font-bold text-gray-800">${safePurpose}</h3>
-                                        ${urgencyBadge}
-                                        ${statusBadge}
-                                    </div>
-                                    <p class="text-gray-600 text-sm mb-1">${window.t('requestedBy')} <span class="font-semibold">${safeRequesterName}</span></p>
-                                    <p class="text-gray-600 text-sm mb-1">${window.t('dateLabel')} <span class="font-semibold">${safeDate}</span> | ${window.t('timeLabel')} <span class="font-semibold">${safeTime}</span></p>
-                                    <p class="text-gray-600 text-sm mb-1">${window.t('vehicleLabel')} <span class="font-semibold">${safeVehicle}</span> | ${window.t('passengersLabel')} <span class="font-semibold">${safePassengers}</span></p>
-                                    ${booking.status === 'CANCELLED' && booking.cancelledAt ? `
-                                        <p class="text-gray-500 text-xs mt-2">${window.t('cancelled')}: ${new Date(booking.cancelledAt).toLocaleString()}</p>
-                                    ` : ''}
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap gap-2">
-                                ${booking.status === 'PENDING' ? `
-                                    <button type="button" onclick="if(typeof window.quickApprove === 'function') { window.quickApprove('${safeBookingId}'); } else { alert('quickApprove function not found!'); }" data-booking-id="${safeBookingId}" class="approve-btn px-4 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 text-sm cursor-pointer">✓ ${window.t('approve')}</button>
-                                    <button onclick="quickDenyAvailability('${safeBookingId}')" class="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 text-sm cursor-pointer">${window.t('quickDeny')}</button>
-                                ` : ''}
-                                <button onclick="openRequestDetailView('${safeBookingId}')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 text-sm cursor-pointer">${window.t('viewDetails')}</button>
-                            </div>
-                        </div>
-                    `;
-                    
-                    if (queue) {
-                        queue.innerHTML += bookingHTML;
-                    }
-                });
-            } catch (error) {
-                console.error('❌ Error in populateAdminDashboard:', error);
-                showError('Failed to load admin dashboard. Please refresh the page.');
-            }
-        }
-        
         // Function to populate Driver Dashboard with assigned trips
         async function populateDriverDashboard(driverId) {
             try {
@@ -9700,6 +8088,53 @@ The admin will assign a driver closer to the trip date.
                 booking.status !== 'CANCELLED' && 
                 (booking.status === 'APPROVED' || booking.status === 'ACTIVE')
             );
+            
+            console.log(`🚗 Driver Dashboard: ${assignedTrips.length} active trips after filtering CANCELLED`);
+            
+            const tripSelectElement = document.getElementById('trip-select');
+            const statusSelectElement = document.getElementById('status-select');
+            const manualSubmitButton = document.getElementById('update-status-submit');
+            const noTripsMessage = document.getElementById('no-trips-message');
+            
+            if (tripSelectElement) {
+                const previousSelection = tripSelectElement.value;
+                tripSelectElement.innerHTML = '';
+                const placeholderOption = document.createElement('option');
+                placeholderOption.value = '';
+                placeholderOption.textContent = window.t('selectTripPlaceholder') || 'Choose a trip';
+                tripSelectElement.appendChild(placeholderOption);
+                
+                assignedTrips.forEach(trip => {
+                    const option = document.createElement('option');
+                    option.value = trip.id;
+                    const tripDateTime = formatDateTime(trip.startTime);
+                    const safePurpose = sanitizeHTML(trip.tripPurpose || 'Trip');
+                    const safeDate = sanitizeHTML(tripDateTime.dateShort);
+                    const safeTime = sanitizeHTML(tripDateTime.time);
+                    option.textContent = `${safePurpose} • ${safeDate} ${safeTime}`;
+                    tripSelectElement.appendChild(option);
+                });
+                
+                if (!assignedTrips.find(trip => trip.id === previousSelection)) {
+                    tripSelectElement.value = '';
+                } else {
+                    tripSelectElement.value = previousSelection;
+                }
+                
+                tripSelectElement.disabled = assignedTrips.length === 0;
+            }
+            
+            if (statusSelectElement) {
+                statusSelectElement.disabled = assignedTrips.length === 0;
+            }
+            
+            if (manualSubmitButton) {
+                manualSubmitButton.disabled = assignedTrips.length === 0;
+            }
+            
+            if (noTripsMessage) {
+                noTripsMessage.classList.toggle('hidden', assignedTrips.length !== 0);
+            }
             
             console.log(`🚗 Driver Dashboard: ${assignedTrips.length} active trips after filtering CANCELLED`);
             
@@ -9781,11 +8216,10 @@ The admin will assign a driver closer to the trip date.
                 }
                 
                 if (typeof app !== 'undefined' && app.handleRoute) {
-                    app.handleRoute();
+                app.handleRoute();
                 } else {
                     console.error('app.handleRoute not available');
                 }
-                
                 // Set up hashchange listener for navigation
                 window.addEventListener('hashchange', () => {
                     console.log('Hash changed to:', window.location.hash);
@@ -9825,7 +8259,6 @@ The admin will assign a driver closer to the trip date.
                         populateDriverDashboard('driver_kore');
                     }, 100);
                 });
-                
                 // Populate dashboards with mock data after DOM is ready
                 // Check current route and populate accordingly
                 setTimeout(() => {
@@ -9848,7 +8281,6 @@ The admin will assign a driver closer to the trip date.
                 if (viewHome) viewHome.classList.add('active');
             }
         }
-        
         // Cleanup on page unload
         window.addEventListener('beforeunload', () => {
             try {
